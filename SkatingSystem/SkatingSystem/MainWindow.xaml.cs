@@ -24,5 +24,33 @@ namespace SkatingSystem
         {
             InitializeComponent();
         }
+
+        private void Dancers_Click(object sender, RoutedEventArgs e)
+        {
+            Forms.Dancers dancers = new Forms.Dancers();
+            dancers.Show();
+            Hide();
+        }
+
+        private void Judges_Click(object sender, RoutedEventArgs e)
+        {
+            Forms.Judges judges = new Forms.Judges();
+            judges.Show();
+            Hide();
+        }
+
+        private void Clubs_Click(object sender, RoutedEventArgs e)
+        {
+            Forms.Clubs clubs = new Forms.Clubs();
+            clubs.Show();
+            Hide();
+        }
+
+        private void Groups_Click(object sender, RoutedEventArgs e)
+        {
+            Forms.Groups groups = new Forms.Groups();
+            groups.Show();
+            Hide();
+        }
     }
 }

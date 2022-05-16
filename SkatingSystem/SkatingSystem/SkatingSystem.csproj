@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,9 +64,75 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="RegistrationAdd.xaml.cs">
-      <DependentUpon>RegistrationAdd.xaml</DependentUpon>
+    <Compile Include="Gruppy.cs">
+      <DependentUpon>ModelSkating.tt</DependentUpon>
     </Compile>
+    <Compile Include="Kluby.cs">
+      <DependentUpon>ModelSkating.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelSkating.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSkating.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OcenkaTanca.cs">
+      <DependentUpon>ModelSkating.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Organizacii.cs">
+      <DependentUpon>ModelSkating.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pary.cs">
+      <DependentUpon>ModelSkating.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ResultatyTanca.cs">
+      <DependentUpon>ModelSkating.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sorevnovaniya.cs">
+      <DependentUpon>ModelSkating.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SpisokSudey.cs">
+      <DependentUpon>ModelSkating.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SpisokUchastnikov.cs">
+      <DependentUpon>ModelSkating.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SudeyskiySostav.cs">
+      <DependentUpon>ModelSkating.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>ModelSkating.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tanceval_nayaProgramma.cs">
+      <DependentUpon>ModelSkating.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tanceval_nyeNomera.cs">
+      <DependentUpon>ModelSkating.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipySudeyskogoSostava.cs">
+      <DependentUpon>ModelSkating.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Uchastniki.cs">
+      <DependentUpon>ModelSkating.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VozrastnyeKategorii.cs">
+      <DependentUpon>ModelSkating.tt</DependentUpon>
+    </Compile>
+    <Page Include="Forms\Clubs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Dancers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Groups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Judges.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -66,16 +141,34 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Forms\Clubs.xaml.cs">
+      <DependentUpon>Clubs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dancers.xaml.cs">
+      <DependentUpon>Dancers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Groups.xaml.cs">
+      <DependentUpon>Groups.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Judges.xaml.cs">
+      <DependentUpon>Judges.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RegistrationAdd.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModelSkating.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSkating.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelSkating.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSkating.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -93,6 +186,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="ModelSkating.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelSkating.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelSkating.edmx.diagram">
+      <DependentUpon>ModelSkating.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -100,6 +201,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelSkating.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelSkating.edmx</DependentUpon>
+      <LastGenOutput>ModelSkating.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelSkating.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelSkating.edmx</DependentUpon>
+      <LastGenOutput>ModelSkating.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище SkatingModelContainer" CdmEntityContainer="SkatingEntities">
+    <EntitySetMapping Name="Gruppy">
+      <EntityTypeMapping TypeName="SkatingModel.Gruppy">
+        <MappingFragment StoreEntitySet="Gruppy">
+          <ScalarProperty Name="IdGruppy" ColumnName="IdGruppy" />
+          <ScalarProperty Name="NomerGruppy" ColumnName="NomerGruppy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kluby">
+      <EntityTypeMapping TypeName="SkatingModel.Kluby">
+        <MappingFragment StoreEntitySet="Kluby">
+          <ScalarProperty Name="IdKluba" ColumnName="IdKluba" />
+          <ScalarProperty Name="Nazvanie" ColumnName="Nazvanie" />
+          <ScalarProperty Name="Gorod" ColumnName="Gorod" />
+          <ScalarProperty Name="Strana" ColumnName="Strana" />
+          <ScalarProperty Name="FIOTrenera" ColumnName="FIOTrenera" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OcenkaTanca">
+      <EntityTypeMapping TypeName="SkatingModel.OcenkaTanca">
+        <MappingFragment StoreEntitySet="OcenkaTanca">
+          <ScalarProperty Name="IdGruppy" ColumnName="IdGruppy" />
+          <ScalarProperty Name="IdSud_i" ColumnName="IdSud'i" />
+          <ScalarProperty Name="IdTanca" ColumnName="IdTanca" />
+          <ScalarProperty Name="Mesto" ColumnName="Mesto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Organizacii">
+      <EntityTypeMapping TypeName="SkatingModel.Organizacii">
+        <MappingFragment StoreEntitySet="Organizacii">
+          <ScalarProperty Name="IdOrganizacii" ColumnName="IdOrganizacii" />
+          <ScalarProperty Name="Nazvanie" ColumnName="Nazvanie" />
+          <ScalarProperty Name="Strana" ColumnName="Strana" />
+          <ScalarProperty Name="Gorod" ColumnName="Gorod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pary">
+      <EntityTypeMapping TypeName="SkatingModel.Pary">
+        <MappingFragment StoreEntitySet="Pary">
+          <ScalarProperty Name="IdPary" ColumnName="IdPary" />
+          <ScalarProperty Name="IdUchastnika" ColumnName="IdUchastnika" />
+          <ScalarProperty Name="Familiya" ColumnName="Familiya" />
+          <ScalarProperty Name="Imya" ColumnName="Imya" />
+          <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+          <ScalarProperty Name="NomerPary" ColumnName="NomerPary" />
+          <ScalarProperty Name="IdKluba" ColumnName="IdKluba" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResultatyTanca">
+      <EntityTypeMapping TypeName="SkatingModel.ResultatyTanca">
+        <MappingFragment StoreEntitySet="ResultatyTanca">
+          <ScalarProperty Name="IdTanca" ColumnName="IdTanca" />
+          <ScalarProperty Name="IdGruppy" ColumnName="IdGruppy" />
+          <ScalarProperty Name="C1" ColumnName="1" />
+          <ScalarProperty Name="C1_2" ColumnName="1-2" />
+          <ScalarProperty Name="C1_3" ColumnName="1-3" />
+          <ScalarProperty Name="C1_4" ColumnName="1-4" />
+          <ScalarProperty Name="C1_5" ColumnName="1-5" />
+          <ScalarProperty Name="C1_6" ColumnName="1-6" />
+          <ScalarProperty Name="C1_7" ColumnName="1-7" />
+          <ScalarProperty Name="C1_8" ColumnName="1-8" />
+          <ScalarProperty Name="Mesto" ColumnName="Mesto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sorevnovaniya">
+      <EntityTypeMapping TypeName="SkatingModel.Sorevnovaniya">
+        <MappingFragment StoreEntitySet="Sorevnovaniya">
+          <ScalarProperty Name="IdSorevnovaniya" ColumnName="IdSorevnovaniya" />
+          <ScalarProperty Name="DolyaPar" ColumnName="DolyaPar" />
+          <ScalarProperty Name="KolichestvoSudej" ColumnName="KolichestvoSudej" />
+          <ScalarProperty Name="KolichestvoPar" ColumnName="KolichestvoPar" />
+          <ScalarProperty Name="IdSpiskaUchastnikov" ColumnName="IdSpiskaUchastnikov" />
+          <ScalarProperty Name="IdSpiskaSudey" ColumnName="IdSpiskaSudey" />
+          <ScalarProperty Name="IdProgrammy" ColumnName="IdProgrammy" />
+          <ScalarProperty Name="Gorod" ColumnName="Gorod" />
+          <ScalarProperty Name="IdOrganizacii" ColumnName="IdOrganizacii" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpisokSudey">
+      <EntityTypeMapping TypeName="SkatingModel.SpisokSudey">
+        <MappingFragment StoreEntitySet="SpisokSudey">
+          <ScalarProperty Name="IdSpiskaSudey" ColumnName="IdSpiskaSudey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpisokUchastnikov">
+      <EntityTypeMapping TypeName="SkatingModel.SpisokUchastnikov">
+        <MappingFragment StoreEntitySet="SpisokUchastnikov">
+          <ScalarProperty Name="IdSpiskaUchastnikov" ColumnName="IdSpiskaUchastnikov" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SudeyskiySostav">
+      <EntityTypeMapping TypeName="SkatingModel.SudeyskiySostav">
+        <MappingFragment StoreEntitySet="SudeyskiySostav">
+          <ScalarProperty Name="IdSud_i" ColumnName="IdSud'i" />
+          <ScalarProperty Name="Familiya" ColumnName="Familiya" />
+          <ScalarProperty Name="Imya" ColumnName="Imya" />
+          <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+          <ScalarProperty Name="Gorod" ColumnName="Gorod" />
+          <ScalarProperty Name="IdSpiskaSudey" ColumnName="IdSpiskaSudey" />
+          <ScalarProperty Name="IdTipa" ColumnName="IdTipa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SkatingModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tanceval_nayaProgramma">
+      <EntityTypeMapping TypeName="SkatingModel.Tanceval_nayaProgramma">
+        <MappingFragment StoreEntitySet="Tanceval'nayaProgramma">
+          <ScalarProperty Name="IdProgrammy" ColumnName="IdProgrammy" />
+          <ScalarProperty Name="IdTanca" ColumnName="IdTanca" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tanceval_nyeNomera">
+      <EntityTypeMapping TypeName="SkatingModel.Tanceval_nyeNomera">
+        <MappingFragment StoreEntitySet="Tanceval'nyeNomera">
+          <ScalarProperty Name="IdTanca" ColumnName="IdTanca" />
+          <ScalarProperty Name="NazvaniyeTanca" ColumnName="NazvaniyeTanca" />
+          <ScalarProperty Name="KratkoeNazvaniye" ColumnName="KratkoeNazvaniye" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipySudeyskogoSostava">
+      <EntityTypeMapping TypeName="SkatingModel.TipySudeyskogoSostava">
+        <MappingFragment StoreEntitySet="TipySudeyskogoSostava">
+          <ScalarProperty Name="IdTipa" ColumnName="IdTipa" />
+          <ScalarProperty Name="Tip" ColumnName="Tip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uchastniki">
+      <EntityTypeMapping TypeName="SkatingModel.Uchastniki">
+        <MappingFragment StoreEntitySet="Uchastniki">
+          <ScalarProperty Name="IdUchastnika" ColumnName="IdUchastnika" />
+          <ScalarProperty Name="Familiya" ColumnName="Familiya" />
+          <ScalarProperty Name="Imya" ColumnName="Imya" />
+          <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+          <ScalarProperty Name="Pol" ColumnName="Pol" />
+          <ScalarProperty Name="DataRozhdeniya" ColumnName="DataRozhdeniya" />
+          <ScalarProperty Name="IdGruppy" ColumnName="IdGruppy" />
+          <ScalarProperty Name="Gorod" ColumnName="Gorod" />
+          <ScalarProperty Name="IdKategorii" ColumnName="IdKategorii" />
+          <ScalarProperty Name="IdKluba" ColumnName="IdKluba" />
+          <ScalarProperty Name="IdSpiskaUchastnikov" ColumnName="IdSpiskaUchastnikov" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VozrastnyeKategorii">
+      <EntityTypeMapping TypeName="SkatingModel.VozrastnyeKategorii">
+        <MappingFragment StoreEntitySet="VozrastnyeKategorii">
+          <ScalarProperty Name="IdKategorii" ColumnName="IdKategorii" />
+          <ScalarProperty Name="Kategoriya" ColumnName="Kategoriya" />
+          <ScalarProperty Name="Minimal_nyjVozrast" ColumnName="Minimal'nyjVozrast" />
+          <ScalarProperty Name="Maksimal_nyj_vozrast" ColumnName="Maksimal'nyj vozrast" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
