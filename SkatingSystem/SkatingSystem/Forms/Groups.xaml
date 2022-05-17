@@ -1,0 +1,31 @@
+﻿<Window x:Class="SkatingSystem.Forms.Groups"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SkatingSystem.Forms"
+        mc:Ignorable="d"
+        Title="Группы" Height="450" Width="810" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Button Content="Назад" HorizontalAlignment="Left" VerticalAlignment="Top" Height="34" Width="70" Margin="10,10,0,0" Click="Back_Click" Style="{StaticResource RoundButtonTemplate}" FontSize="14"/>
+        <TextBox x:Name="NomerGruppyTB" HorizontalAlignment="Left" Margin="143,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140"/>
+        <TextBox x:Name="NazvanieTB" HorizontalAlignment="Left" Margin="143,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140"/>
+        <TextBox x:Name="KolichestvoTancevTB" HorizontalAlignment="Left" Margin="143,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" RenderTransformOrigin="0.508,0.782"/>
+        <Label Content="Номер группы" HorizontalAlignment="Left" Margin="44,78,0,0" VerticalAlignment="Top"/>
+        <Label Content="Количество танцев" HorizontalAlignment="Left" Margin="19,170,0,0" VerticalAlignment="Top"/>
+        <Button Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="37,219,0,0" Height="40" Width="94" Style="{StaticResource RoundButtonTemplate}" FontSize="14"/>
+        <Button Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="163,219,0,0" Height="40" Width="94" Style="{StaticResource RoundButtonTemplate}" FontSize="14"/>
+
+        <DataGrid x:Name="TestDG" AutoGenerateColumns="False" IsReadOnly="True" Margin="307,10,10,10" MouseUp="TestDG_MouseUp">
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Header="Номер группы" Binding="{Binding Nomer}" Width="90"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Название" Binding="{Binding Nazvanie}" Width="148"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Тип выступления" Binding="{Binding TipyVystupleniya.TipVystupleniya}" Width="110"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Количество танцев" Binding="{Binding KolichestvoTancev}" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Название группы" HorizontalAlignment="Left" Margin="29,108,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TipTB" HorizontalAlignment="Left" Margin="143,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140"/>
+        <Label Content="Тип выступления" HorizontalAlignment="Left" Margin="30,140,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

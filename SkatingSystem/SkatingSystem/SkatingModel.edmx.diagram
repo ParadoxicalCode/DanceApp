@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="707c84060efa48f0a3a9876cfa467573" Name="Diagram1">
+        <EntityTypeShape EntityType="SkatingProbeModel.Dolzhnosti" Width="1.5" PointX="1.5" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingProbeModel.Gruppy" Width="1.5" PointX="1.5" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingProbeModel.Kluby" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingProbeModel.OcenkaTanca" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingProbeModel.Pary" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingProbeModel.Programmy" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingProbeModel.Resultaty" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingProbeModel.Sorevnovaniya" Width="1.5" PointX="3" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingProbeModel.SudeyskiySostav" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingProbeModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingProbeModel.Tanceval_nyeNomera" Width="1.5" PointX="0.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingProbeModel.TipyVystupleniya" Width="1.5" PointX="1.5" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingProbeModel.Tury" Width="1.5" PointX="3.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingProbeModel.Uchastniki" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingProbeModel.VozrastnyeKategorii" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+        <AssociationConnector Association="SkatingProbeModel.FK_SudeyskiySostav_TipySudeyskogoSostava" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingProbeModel.FK_Gruppy_TipyVystupleniya" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingProbeModel.FK_SudeyskiySostav_Gruppy" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingProbeModel.FK_Sorevnovaniya_Kluby" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingProbeModel.FK_Uchastniki_Kluby" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingProbeModel.FK_ResultatyTanca_Pary" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingProbeModel.FK_ResultatyTanca_SudeyskiySostav" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingProbeModel.FK_ResultatyTanca_Tanceval_nyeNomera" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingProbeModel.FK_Resultaty_Pary" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingProbeModel.FK_Uchastniki_Pary" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingProbeModel.FK_Resultaty_Tanceval_nyeNomera" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingProbeModel.FK_Resultaty_Tury" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingProbeModel.FK_Uchastniki_VozrastnyeKategorii" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SkatingProbeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Dolzhnosti">
+    <Key>
+      <PropertyRef Name="IdDolzhnosti" />
+    </Key>
+    <Property Name="IdDolzhnosti" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dolzhnost" Type="String" MaxLength="26" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="SudeyskiySostav" Relationship="Self.FK_SudeyskiySostav_TipySudeyskogoSostava" FromRole="Dolzhnosti" ToRole="SudeyskiySostav" />
+  </EntityType>
+  <EntityType Name="Gruppy">
+    <Key>
+      <PropertyRef Name="IdGruppy" />
+    </Key>
+    <Property Name="IdGruppy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nomer" Type="Int32" Nullable="false" />
+    <Property Name="IdTipaVystupleniya" Type="Int32" Nullable="false" />
+    <Property Name="KolichestvoTancev" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TipyVystupleniya" Relationship="Self.FK_Gruppy_TipyVystupleniya" FromRole="Gruppy" ToRole="TipyVystupleniya" />
+    <NavigationProperty Name="SudeyskiySostav" Relationship="Self.FK_SudeyskiySostav_Gruppy" FromRole="Gruppy" ToRole="SudeyskiySostav" />
+    <Property Name="Nazvanie" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Kluby">
+    <Key>
+      <PropertyRef Name="IdKluba" />
+    </Key>
+    <Property Name="IdKluba" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nazvanie" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Gorod" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Strana" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="FIOTrenera" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Sorevnovaniya" Relationship="Self.FK_Sorevnovaniya_Kluby" FromRole="Kluby" ToRole="Sorevnovaniya" />
+    <NavigationProperty Name="Uchastniki" Relationship="Self.FK_Uchastniki_Kluby" FromRole="Kluby" ToRole="Uchastniki" />
+  </EntityType>
+  <EntityType Name="OcenkaTanca">
+    <Key>
+      <PropertyRef Name="IdTanca" />
+      <PropertyRef Name="IdPary" />
+      <PropertyRef Name="IdSud_i" />
+    </Key>
+    <Property Name="IdTanca" Type="Int32" Nullable="false" />
+    <Property Name="IdPary" Type="Int32" Nullable="false" />
+    <Property Name="IdSud_i" Type="Int32" Nullable="false" />
+    <Property Name="Mesto" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pary" Relationship="Self.FK_ResultatyTanca_Pary" FromRole="OcenkaTanca" ToRole="Pary" />
+    <NavigationProperty Name="SudeyskiySostav" Relationship="Self.FK_ResultatyTanca_SudeyskiySostav" FromRole="OcenkaTanca" ToRole="SudeyskiySostav" />
+    <NavigationProperty Name="Tanceval_nyeNomera" Relationship="Self.FK_ResultatyTanca_Tanceval_nyeNomera" FromRole="OcenkaTanca" ToRole="Tanceval_nyeNomera" />
+  </EntityType>
+  <EntityType Name="Pary">
+    <Key>
+      <PropertyRef Name="IdPary" />
+    </Key>
+    <Property Name="IdPary" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nomer" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="OcenkaTanca" Relationship="Self.FK_ResultatyTanca_Pary" FromRole="Pary" ToRole="OcenkaTanca" />
+    <NavigationProperty Name="Resultaty" Relationship="Self.FK_Resultaty_Pary" FromRole="Pary" ToRole="Resultaty" />
+    <NavigationProperty Name="Uchastniki" Relationship="Self.FK_Uchastniki_Pary" FromRole="Pary" ToRole="Uchastniki" />
+  </EntityType>
+  <EntityType Name="Programmy">
+    <Key>
+      <PropertyRef Name="IdProgrammy" />
+    </Key>
+    <Property Name="IdProgrammy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nazvanie" Type="String" MaxLength="18" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Resultaty">
+    <Key>
+      <PropertyRef Name="IdPary" />
+      <PropertyRef Name="IdTura" />
+      <PropertyRef Name="IdTanca" />
+    </Key>
+    <Property Name="IdPary" Type="Int32" Nullable="false" />
+    <Property Name="IdTura" Type="Int32" Nullable="false" />
+    <Property Name="IdTanca" Type="Int32" Nullable="false" />
+    <Property Name="Mesto" Type="Int32" Nullable="false" />
+    <Property Name="SrednyayaOcenka" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="IdSorevnovaniya" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pary" Relationship="Self.FK_Resultaty_Pary" FromRole="Resultaty" ToRole="Pary" />
+    <NavigationProperty Name="Tanceval_nyeNomera" Relationship="Self.FK_Resultaty_Tanceval_nyeNomera" FromRole="Resultaty" ToRole="Tanceval_nyeNomera" />
+    <NavigationProperty Name="Tury" Relationship="Self.FK_Resultaty_Tury" FromRole="Resultaty" ToRole="Tury" />
+  </EntityType>
+  <EntityType Name="Sorevnovaniya">
+    <Key>
+      <PropertyRef Name="IdSorevnovaniya" />
+    </Key>
+    <Property Name="IdSorevnovaniya" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nazvanie" Type="String" MaxLength="35" FixedLength="true" Unicode="true" />
+    <Property Name="Gorod" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="IdKluba" Type="Int32" />
+    <NavigationProperty Name="Kluby" Relationship="Self.FK_Sorevnovaniya_Kluby" FromRole="Sorevnovaniya" ToRole="Kluby" />
+  </EntityType>
+  <EntityType Name="SudeyskiySostav">
+    <Key>
+      <PropertyRef Name="IdSud_i" />
+    </Key>
+    <Property Name="IdSud_i" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Familiya" Type="String" MaxLength="14" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Imya" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Otchestvo" Type="String" MaxLength="16" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Gorod" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="IdDolzhnosti" Type="Int32" Nullable="false" />
+    <Property Name="Bukva" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="IdGruppy" Type="Int32" />
+    <NavigationProperty Name="Dolzhnosti" Relationship="Self.FK_SudeyskiySostav_TipySudeyskogoSostava" FromRole="SudeyskiySostav" ToRole="Dolzhnosti" />
+    <NavigationProperty Name="Gruppy" Relationship="Self.FK_SudeyskiySostav_Gruppy" FromRole="SudeyskiySostav" ToRole="Gruppy" />
+    <NavigationProperty Name="OcenkaTanca" Relationship="Self.FK_ResultatyTanca_SudeyskiySostav" FromRole="SudeyskiySostav" ToRole="OcenkaTanca" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tanceval_nyeNomera">
+    <Key>
+      <PropertyRef Name="IdTanca" />
+    </Key>
+    <Property Name="IdTanca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NazvaniyeTanca" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="KratkoeNazvaniye" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="OcenkaTanca" Relationship="Self.FK_ResultatyTanca_Tanceval_nyeNomera" FromRole="Tanceval_nyeNomera" ToRole="OcenkaTanca" />
+    <NavigationProperty Name="Resultaty" Relationship="Self.FK_Resultaty_Tanceval_nyeNomera" FromRole="Tanceval_nyeNomera" ToRole="Resultaty" />
+  </EntityType>
+  <EntityType Name="TipyVystupleniya">
+    <Key>
+      <PropertyRef Name="IdTipaVystupleniya" />
+    </Key>
+    <Property Name="IdTipaVystupleniya" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TipVystupleniya" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Gruppy" Relationship="Self.FK_Gruppy_TipyVystupleniya" FromRole="TipyVystupleniya" ToRole="Gruppy" />
+  </EntityType>
+  <EntityType Name="Tury">
+    <Key>
+      <PropertyRef Name="IdTura" />
+    </Key>
+    <Property Name="IdTura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tur" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Resultaty" Relationship="Self.FK_Resultaty_Tury" FromRole="Tury" ToRole="Resultaty" />
+  </EntityType>
+  <EntityType Name="Uchastniki">
+    <Key>
+      <PropertyRef Name="IdUchastnika" />
+    </Key>
+    <Property Name="IdUchastnika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Familiya" Type="String" MaxLength="14" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Imya" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Otchestvo" Type="String" MaxLength="16" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DataRozhdeniya" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Gorod" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="IdKluba" Type="Int32" Nullable="false" />
+    <Property Name="IdKategorii" Type="Int32" Nullable="false" />
+    <Property Name="IdPary" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Kluby" Relationship="Self.FK_Uchastniki_Kluby" FromRole="Uchastniki" ToRole="Kluby" />
+    <NavigationProperty Name="Pary" Relationship="Self.FK_Uchastniki_Pary" FromRole="Uchastniki" ToRole="Pary" />
+    <NavigationProperty Name="VozrastnyeKategorii" Relationship="Self.FK_Uchastniki_VozrastnyeKategorii" FromRole="Uchastniki" ToRole="VozrastnyeKategorii" />
+  </EntityType>
+  <EntityType Name="VozrastnyeKategorii">
+    <Key>
+      <PropertyRef Name="IdKategorii" />
+    </Key>
+    <Property Name="IdKategorii" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Kategoriya" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Minimal_nyjVozrast" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Maksimal_nyj_vozrast" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Uchastniki" Relationship="Self.FK_Uchastniki_VozrastnyeKategorii" FromRole="VozrastnyeKategorii" ToRole="Uchastniki" />
+  </EntityType>
+  <Association Name="FK_SudeyskiySostav_TipySudeyskogoSostava">
+    <End Role="Dolzhnosti" Type="Self.Dolzhnosti" Multiplicity="1" />
+    <End Role="SudeyskiySostav" Type="Self.SudeyskiySostav" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dolzhnosti">
+        <PropertyRef Name="IdDolzhnosti" />
+      </Principal>
+      <Dependent Role="SudeyskiySostav">
+        <PropertyRef Name="IdDolzhnosti" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gruppy_TipyVystupleniya">
+    <End Role="TipyVystupleniya" Type="Self.TipyVystupleniya" Multiplicity="1" />
+    <End Role="Gruppy" Type="Self.Gruppy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipyVystupleniya">
+        <PropertyRef Name="IdTipaVystupleniya" />
+      </Principal>
+      <Dependent Role="Gruppy">
+        <PropertyRef Name="IdTipaVystupleniya" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SudeyskiySostav_Gruppy">
+    <End Role="Gruppy" Type="Self.Gruppy" Multiplicity="0..1" />
+    <End Role="SudeyskiySostav" Type="Self.SudeyskiySostav" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gruppy">
+        <PropertyRef Name="IdGruppy" />
+      </Principal>
+      <Dependent Role="SudeyskiySostav">
+        <PropertyRef Name="IdGruppy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sorevnovaniya_Kluby">
+    <End Role="Kluby" Type="Self.Kluby" Multiplicity="0..1" />
+    <End Role="Sorevnovaniya" Type="Self.Sorevnovaniya" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kluby">
+        <PropertyRef Name="IdKluba" />
+      </Principal>
+      <Dependent Role="Sorevnovaniya">
+        <PropertyRef Name="IdKluba" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Uchastniki_Kluby">
+    <End Role="Kluby" Type="Self.Kluby" Multiplicity="1" />
+    <End Role="Uchastniki" Type="Self.Uchastniki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kluby">
+        <PropertyRef Name="IdKluba" />
+      </Principal>
+      <Dependent Role="Uchastniki">
+        <PropertyRef Name="IdKluba" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResultatyTanca_Pary">
+    <End Role="Pary" Type="Self.Pary" Multiplicity="1" />
+    <End Role="OcenkaTanca" Type="Self.OcenkaTanca" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pary">
+        <PropertyRef Name="IdPary" />
+      </Principal>
+      <Dependent Role="OcenkaTanca">
+        <PropertyRef Name="IdPary" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResultatyTanca_SudeyskiySostav">
+    <End Role="SudeyskiySostav" Type="Self.SudeyskiySostav" Multiplicity="1" />
+    <End Role="OcenkaTanca" Type="Self.OcenkaTanca" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SudeyskiySostav">
+        <PropertyRef Name="IdSud_i" />
+      </Principal>
+      <Dependent Role="OcenkaTanca">
+        <PropertyRef Name="IdSud_i" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResultatyTanca_Tanceval_nyeNomera">
+    <End Role="Tanceval_nyeNomera" Type="Self.Tanceval_nyeNomera" Multiplicity="1" />
+    <End Role="OcenkaTanca" Type="Self.OcenkaTanca" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tanceval_nyeNomera">
+        <PropertyRef Name="IdTanca" />
+      </Principal>
+      <Dependent Role="OcenkaTanca">
+        <PropertyRef Name="IdTanca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resultaty_Pary">
+    <End Role="Pary" Type="Self.Pary" Multiplicity="1" />
+    <End Role="Resultaty" Type="Self.Resultaty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pary">
+        <PropertyRef Name="IdPary" />
+      </Principal>
+      <Dependent Role="Resultaty">
+        <PropertyRef Name="IdPary" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Uchastniki_Pary">
+    <End Role="Pary" Type="Self.Pary" Multiplicity="1" />
+    <End Role="Uchastniki" Type="Self.Uchastniki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pary">
+        <PropertyRef Name="IdPary" />
+      </Principal>
+      <Dependent Role="Uchastniki">
+        <PropertyRef Name="IdPary" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resultaty_Tanceval_nyeNomera">
+    <End Role="Tanceval_nyeNomera" Type="Self.Tanceval_nyeNomera" Multiplicity="1" />
+    <End Role="Resultaty" Type="Self.Resultaty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tanceval_nyeNomera">
+        <PropertyRef Name="IdTanca" />
+      </Principal>
+      <Dependent Role="Resultaty">
+        <PropertyRef Name="IdTanca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resultaty_Tury">
+    <End Role="Tury" Type="Self.Tury" Multiplicity="1" />
+    <End Role="Resultaty" Type="Self.Resultaty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tury">
+        <PropertyRef Name="IdTura" />
+      </Principal>
+      <Dependent Role="Resultaty">
+        <PropertyRef Name="IdTura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Uchastniki_VozrastnyeKategorii">
+    <End Role="VozrastnyeKategorii" Type="Self.VozrastnyeKategorii" Multiplicity="1" />
+    <End Role="Uchastniki" Type="Self.Uchastniki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VozrastnyeKategorii">
+        <PropertyRef Name="IdKategorii" />
+      </Principal>
+      <Dependent Role="Uchastniki">
+        <PropertyRef Name="IdKategorii" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SkatingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Dolzhnosti" EntityType="Self.Dolzhnosti" />
+    <EntitySet Name="Gruppy" EntityType="Self.Gruppy" />
+    <EntitySet Name="Kluby" EntityType="Self.Kluby" />
+    <EntitySet Name="OcenkaTanca" EntityType="Self.OcenkaTanca" />
+    <EntitySet Name="Pary" EntityType="Self.Pary" />
+    <EntitySet Name="Programmy" EntityType="Self.Programmy" />
+    <EntitySet Name="Resultaty" EntityType="Self.Resultaty" />
+    <EntitySet Name="Sorevnovaniya" EntityType="Self.Sorevnovaniya" />
+    <EntitySet Name="SudeyskiySostav" EntityType="Self.SudeyskiySostav" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Tanceval_nyeNomera" EntityType="Self.Tanceval_nyeNomera" />
+    <EntitySet Name="TipyVystupleniya" EntityType="Self.TipyVystupleniya" />
+    <EntitySet Name="Tury" EntityType="Self.Tury" />
+    <EntitySet Name="Uchastniki" EntityType="Self.Uchastniki" />
+    <EntitySet Name="VozrastnyeKategorii" EntityType="Self.VozrastnyeKategorii" />
+    <AssociationSet Name="FK_SudeyskiySostav_TipySudeyskogoSostava" Association="Self.FK_SudeyskiySostav_TipySudeyskogoSostava">
+      <End Role="Dolzhnosti" EntitySet="Dolzhnosti" />
+      <End Role="SudeyskiySostav" EntitySet="SudeyskiySostav" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gruppy_TipyVystupleniya" Association="Self.FK_Gruppy_TipyVystupleniya">
+      <End Role="TipyVystupleniya" EntitySet="TipyVystupleniya" />
+      <End Role="Gruppy" EntitySet="Gruppy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SudeyskiySostav_Gruppy" Association="Self.FK_SudeyskiySostav_Gruppy">
+      <End Role="Gruppy" EntitySet="Gruppy" />
+      <End Role="SudeyskiySostav" EntitySet="SudeyskiySostav" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sorevnovaniya_Kluby" Association="Self.FK_Sorevnovaniya_Kluby">
+      <End Role="Kluby" EntitySet="Kluby" />
+      <End Role="Sorevnovaniya" EntitySet="Sorevnovaniya" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Uchastniki_Kluby" Association="Self.FK_Uchastniki_Kluby">
+      <End Role="Kluby" EntitySet="Kluby" />
+      <End Role="Uchastniki" EntitySet="Uchastniki" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResultatyTanca_Pary" Association="Self.FK_ResultatyTanca_Pary">
+      <End Role="Pary" EntitySet="Pary" />
+      <End Role="OcenkaTanca" EntitySet="OcenkaTanca" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResultatyTanca_SudeyskiySostav" Association="Self.FK_ResultatyTanca_SudeyskiySostav">
+      <End Role="SudeyskiySostav" EntitySet="SudeyskiySostav" />
+      <End Role="OcenkaTanca" EntitySet="OcenkaTanca" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResultatyTanca_Tanceval_nyeNomera" Association="Self.FK_ResultatyTanca_Tanceval_nyeNomera">
+      <End Role="Tanceval_nyeNomera" EntitySet="Tanceval_nyeNomera" />
+      <End Role="OcenkaTanca" EntitySet="OcenkaTanca" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resultaty_Pary" Association="Self.FK_Resultaty_Pary">
+      <End Role="Pary" EntitySet="Pary" />
+      <End Role="Resultaty" EntitySet="Resultaty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Uchastniki_Pary" Association="Self.FK_Uchastniki_Pary">
+      <End Role="Pary" EntitySet="Pary" />
+      <End Role="Uchastniki" EntitySet="Uchastniki" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resultaty_Tanceval_nyeNomera" Association="Self.FK_Resultaty_Tanceval_nyeNomera">
+      <End Role="Tanceval_nyeNomera" EntitySet="Tanceval_nyeNomera" />
+      <End Role="Resultaty" EntitySet="Resultaty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resultaty_Tury" Association="Self.FK_Resultaty_Tury">
+      <End Role="Tury" EntitySet="Tury" />
+      <End Role="Resultaty" EntitySet="Resultaty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Uchastniki_VozrastnyeKategorii" Association="Self.FK_Uchastniki_VozrastnyeKategorii">
+      <End Role="VozrastnyeKategorii" EntitySet="VozrastnyeKategorii" />
+      <End Role="Uchastniki" EntitySet="Uchastniki" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
