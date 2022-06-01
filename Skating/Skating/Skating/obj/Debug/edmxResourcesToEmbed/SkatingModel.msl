@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище SkatingModelContainer" CdmEntityContainer="SkatingEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="SkatingModel.Categories">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MinAge" ColumnName="MinAge" />
+          <ScalarProperty Name="MaxAge" ColumnName="MaxAge" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clubs">
+      <EntityTypeMapping TypeName="SkatingModel.Clubs">
+        <MappingFragment StoreEntitySet="Clubs">
+          <ScalarProperty Name="ClubId" ColumnName="ClubId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="TrainerFIO" ColumnName="TrainerFIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Competitions">
+      <EntityTypeMapping TypeName="SkatingModel.Competitions">
+        <MappingFragment StoreEntitySet="Competitions">
+          <ScalarProperty Name="CompetitionId" ColumnName="CompetitionId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="ClubId" ColumnName="ClubId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dancers">
+      <EntityTypeMapping TypeName="SkatingModel.Dancers">
+        <MappingFragment StoreEntitySet="Dancers">
+          <ScalarProperty Name="DancerId" ColumnName="DancerId" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="ClubId" ColumnName="ClubId" />
+          <ScalarProperty Name="PairId" ColumnName="PairId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dances">
+      <EntityTypeMapping TypeName="SkatingModel.Dances">
+        <MappingFragment StoreEntitySet="Dances">
+          <ScalarProperty Name="DanceId" ColumnName="DanceId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DanceScore">
+      <EntityTypeMapping TypeName="SkatingModel.DanceScore">
+        <MappingFragment StoreEntitySet="DanceScore">
+          <ScalarProperty Name="DanceId" ColumnName="DanceId" />
+          <ScalarProperty Name="PairId" ColumnName="PairId" />
+          <ScalarProperty Name="JudgeId" ColumnName="JudgeId" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="SkatingModel.Groups">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TypeOfPerformanceId" ColumnName="TypeOfPerformanceId" />
+          <ScalarProperty Name="NumberOfDances" ColumnName="NumberOfDances" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Judges">
+      <EntityTypeMapping TypeName="SkatingModel.Judges">
+        <MappingFragment StoreEntitySet="Judges">
+          <ScalarProperty Name="JudgeId" ColumnName="JudgeId" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Character" ColumnName="Character" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pairs">
+      <EntityTypeMapping TypeName="SkatingModel.Pairs">
+        <MappingFragment StoreEntitySet="Pairs">
+          <ScalarProperty Name="PairId" ColumnName="PairId" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Post">
+      <EntityTypeMapping TypeName="SkatingModel.Post">
+        <MappingFragment StoreEntitySet="Post">
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="Post1" ColumnName="Post" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Programs">
+      <EntityTypeMapping TypeName="SkatingModel.Programs">
+        <MappingFragment StoreEntitySet="Programs">
+          <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Results">
+      <EntityTypeMapping TypeName="SkatingModel.Results">
+        <MappingFragment StoreEntitySet="Results">
+          <ScalarProperty Name="PairId" ColumnName="PairId" />
+          <ScalarProperty Name="TourId" ColumnName="TourId" />
+          <ScalarProperty Name="DanceId" ColumnName="DanceId" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SkatingModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tours">
+      <EntityTypeMapping TypeName="SkatingModel.Tours">
+        <MappingFragment StoreEntitySet="Tours">
+          <ScalarProperty Name="TourId" ColumnName="TourId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypesOfPerformance">
+      <EntityTypeMapping TypeName="SkatingModel.TypesOfPerformance">
+        <MappingFragment StoreEntitySet="TypesOfPerformance">
+          <ScalarProperty Name="TypeOfPerformanceId" ColumnName="TypeOfPerformanceId" />
+          <ScalarProperty Name="TypeOfPerformance" ColumnName="TypeOfPerformance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

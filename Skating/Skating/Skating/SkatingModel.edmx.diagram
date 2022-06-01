@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4ac79bf1e8954c16b7b036c787ba5cb2" Name="Diagram1">
+        <EntityTypeShape EntityType="SkatingModel.Categories" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingModel.Clubs" Width="1.5" PointX="5.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingModel.Competitions" Width="1.5" PointX="7.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingModel.Dancers" Width="1.5" PointX="7.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingModel.Dances" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingModel.DanceScore" Width="1.5" PointX="7.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingModel.Groups" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingModel.Judges" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingModel.Pairs" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingModel.Post" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingModel.Programs" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingModel.Results" Width="1.5" PointX="10.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingModel.Tours" Width="1.5" PointX="8.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkatingModel.TypesOfPerformance" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="SkatingModel.FK_Dancers_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingModel.FK_Sorevnovaniya_Kluby" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingModel.FK_Uchastniki_Kluby" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingModel.FK_Uchastniki_Pary" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingModel.FK_DanceScore_Dances" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingModel.FK_Resultaty_Tanceval_nyeNomera" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingModel.FK_DanceScore_Judges" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingModel.FK_DanceScore_Pairs" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingModel.FK_Gruppy_TipyVystupleniya" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingModel.FK_Judges_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingModel.FK_Pairs_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingModel.FK_Judges_Post" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingModel.FK_Resultaty_Pary" ManuallyRouted="false" />
+        <AssociationConnector Association="SkatingModel.FK_Resultaty_Tury" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
