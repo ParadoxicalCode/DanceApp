@@ -33,11 +33,11 @@ namespace Skating.Forms
 
             // Записываем имена combobox'ов с первой части таблицы по горизонтали.
             CBFirstHorizontally = new List<ComboBox>() {
-            S4, S5, S6, S7 };
+            S1, S2, S3, S4, S5, S6, S7 };
 
             // Записываем имена combobox'ов с первой части таблицы по вертикали.
             CBFirstVertically = new List<ComboBox>() {
-            P4, P5, P6, P7, P8, P9, P10 };
+            P1, P2, P3, P4, P5, P6, P7, P8, P9, P10 };
 
             // Записываем имена textBox'ов с первой части таблицы по горизонтали.
             TBFirstHorizontally = new List<TextBox>() {
@@ -100,51 +100,51 @@ namespace Skating.Forms
             switch (GlobalClass.NumberOfPairs)
             {
                 case "3":
-                    int a = 0; int b = 49; TBVisibilityFirstHorizontally(a, b);
-                    a = 0; b = 7; CBVisibilityFirstVertically(a, b);
-                    a = 0; b = 77; TBVisibilitySecondVertically(a, b);
-                    a = 0; b = 63; TBVisibilitySecondHorizontally(a, b); break;
+                    int a = 0; int b = 49; int c = 3; Hide(a, b, c);
+                    a = 3; b = 10; c = 2; Hide(a, b, c);
+                    a = 0; b = 77; c = 5; Hide(a, b, c);
+                    a = 0; b = 63; c = 6; Hide(a, b, c); break;
                 case "4":
-                    a = 7; b = 49; TBVisibilityFirstHorizontally(a, b);
-                    a = 1; b = 7; CBVisibilityFirstVertically(a, b);
-                    a = 9; b = 77; TBVisibilitySecondVertically(a, b);
-                    a = 9; b = 63; TBVisibilitySecondHorizontally(a, b); break;
+                    a = 7; b = 49; c = 3; Hide(a, b, c);
+                    a = 4; b = 10; c = 2; Hide(a, b, c);
+                    a = 9; b = 77; c = 5; Hide(a, b, c);
+                    a = 9; b = 63; c = 6; Hide(a, b, c); break;
                 case "5":
-                    a = 14; b = 49; TBVisibilityFirstHorizontally(a, b);
-                    a = 2; b = 7; CBVisibilityFirstVertically(a, b);
-                    a = 18; b = 77; TBVisibilitySecondVertically(a, b);
-                    a = 18; b = 63; TBVisibilitySecondHorizontally(a, b); break;
+                    a = 14; b = 49; c = 3; Hide(a, b, c);
+                    a = 5; b = 10; c = 2; Hide(a, b, c);
+                    a = 18; b = 77; c = 5; Hide(a, b, c);
+                    a = 18; b = 63; c = 6; Hide(a, b, c); break;
                 case "6":
-                    a = 21; b = 49; TBVisibilityFirstHorizontally(a, b);
-                    a = 3; b = 7; CBVisibilityFirstVertically(a, b);
-                    a = 29; b = 77; TBVisibilitySecondVertically(a, b);
-                    a = 27; b = 63; TBVisibilitySecondHorizontally(a, b); break;
+                    a = 21; b = 49; c = 3; Hide(a, b, c);
+                    a = 6; b = 10; c = 2; Hide(a, b, c);
+                    a = 29; b = 77; c = 5; Hide(a, b, c);
+                    a = 27; b = 63; c = 6; Hide(a, b, c); break;
                 case "7":
-                    a = 28; b = 49; TBVisibilityFirstHorizontally(a, b);
-                    a = 4; b = 7; CBVisibilityFirstVertically(a, b);
-                    a = 41; b = 77; TBVisibilitySecondVertically(a, b);
-                    a = 36; b = 63; TBVisibilitySecondHorizontally(a, b); break;
+                    a = 28; b = 49; c = 3; Hide(a, b, c);
+                    a = 7; b = 10; c = 2; Hide(a, b, c);
+                    a = 41; b = 77; c = 5; Hide(a, b, c);
+                    a = 36; b = 63; c = 6; Hide(a, b, c); break;
                 case "8":
-                    a = 35; b = 49; TBVisibilityFirstHorizontally(a, b);
-                    a = 5; b = 7; CBVisibilityFirstVertically(a, b);
-                    a = 53; b = 77; TBVisibilitySecondVertically(a, b);
-                    a = 45; b = 63; TBVisibilitySecondHorizontally(a, b); break;
+                    a = 35; b = 49; c = 3; Hide(a, b, c);
+                    a = 8; b = 10; c = 2; Hide(a, b, c);
+                    a = 53; b = 77; c = 5; Hide(a, b, c);
+                    a = 45; b = 63; c = 6; Hide(a, b, c); break;
                 case "9":
-                    a = 42; b = 49; TBVisibilityFirstHorizontally(a, b);
-                    a = 6; b = 7; CBVisibilityFirstVertically(a, b);
-                    a = 65; b = 77; TBVisibilitySecondVertically(a, b);
-                    a = 54; b = 63; TBVisibilitySecondHorizontally(a, b); break;
+                    a = 42; b = 49; c = 3; Hide(a, b, c);
+                    a = 9; b = 10; c = 2; Hide(a, b, c);
+                    a = 65; b = 77; c = 5; Hide(a, b, c);
+                    a = 54; b = 63; c = 6; Hide(a, b, c); break;
             }
 
             // Скрываем comboBox'ы.
             switch (GlobalClass.NumberOfJudges)
             {
                 case "3":
-                    int a = 0; int b = 40; TBVisibilityFirstVertically(a, b);
-                    a = 0; b = 4; CBVisibilityFirstHorizontally(a, b); break;
+                    int a = 0; int b = 40; int c = 4; Hide(a, b, c);
+                    a = 3; b = 7; c = 1; Hide(a, b, c); break;
                 case "5":
-                    a = 20; b = 40; TBVisibilityFirstVertically(a, b);
-                    a = 2; b = 4; CBVisibilityFirstHorizontally(a, b); break;
+                    a = 20; b = 40; c = 4; Hide(a, b, c);
+                    a = 5; b = 7; c = 1; Hide(a, b, c); break;
             }
         }
 
@@ -207,21 +207,22 @@ namespace Skating.Forms
                 }
             }
 
-            // r - большинство мест
-            // Копируем первую часть таблицы
             int vertical = Int32.Parse(GlobalClass.NumberOfPairs);
             int horizontal = Int32.Parse(GlobalClass.NumberOfJudges);
             TBIndex = 0;
+            // Большинство голосов судей.
             int[] rs = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
             int rsIndex = 0;
+            // Корректность введённых данных.
             int fill = 0;
             int i2 = 0;
 
             if (DanceCB.SelectedValue != null)
             {
+                // Первичная проверка.
                 for (int i = 0; i < vertical && fill != 1; i++)
                 {
-                    // Если текущее значение textBox соответствует какому-то месту, то увеличиваем переменную места на 1.
                     for (int j = 0; j < horizontal && fill != 1; j++)
                     {
                         // Окрашиваем textBox в белый цвет по умолчанию.
@@ -231,29 +232,10 @@ namespace Skating.Forms
                         if (arrayFirst[i, j].Text != "")
                         {
                             // Проверка на корректность.
-                            if (gb.StringIsDigits(arrayFirst[i, j].Text.TrimEnd()) == true &&
-                                Int32.Parse(arrayFirst[i, j].Text) <= vertical &&
-                                Int32.Parse(arrayFirst[i, j].Text) >= 0)
+                            if (gb.StringIsDigits(arrayFirst[i, j].Text.TrimEnd()) == true 
+                            && Int32.Parse(arrayFirst[i, j].Text) <= vertical 
+                            && Int32.Parse(arrayFirst[i, j].Text) > 0)
                             {
-                                if (Int32.Parse(arrayFirst[i, j].Text) == 1) { rs[0]++; };
-                                if (Int32.Parse(arrayFirst[i, j].Text) <= 2 && 
-                                    Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[1]++; };
-                                if (Int32.Parse(arrayFirst[i, j].Text) <= 3 &&
-                                    Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[2]++; };
-                                if (Int32.Parse(arrayFirst[i, j].Text) <= 4 &&
-                                    Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[3]++; };
-                                if (Int32.Parse(arrayFirst[i, j].Text) <= 5 &&
-                                    Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[4]++; };
-                                if (Int32.Parse(arrayFirst[i, j].Text) <= 6 &&
-                                    Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[5]++; };
-                                if (Int32.Parse(arrayFirst[i, j].Text) <= 7 &&
-                                    Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[6]++; };
-                                if (Int32.Parse(arrayFirst[i, j].Text) <= 8 &&
-                                    Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[7]++; };
-                                if (Int32.Parse(arrayFirst[i, j].Text) <= 9 &&
-                                    Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[8]++; };
-                                if (Int32.Parse(arrayFirst[i, j].Text) <= 10 &&
-                                    Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[9]++; };
                             }
                             else
                             {
@@ -269,10 +251,85 @@ namespace Skating.Forms
                             fill = 1;
                         }
                     }
+                }
+                // Как только сделана первичная проверка на корректность и заполнение, делаем проверку
+                // на правильность распределения мест.
 
-                    // Если все поля заполнены.
-                    if (fill != 1)
+                // Места.
+                string[] place = new string[10];
+                int same = -1;
+
+                // Проверка на правильность распределения мест.
+                if (fill != 1)
+                {
+                    // Перебираем
+                    for (int right = 0; right < horizontal; right++)
                     {
+                        // Элемент i-той строки j-того столбца.
+                        for (int down = 0; down < vertical; down++)
+                        {
+                            // Запишем все элементы данного столбца в массив.
+                            place[down] = arrayFirst[down, right].Text;
+                        }
+
+                        // Сравниваем текущий элемент со всеми остальными в данном столбце.
+                        for (int down = 0; down < horizontal; down++)
+                        {
+                            for (int placeIndex = 0; placeIndex < vertical; placeIndex++)
+                            {
+                                if (arrayFirst[down, right].Text == place[placeIndex])
+                                {
+                                    same++;
+                                    if (same >= 1)
+                                    {
+                                        arrayFirst[down, right].Background = Brushes.Red;
+                                        arrayFirst[placeIndex, right].Background = Brushes.Red;
+                                    }
+                                }
+                            }
+                            if (same >= 1)
+                            {
+                                MessageBox.Show("Места должны быть разными");
+                                // Останавливаем алгоритм и ждём пока пользователь не введёт корректные данные.
+                                fill = 1; right = horizontal; down = horizontal;
+                            }
+                            else
+                            {
+                                same = -1;
+                            }
+                        }
+                    }
+                }
+
+                // Если введённые данные прошли все проверки, то запускаем вычисления
+                if (fill != 1)
+                {
+                    for (int i = 0; i < vertical; i++)
+                    {
+                        // Расчёт количества большинства мест в диапазоне от 1 до 10.
+                        for (int j = 0; j < horizontal; j++)
+                        {
+                            if (Int32.Parse(arrayFirst[i, j].Text) == 1) { rs[0]++; };
+                            if (Int32.Parse(arrayFirst[i, j].Text) <= 2 &&
+                                Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[1]++; };
+                            if (Int32.Parse(arrayFirst[i, j].Text) <= 3 &&
+                                Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[2]++; };
+                            if (Int32.Parse(arrayFirst[i, j].Text) <= 4 &&
+                                Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[3]++; };
+                            if (Int32.Parse(arrayFirst[i, j].Text) <= 5 &&
+                                Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[4]++; };
+                            if (Int32.Parse(arrayFirst[i, j].Text) <= 6 &&
+                                Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[5]++; };
+                            if (Int32.Parse(arrayFirst[i, j].Text) <= 7 &&
+                                Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[6]++; };
+                            if (Int32.Parse(arrayFirst[i, j].Text) <= 8 &&
+                                Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[7]++; };
+                            if (Int32.Parse(arrayFirst[i, j].Text) <= 9 &&
+                                Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[8]++; };
+                            if (Int32.Parse(arrayFirst[i, j].Text) <= 10 &&
+                                Int32.Parse(arrayFirst[i, j].Text) != 0) { rs[9]++; };
+                        }
+
                         // Запишем значения переменных мест для i-той строки первой части таблицы
                         // в соответствующие textBox'ы i-той строки во второй части таблицы.
                         for (int j = 0; j < vertical; j++)
@@ -282,21 +339,14 @@ namespace Skating.Forms
                         rsIndex = 0; i2++; rs[0] = 0; rs[1] = 0; rs[2] = 0; rs[3] = 0;
                         rs[4] = 0; rs[5] = 0; rs[6] = 0; rs[7] = 0; rs[8] = 0; rs[9] = 0;
                     }
-                }
 
-                // Записываем имена всех крайних textBox'ов со второй части таблицы.
-                List<TextBox> TBSecondPlaces;
-                TBSecondPlaces = new List<TextBox>() 
-                { M1, M2, M3, M4, M5, M6, M7, M8, M9, M10 };
+                    // Когда я писал этот код, только Бог и я понимали, что он делает.
+                    // Сейчас... знает только Бог.
 
-                if (fill != 1)
-                {
-                    // Массив, где первая строка - id участников, вторая - результаты, индекс 0 - первое место и тд.
-                    int[,] places = new int[2, 11];
-                    places[0, 0] = 1; places[0, 1] = 2; places[0, 2] = 3; places[0, 3] = 4; places[0, 4] = 5;
-                    places[0, 5] = 6; places[0, 6] = 7; places[0, 7] = 8; places[0, 8] = 9; places[0, 9] = 10;
-                    places[1, 10] = -1;
-                    int idBuf = 0; int scoresBuf = 0;
+                    // Записываем имена всех крайних textBox'ов со второй части таблицы.
+                    List<TextBox> TBSecondPlaces;
+                    TBSecondPlaces = new List<TextBox>() { M1, M2, M3, M4, M5, M6, M7, M8, M9, M10 };
+                    int placeEnd = 1;
 
                     // Перебираем правую часть таблицы сверху вниз по столбцам.
                     for (int j = 0; j < vertical; j++)
@@ -304,114 +354,63 @@ namespace Skating.Forms
                         // Запишем в массив places результаты участников.
                         for (int i = 0; i < vertical; i++)
                         {
-                            // Если участник имеет необходимое большинство мест, то запишем его результат в массив.
-                            if (Int32.Parse(arraySecond[i, j].Text) >= (horizontal + 2 - 1) / 2)
+                            // Если участник имеет необходимое большинство мест и ему не
+                            // присвоено место, то присвоим ему место и перейдём к следующему столбцу.
+                            if (Int32.Parse(arraySecond[i, j].Text) >= (horizontal + 2 - 1) / 2 
+                                && TBSecondPlaces[i].Text == "")
                             {
-                                places[1, i] = Int32.Parse(arraySecond[i, j].Text);
-                            }
-                            // Иначе присваиваем результату участника 0.
-                            else { places[1, i] = 0; }
-                        }
-
-                        /*
-                        Console.WriteLine("Исходный массив: ");
-                        Console.WriteLine(places[1, 0].ToString() + places[1, 1].ToString() + places[1, 2].ToString() +
-                            places[1, 3].ToString() + places[1, 4].ToString() + places[1, 5].ToString() +
-                            places[1, 6].ToString() + places[1, 7].ToString() + places[1, 8].ToString() +
-                            places[1, 9].ToString());
-                        Console.WriteLine();
-                        */
-
-                        // Сортируем участников по их результатам по убыванию
-                        for (int i = 0; i < vertical; i++)
-                        {
-                            while (i + 1 < vertical)
-                            {
-                                // Место   1 2 3 4 5 6 7 8 9 10
-                                // Id      1 2 3 4 5 6 7 8 9 10
-                                // Баллы   2 5 3 6 9 1 2 0 3 1
-                                // Если баллы текущего участника меньше баллов следующего, то поменяем id и
-                                // баллы текущего участника, на id и баллы следующего участника в массиве places.
-                                if (places[1, i] < places[1, i + 1])
-                                {
-                                    idBuf = places[0, i];
-                                    places[0, i] = places[0, i + 1];
-                                    places[0, i + 1] = idBuf;
-
-                                    scoresBuf = places[1, i];
-                                    places[1, i] = places[1, i + 1];
-                                    places[1, i + 1] = scoresBuf;
-                                    i = -1;
-                                } i++;
-
+                                TBSecondPlaces[i].Text = (placeEnd).ToString();
+                                placeEnd++; i = vertical;
                                 /*
-                                Console.WriteLine(places[0, 0].ToString() + places[0, 1].ToString() + places[0, 2].ToString() +
-                                places[0, 3].ToString() + places[0, 4].ToString() + places[0, 5].ToString() +
-                                places[0, 6].ToString() + places[0, 7].ToString() + places[0, 8].ToString() +
-                                places[0, 9].ToString());
-                                Console.WriteLine(places[1, 0].ToString() + places[1, 1].ToString() + places[1, 2].ToString() +
-                                places[1, 3].ToString() + places[1, 4].ToString() + places[1, 5].ToString() +
-                                places[1, 6].ToString() + places[1, 7].ToString() + places[1, 8].ToString() +
-                                places[1, 9].ToString());
-                                Console.WriteLine();
+                                switch (j)
+                                {
+                                    // Если участник с j-тым id занял какое-то место, то записываем в
+                                    // соответствующий textBox место.
+                                    case 1:
+                                        TBSecondPlaces[0].Text = (i + 1).ToString(); break;
+                                    case 2:
+                                        TBSecondPlaces[1].Text = (i + 1).ToString(); break;
+                                    case 3:
+                                        TBSecondPlaces[2].Text = (i + 1).ToString(); break;
+                                    case 4:
+                                        TBSecondPlaces[3].Text = (i + 1).ToString(); break;
+                                    case 5:
+                                        TBSecondPlaces[4].Text = (i + 1).ToString(); break;
+                                    case 6:
+                                        TBSecondPlaces[5].Text = (i + 1).ToString(); break;
+                                    case 7:
+                                        TBSecondPlaces[6].Text = (i + 1).ToString(); break;
+                                    case 8:
+                                        TBSecondPlaces[7].Text = (i + 1).ToString(); break;
+                                    case 9:
+                                        TBSecondPlaces[8].Text = (i + 1).ToString(); break;
+                                    case 10:
+                                        TBSecondPlaces[9].Text = (i + 1).ToString(); break;
+                                }
                                 */
                             }
-                        }
-                        j = vertical;
-                        Console.WriteLine(places[0, 0].ToString() + places[0, 1].ToString() + places[0, 2].ToString() +
-                        places[0, 3].ToString() + places[0, 4].ToString() + places[0, 5].ToString() +
-                        places[0, 6].ToString() + places[0, 7].ToString() + places[0, 8].ToString() +
-                        places[0, 9].ToString());
-
-                        Console.WriteLine(places[1, 0].ToString() + places[1, 1].ToString() + places[1, 2].ToString() +
-                        places[1, 3].ToString() + places[1, 4].ToString() + places[1, 5].ToString() +
-                        places[1, 6].ToString() + places[1, 7].ToString() + places[1, 8].ToString() +
-                        places[1, 9].ToString());
-                        Console.WriteLine();
-
-                        // Запишем места в textBox'ы.
-                        for (int i = 0; i < vertical; i++)
-                        {
-                            // Проверяем, не равны ли результаты?
-                            if (places[1, i] != places[1, i + 1])
+                            // Иначе переходим к следующему столбцу.
+                            else
                             {
-                                // Если нет, то записываем место в textBox соответствующему id.
-                                // Если участник имеет необходимое большинство мест.
-                                if (places[1, i] >= (horizontal + 2 - 1) / 2)
+                                // Если в этом столбце уже есть участник с присвоенным местом, то
+                                // переходим к следующему столбцу.
+                                for (int index = 0; index < vertical; index++)
                                 {
-                                    switch (places[0, i])
+                                    if (TBSecondPlaces[index].Text != "")
                                     {
-                                        // Если первое место занял участник с id 1, то записываем в
-                                        // соответствующий textBox место.
-                                        case 1:
-                                            TBSecondPlaces[0].Text = (i + 1).ToString(); break;
-                                        case 2:
-                                            TBSecondPlaces[1].Text = (i + 1).ToString(); break;
-                                        case 3:
-                                            TBSecondPlaces[2].Text = (i + 1).ToString(); break;
-                                        case 4:
-                                            TBSecondPlaces[3].Text = (i + 1).ToString(); break;
-                                        case 5:
-                                            TBSecondPlaces[4].Text = (i + 1).ToString(); break;
-                                        case 6:
-                                            TBSecondPlaces[5].Text = (i + 1).ToString(); break;
-                                        case 7:
-                                            TBSecondPlaces[6].Text = (i + 1).ToString(); break;
-                                        case 8:
-                                            TBSecondPlaces[7].Text = (i + 1).ToString(); break;
-                                        case 9:
-                                            TBSecondPlaces[8].Text = (i + 1).ToString(); break;
-                                        case 10:
-                                            TBSecondPlaces[9].Text = (i + 1).ToString(); break;
+                                        i = vertical; index = vertical;
                                     }
                                 }
                             }
-                            else
-                            {
+                        }
+                        //j = vertical;
 
-                            }
-                        }  
-                    }
+                        // Создадим массив, где будут места.
+                        //Первый попавшийся подходящий участник получает первое место
+                        // Второй - второе и тд.
+
+                        // Нужно исключить из выборки участника, которому присвоено место.
+                    } 
                 }
             }
             else
@@ -420,54 +419,31 @@ namespace Skating.Forms
             }  
         }
 
-        // Методы, скрывающие comboBox'ы в определённом диапазоне.
-        private void CBVisibilityFirstHorizontally(int a, int b)
+        // Метод, скрывающий textBox'ы и comboBox'ы в определённом диапазоне.
+        private void Hide(int a, int b, int c)
         {
             for (int i = a; i < b; i++)
             {
-                CBFirstHorizontally[i].Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void CBVisibilityFirstVertically(int a, int b)
-        {
-            for (int i = a; i < b; i++)
-            {
-                CBFirstVertically[i].Visibility = Visibility.Hidden;
-            }
-        }
-
-        // Методы, скрывающие textBox'ы в определённом диапазоне.
-        private void TBVisibilityFirstHorizontally(int a, int b)
-        {
-            for (int i = a; i < b; i++)
-            {
-                TBFirstHorizontally[i].Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void TBVisibilityFirstVertically(int a, int b)
-        {
-            for (int i = a; i < b; i++)
-            {
-                TBFirstVertically[i].Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void TBVisibilitySecondVertically(int a, int b)
-        {
-            for (int i = a; i < b; i++)
-            {
-                TBSecondVertically[i].Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void TBVisibilitySecondHorizontally(int a, int b)
-        {
-            for (int i = a; i < b; i++)
-            {
-                TBSecondHorizontally[i].Visibility = Visibility.Hidden;
+                // a - левая граница, b - правая граница, c - id списка.
+                switch (c)
+                {
+                    case 1:
+                        CBFirstHorizontally[i].Visibility = Visibility.Hidden; break;
+                    case 2:
+                        CBFirstVertically[i].Visibility = Visibility.Hidden; break;
+                    case 3:
+                        TBFirstHorizontally[i].Visibility = Visibility.Hidden; break;
+                    case 4:
+                        TBFirstVertically[i].Visibility = Visibility.Hidden; break;
+                    case 5:
+                        TBSecondVertically[i].Visibility = Visibility.Hidden; break;
+                    case 6:
+                        TBSecondHorizontally[i].Visibility = Visibility.Hidden; break;
+                }
             }
         }
     }
 }
+
+
+
