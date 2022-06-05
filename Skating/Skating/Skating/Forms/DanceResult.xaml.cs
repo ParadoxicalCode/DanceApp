@@ -207,10 +207,12 @@ namespace Skating.Forms
                 }
             }
 
+            // Количество участников.
             int vertical = Int32.Parse(GlobalClass.NumberOfPairs);
+            // Количество судей.
             int horizontal = Int32.Parse(GlobalClass.NumberOfJudges);
             TBIndex = 0;
-            // Большинство голосов судей.
+            // Количество большинства голосов судей.
             int[] rs = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
             int rsIndex = 0;
@@ -218,7 +220,11 @@ namespace Skating.Forms
             int fill = 0;
             int i2 = 0;
 
-            if (DanceCB.SelectedValue != null)
+            if (DanceCB.SelectedValue == null)
+            {
+                MessageBox.Show("Поле 'Танец' не заполнено");
+            }
+            else
             {
                 // Первичная проверка.
                 for (int i = 0; i < vertical && fill != 1; i++)
@@ -229,27 +235,22 @@ namespace Skating.Forms
                         arrayFirst[i, j].Background = Brushes.White;
 
                         // Проверка на заполнение.
-                        if (arrayFirst[i, j].Text != "")
-                        {
-                            // Проверка на корректность.
-                            if (gb.StringIsDigits(arrayFirst[i, j].Text.TrimEnd()) == true 
-                            && Int32.Parse(arrayFirst[i, j].Text) <= vertical 
-                            && Int32.Parse(arrayFirst[i, j].Text) > 0)
-                            {
-                            }
-                            else
-                            {
-                                MessageBox.Show("Введены некорректные данные");
-                                arrayFirst[i, j].Background = Brushes.Red;
-                                fill = 1;
-                            }
-                        }
-                        else
+                        if (arrayFirst[i, j].Text == "")
                         {
                             MessageBox.Show("Не все поля заполнены");
                             arrayFirst[i, j].Background = Brushes.Red;
                             fill = 1;
                         }
+                        // Проверка на корректность.
+                        else if (gb.StringIsDigits(arrayFirst[i, j].Text.TrimEnd()) == false || 
+                        Int32.Parse(arrayFirst[i, j].Text) > vertical || 
+                        Int32.Parse(arrayFirst[i, j].Text) <= 0)
+                        {
+                            MessageBox.Show("Введены некорректные данные");
+                            arrayFirst[i, j].Background = Brushes.Red;
+                            fill = 1;
+                        }
+
                     }
                 }
                 // Как только сделана первичная проверка на корректность и заполнение, делаем проверку
@@ -262,10 +263,9 @@ namespace Skating.Forms
                 // Проверка на правильность распределения мест.
                 if (fill != 1)
                 {
-                    // Перебираем
+                    // Перебираем.
                     for (int right = 0; right < horizontal; right++)
                     {
-                        // Элемент i-той строки j-того столбца.
                         for (int down = 0; down < vertical; down++)
                         {
                             // Запишем все элементы данного столбца в массив.
@@ -295,13 +295,14 @@ namespace Skating.Forms
                             }
                             else
                             {
+                                // Обнуляем количество совпадений.
                                 same = -1;
                             }
                         }
                     }
                 }
 
-                // Если введённые данные прошли все проверки, то запускаем вычисления
+                // Если введённые данные прошли все проверки, то запускаем вычисления.
                 if (fill != 1)
                 {
                     for (int i = 0; i < vertical; i++)
@@ -346,76 +347,75 @@ namespace Skating.Forms
                     // Записываем имена всех крайних textBox'ов со второй части таблицы.
                     List<TextBox> TBSecondPlaces;
                     TBSecondPlaces = new List<TextBox>() { M1, M2, M3, M4, M5, M6, M7, M8, M9, M10 };
-                    int placeEnd = 1;
+                    // Присуждаемое место.
+                    int placeEnd = 1; 
+                    // Количество пар, у которых в данном столбце есть необходимое количество
+                    // голосов большинства судей.
+                    int pairsCount = 0;
+
+                    // В этом массиве храним данные о парах, которые имеют необходимое количество
+                    // большинства голосов судей.
+                    int[] order = new int[4];
+                    same = 0;
+                    
 
                     // Перебираем правую часть таблицы сверху вниз по столбцам.
                     for (int j = 0; j < vertical; j++)
                     {
-                        // Запишем в массив places результаты участников.
+                        int index = 0; pairsCount = 0;
+                        order[0] = 0; order[1] = 0; order[2] = 0; order[3] = 0;
                         for (int i = 0; i < vertical; i++)
                         {
-                            // Если участник имеет необходимое большинство мест и ему не
-                            // присвоено место, то присвоим ему место и перейдём к следующему столбцу.
-                            if (Int32.Parse(arraySecond[i, j].Text) >= (horizontal + 2 - 1) / 2 
+                            
+                            if (Int32.Parse(arraySecond[i, j].Text) >= (horizontal + 2 - 1) / 2
                                 && TBSecondPlaces[i].Text == "")
                             {
-                                TBSecondPlaces[i].Text = (placeEnd).ToString();
-                                placeEnd++; i = vertical;
-                                /*
-                                switch (j)
-                                {
-                                    // Если участник с j-тым id занял какое-то место, то записываем в
-                                    // соответствующий textBox место.
-                                    case 1:
-                                        TBSecondPlaces[0].Text = (i + 1).ToString(); break;
-                                    case 2:
-                                        TBSecondPlaces[1].Text = (i + 1).ToString(); break;
-                                    case 3:
-                                        TBSecondPlaces[2].Text = (i + 1).ToString(); break;
-                                    case 4:
-                                        TBSecondPlaces[3].Text = (i + 1).ToString(); break;
-                                    case 5:
-                                        TBSecondPlaces[4].Text = (i + 1).ToString(); break;
-                                    case 6:
-                                        TBSecondPlaces[5].Text = (i + 1).ToString(); break;
-                                    case 7:
-                                        TBSecondPlaces[6].Text = (i + 1).ToString(); break;
-                                    case 8:
-                                        TBSecondPlaces[7].Text = (i + 1).ToString(); break;
-                                    case 9:
-                                        TBSecondPlaces[8].Text = (i + 1).ToString(); break;
-                                    case 10:
-                                        TBSecondPlaces[9].Text = (i + 1).ToString(); break;
-                                }
-                                */
+                                MessageBox.Show(order[index].ToString());
+                                // Запишем id пары в массив.
+                                order[index] = i; pairsCount++;
+                                MessageBox.Show(order[index].ToString());
                             }
-                            // Иначе переходим к следующему столбцу.
-                            else
+                        }
+
+
+                        // Если в данном столбце только одна пара имеет необходимое
+                        // количество большинства голосов большинства судей.
+                        if (pairsCount == 1)
+                        {
+                            // Присуждаем паре очередное место и переходим к следующему столбцу.
+                            TBSecondPlaces[order[0]].Text = placeEnd.ToString();
+                            placeEnd++; pairsCount = 0;
+                            MessageBox.Show(order[0].ToString());
+                        }
+                        
+                        /*
+                        else
+                        {
+                            // Отсортируем массив по убыванию большинства голосов судей.
+                            int idBuf = 0;
+                            for (int a = 0; a < vertical; a++)
                             {
-                                // Если в этом столбце уже есть участник с присвоенным местом, то
-                                // переходим к следующему столбцу.
-                                for (int index = 0; index < vertical; index++)
+                                for (int b = a + 1; b < vertical; b++)
                                 {
-                                    if (TBSecondPlaces[index].Text != "")
+                                    // Если у текущей пары меньше голосов большинства
+                                    // судей чем у следующей, то поменяем их id
+                                    // в массиве друг с другом.
+                                    if (Int32.Parse(arraySecond[a, j].Text) <
+                                        Int32.Parse(arraySecond[b, j].Text))
                                     {
-                                        i = vertical; index = vertical;
+                                        idBuf = order[a];
+                                        order[a] = order[b];
+                                        order[b] = idBuf;
                                     }
                                 }
                             }
+
+                            // Если первый элемент и второй претендуют на место, а количество баллов
+                            // одинаково, то переходим к 
                         }
-                        //j = vertical;
-
-                        // Создадим массив, где будут места.
-                        //Первый попавшийся подходящий участник получает первое место
-                        // Второй - второе и тд.
-
-                        // Нужно исключить из выборки участника, которому присвоено место.
-                    } 
+                        */
+                    }
                 }
-            }
-            else
-            {
-                MessageBox.Show("Поле 'Танец' не заполнено");
             }  
         }
 
@@ -440,6 +440,17 @@ namespace Skating.Forms
                     case 6:
                         TBSecondHorizontally[i].Visibility = Visibility.Hidden; break;
                 }
+            }
+        }
+
+        // Метод, считающий сумму голосов судей
+        // i - id участника в таблице, horizontal - до какого столбца складываем результаты.
+        private void Seven(int i, int horizontal, int[,] arrayFirst)
+        {
+            int scores = 0;
+            for (int j = 0; j < horizontal; j++)
+            {
+                scores += arrayFirst[i, j];
             }
         }
     }
