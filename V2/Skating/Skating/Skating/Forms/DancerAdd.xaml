@@ -1,0 +1,67 @@
+﻿<Window x:Class="Skating.Forms.DancerAdd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Skating.Forms"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        AllowsTransparency="True" 
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent" Height="570" Width="320">
+    <Border Background="White" Grid.Row="0" MouseDown="Border_MouseDown" Panel.ZIndex="0" CornerRadius="10 10 10 10" 
+            BorderBrush="#FFAFAFAF" BorderThickness="2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" ></RowDefinition>
+                <RowDefinition Height="*" ></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*" ></ColumnDefinition>
+                    <ColumnDefinition Width="1*" ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="2" Grid.Row="2" Click="Close_Click" Style="{StaticResource CloseButton}">
+                    <Image Source="/Images/Close.png" Panel.ZIndex="10" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <TextBlock Text="Пол" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="48,10,0,0" FontSize="14"/>
+                <ComboBox Width="220" Height="22" Style="{StaticResource ComboBoxFlatStyle}" Margin="48,34,48,480" x:Name="GenderCB"
+                          SelectedItem="{Binding Gender}" DisplayMemberPath="Name"/>
+
+                <TextBlock Text="Фамилия" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="48,61,0,0" FontSize="14"/>
+                <TextBox Width="220" Height="22" Margin="48,85,48,429" x:Name="SurnameTB"/>
+
+                <TextBlock Text="Имя" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="48,112,0,0" FontSize="14"/>
+                <TextBox Width="220" Height="22" Margin="48,136,48,378" x:Name="NameTB"/>
+
+                <TextBlock Text="Отчество" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="48,163,0,0" FontSize="14"/>
+                <TextBox Width="220" Height="22" Margin="48,187,48,327" x:Name="PatronymicTB"/>
+
+                <TextBlock Text="Дата рождения" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="48,214,0,0" FontSize="14"/>
+                <TextBox Width="220" Height="22" Margin="47,238,49,276" x:Name="DateOfBirthTB"/>
+
+                <TextBlock Text="Город" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="48,265,0,0" FontSize="14"/>
+                <TextBox Width="220" Height="22" Margin="48,289,48,225" x:Name="CityTB"/>
+
+                <TextBlock Text="Клуб" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="48,316,0,0" FontSize="14"/>
+                <ComboBox Width="220" Height="22" Style="{StaticResource ComboBoxFlatStyle}" Margin="47,340,49,174" x:Name="ClubCB"
+                          SelectedItem="{Binding Clubs}" DisplayMemberPath="Name"/>
+
+                <TextBlock Text="Номер пары" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="48,367,0,0" FontSize="14"/>
+                <ComboBox Width="220" Height="22" Style="{StaticResource ComboBoxFlatStyle}" Margin="48,391,48,123" x:Name="PairNumberCB"
+                          SelectedItem="{Binding Pairs}" DisplayMemberPath="Number"/>
+
+                <TextBlock Text="Категория" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="48,418,0,0" FontSize="14"/>
+                <ComboBox Width="220" Height="22" Style="{StaticResource ComboBoxFlatStyle}" Margin="48,442,48,72" x:Name="CategoryCB"
+                          SelectedItem="{Binding Categories}" DisplayMemberPath="Name"/>
+
+                <Button Content="Добавить" BorderThickness="0" Style="{StaticResource Button}" Click="AddClick" Margin="97,481,99,15"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
