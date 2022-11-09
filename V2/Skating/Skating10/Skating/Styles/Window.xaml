@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DrawingImage x:Key="EmptyImage"/>
+
+    <Style x:Key="Window" TargetType="{x:Type Window}">
+        <Setter Property="Height" Value="600" />
+        <Setter Property="Width" Value="960" />
+        <Setter Property="MinHeight" Value="262" />
+        <Setter Property="MinWidth" Value="563" />
+        <Setter Property="Icon" Value="{StaticResource EmptyImage}" />
+    </Style>
+
+</ResourceDictionary>
