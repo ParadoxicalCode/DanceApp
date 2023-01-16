@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Images\ApplicationIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\AgeCategory.png" />
+    <None Remove="Images\Club.png" />
+    <None Remove="Images\Competition.png" />
+    <None Remove="Images\Competition1.png" />
+    <None Remove="Images\Competition2.png" />
+    <None Remove="Images\Dance.png" />
+    <None Remove="Images\Document.png" />
+    <None Remove="Images\Group.png" />
+    <None Remove="Images\Home.png" />
+    <None Remove="Images\Info.png" />
+    <None Remove="Images\Judge.png" />
+    <None Remove="Images\Participant.png" />
+    <None Remove="Images\Print.png" />
+    <None Remove="Images\Scores.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\ApplicationIcon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\AgeCategory.png" />
+    <Resource Include="Images\Club.png" />
+    <Resource Include="Images\Dance.png" />
+    <Resource Include="Images\Document.png" />
+    <Resource Include="Images\Group.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Competition.png" />
+    <Resource Include="Images\Home.png" />
+    <Resource Include="Images\Info.png" />
+    <Resource Include="Images\Judge.png" />
+    <Resource Include="Images\Participant.png" />
+    <Resource Include="Images\Print.png" />
+    <Resource Include="Images\Scores.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
+  </ItemGroup>
+
+</Project>

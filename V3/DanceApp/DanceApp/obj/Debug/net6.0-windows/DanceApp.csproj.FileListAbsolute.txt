@@ -1,0 +1,87 @@
+C:\Users\makol\source\repos\DanceApp\DanceApp\bin\Debug\net6.0-windows\DanceApp.exe
+C:\Users\makol\source\repos\DanceApp\DanceApp\bin\Debug\net6.0-windows\DanceApp.deps.json
+C:\Users\makol\source\repos\DanceApp\DanceApp\bin\Debug\net6.0-windows\DanceApp.runtimeconfig.json
+C:\Users\makol\source\repos\DanceApp\DanceApp\bin\Debug\net6.0-windows\DanceApp.dll
+C:\Users\makol\source\repos\DanceApp\DanceApp\bin\Debug\net6.0-windows\DanceApp.pdb
+C:\Users\makol\source\repos\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.dll
+C:\Users\makol\source\repos\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\makol\source\repos\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\makol\source\repos\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\makol\source\repos\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\makol\source\repos\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\makol\source\repos\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.dll
+C:\Users\makol\source\repos\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\makol\source\repos\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.Extensions.Options.dll
+C:\Users\makol\source\repos\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.csproj.AssemblyReference.cache
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\Styles\Border.baml
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\Styles\Button.baml
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\Styles\ComboBox.baml
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\Styles\DataGrid.baml
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\Styles\TextBlock.baml
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\Styles\TextBox.baml
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\Styles\Window.baml
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp_MarkupCompile.cache
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp_MarkupCompile.lref
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\App.baml
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.g.resources
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.AssemblyInfoInputs.cache
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.AssemblyInfo.cs
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.csproj.CoreCompileInputs.cache
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.csproj.CopyComplete
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.dll
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\refint\DanceApp.dll
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.pdb
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.genruntimeconfig.cache
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\ref\DanceApp.dll
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\View\DancersView.g.cs
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\View\DancersView.baml
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\View\StartView.g.cs
+C:\Users\makol\source\repos\DanceApp\DanceApp\obj\Debug\net6.0-windows\View\StartView.baml
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\bin\Debug\net6.0-windows\DanceApp.exe
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\bin\Debug\net6.0-windows\DanceApp.deps.json
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\bin\Debug\net6.0-windows\DanceApp.runtimeconfig.json
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\bin\Debug\net6.0-windows\DanceApp.dll
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\bin\Debug\net6.0-windows\DanceApp.pdb
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.dll
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.dll
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.Extensions.Options.dll
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.csproj.AssemblyReference.cache
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\Styles\Border.baml
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\Styles\Button.baml
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\Styles\ComboBox.baml
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\Styles\DataGrid.baml
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\Styles\TextBlock.baml
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\Styles\TextBox.baml
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\Styles\Window.baml
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\View\DancersView.g.cs
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\View\StartView.g.cs
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp_MarkupCompile.cache
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp_MarkupCompile.lref
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\App.baml
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\View\DancersView.baml
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\View\StartView.baml
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.g.resources
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.AssemblyInfoInputs.cache
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.AssemblyInfo.cs
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.csproj.CoreCompileInputs.cache
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.csproj.CopyComplete
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.dll
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\refint\DanceApp.dll
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.pdb
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp.genruntimeconfig.cache
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\ref\DanceApp.dll
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\View\InfoView.g.cs
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\View\InfoView.baml
+C:\Users\makol\OneDrive\Рабочий стол\DanceApp\DanceApp\obj\Debug\net6.0-windows\DanceApp_Content.g.cs
