@@ -7,15 +7,36 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="View\InfoView.xaml.cs">
+    <Compile Update="MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\StartView.xaml.cs">
+    <Compile Update="View\Page1\CityView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Page1\InfoView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Page1\CompetitionsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Page1\JudgeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Page1\Page1View.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Page2\GroupsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Page2\Page2View.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Page2\PlacesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="View\DancersView.xaml">
+    <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Border.xaml">
@@ -39,10 +60,28 @@
     <Page Update="Styles\Window.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\InfoView.xaml">
+    <Page Update="View\Page1\CityView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\StartView.xaml">
+    <Page Update="View\Page1\InfoView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Page1\CompetitionsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Page1\JudgeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Page1\Page1View.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Page2\GroupsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Page2\Page2View.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Page2\PlacesView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -1,0 +1,47 @@
+﻿<Page x:Class="DanceApp.View.Page1.CityView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DanceApp.View.Page1"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="CompetitionsView">
+
+    <Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="0,0,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Content="Добавить" Style="{StaticResource Button}" Click="Add_Click" HorizontalAlignment="Left" Margin="0,10,0,8"/>
+                <Button Content="Изменить" Style="{StaticResource Button}" HorizontalAlignment="Left" Margin="85,10,0,8"/>
+                <Button Content="Удалить" Style="{StaticResource Button}" Click="Delete_Click" HorizontalAlignment="Left" Margin="170,10,0,8"/>
+                <TextBox x:Name="CityTB" Width="200" Height="30"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <DataGrid x:Name="DG" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}"
+                      Background="white">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Название" Binding="{Binding CityId}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+            <Grid Grid.Row="2"  Width="400">
+                <UniformGrid>
+
+                </UniformGrid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
