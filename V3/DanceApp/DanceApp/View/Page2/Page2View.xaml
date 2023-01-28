@@ -8,45 +8,45 @@
       Title="Page2View">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="60"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="60*"/>
+            </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" Style="{StaticResource MenuButton}" 
+            <Button Grid.Column="0" Style="{StaticResource MenuButton}" 
                     Command="{DynamicResource Navigate}" CommandParameter="{DynamicResource Page1ViewUri}">
-                <Image Source="/Images/Home.png" Width="30" Height="30"/>
+                <Image Source="/Images/Home.png" Width="20" Height="20"/>
             </Button>
 
-            <Button Grid.Row="1" Style="{StaticResource MenuButton}">
-                <Image Source="/Images/Participant.png" Width="30" Height="30"/>
+            <Button Grid.Column="1" Style="{StaticResource MenuButton}">
+                <Image Source="/Images/Participant.png" Width="20" Height="20"/>
             </Button>
 
-            <Button Grid.Row="2" Style="{StaticResource MenuButton}">
-                <Image Source="/Images/Group.png" Width="30" Height="30"/>
+            <Button Grid.Column="2" Style="{StaticResource MenuButton}">
+                <Image Source="/Images/Group.png" Width="20" Height="20"/>
             </Button>
 
-            <Button Grid.Row="3" Style="{StaticResource MenuButton}" Click="Places_Click">
+            <Button Grid.Column="3" Style="{StaticResource MenuButton}" Click="Places_Click">
                 <Image Source="/Images/Scores.png" Width="30" Height="30"/>
             </Button>
 
-            <Button Grid.Row="4" Style="{StaticResource MenuButton}">
-                <Image Source="/Images/Document.png" Width="30" Height="30"/>
+            <Button Grid.Column="4" Style="{StaticResource MenuButton}">
+                <Image Source="/Images/Document.png" Width="20" Height="20"/>
             </Button>
         </Grid>
 
 
-        <Frame Grid.Column="1" Name="Page2Frame" Source="/View/Page2/PlacesView.xaml" Background="White" 
+        <Frame Grid.Row="1" Name="Page2Frame" Source="/View/Page2/PlacesView.xaml" Background="White" 
            NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>

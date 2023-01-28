@@ -21,25 +21,29 @@ namespace DanceApp.View.Page1
     /// </summary>
     public partial class CompetitionsView : Page
     {
-        public ApplicationContext db = new ApplicationContext();
+        //public ApplicationContext db = new ApplicationContext();
         public CompetitionsView()
         {
             InitializeComponent();
             DBInteraction dbInteraction = new DBInteraction();
             string name = "Новосибирск";
-            dbInteraction.CreateCity(name);
+            //bInteraction.CreateCity(name);
+            //DG.ItemsSource = db.Competitions.ToList();
 
-            DG.ItemsSource = db.Competitions.ToList();
+            name = "Новосибирск2";
+            //dbInteraction.CreateCity(name);
+
+            //DG.ItemsSource = db.Competitions.ToList();
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             DBInteraction dbInteraction = new DBInteraction();
-            string city = "1";
+            int city = 1;
             string name = "Соревнование в честь 1 сентября"; 
             string manager = "Иванов И.И."; 
-            dbInteraction.CreateCompetition(name, manager, city);
-            DG.ItemsSource = db.Competitions.ToList();
+            //dbInteraction.CreateCompetition(name, manager, city);
+            //DG.ItemsSource = db.Competitions.ToList();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)

@@ -17,32 +17,62 @@
 
             <Grid Grid.Row="0" Margin="0,0,10,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Content="Добавить" Style="{StaticResource Button}" Click="Add_Click" HorizontalAlignment="Left" Margin="0,10,0,8"/>
-                <Button Content="Изменить" Style="{StaticResource Button}" HorizontalAlignment="Left" Margin="85,10,0,8"/>
-                <Button Content="Удалить" Style="{StaticResource Button}" Click="Delete_Click" HorizontalAlignment="Left" Margin="170,10,0,8"/>
-                <Button Content="Выбрать" Style="{StaticResource Button}" HorizontalAlignment="Left" Margin="255,9,0,9"
-                        Command="{DynamicResource Navigate}" CommandParameter="{DynamicResource Page2ViewUri}"/>
+                <Button Grid.Column="0" Style="{StaticResource MenuButton}" HorizontalAlignment="Left">
+                    <Image Source="/Images/Add.png" Width="20" Height="20"/>
+                    <Button.ToolTip>
+                        <ToolTip HasDropShadow="True" Placement="Mouse">
+                            <TextBlock>Добавить запись</TextBlock>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+
+                <Button Grid.Column="1" Style="{StaticResource MenuButton}">
+                    <Image Source="/Images/Edit.png" Width="20" Height="20"/>
+                    <Button.ToolTip>
+                        <ToolTip HasDropShadow="True" Placement="Mouse">
+                            <TextBlock>Редактировать запись</TextBlock>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+
+                <Button Grid.Column="2" Style="{StaticResource MenuButton}">
+                    <Image Source="/Images/Delete.png" Width="20" Height="20"/>
+                    <Button.ToolTip>
+                        <ToolTip HasDropShadow="True" Placement="Mouse">
+                            <TextBlock>Удалить запись</TextBlock>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+                
+                <Button Grid.Column="3" Style="{StaticResource MenuButton}"
+                        Command="{DynamicResource Navigate}" CommandParameter="{DynamicResource Page2ViewUri}">
+                    <Image Source="/Images/Next.png" Width="20" Height="20"/>
+                    <Button.ToolTip>
+                        <ToolTip HasDropShadow="True" Placement="Mouse">
+                            <TextBlock>Перейти к выбранному турниру</TextBlock>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
             </Grid>
 
             <Grid Grid.Row="1">
                 <DataGrid x:Name="DG" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}"
-                      Background="white">
+                      Background="white" HeadersVisibility="Column" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="10*"/>
                         <DataGridTextColumn Header="Организатор" Binding="{Binding ManagerUnitials}" Width="5*"/>
-                        <DataGridTextColumn Header="Город" Binding="{Binding City.CityId}" Width="5*"/>
+                        <DataGridTextColumn Header="Страна" Binding="{Binding }" Width="5*"/>
+                        <DataGridTextColumn Header="Город" Binding="{Binding City.Name}" Width="5*"/>
+                        <DataGridTextColumn Header="Дата начала" Binding="{Binding }" Width="5*"/>
                     </DataGrid.Columns>
                 </DataGrid>
-            </Grid>
-
-            <Grid Grid.Row="2"  Width="400">
-                <UniformGrid>
-
-                </UniformGrid>
             </Grid>
         </Grid>
     </Grid>

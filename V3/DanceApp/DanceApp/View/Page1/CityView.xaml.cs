@@ -21,19 +21,19 @@ namespace DanceApp.View.Page1
     /// </summary>
     public partial class CityView : Page
     {
-        public ApplicationContext db = new ApplicationContext();
+        //public ApplicationContext db = new ApplicationContext();
         public CityView()
         {
             InitializeComponent();
-            DG.ItemsSource = db.Cities.ToList();
+            //DG.ItemsSource = db.Cities.ToList();
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             DBInteraction dbInteraction = new DBInteraction();
             string name = CityTB.Text.ToString();
-            dbInteraction.CreateCity(name);
-            DG.ItemsSource = db.Cities.ToList();
+            //dbInteraction.CreateCity(name);
+            //DG.ItemsSource = db.Cities.ToList();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)

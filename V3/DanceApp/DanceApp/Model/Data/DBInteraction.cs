@@ -10,7 +10,8 @@ namespace DanceApp.Model.Data
 {
     public class DBInteraction
     {
-        public bool CreateCompetition(string name, string managerUnitials, string city)
+        /*
+        public bool CreateCompetition(string name, string managerUnitials, int city)
         {
             bool result = false;
             using (ApplicationContext db = new ApplicationContext())
@@ -18,10 +19,12 @@ namespace DanceApp.Model.Data
                 bool checkIsExist = db.Competitions.Any(x => x.Name == name);
                 if (!checkIsExist)
                 {
-                    Competition newCompetition = new Competition();
-                    newCompetition.Name = name;
-                    newCompetition.ManagerUnitials = managerUnitials;
-                    newCompetition.CityId = city;
+                    Competition newCompetition = new Competition()
+                    {
+                        Name = name, 
+                        ManagerUnitials = managerUnitials, 
+                        City = city
+                    };
 
                     //try
                     //{
@@ -38,18 +41,20 @@ namespace DanceApp.Model.Data
                 return result;
             }
         }
+        */
 
+        /*
         public string CreateCity(string name)
         {
             string result = "Уже существует";
             using (ApplicationContext db = new ApplicationContext())
             {
-                bool checkIsExist = db.Cities.Any(el => el.CityId == name);
+                bool checkIsExist = db.Cities.Any(el => el.Name == name);
                 if (!checkIsExist)
                 {
                     try
                     {
-                        City newCity = new City { CityId = name };
+                        City newCity = new City { Name = name };
                         db.Cities.Add(newCity);
                         db.SaveChanges();
                         result = "Запись успешно добавлена!";
@@ -62,5 +67,6 @@ namespace DanceApp.Model.Data
                 return result;
             }
         }
+        */
     }
 }

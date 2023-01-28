@@ -4,7 +4,5 @@
     <Style x:Key="Border" TargetType="Border">
         <Setter Property="Background" Value="#FF0A8FC8" />
         <Setter Property="Panel.ZIndex" Value="0" />
-        <Setter Property="BorderBrush" Value="Black" />
-        <Setter Property="BorderThickness" Value="1" />
     </Style>
 </ResourceDictionary>

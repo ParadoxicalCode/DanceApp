@@ -26,8 +26,8 @@ namespace DanceApp.View.Page2
         TextBlock[] PlacesMatrix;
         TextBox[,] LeftMatrix;
         TextBlock[,] RightMatrix;
-        int pairs = 3;
-        int judges = 3;
+        int pairs = 4;
+        int judges = 5;
         public GlobalClass gb = new GlobalClass();
 
         public PlacesView()
@@ -54,8 +54,7 @@ namespace DanceApp.View.Page2
                 { TBK009, TBK019, TBK029, TBK039, TBK049, TBK059, TBK069, TBK079, TBK089, TBK099 },
                 { TBK010, TBK020, TBK030, TBK040, TBK050, TBK060, TBK070, TBK080, TBK090, TBK100 }};
 
-            PlacesMatrix = new TextBlock[10]{
-                place01, place02, place03, place04, place05, place06, place07, place08, place09, place10 };
+            PlacesMatrix = new TextBlock[10]{ p01, p02, p03, p04, p05, p06, p07, p08, p09, p10 };
 
             // Сокрытие TextBox'ов в левой части матрицы.
             for (int i = 0; i < 10; i++)
@@ -63,7 +62,8 @@ namespace DanceApp.View.Page2
                 int j = (i < pairs ? judges : 0);
                 for (; j < 7; j++)
                 {
-                    LeftMatrix[j, i].Visibility = Visibility.Hidden;
+                    LeftMatrix[j, i].IsReadOnly = true;
+                    LeftMatrix[j, i].Background = Brushes.LightGray;
                 }
             }
         }
@@ -152,25 +152,39 @@ namespace DanceApp.View.Page2
 
             for (int j = 0; j < pairs && stop == false; j++)
             {
-                int BGSCount = BGSSearch(j)[0];
-                if (BGSCount != 0)
+                int[] BGSCount = SearchBGS(j);
+                if (BGSCount[0] != 0)
                 {
-                    if (BGSCount == 1)
+                    if (BGSCount[0] == 1)
                     {
                         // Присуждаем очередное место.
-                        PlacesMatrix[BGSSearch(j)[1]].Text = place.ToString(); 
+                        PlacesMatrix[BGSCount[1]].Text = place.ToString(); 
                         place++; stop = true;
+                        // Здесь написать переменную, которая будет хранить координату пары по вертикали, которой
+                        // присвоили место. Эта переменная должна передаваться в SearchBGS
                     }
                     else
                     {
-                        // Разрешить спор и присудить места
+                        // Записываем все конкурирующие пары в отдельный массив.
+                        string[,] dispute = new string[BGSCount[0], pairs];
+                        
+                        for (int x = 0; x < BGSCount[0]; x++)
+                        {
+                            for (int y = 0; y < pairs; y++) 
+                            {
+                                dispute[x, y] = RightMatrix[BGSCount[x + 1], y].Text;
+                            }
+                        }
+
+                        // Надо исключить пары, которым уже присвоили место
+
                         stop = true;
                     }
                 }
             }
         }
 
-        private int[] BGSSearch(int j)
+        private int[] SearchBGS(int j)
         {
             // Первая ячейка в этом массиве содержит BGSCount.
             int[] BGSDancers = new int[pairs+1];
@@ -182,7 +196,7 @@ namespace DanceApp.View.Page2
                     // Если участник набрал необходимое количество БГС.
                     if (Int32.Parse(RightMatrix[i, j].Text) >= (judges + 1) / 2)
                     {
-                        BGSDancers[BGSCount+1] = i; BGSCount++;
+                        BGSDancers[BGSCount + 1] = i; BGSCount++;
                     }
                 }
             }
@@ -190,13 +204,25 @@ namespace DanceApp.View.Page2
             return BGSDancers;
         }
 
-        /*
-        // Присуждает места.
-        private void Places(int dancer, int place)
+        private int[] SearchMaxBGS(int j)
         {
-            PlacesMatrix[dancer].Text = place.ToString();
+            int max = 0;
+            // Первое число - максимальное значение, второе - координата по вертикали.
+            int[] MaxBGS = {0,0};
+            for (int i = 0; i < pairs; i++)
+            {
+                if (RightMatrix[i, j].Text != "-")
+                {
+                    if (Int32.Parse(RightMatrix[i, j].Text) >= (judges + 1) / 2
+                        && Int32.Parse(RightMatrix[i, j].Text) > max)
+                    {
+                        max += Int32.Parse(RightMatrix[i, j].Text);
+                        MaxBGS[0] = max; MaxBGS[1] = i;
+                    }
+                }
+            }
+            return MaxBGS;
         }
-        */
 
         private void Clear()
         {
@@ -205,6 +231,7 @@ namespace DanceApp.View.Page2
                 for (int j = 0; j < judges; j++)
                 {
                     LeftMatrix[j, i].Text = "";
+                    LeftMatrix[j, i].Background = Brushes.White;
                 }
 
                 for (int j = 0; j < pairs; j++)

@@ -7,49 +7,52 @@
       d:DesignHeight="600" d:DesignWidth="960">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="60"/>
-            </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="60*"/>
+            </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" Style="{StaticResource MenuButton}" Click="Compitition_Click">
+            <Button Grid.Column="0" Style="{StaticResource MenuButton}" Click="Compitition_Click">
                 <Image Source="/Images/Competition.png" Width="30" Height="30"/>
             </Button>
 
-            <Button Grid.Row="1" Style="{StaticResource MenuButton}" Click="Judge_Click">
+            <Button Grid.Column="1" Style="{StaticResource MenuButton}" Click="Judge_Click">
                 <Image Source="/Images/Judge.png" Width="30" Height="30"/>
             </Button>
 
-            <Button Grid.Row="2" Style="{StaticResource MenuButton}">
+            <Button Grid.Column="2" Style="{StaticResource MenuButton}">
                 <Image Source="/Images/AgeCategory.png" Width="30" Height="30"/>
             </Button>
 
-            <Button Grid.Row="3" Style="{StaticResource MenuButton}">
+            <Button Grid.Column="3" Style="{StaticResource MenuButton}">
                 <Image Source="/Images/Club.png" Width="30" Height="30"/>
             </Button>
 
-            <Button Grid.Row="4" Style="{StaticResource MenuButton}" Click="City_Click">
+            <Button Grid.Column="4" Style="{StaticResource MenuButton}" Click="City_Click">
                 <Image Source="/Images/City.png" Width="30" Height="30"/>
             </Button>
 
-            <Button Grid.Row="5" Style="{StaticResource MenuButton}" Click="Info_Click">
-                <Image Source="/Images/Info.png" Width="30" Height="30"/>
+            <Button Grid.Column="7" Style="{StaticResource MenuButton}" Click="Info_Click">
+                <Image Source="/Images/Info.png" Width="20" Height="20"/>
+                <Button.ToolTip>
+                    <ToolTip HasDropShadow="True" Placement="Mouse">
+                        <TextBlock>Сведения о приложении</TextBlock>
+                    </ToolTip>
+                </Button.ToolTip>
             </Button>
         </Grid>
 
-        <Frame Name="FramePage1" Grid.Column="1">
+        <Frame Name="FramePage1" Grid.Row="1">
             
         </Frame>
     </Grid>

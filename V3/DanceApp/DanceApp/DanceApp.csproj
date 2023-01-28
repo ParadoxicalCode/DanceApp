@@ -9,20 +9,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Add.png" />
+    <None Remove="Images\Add2.png" />
     <None Remove="Images\AgeCategory.png" />
+    <None Remove="Images\Calculate.png" />
     <None Remove="Images\City.png" />
     <None Remove="Images\Club.png" />
     <None Remove="Images\Competition.png" />
     <None Remove="Images\Competition1.png" />
     <None Remove="Images\Competition2.png" />
     <None Remove="Images\Dance.png" />
+    <None Remove="Images\Delete.png" />
+    <None Remove="Images\Dice.png" />
+    <None Remove="Images\Dice1.png" />
+    <None Remove="Images\Dice2.png" />
     <None Remove="Images\Document.png" />
+    <None Remove="Images\Edit.png" />
+    <None Remove="Images\Erase.png" />
     <None Remove="Images\Group.png" />
     <None Remove="Images\Home.png" />
     <None Remove="Images\Info.png" />
     <None Remove="Images\Judge.png" />
+    <None Remove="Images\Next.png" />
     <None Remove="Images\Participant.png" />
     <None Remove="Images\Print.png" />
+    <None Remove="Images\Save.png" />
     <None Remove="Images\Scores.png" />
   </ItemGroup>
 
@@ -31,11 +42,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\Add.png" />
     <Resource Include="Images\AgeCategory.png" />
+    <Resource Include="Images\Calculate.png" />
     <Resource Include="Images\City.png" />
     <Resource Include="Images\Club.png" />
     <Resource Include="Images\Dance.png" />
+    <Resource Include="Images\Delete.png" />
+    <Resource Include="Images\Dice.png" />
     <Resource Include="Images\Document.png" />
+    <Resource Include="Images\Edit.png" />
+    <Resource Include="Images\Erase.png" />
     <Resource Include="Images\Group.png" />
   </ItemGroup>
 
@@ -44,17 +61,15 @@
     <Resource Include="Images\Home.png" />
     <Resource Include="Images\Info.png" />
     <Resource Include="Images\Judge.png" />
+    <Resource Include="Images\Next.png" />
     <Resource Include="Images\Participant.png" />
     <Resource Include="Images\Print.png" />
+    <Resource Include="Images\Save.png" />
     <Resource Include="Images\Scores.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="ViewModel\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
