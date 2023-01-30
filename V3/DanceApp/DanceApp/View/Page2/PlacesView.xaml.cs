@@ -26,8 +26,8 @@ namespace DanceApp.View.Page2
         TextBlock[] PlacesMatrix;
         TextBox[,] LeftMatrix;
         TextBlock[,] RightMatrix;
-        int pairs = 4;
-        int judges = 5;
+        int pairs = 10;
+        int judges = 7;
         public GlobalClass gb = new GlobalClass();
 
         public PlacesView()

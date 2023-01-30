@@ -69,7 +69,7 @@ namespace DanceApp.View.Page1 {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/DanceApp;component/view/page1/cityview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/DanceApp;V1.0.0.0;component/view/page1/cityview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\Page1\CityView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
