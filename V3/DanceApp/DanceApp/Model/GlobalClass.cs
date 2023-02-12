@@ -10,6 +10,8 @@ namespace DanceApp.Model
     {
         public static string NumberOfPairs;
         public static string NumberOfJudges;
+        public static int CompetitionId;
+
         public bool StringIsDigits(string s)
         {
             foreach (var item in s)

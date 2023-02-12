@@ -11,6 +11,6 @@
         <CommandBinding Command="{StaticResource Navigate}" Executed="OnNavigate"/>
     </Window.CommandBindings>
 
-    <Frame Name="MainFrame" Source="/View/Page1/Page1View.xaml" Background="White" 
-           NavigationUIVisibility="Hidden" Margin="10"/>
+    <Frame Name="MainFrame" Source="/View/Page1View.xaml" Background="White" 
+           NavigationUIVisibility="Hidden" Margin="10,4,10,10"/>
 </Window>

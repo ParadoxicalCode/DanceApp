@@ -43,6 +43,9 @@ ScoresInDance, Pairs, Gender, PairsInPerformance, Performances, Dances, Groups, 
 JudgesInPerformance, AgeCategoriesInGroup, AgeCategories.
 Из них общими для всех БД будут: Cities, Countries, Positions, Gender, Dances, Tours, AgeCategories
 19) Валидации в БД не будет, только на стороне клиента. То есть null, уникально или нет
+20) Затемнение экрана при открытии небольших окон
+21) В БД в сущность соревнования добавить два поля: страна и город
+22) В combobox реализовать поиск
 
 
 
@@ -214,8 +217,10 @@ public class User
 Это создаст модель базы данных как в SSMS
 
 Ещё прописывают:
-Add-Migration InitialCreate
 Update-Database
+
+Когда вписываю команду миграции, надо удостовериться, что в каждой сущности указан [Key],
+а также отсутствует Database.EnsureCreated();
 
 Если надо обновить БД, то удаляем папку bin, все миграции и выполняем пересборку проекта. Тогда можно снова прописать эти команды
 
@@ -334,3 +339,7 @@ public static IEnumerable<Valuation> QueryValuations (SQLiteConnection db, Stock
 {
 	return db.Query<Valuation> ("select * from Valuation where StockId = ?", stock.Id);
 }
+
+Сделать миграцию
+database-update
+В свойствах проекта отладка общие указать путь 

@@ -1,0 +1,118 @@
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Sqlite CRUD.exe
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Sqlite CRUD.deps.json
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Sqlite CRUD.runtimeconfig.json
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Sqlite CRUD.runtimeconfig.dev.json
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Sqlite CRUD.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Sqlite CRUD.pdb
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Data.Sqlite.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.EntityFrameworkCore.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.EntityFrameworkCore.Sqlite.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.DependencyModel.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.Logging.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.Options.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\SQLitePCLRaw.batteries_v2.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\SQLitePCLRaw.nativelibrary.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\SQLitePCLRaw.core.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\SQLitePCLRaw.provider.dynamic_cdecl.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\System.Diagnostics.DiagnosticSource.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\alpine-x64\native\libe_sqlite3.so
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\linux-arm\native\libe_sqlite3.so
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\linux-arm64\native\libe_sqlite3.so
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\linux-armel\native\libe_sqlite3.so
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\linux-mips64\native\libe_sqlite3.so
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\linux-musl-x64\native\libe_sqlite3.so
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\linux-x64\native\libe_sqlite3.so
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\linux-x86\native\libe_sqlite3.so
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\osx-x64\native\libe_sqlite3.dylib
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\win-arm\native\e_sqlite3.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\win-arm64\native\e_sqlite3.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\win-x64\native\e_sqlite3.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.csproj.AssemblyReference.cache
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Theme.baml
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\MainWindow.g.cs
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\App.g.cs
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD_MarkupCompile.cache
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD_MarkupCompile.lref
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\App.baml
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\MainWindow.baml
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.g.resources
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.AssemblyInfoInputs.cache
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.AssemblyInfo.cs
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.csproj.CoreCompileInputs.cache
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.csproj.CopyComplete
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\refint\Sqlite CRUD.dll
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.pdb
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.genruntimeconfig.cache
+C:\Users\makol\Desktop\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\ref\Sqlite CRUD.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Sqlite CRUD.exe
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Sqlite CRUD.deps.json
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Sqlite CRUD.runtimeconfig.json
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Sqlite CRUD.runtimeconfig.dev.json
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Sqlite CRUD.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Sqlite CRUD.pdb
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Data.Sqlite.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.EntityFrameworkCore.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.EntityFrameworkCore.Sqlite.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.DependencyModel.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.Logging.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.Options.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\SQLitePCLRaw.batteries_v2.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\SQLitePCLRaw.nativelibrary.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\SQLitePCLRaw.core.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\SQLitePCLRaw.provider.dynamic_cdecl.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\System.Diagnostics.DiagnosticSource.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\alpine-x64\native\libe_sqlite3.so
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\linux-arm\native\libe_sqlite3.so
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\linux-arm64\native\libe_sqlite3.so
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\linux-armel\native\libe_sqlite3.so
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\linux-mips64\native\libe_sqlite3.so
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\linux-musl-x64\native\libe_sqlite3.so
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\linux-x64\native\libe_sqlite3.so
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\linux-x86\native\libe_sqlite3.so
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\osx-x64\native\libe_sqlite3.dylib
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\win-arm\native\e_sqlite3.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\win-arm64\native\e_sqlite3.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\win-x64\native\e_sqlite3.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\bin\Debug\net5.0-windows\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.csproj.AssemblyReference.cache
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Theme.baml
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\MainWindow.g.cs
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\App.g.cs
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD_MarkupCompile.cache
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD_MarkupCompile.lref
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\App.baml
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\MainWindow.baml
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.g.resources
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.AssemblyInfoInputs.cache
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.AssemblyInfo.cs
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.csproj.CoreCompileInputs.cache
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.csproj.CopyComplete
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\refint\Sqlite CRUD.dll
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.pdb
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\Sqlite CRUD.genruntimeconfig.cache
+C:\Users\makol\Desktop\Вспомогательные ресурсы\База данных\CSharp-Sqlite-CRUD-Operations-main\Sqlite CRUD\obj\Debug\net5.0-windows\ref\Sqlite CRUD.dll

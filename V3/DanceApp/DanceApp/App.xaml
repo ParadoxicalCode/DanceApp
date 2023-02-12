@@ -17,15 +17,16 @@
             </ResourceDictionary.MergedDictionaries>
 
             <RoutedUICommand x:Key="Navigate"/>
-            <sys:Uri x:Key="Page1ViewUri">/View/Page1/Page1View.xaml</sys:Uri>
-            <sys:Uri x:Key="CompetitionsViewUri">/View/Page1/CompetitionsView.xaml</sys:Uri>
-            <sys:Uri x:Key="InfoViewUri">/View/Page1/InfoView.xaml</sys:Uri>
-            <sys:Uri x:Key="JudgeViewUri">/View/Page1/JudgeView.xaml</sys:Uri>
-            <sys:Uri x:Key="CityViewUri">/View/Page1/CityView.xaml</sys:Uri>
+            <sys:Uri x:Key="Page1ViewUri">/View/Page1View.xaml</sys:Uri>
+            <sys:Uri x:Key="CompetitionsViewUri">/View/CompetitionsView.xaml</sys:Uri>
+            <sys:Uri x:Key="InfoViewUri">/View/InfoView.xaml</sys:Uri>
+            <sys:Uri x:Key="JudgeViewUri">/View/JudgeView.xaml</sys:Uri>
+            <sys:Uri x:Key="CityViewUri">/View/CityView.xaml</sys:Uri>
+            <sys:Uri x:Key="CountryViewUri">/View/CountryView.xaml</sys:Uri>
 
-            <sys:Uri x:Key="Page2ViewUri">/View/Page2/Page2View.xaml</sys:Uri>
-            <sys:Uri x:Key="GroupsViewUri">/View/Page2/GroupsView.xaml</sys:Uri>
-            <sys:Uri x:Key="PlacesViewUri">/View/Page2/PlacesView.xaml</sys:Uri>
+            <sys:Uri x:Key="Page2ViewUri">/View/Page2View.xaml</sys:Uri>
+            <sys:Uri x:Key="GroupsViewUri">/View/GroupsView.xaml</sys:Uri>
+            <sys:Uri x:Key="PlacesViewUri">/View/PlacesView.xaml</sys:Uri>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -18,6 +18,7 @@
     <None Remove="Images\Competition.png" />
     <None Remove="Images\Competition1.png" />
     <None Remove="Images\Competition2.png" />
+    <None Remove="Images\Country.png" />
     <None Remove="Images\Dance.png" />
     <None Remove="Images\Delete.png" />
     <None Remove="Images\Dice.png" />
@@ -47,6 +48,7 @@
     <Resource Include="Images\Calculate.png" />
     <Resource Include="Images\City.png" />
     <Resource Include="Images\Club.png" />
+    <Resource Include="Images\Country.png" />
     <Resource Include="Images\Dance.png" />
     <Resource Include="Images\Delete.png" />
     <Resource Include="Images\Dice.png" />
@@ -69,15 +71,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
   </ItemGroup>
 
 </Project>
