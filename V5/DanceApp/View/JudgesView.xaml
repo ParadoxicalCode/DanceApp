@@ -1,0 +1,90 @@
+﻿<Page x:Class="DanceApp.View.JudgesView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DanceApp.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="JudgeView">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+            <Button Grid.Column="0" Style="{StaticResource AddButton}" Click="Add_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/Add.png" VerticalAlignment="Center" Margin="2 1 8 0" Width="12" Height="12"/>
+                    <TextBlock Text="Новая запись"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource AddButton}" Click="Import_Click" Margin="10 0 0 0" Width="40">
+                <Image Source="/Images/Import.png" VerticalAlignment="Center" Width="20" Height="20"/>
+                <Button.ToolTip>
+                    <ToolTip HasDropShadow="True" Placement="Mouse">
+                        <TextBlock>Импорт данных из Excel</TextBlock>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+
+            <Button Style="{StaticResource AddButton}" Click="Export_Click" Margin="10 0 0 0" Width="40">
+                <Image Source="/Images/Export.png" VerticalAlignment="Center" Width="20" Height="20"/>
+                <Button.ToolTip>
+                    <ToolTip HasDropShadow="True" Placement="Mouse">
+                        <TextBlock>Экспорт данных в Excel</TextBlock>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <DataGrid x:Name="DG" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}" CellStyle="{StaticResource DGCell}"
+                      Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="36">
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Должность" Binding="{Binding Position}" Width="220" MaxWidth="310"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="*"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="*"/>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="*"/>
+                    <DataGridTextColumn Header="Клуб" Binding="{Binding Club}" Width="*"/>
+
+                    <DataGridTemplateColumn Width="70" MaxWidth="70" MinWidth="70">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+
+                                    <Button Click="Edit_Click" Margin="5 0 0 0" CommandParameter="{Binding JudgeId}" Style="{StaticResource DataBaseButton}">
+                                        <Image Source="/Images/Edit.png" Width="12" Height="12"/>
+                                        <Button.ToolTip>
+                                            <ToolTip HasDropShadow="True" Placement="Mouse">
+                                                <TextBlock>Редактировать запись</TextBlock>
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+
+                                    <Button Click="Delete_Click" Margin="5 0 0 0" CommandParameter="{Binding JudgeId}" Style="{StaticResource DataBaseButton}">
+                                        <Image Source="/Images/Delete.png" Width="12" Height="12"/>
+                                        <Button.ToolTip>
+                                            <ToolTip HasDropShadow="True" Placement="Mouse">
+                                                <TextBlock>Удалить запись</TextBlock>
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Page>

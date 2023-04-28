@@ -1,0 +1,36 @@
+﻿<Application x:Class="DanceApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DanceApp"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Border.xaml"/>
+                <ResourceDictionary Source="Styles/Button.xaml"/>
+                <ResourceDictionary Source="Styles/DataGrid.xaml"/>
+                <ResourceDictionary Source="Styles/TextBlock.xaml"/>
+                <ResourceDictionary Source="Styles/TextBox.xaml"/>
+                <ResourceDictionary Source="Styles/Window.xaml"/>
+                <ResourceDictionary Source="Styles/ComboBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <RoutedUICommand x:Key="Navigate"/>
+            <sys:Uri x:Key="Page1ViewUri">/View/Page1View.xaml</sys:Uri>
+            <sys:Uri x:Key="CompetitionsViewUri">/View/CompetitionsView.xaml</sys:Uri>
+            <sys:Uri x:Key="JudgesViewUri">/View/JudgesView.xaml</sys:Uri>
+            <sys:Uri x:Key="ClubsViewUri">/View/ClubsView.xaml</sys:Uri>
+            <sys:Uri x:Key="CitiesViewUri">/View/CitiesView.xaml</sys:Uri>
+            <sys:Uri x:Key="CountriesViewUri">/View/CountriesView.xaml</sys:Uri>
+            <sys:Uri x:Key="InfoViewUri">/View/InfoView.xaml</sys:Uri>
+
+            <sys:Uri x:Key="Page2ViewUri">/View/Page2View.xaml</sys:Uri>
+            <sys:Uri x:Key="SettingsViewUri">/View/SettingsView.xaml</sys:Uri>
+            <sys:Uri x:Key="DancersViewUri">/View/DancersView.xaml</sys:Uri>
+            <sys:Uri x:Key="GroupsViewUri">/View/GroupsView.xaml</sys:Uri>
+            <sys:Uri x:Key="PairsViewUri">/View/PairsView.xaml</sys:Uri>
+            <sys:Uri x:Key="PlacesViewUri">/View/PlacesView.xaml</sys:Uri>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
