@@ -1,5 +1,7 @@
 ﻿using DanceApp.Model;
+using DanceApp.Model.Data;
 using DanceApp.View;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Newtonsoft.Json;
 using System;
@@ -27,23 +29,18 @@ namespace DanceApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Model.DataBases> DataBases = new List<Model.DataBases>();
+        public List<DataBases> DataBases = new List<Model.DataBases>();
         public bool addOrEdit;
+        public string PathToFolder = Directory.GetCurrentDirectory();
         public MainWindow()
         {
             InitializeComponent();
-            DatabaseFacade facade = new DatabaseFacade(new Model.Data.DataBaseContext());
-            facade.EnsureCreated();
-
             GetFiles();
-            DG.ItemsSource = DataBases.ToList();
         }
 
+        // Вывод в DataGrid списка баз данных
         void GetFiles()
-        {
-            string PathToFolder = Directory.GetCurrentDirectory();
-            string[] allfiles = Directory.GetFiles(PathToFolder, "*.db");
-
+        {string[] allfiles = Directory.GetFiles(PathToFolder, "*.db");
             DataBases.Clear();
             for (int i = 0; i < allfiles.Length; i++)
             {
@@ -71,10 +68,10 @@ namespace DanceApp
 
                 if (DataBases.Any(x => x.Title == title) == false)
                 {
-                    DataBases.Add(new Model.DataBases { Title = title, Size = size, Path = path });
+                    DataBases.Add(new DataBases { Title = title, Size = size, Path = path });
                 }
-                DG.ItemsSource = DataBases.ToList();
             }
+            DG.ItemsSource = DataBases.ToList();
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
@@ -84,24 +81,22 @@ namespace DanceApp
 
             // Узнаём путь до базы данных.
             string title = (string)((Button)sender).CommandParameter;
+            GlobalClass.dataBaseName = title;
             string[] files = Directory.GetFiles(appDirectory, title + ".db", SearchOption.AllDirectories);
 
             if (files.Length > 0)
             {
-                if (files.Length > 0)
+                string DBPath = files[0];
+                var connectionString = "Data Source=" + DBPath;
+
+                Json connect = new Json()
                 {
-                    string DBPath = files[0];
-                    var connectionString = "Data Source=" + DBPath;
+                    ConnectionString = connectionString
+                };
 
-                    Json connect = new Json()
-                    {
-                        ConnectionString = connectionString
-                    };
+                string serialized = JsonConvert.SerializeObject(connect);
 
-                    string serialized = JsonConvert.SerializeObject(connect);
-
-                    File.WriteAllText("AppSettings.json", serialized);
-                }
+                File.WriteAllText("AppSettings.json", serialized);
 
                 CompetitionView window = new CompetitionView();
                 window.Show(); this.Close();
@@ -127,23 +122,46 @@ namespace DanceApp
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            string title = (string)((Button)sender).CommandParameter;
-            int index = DataBases.FindIndex(c => c.Title == title);
-            string path = DataBases[index].Path;
+            // Узнаём путь до папки проекта.
+            string appDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-            if (File.Exists(path))
+            // Узнаём путь до базы данных.
+            string title = (string)((Button)sender).CommandParameter;
+            GlobalClass.dataBaseName = title;
+            string[] files = Directory.GetFiles(appDirectory, title + ".db", SearchOption.AllDirectories);
+
+            if (files.Length > 0)
             {
-                if (MessageBox.Show("Вы действительно хотите удалить базу данных?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                string DBPath = files[0];
+                var connectionString = "Data Source=" + DBPath;
+
+                Json connect = new Json()
                 {
-                    try
+                    ConnectionString = connectionString
+                };
+
+                string serialized = JsonConvert.SerializeObject(connect);
+
+                File.WriteAllText("AppSettings.json", serialized);
+            }
+
+            if (MessageBox.Show("Вы действительно хотите удалить базу данных?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    using (var db = new DataBaseContext())
                     {
-                        File.Delete(path);
-                        MessageBox.Show("База данных успешно удалена!");
+                        db.Database.CloseConnection();
+                        db.Database.EnsureDeleted();
                     }
-                    catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+                    MessageBox.Show("База данных успешно удалена!");
+                }
+                catch
+                {
+                    MessageBox.Show("База данных используется приложением!");
                 }
             }
-            else { MessageBox.Show("Такой базы данных не существует!"); }
+
             GetFiles();
         }
 
@@ -154,6 +172,7 @@ namespace DanceApp
 
             // Открываем папку проекта в проводнике.
             Process.Start("explorer.exe", appDirectory);
+            GetFiles();
         }
 
         private void Info_Click(object sender, RoutedEventArgs e)

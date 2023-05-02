@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DanceApp.View" mc:Ignorable="d"
-        Height="410" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Title="Судьи">
+        Height="420" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Title="Судьи">
     <Border BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5" Margin="5,0,5,5">
         <Grid Margin="12 12 12 12">
             <Grid.RowDefinitions>
@@ -31,14 +31,14 @@
             <TextBox Grid.Row="5" Height="30" x:Name="PatronymicTB" Style="{StaticResource AddEditTextBox}"/>
 
             <TextBlock Grid.Row="6" Text="Должность" VerticalAlignment="Center"/>
-            <ComboBox Grid.Row="7" Height="30" x:Name="PositionCB" DisplayMemberPath="Title" Style="{StaticResource ComboBoxFlatStyle}"/>
+            <ComboBox Grid.Row="7" Height="30" x:Name="PositionCB" SelectedValuePath="ID" DisplayMemberPath="Title" Style="{StaticResource ComboBoxFlatStyle}"/>
 
             <TextBlock Grid.Row="8" Text="Клуб" VerticalAlignment="Center"/>
             <TextBox Grid.Row="9" Height="30" x:Name="ClubTB" Style="{StaticResource AddEditTextBox}"/>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                <Button Style="{StaticResource AddButton}" Click="AddEdit_Click" Width="100" Height="30" Content="Сохранить" HorizontalAlignment="Center"/>
-                <Button Style="{StaticResource AddButton}" Click="Cancel_Click" Width="80" Content="Отмена" HorizontalAlignment="Center" Margin="10 0 0 0"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 11 0 0">
+                <Button Style="{StaticResource SaveButton}" Click="Save_Click"/>
+                <Button Style="{StaticResource CancelButton}" Click="Cancel_Click"/>
             </StackPanel>
         </Grid>
     </Border>

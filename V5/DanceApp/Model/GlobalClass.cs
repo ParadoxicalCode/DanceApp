@@ -12,6 +12,7 @@ namespace DanceApp.Model
         public static int NumberOfJudges = 7;
         public static int CompetitionId;
         public static bool SettingsToJudges;
+        public static string dataBaseName;
 
         public bool StringIsDigits(string s)
         {

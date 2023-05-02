@@ -27,17 +27,21 @@ namespace DanceApp.View
     #nullable disable
     public partial class SettingsView : Page
     {
-        DataBaseContext db = new DataBaseContext();
         public SettingsView()
         {
             InitializeComponent();
-            var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
-            TitleTB.Text = data.Title;
-            DateTB.Text = data.StartDate;
-            TimeTB.Text = data.StartTime;
-            ManagerTB.Text = data.Manager;
-            AddressTB.Text = data.Address;
-            ClubTB.Text = data.Club;
+            dataBaseName.Text = GlobalClass.dataBaseName;
+
+            using (DataBaseContext db = new DataBaseContext())
+            {
+                var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
+                TitleTB.Text = data.Title;
+                DateTB.Text = data.StartDate;
+                TimeTB.Text = data.StartTime;
+                ManagerTB.Text = data.Manager;
+                AddressTB.Text = data.Address;
+                ClubTB.Text = data.Club;
+            }   
         }
 
         public class DGItems
@@ -54,20 +58,23 @@ namespace DanceApp.View
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
-            if (TitleTB.Text != "") { data.Title = TitleTB.Text; }
-            if (DateTB.Text != "") {  data.StartDate = DateTB.Text; }
-            if (TimeTB.Text != "") { data.StartTime = TimeTB.Text; }
-            if (ManagerTB.Text != "") { data.Manager = ManagerTB.Text; }
-            if (AddressTB.Text != "") {  data.Address = AddressTB.Text; }
-            if (ClubTB.Text != "") {  data.Club = ClubTB.Text; }
-
-            try
+            using (DataBaseContext db = new DataBaseContext())
             {
-                db.SaveChanges();
-                MessageBox.Show("Настройки сохранены!");
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+                var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
+                if (TitleTB.Text != "") { data.Title = TitleTB.Text; }
+                if (DateTB.Text != "") { data.StartDate = DateTB.Text; }
+                if (TimeTB.Text != "") { data.StartTime = TimeTB.Text; }
+                if (ManagerTB.Text != "") { data.Manager = ManagerTB.Text; }
+                if (AddressTB.Text != "") { data.Address = AddressTB.Text; }
+                if (ClubTB.Text != "") { data.Club = ClubTB.Text; }
+
+                try
+                {
+                    db.SaveChanges();
+                    MessageBox.Show("Настройки сохранены!");
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+            }  
         }
     }
 }

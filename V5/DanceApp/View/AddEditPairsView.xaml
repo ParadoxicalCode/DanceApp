@@ -5,64 +5,125 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DanceApp.View" mc:Ignorable="d"
         
-        Height="550" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Title="Пары">
+        Height="340" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Title="Пары">
     <Border BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5" Margin="5,0,5,5">
-        <Grid Margin="12 12 12 12">
+        <Grid Margin="12 4 12 0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="44"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="106"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="80"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="109"/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="112"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="1" Text="Номер" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="14"/>
-            <TextBlock Grid.Row="2" Text="Фамилия" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="14"/>
-            <TextBlock Grid.Row="3" Text="Имя" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="14"/>
-            <TextBlock Grid.Row="4" Text="Отчество" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="14"/>
-            <TextBlock Grid.Row="5" Text="Дата рождения" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="14"/>
-            <TextBlock Grid.Row="6" Text="Клуб" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="14"/>
-            <TextBlock Grid.Row="7" Text="Город" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="14"/>
-            <TextBlock Grid.Row="8" Text="Страна" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="14"/>
-            <TextBlock Grid.Row="9" Text="Тренер 1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="14"/>
-            <TextBlock Grid.Row="10" Text="Тренер 2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="14"/>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <TextBlock Text="Номер" VerticalAlignment="Center"/>
+                    <TextBox Width="40" Height="24" x:Name="NumberTB" Style="{StaticResource AddEditTextBox}" Margin="8 0 0 0"/>
+                </StackPanel>
 
-            <TextBox x:Name="NumberTB" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Height="30"  Style="{StaticResource AddEditTextBox}" Margin="5 5 5 5"/>
+                <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left">
+                    <TextBlock Text="Тип выступления:" VerticalAlignment="Center" Margin="0 3 0 4" HorizontalAlignment="Right"/>
+                    <TextBlock Text="Возрастная группа:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </StackPanel>
 
-            <TextBlock Grid.Column="1" Text="Партнёр" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14"/>
-            <TextBox x:Name="MaleSurnameTB" Grid.Row="2" Grid.Column="1" Height="30"  Style="{StaticResource AddEditTextBox}" Margin="5 5 5 5"/>
-            <TextBox x:Name="MaleNameTB" Grid.Row="3" Grid.Column="1" Height="30"  Style="{StaticResource AddEditTextBox}" Margin="5 5 5 5"/>
-            <TextBox x:Name="MalePatronymicTB" Grid.Row="4" Grid.Column="1" Height="30"  Style="{StaticResource AddEditTextBox}" Margin="5 5 5 5"/>
-            <TextBox x:Name="MaleBirthdayTB" Grid.Row="5" Grid.Column="1" Height="30"  Style="{StaticResource AddEditTextBox}" Margin="5 5 5 5"/>
+                <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Left">
+                    <TextBlock x:Name="PerformanceType" VerticalAlignment="Center" Margin="0 3 0 4" HorizontalAlignment="Right"/>
+                    <TextBlock x:Name="AgeGroup" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </StackPanel>
+            </Grid>
 
-            <TextBlock Grid.Column="2" Text="Партнёрша" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14"/>
-            <TextBox x:Name="FemaleSurnameTB" Grid.Row="2" Grid.Column="2" Height="30"  Style="{StaticResource AddEditTextBox}" Margin="5 5 5 5"/>
-            <TextBox x:Name="FemaleNameTB" Grid.Row="3" Grid.Column="2" Height="30"  Style="{StaticResource AddEditTextBox}" Margin="5 5 5 5"/>
-            <TextBox x:Name="FemalePatronymicTB" Grid.Row="4" Grid.Column="2" Height="30"  Style="{StaticResource AddEditTextBox}" Margin="5 5 5 5"/>
-            <TextBox x:Name="FemaleBirthdayTB" Grid.Row="5" Grid.Column="2" Height="30"  Style="{StaticResource AddEditTextBox}" Margin="5 5 5 5"/>
+            <Border Grid.Row="1" BorderBrush="DarkGray" BorderThickness="2"/>
 
-            <TextBox x:Name="ClubTB" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Height="30"  Style="{StaticResource AddEditTextBox}" Margin="5 5 5 5"/>
-            <TextBox x:Name="CityTB" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Height="30"  Style="{StaticResource AddEditTextBox}" Margin="5 5 5 5"/>
-            <TextBox x:Name="CountryTB" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Height="30"  Style="{StaticResource AddEditTextBox}" Margin="5 5 5 5"/>
-            <TextBox x:Name="Trainer1TB" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Height="30"  Style="{StaticResource AddEditTextBox}" Margin="5 5 5 5"/>
-            <TextBox x:Name="Trainer2TB" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" Height="30"  Style="{StaticResource AddEditTextBox}" Margin="5 5 5 5"/>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="22"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                <Button Style="{StaticResource AddButton}" Click="AddEdit_Click" Width="100" Height="30" Content="Сохранить" HorizontalAlignment="Center"/>
-                <Button Style="{StaticResource AddButton}" Click="Cancel_Click" Width="80" Content="Отмена" HorizontalAlignment="Center" Margin="10 0 0 0"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="18"/>
+                    <ColumnDefinition Width="82"/>
+                    <ColumnDefinition Width="115"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="115"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="2">
+                    <RadioButton x:Name="RB1" GroupName="PerformanceType" Margin="0 13 0 0" Checked="RB1_Checked"/>
+                    <RadioButton x:Name="RB2" GroupName="PerformanceType" Grid.Row="1" Margin="0 6 0 0" Checked="RB2_Checked"/>
+                    <RadioButton x:Name="RB3" GroupName="PerformanceType" Grid.Row="2" Margin="0 6 0 0" Checked="RB3_Checked"/>
+                </StackPanel>
+
+
+                <TextBlock Grid.Column="2" VerticalAlignment="Bottom" Text="Фамилия" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Column="3" VerticalAlignment="Bottom" Text="Имя" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Column="4" VerticalAlignment="Bottom" Text="Отчество" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Column="5" VerticalAlignment="Bottom" Text="Дата рождения" HorizontalAlignment="Left"/>
+
+
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="Партнёр" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 12 0"/>
+
+                <TextBox x:Name="MSurnameTB" Grid.Row="1" Grid.Column="2" Height="24" Style="{StaticResource AddEditTextBox}" Margin="0 0 14 0"/>
+                <TextBox x:Name="MNameTB" Grid.Row="1" Grid.Column="3" Height="24" Style="{StaticResource AddEditTextBox}" Margin="0 0 14 0"/>
+                <TextBox x:Name="MPatronymicTB" Grid.Row="1" Grid.Column="4" Height="24" Style="{StaticResource AddEditTextBox}" Margin="0 0 14 0"/>
+                <TextBox x:Name="MBirthdayTB" Grid.Row="1" Grid.Column="5" Height="24" Style="{StaticResource AddEditTextBox}"/>
+
+
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="Партнёрша" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 12 0"/>
+
+                <TextBox x:Name="FSurnameTB" Grid.Row="2" Grid.Column="2" Height="24" Style="{StaticResource AddEditTextBox}" Margin="0 0 14 0"/>
+                <TextBox x:Name="FNameTB" Grid.Row="2" Grid.Column="3" Height="24" Style="{StaticResource AddEditTextBox}" Margin="0 0 14 0"/>
+                <TextBox x:Name="FPatronymicTB" Grid.Row="2" Grid.Column="4" Height="24" Style="{StaticResource AddEditTextBox}" Margin="0 0 14 0"/>
+                <TextBox x:Name="FBirthdayTB" Grid.Row="2" Grid.Column="5" Height="24" Style="{StaticResource AddEditTextBox}"/>
+            </Grid>
+
+            <Border Grid.Row="3" BorderBrush="DarkGray" BorderThickness="2"/>
+
+            <Grid Grid.Row="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="115"/>
+                    <ColumnDefinition Width="61"/>
+                    <ColumnDefinition Width="102"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Страна" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 12 0"/>
+                <TextBox x:Name="CountryTB" Grid.Column="1" Height="24" Style="{StaticResource AddEditTextBox}" Margin="0 0 14 0" VerticalAlignment="Center"/>
+
+                <TextBlock Text="Город" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 12 0"/>
+                <TextBox x:Name="CityTB" Grid.Column="3" Height="24" Style="{StaticResource AddEditTextBox}" Margin="0,8,14,8"/>
+
+                <TextBlock Text="Клуб" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBox x:Name="ClubTB" Grid.Column="5" Height="24" Style="{StaticResource AddEditTextBox}" Margin="0,8,0,8"/>
+
+
+                <TextBlock Text="Тренер 1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 12 0"/>
+                <TextBox x:Name="Trainer1TB" Grid.Row="1" Height="24" Grid.Column="1" Style="{StaticResource AddEditTextBox}" Margin="0,0,14,0" VerticalAlignment="Center"/>
+
+                <TextBlock Text="Тренер 2" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 12 0"/>
+                <TextBox x:Name="Trainer2TB" Grid.Row="1" Height="24" Grid.Column="3" Style="{StaticResource AddEditTextBox}" HorizontalAlignment="Left" Width="88"/>
+            </Grid>
+
+            <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 6">
+                <Button Style="{StaticResource SaveButton}" Click="Save_Click"/>
+                <Button Style="{StaticResource CancelButton}" Click="Cancel_Click"/>
             </StackPanel>
         </Grid>
     </Border>

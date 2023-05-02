@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -23,7 +24,6 @@ namespace DanceApp.View
     /// </summary>
     public partial class PairsView : Page
     {
-        DataBaseContext db = new DataBaseContext();
         public PairsView()
         {
             InitializeComponent();
@@ -56,7 +56,9 @@ namespace DanceApp.View
 
         void GetPairs()
         {
-            var query =
+            using (var db = new DataBaseContext())
+            {
+                var query =
                 from p in db.Pairs
                 select new DGItems
                 {
@@ -76,8 +78,8 @@ namespace DanceApp.View
                     Trainer1 = p.Trainer1,
                     Trainer2 = p.Trainer2,
                 };
-
-            DG.ItemsSource = query.ToList();
+                DG.ItemsSource = query.ToList();
+            }
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)

@@ -27,6 +27,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -50,6 +51,12 @@
 
         <TextBlock Grid.Row="12" Text="Доля пар, проходящих в следующий тур" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16"/>
         <TextBox Grid.Row="13" Height="30" x:Name="PairsTB" Style="{StaticResource AddEditTextBox}" Width="400" HorizontalAlignment="Left"/>
+
+        <StackPanel Grid.Row="14" Orientation="Horizontal">
+            <TextBlock Text="Название базы данных:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" Margin="0 0 5 0"/>
+            <TextBlock x:Name="dataBaseName" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16"/>
+        </StackPanel>
+        
 
         <Button Grid.Row="16" Click="Edit_Click" HorizontalAlignment="Left" Style="{StaticResource AddEditButton}" Content="Сохранить" Width="110" VerticalAlignment="Top" Margin="0 20 0 0"/>
     </Grid>

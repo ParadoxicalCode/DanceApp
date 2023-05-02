@@ -20,7 +20,6 @@ namespace DanceApp.View
             InitializeComponent();
             Id = id;
             PositionCB.ItemsSource = db.Positions.ToList();
-            PositionCB.SelectedValuePath = "PositionId";
 
             if (Id != 0)
             {
@@ -29,9 +28,7 @@ namespace DanceApp.View
                 NameTB.Text = data.Name.ToString();
                 PatronymicTB.Text = data.Patronymic.ToString();
                 if (data.Club != null) { ClubTB.Text = data.Club.ToString(); }
-
-                var data2 = db.Positions.Find(data.ID);
-                PositionCB.SelectedValue = data2.ID;
+                PositionCB.SelectedValue = data.PositionId;
             }
         }
 
@@ -46,7 +43,7 @@ namespace DanceApp.View
             public string Club { get; set; }
         }
 
-        private void AddEdit_Click(object sender, RoutedEventArgs e)
+        private void Save_Click(object sender, RoutedEventArgs e)
         {
             if (SurnameTB.Text == "" || NameTB.Text == "" || PositionCB.SelectedItem == null)
             {
@@ -65,7 +62,7 @@ namespace DanceApp.View
                     Judge c = new Judge();
                     c.Surname = surname;
                     c.Name = name;
-                    if (patronymic != null) { c.Patronymic = patronymic; }
+                    c.Patronymic = patronymic;
                     c.PositionId = position.ID;
                     c.Club = club;
 
@@ -82,7 +79,7 @@ namespace DanceApp.View
                     var data = db.Judges.Where(u => u.ID == Id).FirstOrDefault();
                     data.Surname = surname;
                     data.Name = name;
-                    if (patronymic != null) { data.Patronymic = patronymic; }
+                    data.Patronymic = patronymic;
                     data.PositionId = position.ID;
                     data.Club = club;
                     try

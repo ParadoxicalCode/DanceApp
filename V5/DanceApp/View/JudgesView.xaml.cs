@@ -15,7 +15,6 @@ namespace DanceApp.View
     /// </summary>
     public partial class JudgesView : Page
     {
-        DataBaseContext db = new DataBaseContext();
         public JudgesView()
         {
             InitializeComponent();
@@ -34,7 +33,9 @@ namespace DanceApp.View
 
         void GetJudges()
         {
-            var query =
+            using (DataBaseContext db = new DataBaseContext())
+            {
+                var query =
                 from j in db.Judges
                 join p in db.Positions on j.PositionId equals p.ID
                 select new DGItems
@@ -47,7 +48,8 @@ namespace DanceApp.View
                     Club = j.Club ?? string.Empty
                 };
 
-            DG.ItemsSource = query.ToList();
+                DG.ItemsSource = query.ToList();
+            }
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -69,14 +71,17 @@ namespace DanceApp.View
 
             if (MessageBox.Show("Удалить запись?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                var delete = db.Judges.Where(u => u.ID.Equals(path.JudgeId)).FirstOrDefault();
-                db.Judges.Remove(delete);
-
-                try
+                using (DataBaseContext db = new DataBaseContext())
                 {
-                    db.SaveChanges(); GetJudges();
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+                    var delete = db.Judges.Where(u => u.ID.Equals(path.JudgeId)).FirstOrDefault();
+                    db.Judges.Remove(delete);
+
+                    try
+                    {
+                        db.SaveChanges(); GetJudges();
+                    }
+                    catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+                } 
             }
         }
 

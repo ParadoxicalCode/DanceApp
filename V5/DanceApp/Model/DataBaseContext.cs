@@ -32,23 +32,11 @@ namespace DanceApp.Model.Data
 
             // Узнаём путь до базы данных и её имя.
             string appDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            string[] files; files = new string[1]; files[0] = "";
-
-            bool fileExists = false;
-            string connectionString = "Data Source=Default.db";
             if (serialized != "ul")
             {
-                string title = Path.GetFileName(serialized.Substring(12));
-
-                // Проверка базы данных на существование.
-                fileExists = System.IO.File.Exists(System.IO.Path.Combine(appDirectory, title));
-                if (fileExists == false) { connectionString = serialized; }
+                string connectionString = serialized;
+                optionsBuilder.UseSqlite(connectionString);
             }
-
-            optionsBuilder.UseSqlite(connectionString);
-
-            // Проверить json файл. Если он пуст или базы данных не существует, то создать
         }
 
         public void UpdateDatabase()

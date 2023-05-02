@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DanceApp.View" mc:Ignorable="d"
-        Height="600" MinHeight="444" Width="960" MinWidth="600" Title="V 1.5.3">
+        Height="600" MinHeight="444" Width="960" MinWidth="600" Title="V 1.5.3" WindowStartupLocation="CenterScreen">
 
     <Window.CommandBindings>
         <CommandBinding Command="{StaticResource Navigate}" Executed="OnNavigate"/>

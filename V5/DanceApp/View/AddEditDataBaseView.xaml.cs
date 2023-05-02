@@ -17,6 +17,7 @@ using System.Reflection;
 using Newtonsoft.Json;
 using static System.Net.WebRequestMethods;
 using Microsoft.EntityFrameworkCore;
+using DanceApp.Model.Data;
 
 #nullable disable
 namespace DanceApp.View
@@ -58,6 +59,7 @@ namespace DanceApp.View
                         try
                         {
                             System.IO.File.Move(path, newFilePath);
+                            var db = new DataBaseContext();
                             MessageBox.Show("База данных успешно переименована!");
                             this.Close();
                         }
@@ -65,6 +67,8 @@ namespace DanceApp.View
                     }
                     else
                     {
+                        this.Close();
+
                         string connectionString = "Data Source=" + TitleTB.Text + ".db";
                         Model.Json connect = new Model.Json()
                         {
@@ -73,9 +77,12 @@ namespace DanceApp.View
 
                         string serialized = JsonConvert.SerializeObject(connect);
                         System.IO.File.WriteAllText("AppSettings.json", serialized);
-                        var dbContext = new Model.Data.DataBaseContext();
+
                         MessageBox.Show("База данных успешно создана!");
-                        this.Close();
+                        using (var dbContext = new DataBaseContext())
+                        {
+                            dbContext.Dispose();
+                        }
                     }
                 }
                 else { MessageBox.Show("Данное название уже занято!"); }
