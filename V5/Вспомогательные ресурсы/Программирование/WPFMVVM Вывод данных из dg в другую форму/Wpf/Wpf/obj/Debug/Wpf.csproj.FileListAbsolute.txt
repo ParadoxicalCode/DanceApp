@@ -1,0 +1,36 @@
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\bin\Debug\Wpf.exe.config
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\bin\Debug\Wpf.exe
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\bin\Debug\Wpf.pdb
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\obj\Debug\Wpf.csprojResolveAssemblyReference.cache
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\obj\Debug\Controls\EditStudent.g.cs
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\obj\Debug\MainWindow.g.cs
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\obj\Debug\App.g.cs
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\obj\Debug\Wpf_MarkupCompile.cache
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\obj\Debug\Wpf_MarkupCompile.lref
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\obj\Debug\Controls\EditStudent.baml
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\obj\Debug\MainWindow.baml
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\obj\Debug\Wpf.g.resources
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\obj\Debug\Wpf.Properties.Resources.resources
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\obj\Debug\Wpf.csproj.GenerateResource.Cache
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\obj\Debug\Wpf.exe
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\obj\Debug\Wpf.pdb
+c:\users\fomin\documents\visual studio 2017\Projects\Wpf\Wpf\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\bin\Debug\Wpf.exe.config
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\bin\Debug\Wpf.exe
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\bin\Debug\Wpf.pdb
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\obj\Debug\Wpf.csproj.AssemblyReference.cache
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\obj\Debug\Wpf.csproj.SuggestedBindingRedirects.cache
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\obj\Debug\Controls\EditStudent.g.cs
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\obj\Debug\MainWindow.g.cs
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\obj\Debug\App.g.cs
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\obj\Debug\Wpf_MarkupCompile.cache
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\obj\Debug\Wpf_MarkupCompile.lref
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\obj\Debug\Controls\EditStudent.baml
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\obj\Debug\MainWindow.baml
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\obj\Debug\Wpf.g.resources
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\obj\Debug\Wpf.Properties.Resources.resources
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\obj\Debug\Wpf.csproj.GenerateResource.cache
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\obj\Debug\Wpf.csproj.CoreCompileInputs.cache
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\obj\Debug\Wpf.exe
+C:\Users\makol\OneDrive\Рабочий стол\WPFMVVM\Wpf\Wpf\obj\Debug\Wpf.pdb

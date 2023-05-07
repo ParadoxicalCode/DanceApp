@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SQLite Probe": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\makol\\OneDrive\\Рабочий стол\\SQLite Probe2\\SQLite Probe"
+    }
+  }
+}
