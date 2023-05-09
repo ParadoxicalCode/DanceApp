@@ -1,1 +1,0 @@
-# CSharp-Sqlite-CRUD-Operations
