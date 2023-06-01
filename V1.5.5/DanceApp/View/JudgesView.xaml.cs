@@ -63,7 +63,7 @@ namespace DanceApp.View
                         db.SaveChanges();
                         GetJudges();
                     }
-                    catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+                    catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
                 }
             }
         }

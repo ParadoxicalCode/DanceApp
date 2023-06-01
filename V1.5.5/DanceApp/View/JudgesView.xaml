@@ -24,7 +24,7 @@
         </StackPanel>
 
         <DataGrid x:Name="DG" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}" CellStyle="{StaticResource DGCell}"
-            Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="36" Grid.Row="1">
+            Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="34" Grid.Row="1" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False">
             <DataGrid.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
@@ -60,12 +60,12 @@
                 </DataGridTemplateColumn>
                 
                 <DataGridTextColumn Header="ID" Binding="{Binding Character}" MinWidth="25" MaxWidth="25"/>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="*"/>
-                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="*"/>
-                <DataGridTextColumn Header="Клуб" Binding="{Binding Club}" Width="*"/>
-                <DataGridTextColumn Header="Город" Binding="{Binding City}" Width="*"/>
-                <DataGridTextColumn Header="Страна" Binding="{Binding Country}" Width="*"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" MinWidth="100" MaxWidth="100"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" MinWidth="90" MaxWidth="90"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" MinWidth="100" MaxWidth="100"/>
+                <DataGridTextColumn Header="Клуб" Binding="{Binding Club}" MinWidth="140" Width="2*" MaxWidth="200"/>
+                <DataGridTextColumn Header="Город" Binding="{Binding City}" MinWidth="120" Width="*" MaxWidth="170"/>
+                <DataGridTextColumn Header="Страна" Binding="{Binding Country}" MinWidth="120" Width="*" MaxWidth="170"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

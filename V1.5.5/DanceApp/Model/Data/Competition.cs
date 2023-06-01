@@ -18,11 +18,13 @@ namespace DanceApp.Model.Data
         public string? City { get; set; }
         public string? MainJudge { get; set; }
         public string? CountingCommission { get; set; }
-        public string? Mode { get; set; }
         public string? SiteCapacity { get; set; }
         public string? Fraction { get; set; }
 
         public bool RegistrationStatus { get; set; }
-        public string? CurrentTour { get; set; }
+
+        [ForeignKey("Tour")]
+        public int? TourID { get; set; }
+        public virtual Tour? Tour { get; set; }
     }
 }

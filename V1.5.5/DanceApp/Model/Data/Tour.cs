@@ -11,8 +11,10 @@ namespace DanceApp.Model.Data
     {
         [Key]
         public int ID { get; set; }
-        public string TourName { get; set; }
+        public string Title { get; set; }
 
-        public List<Performance> Performance { get; } = new();
+        public List<Competition> Competition { get; } = new();
+        public List<PairsInTour> PairsInTour { get; } = new();
+        public List<Group> Group { get; } = new();
     }
 }

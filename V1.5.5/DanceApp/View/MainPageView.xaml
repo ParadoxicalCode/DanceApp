@@ -56,15 +56,6 @@
                     </Button.ToolTip>
                 </Button>
 
-                <Button Style="{StaticResource MenuButton}" Margin="0 20 0 0" Click="MenuButton_Click" x:Name="PlacesBtn">
-                    <Image Source="/Images/Scores.png" Width="22" Height="22"/>
-                    <Button.ToolTip>
-                        <ToolTip HasDropShadow="True" Placement="Mouse">
-                            <TextBlock>Места</TextBlock>
-                        </ToolTip>
-                    </Button.ToolTip>
-                </Button>
-
                 <Button Style="{StaticResource MenuButton}" Margin="0 20 0 0" Click="MenuButton_Click" x:Name="DocumentsBtn">
                     <Image Source="/Images/Document.png" Width="22" Height="22"/>
                     <Button.ToolTip>

@@ -13,14 +13,15 @@
         </Grid.RowDefinitions>
 
         <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
-            <TextBlock Text="Тур" VerticalAlignment="Center"/>
-            <ComboBox Margin="15 0 0 0" Height="30" Width="100" x:Name="TourCB" DisplayMemberPath="TourName" Style="{StaticResource ComboBoxFlatStyle}"/>
+            <TextBlock Text="Тур: " VerticalAlignment="Center"/>
 
-            <TextBlock Margin="30 0 0 0" Text="Группа" VerticalAlignment="Center"/>
-            <ComboBox Margin="15 0 0 0" Height="30" Width="170" x:Name="GroupCB" DisplayMemberPath="Title" Style="{StaticResource ComboBoxFlatStyle}"/>
+            <TextBlock Margin="30 0 0 0" Text="Группа: " VerticalAlignment="Center"/>
 
             <TextBlock Margin="30 0 0 0" Text="Танец" VerticalAlignment="Center"/>
             <ComboBox Margin="15 0 0 0" Height="30" Width="140" x:Name="DanceCB" DisplayMemberPath="Title" Style="{StaticResource ComboBoxFlatStyle}"/>
+
+            <TextBlock Margin="30 0 0 0" Text="Заход" VerticalAlignment="Center"/>
+            <ComboBox Margin="15 0 0 0" Height="30" Width="50" x:Name="PerformanceCB" DisplayMemberPath="Title" Style="{StaticResource ComboBoxFlatStyle}"/>
         </StackPanel>
 
         <Grid Grid.Row="1">
@@ -29,65 +30,7 @@
                 <ColumnDefinition MaxWidth="300"/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid x:Name="PairsDG" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}" CellStyle="{StaticResource DGCell}"
-                      Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="36" Margin="0 0 6 6">
-                <DataGrid.Resources>
-                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
-                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
-                </DataGrid.Resources>
-
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn MinWidth="30" MaxWidth="30">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox IsChecked="{Binding Path=IsSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center">
-                                    <CheckBox.LayoutTransform>
-                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-                                    </CheckBox.LayoutTransform>
-                                </CheckBox>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-
-                    <DataGridTextColumn Header="№" Binding="{Binding Number}" MinWidth="30" MaxWidth="30"/>
-                    <DataGridTextColumn Header="Фамилия (М)" Binding="{Binding MaleSurname}" Width="3*" MaxWidth="180"/>
-                    <DataGridTextColumn Header="Имя" Binding="{Binding MaleName}" Width="3*" MaxWidth="120"/>
-                    <DataGridTextColumn Header="Отчество" Binding="{Binding MalePatronymic}" Width="3*" MaxWidth="150"/>
-                    <DataGridTextColumn Header="Дата рождения" Binding="{Binding MaleBirthday}" Width="3*" MaxWidth="140"/>
-                    <DataGridTextColumn Header="Фамилия (Ж)" Binding="{Binding  FemaleSurname}" Width="3*" MaxWidth="180"/>
-                    <DataGridTextColumn Header="Имя" Binding="{Binding FemaleName}" Width="3*" MaxWidth="120"/>
-                    <DataGridTextColumn Header="Отчество" Binding="{Binding FemalePatronymic}" Width="3*" MaxWidth="150"/>
-                    <DataGridTextColumn Header="Дата рождения" Binding="{Binding FemaleBirthday}" Width="3*" MaxWidth="140"/>
-                    <DataGridTextColumn Header="Клуб" Binding="{Binding Club}" Width="3*" MaxWidth="150"/>
-                </DataGrid.Columns>
-            </DataGrid>
-
-            <DataGrid x:Name="DG" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}" CellStyle="{StaticResource DGCell}"
-                      Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="36" Grid.Column="1" Margin="6 0 0 6">
-                <DataGrid.Resources>
-                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
-                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
-                </DataGrid.Resources>
-
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn MinWidth="30" MaxWidth="30">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox IsChecked="{Binding Path=IsSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center">
-                                    <CheckBox.LayoutTransform>
-                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-                                    </CheckBox.LayoutTransform>
-                                </CheckBox>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-
-                    <DataGridTextColumn Header="ID" Binding="{Binding Character}" MinWidth="25" MaxWidth="25"/>
-                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="*"/>
-                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="*"/>
-                    <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            
         </Grid>
 
         <Grid Grid.Row="2" Margin="0 6 0 0">

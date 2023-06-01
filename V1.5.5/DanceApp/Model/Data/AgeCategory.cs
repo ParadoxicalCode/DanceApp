@@ -14,6 +14,5 @@ namespace DanceApp.Model.Data
         public string Title { get; set; }
 
         public List<Pair> Pair { get; } = new();
-        public List<Group> Group { get; } = new();
     }
 }

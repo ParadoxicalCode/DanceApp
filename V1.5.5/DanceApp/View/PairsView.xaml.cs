@@ -34,38 +34,12 @@ namespace DanceApp.View
     {
         private DataBaseContext db = GlobalClass.db;
         OpenRegistration x = new OpenRegistration();
-        List<Pair> pairs;
-        private int PageIndex = 1;
-        int pageCount;
+        public List<Pair2> pairs = new List<Pair2>();
         public PairsView()
         {
             InitializeComponent();
-            Update();
-        }
-
-        private void Update()
-        {
-            pairs = db.Pairs.ToList();
+            PagesCount(false);
             PairsDG.ItemsSource = pairs.Take(10);
-
-            if (pairs.Count >= 10)
-                NumberOfRecords.Content = 10 + " из " + pairs.Count;
-            else
-                NumberOfRecords.Content = pairs.Count + " из " + pairs.Count;
-
-            // Узнаём количество страниц
-            if (pairs.Count > 10)
-            {
-                if (pairs.Count % 10 == 0)
-                    pageCount = pairs.Count / 10;
-                else
-                    pageCount = (pairs.Count / 10) + 1;
-            }
-            else
-                pageCount = 1;
-
-            if (pageCount > 1)
-                ButtonSwitch("Вперёд", false);
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -73,7 +47,8 @@ namespace DanceApp.View
             if (x.Delete() == true)
             {
                 AddEditPairsView c = new AddEditPairsView(0);
-                c.ShowDialog(); Update();
+                if (c.ShowDialog() == true)
+                    PagesCount(true);  
             }
         }
 
@@ -83,7 +58,8 @@ namespace DanceApp.View
             {
                 int ID = (int)((Button)sender).CommandParameter;
                 AddEditPairsView c = new AddEditPairsView(ID);
-                c.ShowDialog(); Update();
+                if (c.ShowDialog() == true)
+                    Update();
             }
         }
 
@@ -99,120 +75,145 @@ namespace DanceApp.View
                     try
                     {
                         db.SaveChanges();
-                        Update();
+                        PagesCount(false);
                     }
-                    catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+                    catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
                 }
             }
-        }
-
-        private void Import_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Export_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void TourCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         // Пагинация
-        private void BeginningBtn_Click(object sender, RoutedEventArgs e)
+        private int PageIndex = 1;
+        private int pageCount;
+        private void PaginationButton_Click(object sender, RoutedEventArgs e)
         {
-            ButtonSwitch("Назад", true);
-            ButtonSwitch("Вперёд", false);
-
-            PairsDG.ItemsSource = null;
-            PairsDG.ItemsSource = pairs.Take(10);
-            if (pairs.Count >= 10)
-                NumberOfRecords.Content = 10 + " из " + pairs.Count;
-            else
-                NumberOfRecords.Content = pairs.Count + " из " + pairs.Count;
-
-            PageIndex = 1;
-        }
-
-        private void BackBtn_Click(object sender, RoutedEventArgs e)
-        {
-            ButtonSwitch("Вперёд", false);
-            PairsDG.ItemsSource = null;
-            PageIndex--;
-
-            if (PageIndex == 1) // Если предыдущая страница первая
+            Button button = sender as Button;
+            switch (button.Name)
             {
-                PairsDG.ItemsSource = pairs.Take(10);
-                NumberOfRecords.Content = 10 + " из " + pairs.Count;
-
-                ButtonSwitch("Назад", true);
+                case "BeginningBtn":
+                    PageIndex = 1;
+                    break;
+                case "BackBtn":
+                    PageIndex--;
+                    break;
+                case "NextBtn":
+                    PageIndex++;
+                    break;
+                case "EndBtn":
+                    PageIndex = pageCount;
+                    break;
             }
-            else
-            {
-                PairsDG.ItemsSource = pairs.Skip((PageIndex - 1) * 10).Take(10);
-                NumberOfRecords.Content = (PageIndex * 10) + " из " + pairs.Count;
-            }
+            Update();
         }
 
-        private void NextBtn_Click(object sender, RoutedEventArgs e)
+        public class Pair2
         {
-            ButtonSwitch("Назад", false);
-
-            PairsDG.ItemsSource = null;
-            PairsDG.ItemsSource = pairs.Skip(PageIndex * 10).Take(10);
-            PageIndex++;
-
-            if (PageIndex == pageCount) // Если следующая страница последняя
-            {
-                NumberOfRecords.Content = pairs.Count + " из " + pairs.Count;
-                ButtonSwitch("Вперёд", true);
-            }
-            else
-                NumberOfRecords.Content = (PageIndex * 10) + " из " + pairs.Count;
+            public int ID { get; set; }
+            public string Number { get; set; }
+            public string MaleSurname { get; set; }
+            public string MaleName { get; set; }
+            public string MalePatronymic { get; set; }
+            public string MaleBirthday { get; set; }
+            public string FemaleSurname { get; set; }
+            public string FemaleName { get; set; }
+            public string FemalePatronymic { get; set; }
+            public string FemaleBirthday { get; set; }
+            public string Club { get; set; }
+            public string City { get; set; }
+            public string Country { get; set; }
+            public string Trainer1 { get; set; }
+            public string Trainer2 { get; set; }
+            public string PerformanceType { get; set; }
+            public string AgeCategory { get; set; }
         }
 
-        private void EndBtn_Click(object sender, RoutedEventArgs e)
+        private void PagesCount(bool add)
         {
-            ButtonSwitch("Назад", false);
-            ButtonSwitch("Вперёд", true);
-
-            PairsDG.ItemsSource = null;
-            PairsDG.ItemsSource = pairs.Skip((pageCount - 1) * 10).Take(10);
-            NumberOfRecords.Content = pairs.Count + " из " + pairs.Count;
-
-            PageIndex = pageCount;
-        }
-
-        private void ButtonSwitch(string buttonType, bool hide)
-        {
-            if (hide == true)
+            var pair2 = db.Pairs;
+            pairs.Clear();
+            foreach (var p in pair2)
             {
-                if (buttonType == "Назад")
+                var ageCategory = db.AgeCategories.Where(u => u.ID == p.AgeCategoryID).FirstOrDefault();
+                pairs.Add(new Pair2 
                 {
-                    BackBtn.Visibility = Visibility.Hidden;
-                    BeginningBtn.Visibility = Visibility.Hidden;
-                }
+                    ID = p.ID,
+                    Number = p.Number,
+                    MaleSurname = p.MaleSurname,
+                    MaleName = p.MaleName,
+                    MalePatronymic = p.MalePatronymic,
+                    MaleBirthday = p.MaleBirthday,
+                    FemaleSurname = p.FemaleSurname,
+                    FemaleName = p.FemaleName,
+                    FemalePatronymic = p.FemalePatronymic,
+                    FemaleBirthday = p.FemaleBirthday,
+                    Club = p.Club,
+                    City = p.City,
+                    Country = p.Country,
+                    Trainer1 = p.Trainer1,
+                    Trainer2 = p.Trainer2,
+                    PerformanceType = p.PerformanceType,
+                    AgeCategory = ageCategory.Title
+                });
+            }
+
+            // Узнаём количество страниц
+            if (pairs.Count > 10)
+            {
+                if (pairs.Count % 10 == 0)
+                    pageCount = pairs.Count / 10;
                 else
+                    pageCount = (pairs.Count / 10) + 1;
+            }
+            else
+                pageCount = 1;
+
+            if (add == true || PageIndex > pageCount)
+                PageIndex = pageCount;
+
+            Update();
+        }
+
+        private void Update()
+        {
+            PairsDG.ItemsSource = null;
+            PairsDG.Items.Clear();
+
+            if (PageIndex == 1)
+            {
+                BackBtn.Visibility = Visibility.Hidden;
+                BeginningBtn.Visibility = Visibility.Hidden;
+                PairsDG.ItemsSource = pairs.Take(10);
+
+                if (pageCount == 1)
                 {
                     NextBtn.Visibility = Visibility.Hidden;
                     EndBtn.Visibility = Visibility.Hidden;
-                }
-            }
-            else
-            {
-                if (buttonType == "Назад")
-                {
-                    BackBtn.Visibility = Visibility.Visible;
-                    BeginningBtn.Visibility = Visibility.Visible;
+                    NumberOfRecords.Content = pairs.Count + " из " + pairs.Count;
                 }
                 else
                 {
                     NextBtn.Visibility = Visibility.Visible;
                     EndBtn.Visibility = Visibility.Visible;
+                    NumberOfRecords.Content = 10 + " из " + pairs.Count;
                 }
+            }
+            else
+            {
+                BackBtn.Visibility = Visibility.Visible;
+                BeginningBtn.Visibility = Visibility.Visible;
+                NextBtn.Visibility = Visibility.Hidden;
+                EndBtn.Visibility = Visibility.Hidden;
+
+                PairsDG.ItemsSource = pairs.Skip((PageIndex - 1) * 10).Take(10);
+
+                // Если открыта последняя страница
+                if (PageIndex >= pageCount && pageCount >= 2)
+                {
+                    PageIndex = pageCount;
+                    NumberOfRecords.Content = pairs.Count + " из " + pairs.Count;
+                }
+                else // Если открыта страница между первой и последней
+                    NumberOfRecords.Content = PageIndex * 10 + " из " + pairs.Count;
             }
         }
     }

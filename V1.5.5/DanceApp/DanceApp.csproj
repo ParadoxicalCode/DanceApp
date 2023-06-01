@@ -68,19 +68,14 @@
     <Resource Include="Images\Beginning.png" />
     <Resource Include="Images\DataBase.png" />
     <Resource Include="Images\End.png" />
-    <Resource Include="Images\Export.png" />
     <Resource Include="Images\Folder.png" />
-    <Resource Include="Images\Import.png" />
     <Resource Include="Images\Pair.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Images\Add.png" />
     <Resource Include="Images\Calculate.png" />
-    <Resource Include="Images\City.png" />
     <Resource Include="Images\Club.png" />
-    <Resource Include="Images\Country.png" />
-    <Resource Include="Images\Dance.png" />
     <Resource Include="Images\Delete.png" />
     <Resource Include="Images\Dice.png" />
     <Resource Include="Images\Document.png" />
@@ -96,7 +91,6 @@
     <Resource Include="Images\Judge.png" />
     <Resource Include="Images\Next.png" />
     <Resource Include="Images\Participant.png" />
-    <Resource Include="Images\Print.png" />
     <Resource Include="Images\Save.png" />
     <Resource Include="Images\Scores.png" />
     <Resource Include="Images\Settings.png" />

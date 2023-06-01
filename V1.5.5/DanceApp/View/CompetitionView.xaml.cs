@@ -29,9 +29,23 @@ namespace DanceApp.View
     public partial class CompetitionView : Window
     {
         public DataBaseContext db = GlobalClass.db;
+        public List<CBItems> SiteCapacityCBItemsList = new List<CBItems>();
+        public List<CBItems> FractionCBItemsList = new List<CBItems>();
+        private bool CBSwitch;
         public CompetitionView()
         {
             InitializeComponent();
+
+            SiteCapacityCBItemsList.Add(new CBItems { Element = "5" });
+            SiteCapacityCBItemsList.Add(new CBItems { Element = "6" });
+            SiteCapacityCBItemsList.Add(new CBItems { Element = "7" });
+            SiteCapacityCBItemsList.Add(new CBItems { Element = "8" });
+            SiteCapacityCBItemsList.Add(new CBItems { Element = "9" });
+            SiteCapacityCBItemsList.Add(new CBItems { Element = "10" });
+            CBSwitch = false;
+            SiteCapacityCB.ItemsSource = SiteCapacityCBItemsList;
+            CBSwitch = true;
+
             var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
 
             if (data.Rank != "")
@@ -41,40 +55,52 @@ namespace DanceApp.View
                 CityTB.Text = data.City;
                 MainJudgeTB.Text = data.MainJudge;
                 CountingCommissionTB.Text = data.CountingCommission;
-                ModeCB.SelectedItem = data.Mode;
-                SiteCapacityCB.SelectedItem = data.SiteCapacity;
-                FractionCB.SelectedItem = data.Fraction;
+
+                SiteCapacityCB.SelectedValue = data.SiteCapacity;
+                AddFractionCBItems();
+                FractionCB.SelectedValue = data.Fraction;
             }
+        }
+
+        public class CBItems
+        {
+            public string Element { get; set; }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if (RankTB.Text == "" || ManagerTB.Text == "" || CityTB.Text == "" || MainJudgeTB.Text == "" 
-                || CountingCommissionTB.Text == "" || ModeCB.SelectedItem != null || SiteCapacityCB.SelectedItem != null || FractionCB.SelectedItem != null)
+            OpenRegistration x = new OpenRegistration();
+            if (x.Delete() == true)
             {
-                MessageBox.Show("Не все поля заполнены!");
-                return;
+                if (RankTB.Text == "" || ManagerTB.Text == "" || CityTB.Text == "" || MainJudgeTB.Text == "" || 
+                    CountingCommissionTB.Text == "" || SiteCapacityCB.SelectedItem == null || FractionCB.SelectedItem == null)
+                {
+                    MessageBox.Show("Не все поля заполнены!");
+                    return;
+                }
+
+                var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
+
+                data.Rank = RankTB.Text;
+                data.Manager = ManagerTB.Text;
+                data.City = CityTB.Text;
+                data.MainJudge = MainJudgeTB.Text;
+                data.CountingCommission = CountingCommissionTB.Text;
+
+                var siteCapacity = SiteCapacityCB.SelectedItem as CBItems;
+                data.SiteCapacity = siteCapacity.Element;
+
+                var fraction = FractionCB.SelectedItem as CBItems;
+                data.Fraction = fraction.Element;
+
+                try
+                {
+                    db.SaveChanges();
+                    MessageBox.Show("Данные успешно сохранены!");
+                    this.Close();
+                }
+                catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
             }
-
-            var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
-
-            data.Rank = RankTB.Text;
-            data.Manager = ManagerTB.Text;
-            data.City = CityTB.Text;
-            data.MainJudge = MainJudgeTB.Text;
-            data.CountingCommission = CountingCommissionTB.Text;
-
-            ComboBoxItem typeItem1 = (ComboBoxItem)ModeCB.SelectedItem;
-            data.Mode = typeItem1.Content.ToString();
-
-            ComboBoxItem typeItem2 = (ComboBoxItem)ModeCB.SelectedItem;
-            data.SiteCapacity = typeItem2.Content.ToString();
-
-            ComboBoxItem typeItem3 = (ComboBoxItem)ModeCB.SelectedItem;
-            data.Fraction = typeItem3.Content.ToString();
-
-            try { db.SaveChanges(); }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -82,58 +108,57 @@ namespace DanceApp.View
             this.Close();
         }
 
-        public class CBItems
-        {
-            public string Number { get; set; }
-        }
-
-        public List<CBItems> CBItemsList = new List<CBItems>();
-
         private void SiteCapacityCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (CBSwitch == true)
+                AddFractionCBItems();
+        }
+
+        private void AddFractionCBItems()
+        {
             FractionCB.ItemsSource = null;
-            CBItemsList.Clear();
+            FractionCBItemsList.Clear();
 
-            ComboBoxItem typeItem = (ComboBoxItem)SiteCapacityCB.SelectedItem;
-            string siteCapacity = typeItem.Content.ToString();
+            var siteCapacity = SiteCapacityCB.SelectedItem as CBItems;
+            string number = siteCapacity.Element;
 
-            switch (siteCapacity)
+            switch (number)
             {
                 case "5":
-                    CBItemsList.Add(new CBItems { Number = "3/5" });
-                    CBItemsList.Add(new CBItems { Number = "4/5" });
+                    FractionCBItemsList.Add(new CBItems { Element = "3/5" });
+                    FractionCBItemsList.Add(new CBItems { Element = "4/5" });
                     break;
                 case "6":
-                    CBItemsList.Add(new CBItems { Number = "3/6" });
-                    CBItemsList.Add(new CBItems { Number = "4/6" });
-                    CBItemsList.Add(new CBItems { Number = "5/6" });
+                    FractionCBItemsList.Add(new CBItems { Element = "3/6" });
+                    FractionCBItemsList.Add(new CBItems { Element = "4/6" });
+                    FractionCBItemsList.Add(new CBItems { Element = "5/6" });
                     break;
                 case "7":
-                    CBItemsList.Add(new CBItems { Number = "4/7" });
-                    CBItemsList.Add(new CBItems { Number = "5/7" });
-                    CBItemsList.Add(new CBItems { Number = "6/7" });
+                    FractionCBItemsList.Add(new CBItems { Element = "4/7" });
+                    FractionCBItemsList.Add(new CBItems { Element = "5/7" });
+                    FractionCBItemsList.Add(new CBItems { Element = "6/7" });
                     break;
                 case "8":
-                    CBItemsList.Add(new CBItems { Number = "4/8" });
-                    CBItemsList.Add(new CBItems { Number = "5/8" });
-                    CBItemsList.Add(new CBItems { Number = "6/8" });
-                    CBItemsList.Add(new CBItems { Number = "7/8" });
+                    FractionCBItemsList.Add(new CBItems { Element = "4/8" });
+                    FractionCBItemsList.Add(new CBItems { Element = "5/8" });
+                    FractionCBItemsList.Add(new CBItems { Element = "6/8" });
+                    FractionCBItemsList.Add(new CBItems { Element = "7/8" });
                     break;
                 case "9":
-                    CBItemsList.Add(new CBItems { Number = "5/9" });
-                    CBItemsList.Add(new CBItems { Number = "6/9" });
-                    CBItemsList.Add(new CBItems { Number = "7/9" });
-                    CBItemsList.Add(new CBItems { Number = "8/9" });
+                    FractionCBItemsList.Add(new CBItems { Element = "5/9" });
+                    FractionCBItemsList.Add(new CBItems { Element = "6/9" });
+                    FractionCBItemsList.Add(new CBItems { Element = "7/9" });
+                    FractionCBItemsList.Add(new CBItems { Element = "8/9" });
                     break;
                 case "10":
-                    CBItemsList.Add(new CBItems { Number = "5/10" });
-                    CBItemsList.Add(new CBItems { Number = "6/10" });
-                    CBItemsList.Add(new CBItems { Number = "7/10" });
-                    CBItemsList.Add(new CBItems { Number = "8/10" });
-                    CBItemsList.Add(new CBItems { Number = "9/10" });
+                    FractionCBItemsList.Add(new CBItems { Element = "5/10" });
+                    FractionCBItemsList.Add(new CBItems { Element = "6/10" });
+                    FractionCBItemsList.Add(new CBItems { Element = "7/10" });
+                    FractionCBItemsList.Add(new CBItems { Element = "8/10" });
+                    FractionCBItemsList.Add(new CBItems { Element = "9/10" });
                     break;
             }
-            FractionCB.ItemsSource = CBItemsList;
+            FractionCB.ItemsSource = FractionCBItemsList;
         }
     }
 }

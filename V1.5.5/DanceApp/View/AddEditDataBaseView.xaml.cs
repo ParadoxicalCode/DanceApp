@@ -26,19 +26,20 @@ namespace DanceApp.View
     /// <summary>
     /// Логика взаимодействия для AddEditDataBaseView.xaml
     /// </summary>
+    #nullable disable
     public partial class AddEditDataBaseView : Window
     {
         public List<DataBases> DataBases22 = new List<Model.DataBases>();
         public string path;
-        public bool addOrEdit;
+        public bool Edit;
         public string appDirectory = Directory.GetCurrentDirectory();
-        public AddEditDataBaseView(string CurrentPath, string Title, List<Model.DataBases> db, bool AddOrEdit)
+        public AddEditDataBaseView(string CurrentPath, string Title, List<Model.DataBases> db, bool edit)
         {
             InitializeComponent();
             TitleTB.Text = Title;
             DataBases22 = db;
             path = CurrentPath;
-            addOrEdit = AddOrEdit;
+            Edit = edit;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -49,36 +50,31 @@ namespace DanceApp.View
                 bool fileExists = System.IO.File.Exists(System.IO.Path.Combine(appDirectory, TitleTB.Text + ".db"));
                 if (fileExists == false)
                 {
-                    if (addOrEdit == false)
+                    if (Edit == true)
                     {
                         string newFileName = appDirectory + "\\" + TitleTB.Text + ".db";
                         string newFilePath = System.IO.Path.Combine(path, newFileName);
-
                         try
                         {
                             System.IO.File.Move(path, newFilePath);
 
-                            MessageBox.Show("База данных успешно переименована!");
-                            this.Close();
+                            Connect();
+
+                            var data = GlobalClass.db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
+                            data.Title = TitleTB.Text;
+                            try
+                            {
+                                GlobalClass.db.SaveChanges();
+                                MessageBox.Show("База данных успешно переименована!");
+                            }
+                            catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
                         }
-                        catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+                        catch (Exception ex) { MessageBox.Show("Чтобы переименовать базу данных перезапустите приложение!"); }
                     }
                     else
-                    {
-                        this.Close();
+                        Connect();
 
-                        string connectionString = "Data Source=" + TitleTB.Text + ".db";
-                        Json connect = new Json()
-                        {
-                            ConnectionString = connectionString
-                        };
-
-                        string serialized = JsonConvert.SerializeObject(connect);
-                        System.IO.File.WriteAllText("AppSettings.json", serialized);
-
-                        GlobalClass.db = new DataBaseContext();
-                        GlobalClass.db.Database.CloseConnection(); // Отключение от базы данных
-                    }
+                    this.Close();
                 }
                 else { MessageBox.Show("Данное название уже занято!"); }
             }
@@ -88,6 +84,20 @@ namespace DanceApp.View
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Connect()
+        {
+            string connectionString = "Data Source=" + TitleTB.Text + ".db";
+            Json connect = new Json()
+            {
+                ConnectionString = connectionString
+            };
+
+            string serialized = JsonConvert.SerializeObject(connect);
+            System.IO.File.WriteAllText("AppSettings.json", serialized);
+
+            GlobalClass.db = new DataBaseContext();
         }
     }
 }

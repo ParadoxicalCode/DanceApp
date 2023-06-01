@@ -25,6 +25,7 @@ namespace DanceApp.View
             if (ID != 0)
             {
                 var data = db.Judges.Find(ID);
+                IDText.Text = data.Character.ToString();
                 SurnameTB.Text = data.Surname.ToString();
                 NameTB.Text = data.Name.ToString();
                 PatronymicTB.Text = data.Patronymic.ToString();
@@ -39,8 +40,10 @@ namespace DanceApp.View
             if (SurnameTB.Text == "" || NameTB.Text == "" || CityTB.Text == "" || CountryTB.Text == "")
             {
                 MessageBox.Show("Не все поля заполнены!");
+                return;
             }
-            else if (ID == 0)
+
+            if (ID == 0)
             {
                 if (db.Judges.Count() >= 10)
                 {
@@ -88,7 +91,7 @@ namespace DanceApp.View
                         CityTB.Text = "";
                         CountryTB.Text = "";
                     }
-                    catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+                    catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
                 }
             }
             else
@@ -107,7 +110,7 @@ namespace DanceApp.View
                     MessageBox.Show("Запись изменена!");
                     this.Close();
                 }
-                catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+                catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
             }
         }
 

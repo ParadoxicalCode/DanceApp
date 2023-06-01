@@ -22,6 +22,9 @@
     <Compile Update="View\AddEditJudgesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\CloseRegistrationView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\MainWindow2.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -88,6 +91,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\AddEditJudgesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\CloseRegistrationView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\MainWindow2.xaml">

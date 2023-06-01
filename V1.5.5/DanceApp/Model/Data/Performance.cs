@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -12,17 +12,8 @@ namespace DanceApp.Model.Data
     {
         [Key]
         public int ID { get; set; }
+        public int Number { get; set; }
 
-        [ForeignKey("Tour")]
-        public int TourID { get; set; }
-        public virtual Tour Tour { get; set; }
-
-        [ForeignKey("Group")]
-        public int GroupID { get; set; }
-        public virtual Group Group { get; set; }
-
-        [ForeignKey("Dance")]
-        public int DanceID { get; set; }
-        public virtual Dance Dance { get; set; }
+        public List<PerformancesInDance> PerformancesInDance { get; } = new();
     }
 }

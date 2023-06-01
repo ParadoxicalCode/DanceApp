@@ -102,6 +102,7 @@ namespace DanceApp.View
             var data = db.Pairs.Where(u => u.ID == ID).FirstOrDefault();
             int identical = db.Pairs.Count(x => x.Number == number);
 
+            // Валидация номера
             if (checkIsExist == true && number != "" && identical > 1)
             {
                 MessageBox.Show("Пара с таким номером уже есть!");
@@ -113,144 +114,159 @@ namespace DanceApp.View
                 MessageBox.Show("В поле номер обязательно должно быть число!");
                 return;
             }
-            else 
+
+            if (number != "" && Int32.Parse(number) == 0) 
             {
-                if (ID == 0)
+                MessageBox.Show("Номер не может быть 0!");
+                return;
+            }
+
+            if (ID == 0)
+            {
+                if (db.Pairs.Count() == 60)
                 {
-                    var pair = new Pair();
+                    MessageBox.Show("Нельзя добавить более 60 пар!");
+                    return;
+                }
+                var pair = new Pair();
 
-                    if (RB1.IsChecked == true)
-                    {
-                        pair.MaleSurname = MSurnameTB.Text;
-                        pair.MaleName = MNameTB.Text;
-                        pair.MalePatronymic = MPatronymicTB.Text;
-                        pair.MaleBirthday = MBirthdayDP.SelectedDate.Value.ToString("yyyy.MM.dd");
-                        pair.FemaleSurname = "";
-                        pair.FemaleName = "";
-                        pair.FemalePatronymic = "";
-                        pair.FemaleBirthday = "";
-                        pair.PerformanceType = "Соло";
-                    }
+                if (RB1.IsChecked == true)
+                {
+                    pair.MaleSurname = MSurnameTB.Text;
+                    pair.MaleName = MNameTB.Text;
+                    pair.MalePatronymic = MPatronymicTB.Text;
+                    pair.MaleBirthday = MBirthdayDP.SelectedDate.Value.ToString("yyyy.MM.dd");
+                    pair.FemaleSurname = "";
+                    pair.FemaleName = "";
+                    pair.FemalePatronymic = "";
+                    pair.FemaleBirthday = "";
+                    pair.PerformanceType = "Соло";
+                }
 
-                    else if (RB3.IsChecked == true)
-                    {
-                        pair.FemaleSurname = FSurnameTB.Text;
-                        pair.FemaleName = FNameTB.Text;
-                        pair.FemalePatronymic = FPatronymicTB.Text;
-                        pair.FemaleBirthday = FBirthdayDP.SelectedDate.Value.ToString("yyyy.MM.dd");
-                        pair.MaleSurname = "";
-                        pair.MaleName = "";
-                        pair.MalePatronymic = "";
-                        pair.MaleBirthday = "";
-                        pair.PerformanceType = "Соло";
-                    }
-                    else
-                    {
-                        pair.MaleSurname = MSurnameTB.Text;
-                        pair.MaleName = MNameTB.Text;
-                        pair.MalePatronymic = MPatronymicTB.Text;
-                        pair.MaleBirthday = MBirthdayDP.SelectedDate.Value.ToString("yyyy.MM.dd");
-                        pair.FemaleSurname = FSurnameTB.Text;
-                        pair.FemaleName = FNameTB.Text;
-                        pair.FemalePatronymic = FPatronymicTB.Text;
-                        pair.FemaleBirthday = FBirthdayDP.SelectedDate.Value.ToString("yyyy.MM.dd");
-                        pair.PerformanceType = "Пара";
-                    }
-
-                    pair.Number = NumberTB.Text;
-                    pair.Club = ClubTB.Text;
-                    pair.City = CityTB.Text;
-                    pair.Country = CountryTB.Text;
-                    pair.Trainer1 = Trainer1TB.Text;
-                    pair.Trainer2 = Trainer2TB.Text;
-                    pair.AgeCategoryID = Group(pair.MaleBirthday, pair.FemaleBirthday);
-
-                    db.Pairs.Add(pair);
-                    try
-                    {
-                        db.SaveChanges();
-                        MessageBox.Show("Запись добавлена!");
-                    }
-                    catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
-
-                    Switch("Clear");
+                else if (RB3.IsChecked == true)
+                {
+                    pair.FemaleSurname = FSurnameTB.Text;
+                    pair.FemaleName = FNameTB.Text;
+                    pair.FemalePatronymic = FPatronymicTB.Text;
+                    pair.FemaleBirthday = FBirthdayDP.SelectedDate.Value.ToString("yyyy.MM.dd");
+                    pair.MaleSurname = "";
+                    pair.MaleName = "";
+                    pair.MalePatronymic = "";
+                    pair.MaleBirthday = "";
+                    pair.PerformanceType = "Соло";
                 }
                 else
                 {
-                    if (RB1.IsChecked == true)
-                    {
-                        data.MaleSurname = MSurnameTB.Text;
-                        data.MaleName = MNameTB.Text;
-                        data.MalePatronymic = MPatronymicTB.Text;
-                        data.MaleBirthday = MBirthdayDP.SelectedDate.Value.ToString("yyyy.MM.dd");
-                        data.FemaleSurname = null;
-                        data.FemaleName = null;
-                        data.FemalePatronymic = null;
-                        data.FemaleBirthday = null;
-                        data.PerformanceType = "Соло";
-                    }
-
-                    else if (RB3.IsChecked == true)
-                    {
-                        data.FemaleSurname = FSurnameTB.Text;
-                        data.FemaleName = FNameTB.Text;
-                        data.FemalePatronymic = FPatronymicTB.Text;
-                        data.FemaleBirthday = FBirthdayDP.SelectedDate.Value.ToString("yyyy.MM.dd");
-                        data.MaleSurname = null;
-                        data.MaleName = null;
-                        data.MalePatronymic = null;
-                        data.MaleBirthday = null;
-                        data.PerformanceType = "Соло";
-                    }
-                    else
-                    {
-                        data.MaleSurname = MSurnameTB.Text;
-                        data.MaleName = MNameTB.Text;
-                        data.MalePatronymic = MPatronymicTB.Text;
-                        data.MaleBirthday = MBirthdayDP.SelectedDate.Value.ToString("yyyy.MM.dd");
-                        data.FemaleSurname = FSurnameTB.Text;
-                        data.FemaleName = FNameTB.Text;
-                        data.FemalePatronymic = FPatronymicTB.Text;
-                        data.FemaleBirthday = FBirthdayDP.SelectedDate.Value.ToString("yyyy.MM.dd");
-                        data.PerformanceType = "Пара";
-                    }
-
-                    if (checkIsExist == true && number != "" && data.Number != NumberTB.Text) // Как нам узнать номер повторяется у этой же пары или у другой пары в списке?
-                    {
-                        MessageBox.Show("Пара с таким номером уже есть!");
-                        return;
-                    }
-
-                    data.Number = NumberTB.Text;
-                    data.Club = ClubTB.Text;
-                    data.City = CityTB.Text;
-                    data.Country = CountryTB.Text;
-                    data.Trainer1 = Trainer1TB.Text;
-                    data.Trainer2 = Trainer2TB.Text;
-                    data.AgeCategoryID = Group(data.MaleBirthday, data.FemaleBirthday);
-
-                    try
-                    {
-                        db.SaveChanges();
-                        MessageBox.Show("Запись изменена!");
-                        this.Close();
-                    }
-                    catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+                    pair.MaleSurname = MSurnameTB.Text;
+                    pair.MaleName = MNameTB.Text;
+                    pair.MalePatronymic = MPatronymicTB.Text;
+                    pair.MaleBirthday = MBirthdayDP.SelectedDate.Value.ToString("yyyy.MM.dd");
+                    pair.FemaleSurname = FSurnameTB.Text;
+                    pair.FemaleName = FNameTB.Text;
+                    pair.FemalePatronymic = FPatronymicTB.Text;
+                    pair.FemaleBirthday = FBirthdayDP.SelectedDate.Value.ToString("yyyy.MM.dd");
+                    pair.PerformanceType = "Пара";
                 }
+                pair.Number = NumberTB.Text.Trim();
+                pair.Club = ClubTB.Text;
+                pair.City = CityTB.Text;
+                pair.Country = CountryTB.Text;
+                pair.Trainer1 = Trainer1TB.Text;
+                pair.Trainer2 = Trainer2TB.Text;
+                pair.AgeCategoryID = FindAgeCategory(pair.MaleBirthday, pair.FemaleBirthday);
+
+                db.Pairs.Add(pair);
+                try
+                {
+                    db.SaveChanges();
+                    MessageBox.Show("Запись добавлена!");
+                    this.DialogResult = true;
+                }
+                catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
+
+                Switch("Clear");
+            }
+            else
+            {
+                if (RB1.IsChecked == true)
+                {
+                    data.MaleSurname = MSurnameTB.Text;
+                    data.MaleName = MNameTB.Text;
+                    data.MalePatronymic = MPatronymicTB.Text;
+                    data.MaleBirthday = MBirthdayDP.SelectedDate.Value.ToString("yyyy.MM.dd");
+                    data.FemaleSurname = "";
+                    data.FemaleName = "";
+                    data.FemalePatronymic = "";
+                    data.FemaleBirthday = "";
+                    data.PerformanceType = "Соло";
+                }
+
+                else if (RB3.IsChecked == true)
+                {
+                    data.FemaleSurname = FSurnameTB.Text;
+                    data.FemaleName = FNameTB.Text;
+                    data.FemalePatronymic = FPatronymicTB.Text;
+                    data.FemaleBirthday = FBirthdayDP.SelectedDate.Value.ToString("yyyy.MM.dd");
+                    data.MaleSurname = "";
+                    data.MaleName = "";
+                    data.MalePatronymic = "";
+                    data.MaleBirthday = "";
+                    data.PerformanceType = "Соло";
+                }
+                else
+                {
+                    data.MaleSurname = MSurnameTB.Text;
+                    data.MaleName = MNameTB.Text;
+                    data.MalePatronymic = MPatronymicTB.Text;
+                    data.MaleBirthday = MBirthdayDP.SelectedDate.Value.ToString("yyyy.MM.dd");
+                    data.FemaleSurname = FSurnameTB.Text;
+                    data.FemaleName = FNameTB.Text;
+                    data.FemalePatronymic = FPatronymicTB.Text;
+                    data.FemaleBirthday = FBirthdayDP.SelectedDate.Value.ToString("yyyy.MM.dd");
+                    data.PerformanceType = "Пара";
+                }
+
+                if (checkIsExist == true && number != "" && data.Number != NumberTB.Text) // Как нам узнать номер повторяется у этой же пары или у другой пары в списке?
+                {
+                    MessageBox.Show("Пара с таким номером уже есть!");
+                    return;
+                }
+
+                data.Number = NumberTB.Text.Trim();
+                data.Club = ClubTB.Text;
+                data.City = CityTB.Text;
+                data.Country = CountryTB.Text;
+                data.Trainer1 = Trainer1TB.Text;
+                data.Trainer2 = Trainer2TB.Text;
+                data.AgeCategoryID = FindAgeCategory(data.MaleBirthday, data.FemaleBirthday);
+
+                try
+                {
+                    db.SaveChanges();
+                    MessageBox.Show("Запись изменена!");
+                    this.DialogResult = true;
+                    this.Close();
+                }
+                catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
             }
         }
 
-        public int Group(string partner1, string partner2) // На входе даты партнёров, на выходе группа. В таблицу группы должна добавляться запись, если такой группы ещё нет
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        public int FindAgeCategory(string partner1, string partner2)
         {
             int older;
             int group;
             DateTime Male = new DateTime(9999,01,01);
             DateTime Female = new DateTime(9999, 01, 01);
 
-            if (partner1 != "")
+            if (partner1 != null && partner1 != "")
                 Male = DateTime.Parse(partner1);
 
-            if (partner2 != "")
+            if (partner2 != null && partner2 != "")
                 Female = DateTime.Parse(partner2);
 
             if (Male < Female)
@@ -277,11 +293,6 @@ namespace DanceApp.View
                 age--;
 
             return age;
-        }
-
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
 
         private void RB1_Checked(object sender, RoutedEventArgs e)

@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
+using System.Windows.Markup;
 
 #nullable disable
 namespace DanceApp.View
@@ -35,59 +36,44 @@ namespace DanceApp.View
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            if (button != null)
+            var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
+            switch (button.Name)
             {
-                switch (button.Name)
-                {
-                    case "CompetitionBtn":
-                        CompetitionView x = new CompetitionView();
-                        x.ShowDialog();
-                        break;
-                    case "JudgesBtn":
-                        if (!(Frame.Content is JudgesView))
-                            Frame.Content = new JudgesView();
-                        break;
-                    case "PairsBtn":
-                        if (!(Frame.Content is PairsView))
-                            Frame.Content = new PairsView();
-                        break;
-                    case "GroupsBtn":
-                        if (!(Frame.Content is GroupsView))
+                case "CompetitionBtn":
+                    CompetitionView x = new CompetitionView();
+                    x.ShowDialog();
+                    break;
+                case "JudgesBtn":
+                    if (!(Frame.Content is JudgesView))
+                        Frame.Content = new JudgesView();
+                    break;
+                case "PairsBtn":
+                    if (!(Frame.Content is PairsView))
+                        Frame.Content = new PairsView();
+                    break;
+                case "GroupsBtn":
+                    if (!(Frame.Content is GroupsView))
+                    {
+                        if (data.RegistrationStatus == true)
                         {
-                            var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
-                            if (data.RegistrationStatus == true)
-                            {
-                                if (MessageBox.Show("После перехода на страницу \"Группа\" регистрация закроется. Вы уверены?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                                {
-                                    data.RegistrationStatus = false;
-                                    try { db.SaveChanges(); }
-                                    catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
-                                    Frame.Content = new GroupsView();
-                                }
-                            }
-                            else
+                            if (Next() == true)
                                 Frame.Content = new GroupsView();
                         }
-                        break;
-                    case "PlacesBtn":
-                        //if (Next() == true)
-                        //{
-                            if (!(Frame.Content is PlacesView))
-                            {
-                                Frame.Content = new PlacesView();
-                            }
-                        //}
-                        break;
-                    case "DocumentsBtn":
+                        else
+                            Frame.Content = new GroupsView();
+                    }
+                    break;
+                case "DocumentsBtn":
 
-                        break;
-                }
+                    break;
             }
         }
 
         private void DataBases_Click(object sender, RoutedEventArgs e)
         {
-            db.Database.CloseConnection(); // Отключение от базы данных
+            // Отключение от базы данных
+            //GlobalClass.db.Database.GetDbConnection().Close();
+            //GlobalClass.db.Dispose();
 
             MainWindow window = new MainWindow();
             window.Show();
@@ -97,14 +83,27 @@ namespace DanceApp.View
 
         private bool Next()
         {
-            var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
-
-            if (data.RegistrationStatus == false) { return false; }
-            else
+            var pair = db.Pairs.Where(u => u.Number == "" || u.Number == null).FirstOrDefault();
+            if (pair == null)
             {
-                MessageBox.Show("Завершите регистрацию прежде чем переходить к следующему этапу!");
+                CloseRegistrationView window = new CloseRegistrationView();
+
+                if (window.ShowDialog() == true)
+                {
+                    var competition = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
+                    competition.RegistrationStatus = false;
+                    try { db.SaveChanges(); }
+                    catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
+                    return true;
+                }
                 return false;
             }
+            else
+            {
+                MessageBoxView messageBox = new MessageBoxView("Не всем парам присвоены номера!", "Уведомление", 1);
+                messageBox.ShowDialog();
+            }
+            return false;
         }
     }
 }

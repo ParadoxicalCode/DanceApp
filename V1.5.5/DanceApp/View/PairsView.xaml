@@ -24,7 +24,7 @@
 
         <Grid Grid.Row="1">
             <DataGrid x:Name="PairsDG" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}" CellStyle="{StaticResource DGCell}"
-                      Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="42">
+                      Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="42" CanUserReorderColumns="False" CanUserSortColumns="False">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
@@ -35,7 +35,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    
+
                                     <Button Click="Edit_Click" Margin="5 0 0 0" CommandParameter="{Binding ID}" Style="{StaticResource DataBaseButton}">
                                         <Image Source="/Images/Edit.png" Width="12" Height="12"/>
                                         <Button.ToolTip>
@@ -58,10 +58,10 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    
+
                     <DataGridTextColumn Header="№" Binding="{Binding Number}" MinWidth="30" MaxWidth="30"/>
 
-                    <DataGridTemplateColumn Width="120" MaxWidth="120" Header="Фамилия">
+                    <DataGridTemplateColumn MinWidth="120" MaxWidth="120" Header="Фамилия">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
@@ -72,7 +72,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Width="100" MaxWidth="100" Header="Имя">
+                    <DataGridTemplateColumn MinWidth="100" MaxWidth="100" Header="Имя">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
@@ -83,7 +83,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Width="120" MaxWidth="120" Header="Отчество">
+                    <DataGridTemplateColumn MinWidth="120" MaxWidth="120" Header="Отчество">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
@@ -94,7 +94,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Width="134" MaxWidth="134" Header="Дата рождения">
+                    <DataGridTemplateColumn MinWidth="134" MaxWidth="134" Header="Дата рождения">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
@@ -105,11 +105,12 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Header="Клуб" Binding="{Binding Club}" Width="3*" MaxWidth="150"/>
-                    <DataGridTextColumn Header="Город" Binding="{Binding City}" Width="*" MaxWidth="140"/>
-                    <DataGridTextColumn Header="Страна" Binding="{Binding Country}" Width="*" MaxWidth="140"/>
+                    <DataGridTextColumn Header="Категория" Binding="{Binding AgeCategory}" MinWidth="50" Width="3*" MaxWidth="92"/>
+                    <DataGridTextColumn Header="Клуб" Binding="{Binding Club}" Width="100*" MaxWidth="150"/>
+                    <DataGridTextColumn Header="Город" Binding="{Binding City}" Width="100*" MaxWidth="160"/>
+                    <DataGridTextColumn Header="Страна" Binding="{Binding Country}" Width="100*" MaxWidth="160"/>
 
-                    <DataGridTemplateColumn Width="*" Header="Тренер">
+                    <DataGridTemplateColumn Width="1000*" MaxWidth="140" Header="Тренер">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
@@ -119,26 +120,28 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 13 0 1" HorizontalAlignment="Center">
-            <Button Name="BeginningBtn" Style="{StaticResource BaseButton}" Width="30" Click="BeginningBtn_Click">
+            <Button Name="BeginningBtn" Style="{StaticResource BaseButton}" Width="30" Click="PaginationButton_Click">
                 <Image Source="/Images/Beginning.png" VerticalAlignment="Center" Width="20" Height="20"/>
             </Button>
 
-            <Button Name="BackBtn" Style="{StaticResource BaseButton}" Width="30" Click="BackBtn_Click" Margin="8 0 0 0">
+            <Button Name="BackBtn" Style="{StaticResource BaseButton}" Width="30" Click="PaginationButton_Click" Margin="8 0 0 0">
                 <Image Source="/Images/Back.png" VerticalAlignment="Center" Width="20" Height="20"/>
             </Button>
 
             <Label x:Name="NumberOfRecords" FontSize="12" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Width="60" VerticalContentAlignment="Center" VerticalAlignment="Bottom"/>
 
-            <Button Name="NextBtn" Style="{StaticResource BaseButton}" Width="30" Click="NextBtn_Click" Margin="8 0 0 0">
+            <Button Name="NextBtn" Style="{StaticResource BaseButton}" Width="30" Click="PaginationButton_Click" Margin="8 0 0 0">
                 <Image Source="/Images/Next.png" VerticalAlignment="Center" Width="20" Height="20"/>
             </Button>
 
-            <Button Name="EndBtn" Style="{StaticResource BaseButton}" Width="30" Click="EndBtn_Click" Margin="8 0 0 0">
+            <Button Name="EndBtn" Style="{StaticResource BaseButton}" Width="30" Click="PaginationButton_Click" Margin="8 0 0 0">
                 <Image Source="/Images/End.png" VerticalAlignment="Center" Width="20" Height="20"/>
             </Button>
         </StackPanel>

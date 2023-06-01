@@ -19,18 +19,27 @@ namespace DanceApp.View
     /// </summary>
     public partial class MessageBoxView : Window
     {
-        public MessageBoxView(string Message)
+        public MessageBoxView(string Message, string Title, int buttonCount)
         {
             InitializeComponent();
             MessageTBK.Text = Message;
+            this.Title = Title;
+
+            if (buttonCount == 1)
+            {
+                YesBtn.HorizontalAlignment = HorizontalAlignment.Center;
+                YesBtn.Content = "Ок";
+                YesBtn.Margin = new Thickness(0, 0, 0, 0);
+                NoBtn.Visibility= Visibility.Hidden;
+            }
         }
 
-        private void okButton_Click(object sender, RoutedEventArgs e)
+        private void Yes_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;
         }
 
-        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        private void No_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

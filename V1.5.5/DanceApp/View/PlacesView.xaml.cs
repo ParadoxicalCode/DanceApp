@@ -37,9 +37,6 @@ namespace DanceApp.View
         public PlacesView()
         {
             InitializeComponent();
-            TourCB.ItemsSource = db.Tours.ToList();
-            GroupCB.ItemsSource = db.Groups.ToList();
-            DanceCB.ItemsSource = db.Dances.ToList();
 
             LeftMatrix = new TextBox[7, 10]{
                 { TB01, TB02, TB03, TB04, TB05, TB06, TB07, TB08, TB09, TB10 },
