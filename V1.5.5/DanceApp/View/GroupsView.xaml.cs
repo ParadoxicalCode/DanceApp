@@ -129,5 +129,10 @@ namespace DanceApp.View
         {
 
         }
+
+        private void PerformanceCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

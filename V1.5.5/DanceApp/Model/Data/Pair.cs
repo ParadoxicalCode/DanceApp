@@ -33,5 +33,6 @@ namespace DanceApp.Model.Data
 
         public List<PairsInTour> PairsInTour { get; } = new();
         public List<PairsInGroup> PairsInGroup { get; } = new();
+        public List<PairsInPerformance> PairsInPerformance { get; } = new();
     }
 }

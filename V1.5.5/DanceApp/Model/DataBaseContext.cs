@@ -53,7 +53,6 @@ namespace DanceApp.Model.Data
         public DbSet<Pair> Pairs { get; set; }
         public DbSet<PairsInGroup> PairsInGroup { get; set; }
         public DbSet<PairsInTour> PairsInTour { get; set; }
-        public DbSet<Performance> Performances { get; set; }
         public DbSet<Tour> Tours { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)

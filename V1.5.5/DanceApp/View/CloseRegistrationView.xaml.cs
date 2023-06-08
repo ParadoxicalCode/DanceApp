@@ -84,6 +84,7 @@ namespace DanceApp.View
 
                 var tours = db.Tours.ToList();
                 db.Tours.RemoveRange(tours);
+
                 for (int i = 4 - toursCount; i < 4; i++)
                 {
                     db.Tours.Add(new Tour { Title = allTours[i] });
@@ -93,6 +94,10 @@ namespace DanceApp.View
                 UpdateDataBase();
 
                 // Пары в первом туре
+
+                var pairs = db.PairsInTour.ToList();
+                db.PairsInTour.RemoveRange(pairs);
+
                 foreach (var p in db.Pairs)
                 {
                     var pairsInTour = new PairsInTour();

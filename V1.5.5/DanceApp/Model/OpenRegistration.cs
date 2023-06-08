@@ -32,9 +32,6 @@ namespace DanceApp.Model
                     var dancesInGroup = db.DancesInGroup.ToList();
                     db.DancesInGroup.RemoveRange(dancesInGroup);
 
-                    var performances = db.Performances.ToList();
-                    db.Performances.RemoveRange(performances);
-
                     var groups = db.Groups.ToList();
                     db.Groups.RemoveRange(groups);
 

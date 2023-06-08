@@ -15,7 +15,6 @@
                 <RowDefinition Height="136"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="266"/>
-                <RowDefinition Height="35"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -152,26 +151,6 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-
-            <StackPanel Grid.Row="7" Orientation="Horizontal" Margin="0 5 0 0" HorizontalAlignment="Center">
-                <Button Name="BeginningBtn" Style="{StaticResource BaseButton}" Width="30" Click="PaginationButton_Click">
-                    <Image Source="/Images/Beginning.png" VerticalAlignment="Center" Width="20" Height="20"/>
-                </Button>
-
-                <Button Name="BackBtn" Style="{StaticResource BaseButton}" Width="30" Click="PaginationButton_Click" Margin="8 0 0 0">
-                    <Image Source="/Images/Back.png" VerticalAlignment="Center" Width="20" Height="20"/>
-                </Button>
-
-                <Label x:Name="NumberOfRecords" FontSize="12" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Width="60" VerticalContentAlignment="Center" VerticalAlignment="Bottom"/>
-
-                <Button Name="NextBtn" Style="{StaticResource BaseButton}" Width="30" Click="PaginationButton_Click" Margin="8 0 0 0">
-                    <Image Source="/Images/Next.png" VerticalAlignment="Center" Width="20" Height="20"/>
-                </Button>
-
-                <Button Name="EndBtn" Style="{StaticResource BaseButton}" Width="30" Click="PaginationButton_Click" Margin="8 0 0 0">
-                    <Image Source="/Images/End.png" VerticalAlignment="Center" Width="20" Height="20"/>
-                </Button>
-            </StackPanel>
 
             <StackPanel Orientation="Horizontal" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 10">
                 <Button Style="{StaticResource SaveButton}" Click="Save_Click"/>

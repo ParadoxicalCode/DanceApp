@@ -22,8 +22,9 @@ namespace DanceApp.Model.Data
         public string SportsDiscipline { get; set; }
         public int PairsCount { get; set; }
 
-        public List<Performance> Performance { get; } = new();
         public List<PairsInGroup> PairsInGroup { get; } = new();
+        public List<PairsInPerformance> PairsInPerformance { get; } = new();
         public List<DancesInGroup> DancesInGroup { get; } = new();
+        public List<JudgesInPerformance> JudgesInPerformance { get; } = new();
     }
 }

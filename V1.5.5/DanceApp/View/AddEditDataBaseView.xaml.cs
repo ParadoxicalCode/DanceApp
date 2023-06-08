@@ -69,7 +69,7 @@ namespace DanceApp.View
                             }
                             catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
                         }
-                        catch (Exception ex) { MessageBox.Show("Чтобы переименовать базу данных перезапустите приложение!"); }
+                        catch (Exception ex) { throw new Exception("Чтобы переименовать базу данных перезапустите приложение!", ex); }
                     }
                     else
                         Connect();

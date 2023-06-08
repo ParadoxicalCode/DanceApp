@@ -17,8 +17,6 @@ namespace DanceApp.Model.Data
         public int DanceID { get; set; }
         public virtual DancesInGroup DanceInGroup { get; set; }
 
-        [ForeignKey("Performance")]
-        public int PerformanceID { get; set; }
-        public virtual Performance Performance { get; set; }
+        public int PerformanceNumber { get; set; }
     }
 }
