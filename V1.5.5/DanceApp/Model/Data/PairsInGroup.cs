@@ -20,7 +20,5 @@ namespace DanceApp.Model.Data
         [ForeignKey("Pair")]
         public int PairID { get; set; }
         public virtual Pair Pair { get; set; }
-
-        public bool Select { get; set; }
     }
 }

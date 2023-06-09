@@ -20,6 +20,7 @@ using System.Windows.Shapes;
 using static DanceApp.View.CompetitionView;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Text.RegularExpressions;
+using System.Windows.Controls.Primitives;
 
 #nullable disable
 namespace DanceApp.View
@@ -36,7 +37,7 @@ namespace DanceApp.View
         public List<CBItems> performanceTypeList = new List<CBItems>();
         public List<CBItems> sportsDisciplineList = new List<CBItems>();
 
-        public List<CBItems> selectedPairs = new List<CBItems>();
+        public List<pairsDGClass> selectedPairs = new List<pairsDGClass>();
         public List<dancesDGClass> selectedDances = new List<dancesDGClass>();
         public List<Pair> freePairs = new List<Pair>();
         public AddEditGroupsView(int id)
@@ -127,16 +128,6 @@ namespace DanceApp.View
             GetCategories2();
         }
 
-        // Поиск подходящих пар. Привязка данных к PairsDG
-        private void GetPairs()
-        {
-            var selectAgeCategory = (Category1CB.SelectedItem as AgeCategory).Title;
-            var performanceType = (PerformanceTypeCB.SelectedItem as CBItems).Element;
-
-            var data = db.AgeCategories.Where(u => u.Title == selectAgeCategory).FirstOrDefault();
-            PairsDG.ItemsSource = db.Pairs.Where(x => x.PerformanceType == performanceType && x.AgeCategoryID == data.ID).ToList();
-        }
-
         private void LoadData()
         {
             // Загрузка данных в выпадающие списки
@@ -155,7 +146,7 @@ namespace DanceApp.View
             }
 
             // Привязка данных к DancesDG
-            List<dancesDGClass> DancesDGItems = new List<dancesDGClass>();
+            List<dancesDGClass> dancesDGItems = new List<dancesDGClass>();
 
             foreach (var d in db.DancesInGroup)
             {
@@ -166,24 +157,22 @@ namespace DanceApp.View
                 dances.ShortName = dance.ShortName;
                 dances.Select = d.Select;
                 
-                DancesDGItems.Add(dances);
+                dancesDGItems.Add(dances);
             }
-            DancesDG.ItemsSource = DancesDGItems.ToList();
+            DancesDG.ItemsSource = dancesDGItems.ToList();
+
+
+            // Привязка данных к PairsDG
 
 
 
+            var selectAgeCategory = (Category1CB.SelectedItem as AgeCategory).Title;
+            var performanceType = (PerformanceTypeCB.SelectedItem as CBItems).Element;
+
+            var data = db.AgeCategories.Where(u => u.Title == selectAgeCategory).FirstOrDefault();
+            var pairs = db.Pairs.Where(x => x.PerformanceType == performanceType && x.AgeCategoryID == data.ID).ToList();
 
 
-
-
-
-            
-
-
-            // Объединить список нераспределённых пар и список отмеченных пар, а затем загрузить полученные
-            // данные в PairsDG
-
-            // Нужно создать новый список и плюс добавить туда Select,
 
             /*
             List<pairsDGClass> pairsDGItems = new List<pairsDGClass>();
@@ -204,11 +193,12 @@ namespace DanceApp.View
                     FemaleSurname = p.FemaleSurname,
                     FemaleName = p.FemaleName,
                     FemalePatronymic = p.FemalePatronymic,
-                    FemaleBirthday = p.FemaleBirthday,
-                    Select = data.Select
+                    FemaleBirthday = p.FemaleBirthday, // Нужно узнать, какие пары у нас выбраны
+                    Select = 
                 });
                 i++;
             }
+            PairsDG.ItemsSource = pairsDGItems.ToList();
             */
         }
 
@@ -238,6 +228,68 @@ namespace DanceApp.View
                 DancesDGItems.Add(dance);
             }
             DancesDG.ItemsSource = DancesDGItems.ToList();
+        }
+
+        // Поиск подходящих пар. Привязка данных к PairsDG
+        private void GetPairs()
+        {
+            /*
+            List<Pair> pairsList = new List<Pair>();
+
+            var selectAgeCategory1 = (Category1CB.SelectedItem as AgeCategory).ID;
+            var performanceType = (PerformanceTypeCB.SelectedItem as CBItems).Element;
+
+            pairsList = db.PairsInTour.Where(x => x.PerformanceType == performanceType).ToList();
+
+            if (Category2CB.Items.Count >= 1)
+            {
+                var selectAgeCategory2 = (Category2CB.SelectedItem as AgeCategory).ID;
+                pairsList.Where(x => x.PerformanceType == performanceType && x.AgeCategoryID == selectAgeCategory1 && ).ToList();
+            }
+            else
+            {
+                pairsList.Where(x => x.PerformanceType == performanceType && x.AgeCategoryID == selectAgeCategory1).ToList();
+            }
+            
+
+            var pairsInTour = db.PairsInTour.Select(x => x.PairID).ToList();
+
+            // Мы получили список пар в турах
+            // Теперь надо выяснить, какие пары подходят выбранным критериям
+            // А ещё надо отметить в этом списке пары которые отметили
+
+            
+            foreach (var p in pairsInTour)
+            {
+                var pair = db.Pairs.Where(u => u.ID == p).FirstOrDefault();
+                pairsList.Add(pair);
+            }
+            
+
+            //var pairs = db.PairsInTour.Where(x => x.PerformanceType == performanceType && x.AgeCategoryID == data.ID).ToList();
+
+            // Привязка данных к PairsDG
+            List<pairsDGClass> PairsDGItems = new List<pairsDGClass>();
+
+            foreach (var p in pairs)
+            {
+                var pair = new pairsDGClass();
+                pair.ID = p.ID;
+                pair.Number = p.Number;
+                pair.MaleSurname = p.MaleSurname;
+                pair.MaleName = p.MaleName;
+                pair.MalePatronymic = p.MalePatronymic;
+                pair.MaleBirthday = p.MaleBirthday;
+                pair.FemaleSurname = p.FemaleSurname;
+                pair.FemaleName = p.FemaleName;
+                pair.FemalePatronymic = p.FemalePatronymic;
+                pair.FemaleBirthday = p.FemaleBirthday;
+                pair.Select = false;
+
+                PairsDGItems.Add(pair);
+            }
+            PairsDG.ItemsSource = PairsDGItems.ToList();
+            */
         }
 
         // Поиск категорий с выбранным типом выступления. Привязка данных к Category1CB
@@ -403,15 +455,26 @@ namespace DanceApp.View
                 var groupID = db.Groups.Where(u => u.Title == title).FirstOrDefault();
                 if (groupID != null)
                 {
-                    // Удаление данных о выбранных танцах
+                    // Удаление данных о выбранных танцах в группе
                     var deleteDances = db.DancesInGroup.Where(x => x.GroupID == groupID.ID).ToList();
                     db.DancesInGroup.RemoveRange(deleteDances);
 
-                    // Удаление данных о выбранных парах
-                    var deletePairs = db.PairsInGroup.Where(x => x.GroupID == groupID.ID).ToList();
-                    db.PairsInGroup.RemoveRange(deletePairs);
+                    // Обнуление всех пар из таблицы PairsInTour, которые присутствуют в таблице PairsInGroup
+                    var pastSelectPairs = db.PairsInGroup.Where(x => x.GroupID == groupID.ID).ToList();
+                    foreach (var p in pastSelectPairs)
+                    {
+                        var pairsInTourSelectDelete = db.PairsInTour.Where(u => u.PairID == p.PairID && u.Select == true).FirstOrDefault();
+                        pairsInTourSelectDelete.Select = false;
+                        UpdateDataBase();
+                    }
+
+                    // Удаление данных о выбранных парах в группе
+                    var deletePairsInGroup = db.PairsInGroup.Where(x => x.GroupID == groupID.ID).ToList();
+                    db.PairsInGroup.RemoveRange(deletePairsInGroup);
 
                     UpdateDataBase();
+
+
 
                     // Сохранение выбранных танцев в базу данных
                     var selectDance = selectedDances.Select(x => x.ID).ToList();
@@ -433,6 +496,30 @@ namespace DanceApp.View
 
                         db.DancesInGroup.Add(dancesInGroup);
                         UpdateDataBase();
+                    }
+
+                    // Сохранение выбранных пар в таблицу PairsInGroup
+                    var selectPairs = selectedPairs.Select(x => x.ID).ToList();
+                    foreach (var p in selectPairs)
+                    {
+                        var pair = db.Pairs.Where(u => u.ID == p).FirstOrDefault();
+                        var pairsInGroup = new PairsInGroup();
+
+                        pairsInGroup.GroupID = groupID.ID;
+                        pairsInGroup.PairID = pair.ID;
+
+                        db.PairsInGroup.Add(pairsInGroup);
+                        UpdateDataBase();
+                    }
+
+                    // Отмечаем выбранные пары в таблице PairsInTour
+                    int k = 0;
+                    foreach (var p in selectPairs)
+                    {
+                        var pair = db.PairsInTour.Where(u => u.TourID == (int)data.TourID && u.PairID == selectPairs[k]).FirstOrDefault();
+                        pair.Select = true;
+                        UpdateDataBase();
+                        k++;
                     }
                     AddData();
                     GetPairs();
@@ -513,14 +600,27 @@ namespace DanceApp.View
 
         private void PairsChB_Checked(object sender, RoutedEventArgs e)
         {
-            Pair row = (Pair)((CheckBox)sender).DataContext;
-            selectedPairs.Add(new CBItems { Element = row.ID.ToString() });
+            pairsDGClass row = (pairsDGClass)((CheckBox)sender).DataContext;
+            selectedPairs.Add(new pairsDGClass
+            {
+                ID = row.ID,
+                Number = row.Number,
+                MaleSurname = row.MaleSurname,
+                MaleName = row.MaleName,
+                MalePatronymic = row.MalePatronymic,
+                MaleBirthday = row.MaleBirthday,
+                FemaleSurname = row.FemaleSurname,
+                FemaleName = row.FemaleName,
+                FemalePatronymic = row.FemalePatronymic,
+                FemaleBirthday = row.FemaleBirthday,
+                Select = true
+            });
         }
 
         private void PairsChB_Unchecked(object sender, RoutedEventArgs e)
         {
-            Pair row = (Pair)((CheckBox)sender).DataContext;
-            var delete = selectedPairs.Where(u => u.Element == row.ID.ToString()).FirstOrDefault();
+            pairsDGClass row = (pairsDGClass)((CheckBox)sender).DataContext;
+            var delete = selectedPairs.Where(u => u.ID == row.ID).FirstOrDefault();
             selectedPairs.Remove(delete);
         }
     }
