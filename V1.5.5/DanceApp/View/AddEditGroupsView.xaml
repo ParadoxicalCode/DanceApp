@@ -95,7 +95,7 @@
                     <DataGridTemplateColumn MinWidth="24" MaxWidth="24" CellStyle="{StaticResource DGCellAddEditDelete}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox IsChecked="{Binding Path=IsSelected, UpdateSourceTrigger=PropertyChanged}" Checked="PairsChB_Checked" Unchecked="PairsChB_Unchecked" HorizontalAlignment="Center">
+                                <CheckBox IsChecked="{Binding Path=Select, Mode=TwoWay}" Checked="PairsChB_Checked" Unchecked="PairsChB_Unchecked" HorizontalAlignment="Center">
                                     <CheckBox.LayoutTransform>
                                         <ScaleTransform ScaleX="1.2" ScaleY="1.3" />
                                     </CheckBox.LayoutTransform>

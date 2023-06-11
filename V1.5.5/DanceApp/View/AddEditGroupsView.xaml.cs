@@ -57,10 +57,7 @@ namespace DanceApp.View
                 DefaultValues();
             }  
             else
-            {
-                DancesDG.ItemsSource = new Model.Groups.GetDances().Load();
-                PairsDG.ItemsSource = new Model.Groups.GetPairs().Load(null, null);
-            }
+                LoadData();
         }
 
         public class CBItems
@@ -71,6 +68,39 @@ namespace DanceApp.View
 
 
 
+
+        private void LoadData()
+        {
+            // Загрузка данных в выпадающие списки
+            var group = db.Groups.Find(ID);
+
+            SportsDisciplineCB.SelectedValue = group.SportsDiscipline;
+            PerformanceTypeCB.SelectedValue = group.PerformanceType;
+
+            Category1CB.ItemsSource = new Model.Groups.GetCategories().Get1(group.ID, group.PerformanceType, freePairs);
+            Category1CB.SelectedValue = group.AgeCategory1;
+
+            if (group.AgeCategory2 != null && group.AgeCategory2 != "")
+            {
+                Category2CB.ItemsSource = new Model.Groups.GetCategories().Get2(group.PerformanceType, group.AgeCategory1);
+                Category2CB.SelectedValue = group.AgeCategory2;
+            }
+
+            // Загрузка данных в таблицы
+            var performanceType = (PerformanceTypeCB.SelectedItem as CBItems).Element;
+            var ageCategory1 = (Category1CB.SelectedItem as AgeCategory).ID;
+
+            int ageCategory2;
+            if (Category2CB.SelectedItem != null)
+                ageCategory2 = (Category2CB.SelectedItem as AgeCategory).ID;
+            else
+                ageCategory2 = 0;
+
+            DancesDG.ItemsSource = new Model.Groups.GetDances().Load(group.ID);
+            PairsDG.ItemsSource = null;
+            PairsDG.Items.Clear();
+            PairsDG.ItemsSource = new Model.Groups.GetPairs().Load(group.ID, performanceType, ageCategory1, ageCategory2);
+        }
 
         private void AddItemsToComboBox()
         {
@@ -85,16 +115,18 @@ namespace DanceApp.View
 
         private void DefaultValues()
         {
-            NumberTB.Text = ""; 
+            NumberTB.Text = "";
+            CBSwitch = false;
             Category1CB.ItemsSource = null;
             Category2CB.ItemsSource = null;
+            CBSwitch = true;
 
             SportsDisciplineCB.SelectedIndex = 0;
             DancesDG.ItemsSource = new Model.Groups.GetDances().Add(0);
 
             PerformanceTypeCB.SelectedIndex = 0;
 
-            Category1CB.ItemsSource = new Model.Groups.GetCategories().Get1("Пара", freePairs);
+            Category1CB.ItemsSource = new Model.Groups.GetCategories().Get1(0, "Пара", freePairs);
 
             if (Category1CB.Items.Count >= 1)
                 Category1CB.SelectedIndex = 0;
@@ -167,7 +199,7 @@ namespace DanceApp.View
 
             var performanceType = (PerformanceTypeCB.SelectedItem as CBItems).Element;
 
-            Category1CB.ItemsSource = new Model.Groups.GetCategories().Get1(performanceType, freePairs);
+            Category1CB.ItemsSource = new Model.Groups.GetCategories().Get1(0, performanceType, freePairs);
 
             if (Category1CB.Items.Count >= 1)
                 Category1CB.SelectedIndex = 0;

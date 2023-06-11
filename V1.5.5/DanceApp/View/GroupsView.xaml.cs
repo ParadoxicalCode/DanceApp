@@ -61,6 +61,20 @@ namespace DanceApp.View
             //ToolTipListBox.ItemsSource = toolTipItems.ToList();
         }
 
+        // Вывод всех пар, которые состоят в выбранной группе в нижнюю таблицу
+        private void GetPairs(int groupID)
+        {
+            List<Pair> pairs = new List<Pair>();
+            var pairsInGroup = db.PairsInGroup.Where(u => u.GroupID == groupID).ToList();
+
+            foreach (var p in pairsInGroup)
+            {
+                var data = db.Pairs.Where(u => u.ID == p.PairID).FirstOrDefault();
+                pairs.Add(data);
+            }
+            PairsDG.ItemsSource = pairs.ToList();
+        }
+
         private void UpdateDataBase()
         {
             try { db.SaveChanges(); }
@@ -72,37 +86,34 @@ namespace DanceApp.View
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             AddEditGroupsView x = new AddEditGroupsView(0);
-            x.ShowDialog(); GetGroups();
+            x.ShowDialog(); 
+
+            GetGroups();
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            int ID = (int)((Button)sender).CommandParameter;
-            AddEditGroupsView x = new AddEditGroupsView(ID);
-            x.ShowDialog(); GetGroups();
+            int groupID = (int)((Button)sender).CommandParameter;
+            AddEditGroupsView x = new AddEditGroupsView(groupID);
+            x.ShowDialog(); 
+
+            GetGroups();
+            GetPairs(groupID);
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-
+            // Удалить связанные с группой данные, саму группу и сделать все пары, состоящие в этой группе нераспределёнными
         }
 
 
 
 
-        // Вывод всех пар, которые состоят в выбранной группе в нижнюю таблицу
+
         private void GroupsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            List<Pair> pairs = new List<Pair>();
-            Group selectedGroup = GroupsDG.SelectedItem as Group;
-            var pairsInGroup = db.PairsInGroup.Where(u => u.GroupID == selectedGroup.ID).ToList();
-
-            foreach (var p in pairsInGroup)
-            {
-                var data = db.Pairs.Where(u => u.ID == p.PairID).FirstOrDefault();
-                pairs.Add(data);
-            }
-            PairsDG.ItemsSource = pairs.ToList();
+            int selectedGroup = (GroupsDG.SelectedItem as Group).ID;
+            GetPairs(selectedGroup);
 
 
             // Нужно в ComboBox вывести танцы выбранной группы

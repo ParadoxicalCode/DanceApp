@@ -38,14 +38,17 @@ namespace DanceApp.Model.Groups
             return DancesDGItems.ToList();
         }
 
-        public List<ClassDances> Load()
+        public List<ClassDances> Load(int groupID)
         {
             List<ClassDances> dancesDGItems = new List<ClassDances>();
 
-            foreach (var d in db.DancesInGroup)
+            var dancesInGroup = db.DancesInGroup.Where(u => u.GroupID == groupID).ToList();
+
+            foreach (var d in dancesInGroup)
             {
-                var dance = db.Dances.Where(u => u.ID == d.ID).FirstOrDefault();
+                var dance = db.Dances.Where(u => u.ID == d.DanceID).FirstOrDefault();
                 var dances = new ClassDances();
+
                 dances.ID = dance.ID;
                 dances.Title = dance.Title;
                 dances.ShortName = dance.ShortName;

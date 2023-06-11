@@ -93,37 +93,54 @@ namespace DanceApp.Model.Groups
             return pairsList3.ToList();
         }
 
-        public List<ClassPairs> Load(string selectAgeCategory, string performanceType)
+        public List<ClassPairs> Load(int groupID, string performanceType, int ageCategory1, int ageCategory2)
         {
-            // Привязка данных к PairsDG
-            //var data = db.AgeCategories.Where(u => u.Title == selectAgeCategory).FirstOrDefault();
-            //var pairs = db.Pairs.Where(x => x.PerformanceType == performanceType && x.AgeCategoryID == data.ID).ToList();
-
-
+            // У нас есть таблица PairsInGroup. Нужно найти все пары и объединить их со списком нераспределённых пар согласно условиям
 
             List<ClassPairs> pairsDGItems = new List<ClassPairs>();
 
-            int i = 0;
-            foreach (var p in freePairs)
+            // Поиск выбранных пар
+            var pairsInGroup = db.PairsInGroup.Where(x => x.GroupID == 1).ToList();
+            foreach (var p in pairsInGroup)
             {
-                var query = freePairs.Select(x => x.ID).ToList();
-                var data = db.PairsInGroup.Where(u => u.PairID == query[i]).FirstOrDefault();
+                var pair = db.Pairs.Find(p.PairID);
 
                 pairsDGItems.Add(new ClassPairs
                 {
-                    ID = p.ID,
-                    Number = p.Number,
-                    MaleSurname = p.MaleSurname,
-                    MaleName = p.MaleName,
-                    MalePatronymic = p.MalePatronymic,
-                    MaleBirthday = p.MaleBirthday,
-                    FemaleSurname = p.FemaleSurname,
-                    FemaleName = p.FemaleName,
-                    FemalePatronymic = p.FemalePatronymic,
-                    FemaleBirthday = p.FemaleBirthday, // Нужно узнать, какие пары у нас выбраны
-                    //Select = 
+                    ID = pair.ID,
+                    Number = pair.Number,
+                    MaleSurname = pair.MaleSurname,
+                    MaleName = pair.MaleName,
+                    MalePatronymic = pair.MalePatronymic,
+                    MaleBirthday = pair.MaleBirthday,
+                    FemaleSurname = pair.FemaleSurname,
+                    FemaleName = pair.FemaleName,
+                    FemalePatronymic = pair.FemalePatronymic,
+                    FemaleBirthday = pair.FemaleBirthday,
+                    Select = true
                 });
-                i++;
+            }
+
+            // Поиск нераспределённых пар
+            var freePairs = Get(performanceType, ageCategory1, ageCategory2);
+            foreach (var p in freePairs)
+            {
+                var pair = db.Pairs.Find(p.ID);
+
+                pairsDGItems.Add(new ClassPairs
+                {
+                    ID = pair.ID,
+                    Number = pair.Number,
+                    MaleSurname = pair.MaleSurname,
+                    MaleName = pair.MaleName,
+                    MalePatronymic = pair.MalePatronymic,
+                    MaleBirthday = pair.MaleBirthday,
+                    FemaleSurname = pair.FemaleSurname,
+                    FemaleName = pair.FemaleName,
+                    FemalePatronymic = pair.FemalePatronymic,
+                    FemaleBirthday = pair.FemaleBirthday,
+                    Select = false
+                });
             }
             return pairsDGItems.ToList();
         }

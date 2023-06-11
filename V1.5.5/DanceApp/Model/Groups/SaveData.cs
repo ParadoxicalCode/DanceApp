@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Markup;
 
 #nullable disable
 namespace DanceApp.Model.Groups
@@ -14,16 +15,20 @@ namespace DanceApp.Model.Groups
     public class SaveData
     {
         public DataBaseContext db = GlobalClass.db;
-        public void Save(int id, string number, string sportsDiscipline, string performanceType, string ageCategory1, string ageCategory2, List<ClassDances> selectedDances, List<ClassPairs> selectedPairs)
+        public void Save(int groupID, string number, string sportsDiscipline, string performanceType, string ageCategory1, string ageCategory2, List<ClassDances> selectedDances, List<ClassPairs> selectedPairs)
         {
-            if (id == 0)
+            if (groupID == 0)
             {
-                int groupID = AddGroup(number, sportsDiscipline, performanceType, ageCategory1, ageCategory2, selectedDances, selectedPairs);
-                AddDances(groupID, sportsDiscipline, selectedDances);
-                AddPairs();
+                int newGroupID = AddGroup(number, sportsDiscipline, performanceType, ageCategory1, ageCategory2, selectedDances, selectedPairs);
+                AddDances(newGroupID, sportsDiscipline, selectedDances);
+                AddPairs(newGroupID, selectedPairs);
             }
             else
-                EditGroup();
+            {
+                EditGroup(groupID, number, sportsDiscipline, performanceType, ageCategory1, ageCategory2, selectedDances, selectedPairs);
+                AddDances(groupID, sportsDiscipline, selectedDances);
+                AddPairs(groupID, selectedPairs);
+            } 
         }
 
         public int AddGroup(string number, string sportsDiscipline, string performanceType, string ageCategory1, string ageCategory2, List<ClassDances> selectedDances, List<ClassPairs> selectedPairs)
@@ -67,6 +72,55 @@ namespace DanceApp.Model.Groups
             return groupID;
         }
 
+        public void EditGroup(int groupID, string number, string sportsDiscipline, string performanceType, string ageCategory1, string ageCategory2, List<ClassDances> selectedDances, List<ClassPairs> selectedPairs)
+        {
+            // Если изменяем данные группы, то надо проверить, не изменился ли номер или параметры группы (тип выступления, возрастные категории)
+            // При изменении параметров группы или номера надо проверить 
+
+            var competition = db.Competitions.Find(1);
+            var group = db.Groups.Find(groupID);
+
+            var title = ageCategory1 + ageCategory2;
+            if (performanceType == "Соло")
+                title += " (" + performanceType + ")";
+
+            if (group.Title != title)
+            {
+                MessageBox.Show("Группа с выбранными параметрами уже есть!");
+                return;
+            }
+
+            if (group.Number != number)
+            {
+                MessageBox.Show("Группа с таким номером уже есть!");
+                return;
+            }
+
+            string program;
+            if (selectedDances.Count == 1)
+                program = "1 танец";
+            else if (selectedDances.Count < 5)
+                program = selectedDances.Count.ToString() + " танца";
+            else
+                program = "5 танцев";
+
+            group.Number = number;
+            group.Title = title;
+            group.AgeCategory1 = ageCategory1;
+            group.AgeCategory2 = ageCategory2;
+            group.PerformanceType = performanceType;
+            group.Program = program;
+            group.SportsDiscipline = sportsDiscipline;
+            group.PairsCount = selectedPairs.Count;
+
+            try
+            {
+                db.SaveChanges();
+                MessageBox.Show("Запись изменена!");
+            }
+            catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
+        }
+
         public void AddDances(int groupID, string sportsDiscipline, List<ClassDances> selectedDances)
         {
             var data = db.Groups.Find(groupID);
@@ -98,78 +152,44 @@ namespace DanceApp.Model.Groups
             }
         }
 
-        public void AddPairs()
+        public void AddPairs(int groupID, List<ClassPairs> selectedPairs)
         {
-            /*
-            
+            var data = db.Competitions.Find(1);
+
             // Обнуление всех пар из таблицы PairsInTour, которые присутствуют в таблице PairsInGroup
-            var pastSelectPairs = db.PairsInGroup.Where(x => x.GroupID == groupID.ID).ToList();
+            var pastSelectPairs = db.PairsInTour.Where(x => x.TourID == data.TourID).ToList();
             foreach (var p in pastSelectPairs)
             {
-                var pairsInTourSelectDelete = db.PairsInTour.Where(u => u.PairID == p.PairID && u.Select == true).FirstOrDefault();
-                pairsInTourSelectDelete.Select = false;
+                p.Select = false;
                 UpdateDataBase();
             }
 
             // Удаление данных о выбранных парах в группе
-            var deletePairsInGroup = db.PairsInGroup.Where(x => x.GroupID == groupID.ID).ToList();
+            var deletePairsInGroup = db.PairsInGroup.Where(x => x.GroupID == groupID).ToList();
             db.PairsInGroup.RemoveRange(deletePairsInGroup);
-
             UpdateDataBase();
 
-            string f = (PerformanceTypeCB.SelectedItem as CBItems).Element;
-
-
-            
             // Сохранение выбранных пар в таблицу PairsInGroup
-                var selectPairs = selectedPairs.Select(x => x.ID).ToList();
-                foreach (var p in selectPairs)
-                {
-                    var pair = db.Pairs.Where(u => u.ID == p).FirstOrDefault();
-                    var pairsInGroup = new PairsInGroup();
+            foreach (var p in selectedPairs)
+            {
+                var pairsInGroup = new PairsInGroup();
 
-                    pairsInGroup.GroupID = groupID.ID;
-                    pairsInGroup.PairID = pair.ID;
+                pairsInGroup.GroupID = groupID;
+                pairsInGroup.PairID = p.ID;
 
-                    db.PairsInGroup.Add(pairsInGroup);
-                    UpdateDataBase();
-                }
+                db.PairsInGroup.Add(pairsInGroup);
+                UpdateDataBase();
+            }
 
-                // Отмечаем выбранные пары в таблице PairsInTour
-                int k = 0;
-                foreach (var p in selectPairs)
-                {
-                    var pair = db.PairsInTour.Where(u => u.TourID == (int)data.TourID && u.PairID == selectPairs[k]).FirstOrDefault();
-                    pair.Select = true;
-                    UpdateDataBase();
-                    k++;
-                }
-                AddData();
-                GetPairs();
-
-            */
-        }
-
-        public void EditGroup()
-        {
-            // Если же изменяем данные группы, то надо проверить, не изменился ли номер или параметры группы (тип выступления, возрастные категории)
-            // При изменении параметров группы или номера надо проверить 
-
-
-
-            /*
-            
-            var group = db.Groups.Where(u => u.ID == ID).FirstOrDefault();
-
-                try
-                {
-                    db.SaveChanges();
-                    MessageBox.Show("Запись изменена!");
-                    this.Close();
-                }
-                catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
-
-             */
+            // Отмечаем выбранные пары в таблице PairsInTour
+            int i = 0;
+            foreach (var p in selectedPairs)
+            {
+                var pair = db.PairsInTour.Where(u => u.TourID == (int)data.TourID && u.PairID == selectedPairs[i].ID).FirstOrDefault();
+                pair.Select = true;
+                UpdateDataBase();
+                i++;
+            }
         }
 
         public bool Validation(string number, string title)

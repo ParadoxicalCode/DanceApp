@@ -13,7 +13,7 @@ namespace DanceApp.Model.Groups
         public DataBaseContext db = GlobalClass.db;
 
         // Поиск возрастных категорий на основании выбранного типа выступления и нераспределённых пар
-        public List<AgeCategory> Get1(string performanceType, List<Pair> freePairs)
+        public List<AgeCategory> Get1(int groupID, string performanceType, List<Pair> freePairs)
         {
             List<AgeCategory> CategoryCBItems = new List<AgeCategory>();
             var query = freePairs.Where(u => u.PerformanceType == performanceType).ToList();
@@ -31,6 +31,13 @@ namespace DanceApp.Model.Groups
             {
                 var data = db.AgeCategories.Where(u => u.ID == a).FirstOrDefault();
                 CategoryCBItems.Add(data);
+            }
+
+            if (CategoryCBItems.Count == 0 && groupID != 0)
+            {
+                var group = db.Groups.Where(u => u.ID == groupID).FirstOrDefault();
+                var ageCategory1 = db.AgeCategories.Where(u => u.Title == group.AgeCategory1).FirstOrDefault();
+                CategoryCBItems.Add(ageCategory1);
             }
             return CategoryCBItems.ToList();
         }
