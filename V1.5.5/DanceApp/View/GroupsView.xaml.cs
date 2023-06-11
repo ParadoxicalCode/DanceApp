@@ -53,7 +53,14 @@ namespace DanceApp.View
         private void GetGroups()
         {
             var tour = db.Tours.Where(u => u.Title == (TourCB.SelectedItem as Tour).Title).FirstOrDefault();
-            GroupsDG.ItemsSource = db.Groups.Where(u => u.TourID == tour.ID).ToList();
+
+            if (db.Groups.Where(u => u.TourID == tour.ID).ToList() != null)
+            {
+                GroupsDG.ItemsSource = db.Groups.Where(u => u.TourID == tour.ID).ToList();
+            }
+            else
+                GroupsDG.ItemsSource = null;
+
 
             // Нужно посчитать количество пар, которым 
             //toolTipItems.Add(new Items { Element = "Дети 0" });
@@ -103,25 +110,64 @@ namespace DanceApp.View
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            // Удалить связанные с группой данные, саму группу и сделать все пары, состоящие в этой группе нераспределёнными
+            if (MessageBox.Show("Удалить запись?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                int groupID = (int)((Button)sender).CommandParameter;
+                var tourID = (TourCB.SelectedItem as Tour).ID;
+
+                // Делаем пары нараспределёнными
+                var pairsInTour = db.PairsInTour.Where(x => x.TourID == tourID).ToList();
+                foreach (var p in pairsInTour)
+                {
+                    p.Select = false;
+                    UpdateDataBase();
+                }
+
+                // Удаление данных о выбранных танцах в группе
+                var dancesInGroup = db.DancesInGroup.Where(x => x.GroupID == groupID).ToList();
+                db.DancesInGroup.RemoveRange(dancesInGroup);
+
+                // Удаление данных о выбранных парах в группе
+                var pairsInGroup = db.PairsInGroup.Where(x => x.GroupID == groupID).ToList();
+                db.PairsInGroup.RemoveRange(pairsInGroup);
+
+                // Удаление группы
+                var group = db.Groups.Where(x => x.ID == groupID).ToList();
+                db.Groups.RemoveRange(group);
+
+                try
+                {
+                    db.SaveChanges();
+                    CBSwitch = false;
+                    GetGroups();
+                    CBSwitch = true;
+                    GetPairs(groupID);
+                }
+                catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
+            }
         }
 
 
 
 
-
-        private void GroupsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int selectedGroup = (GroupsDG.SelectedItem as Group).ID;
-            GetPairs(selectedGroup);
-
-
-            // Нужно в ComboBox вывести танцы выбранной группы
-        }
 
         private void TourCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            CBSwitch = false;
+            PairsDG.ItemsSource = null;
             GetGroups();
+            CBSwitch = true;
+        }
+
+        private void GroupsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CBSwitch == true)
+            {
+                int selectedGroup = (GroupsDG.SelectedItem as Group).ID;
+                GetPairs(selectedGroup);
+            }
+
+            // Нужно в ComboBox вывести танцы выбранной группы
         }
 
         private void DanceCB_SelectionChanged(object sender, SelectionChangedEventArgs e)

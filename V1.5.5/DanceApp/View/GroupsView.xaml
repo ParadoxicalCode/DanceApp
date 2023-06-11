@@ -31,7 +31,7 @@
 
             <TextBlock FontSize="16" Grid.Row="1" Text="Тур" VerticalAlignment="Center"/>
             <ComboBox Height="30" Width="150" Grid.Row="2" x:Name="TourCB" DisplayMemberPath="Title" SelectedValuePath="Title"
-                    Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="TourCB_SelectionChanged" HorizontalAlignment="Left"/>
+                Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="TourCB_SelectionChanged" HorizontalAlignment="Left"/>
 
             <TextBlock Text="Группа" Grid.Row="3" FontSize="16" VerticalAlignment="Center"/>
             <DataGrid x:Name="GroupsDG" Grid.Row="4" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}" CellStyle="{StaticResource DGCell}"

@@ -195,6 +195,7 @@ namespace DanceApp.View
             CBSwitch = false;
             Category1CB.ItemsSource = null;
             Category2CB.ItemsSource = null;
+            PairsDG.ItemsSource = null;
             CBSwitch = true;
 
             var performanceType = (PerformanceTypeCB.SelectedItem as CBItems).Element;

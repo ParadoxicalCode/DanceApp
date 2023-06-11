@@ -14,7 +14,7 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="136"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="300"/>
+                <RowDefinition Height="306"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -85,7 +85,7 @@
 
             <TextBlock Grid.Row="5" Text="*Состав группы" VerticalAlignment="Center"/>
             <DataGrid x:Name="PairsDG" Grid.Row="6" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}" CellStyle="{StaticResource DGCell}"
-                      Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="40" CanUserReorderColumns="False" CanUserSortColumns="False">
+                      Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="40" CanUserReorderColumns="False" CanUserSortColumns="False" VirtualizingStackPanel.IsVirtualizing="False">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>

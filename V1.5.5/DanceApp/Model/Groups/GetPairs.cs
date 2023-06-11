@@ -100,7 +100,7 @@ namespace DanceApp.Model.Groups
             List<ClassPairs> pairsDGItems = new List<ClassPairs>();
 
             // Поиск выбранных пар
-            var pairsInGroup = db.PairsInGroup.Where(x => x.GroupID == 1).ToList();
+            var pairsInGroup = db.PairsInGroup.Where(x => x.GroupID == groupID).ToList();
             foreach (var p in pairsInGroup)
             {
                 var pair = db.Pairs.Find(p.PairID);
