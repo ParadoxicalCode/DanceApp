@@ -239,3 +239,18 @@ public static IEnumerable<Valuation> QueryValuations (SQLiteConnection db, Stock
 Сделать миграцию
 database-update
 В свойствах проекта отладка общие указать путь 
+
+
+
+
+Если возникают ошибки при работе с миграциями в консоли диспетчера пакетов, то необходимо заменить методы DataBaseContext и OnConfiguring на:
+
+public DataBaseContext()
+{
+
+}
+
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+	optionsBuilder.UseSqlite("Data Source=helloapp.db");
+}

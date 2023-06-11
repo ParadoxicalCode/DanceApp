@@ -82,7 +82,7 @@ namespace DanceApp
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            AddEditDataBaseView window = new AddEditDataBaseView("", "", null, false);
+            AddEditDataBaseView window = new AddEditDataBaseView("", "", false);
             window.ShowDialog(); GetFiles();
         }
 
@@ -92,7 +92,7 @@ namespace DanceApp
             int index = DataBases.FindIndex(c => c.Title == title);
             string path = DataBases[index].Path;
 
-            AddEditDataBaseView window = new AddEditDataBaseView(path, title, DataBases, true);
+            AddEditDataBaseView window = new AddEditDataBaseView(path, title, true);
             window.ShowDialog(); GetFiles();
         }
 

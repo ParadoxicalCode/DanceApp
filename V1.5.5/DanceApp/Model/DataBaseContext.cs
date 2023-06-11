@@ -58,7 +58,7 @@ namespace DanceApp.Model.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Competition>().HasData(
-                new Competition { ID = 1, Rank = "Межрегиональный турнир", Manager = "Печурин Р.К.", City = "Новосибирск", MainJudge = "Журавлёв Денис Тимурович", 
+                new Competition { ID = 1, Date="2023.06.14", Rank = "Межрегиональный турнир", Manager = "Печурин Р.К.", City = "Новосибирск", MainJudge = "Журавлёв Денис Тимурович", 
                     CountingCommission = "Петров Михаил Борисович", SiteCapacity = "10", Fraction = "7/10", RegistrationStatus = true }
             );
 

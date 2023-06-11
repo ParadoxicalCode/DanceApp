@@ -27,7 +27,7 @@ namespace DanceApp.View
         {
             InitializeComponent();
             this.Title = DBName;
-            var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
+            var data = db.Competitions.Find(1);
             if (data.Title == null || data.Title == "")
             {
                 data.Title = DBName;

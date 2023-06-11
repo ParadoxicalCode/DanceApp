@@ -19,6 +19,9 @@ using static System.Net.WebRequestMethods;
 using Microsoft.EntityFrameworkCore;
 using DanceApp.Model.Data;
 using DanceApp.Model;
+using static DanceApp.View.PairsView;
+using System.Globalization;
+using System.Windows.Markup;
 
 #nullable disable
 namespace DanceApp.View
@@ -29,15 +32,17 @@ namespace DanceApp.View
     #nullable disable
     public partial class AddEditDataBaseView : Window
     {
-        public List<DataBases> DataBases22 = new List<Model.DataBases>();
+        public DataBaseContext db = GlobalClass.db;
         public string path;
         public bool Edit;
         public string appDirectory = Directory.GetCurrentDirectory();
-        public AddEditDataBaseView(string CurrentPath, string Title, List<Model.DataBases> db, bool edit)
+        public AddEditDataBaseView(string CurrentPath, string Title, bool edit)
         {
             InitializeComponent();
-            TitleTB.Text = Title;
-            DataBases22 = db;
+
+            if (edit == true)
+                TitleTB.Text = Title;
+
             path = CurrentPath;
             Edit = edit;
         }
@@ -60,7 +65,7 @@ namespace DanceApp.View
 
                             Connect();
 
-                            var data = GlobalClass.db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
+                            var data = GlobalClass.db.Competitions.Find(1);
                             data.Title = TitleTB.Text;
                             try
                             {

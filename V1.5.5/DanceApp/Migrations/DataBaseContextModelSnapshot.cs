@@ -19,575 +19,305 @@ namespace DanceApp.Migrations
 
             modelBuilder.Entity("DanceApp.Model.Data.AgeCategory", b =>
                 {
-                    b.Property<int>("AgeCategoryId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("MaxAge")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("MinAge")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("AgeCategoryId");
+                    b.HasKey("ID");
 
                     b.ToTable("AgeCategories");
 
                     b.HasData(
                         new
                         {
-                            AgeCategoryId = 1,
-                            MaxAge = 6,
-                            MinAge = 0,
-                            Name = "Дети 0"
+                            ID = 1,
+                            Title = "Дети 0"
                         },
                         new
                         {
-                            AgeCategoryId = 2,
-                            MaxAge = 9,
-                            MinAge = 7,
-                            Name = "Дети 1"
+                            ID = 2,
+                            Title = "Дети 1"
                         },
                         new
                         {
-                            AgeCategoryId = 3,
-                            MaxAge = 11,
-                            MinAge = 10,
-                            Name = "Дети 2"
+                            ID = 3,
+                            Title = "Дети 2"
                         },
                         new
                         {
-                            AgeCategoryId = 4,
-                            MaxAge = 13,
-                            MinAge = 12,
-                            Name = "Юниоры 1"
+                            ID = 4,
+                            Title = "Юниоры 1"
                         },
                         new
                         {
-                            AgeCategoryId = 5,
-                            MaxAge = 15,
-                            MinAge = 14,
-                            Name = "Юниоры 2"
+                            ID = 5,
+                            Title = "Юниоры 2"
                         },
                         new
                         {
-                            AgeCategoryId = 6,
-                            MaxAge = 18,
-                            MinAge = 16,
-                            Name = "Молодёжь"
+                            ID = 6,
+                            Title = "Молодёжь"
                         },
                         new
                         {
-                            AgeCategoryId = 7,
-                            MaxAge = 100,
-                            MinAge = 19,
-                            Name = "Взрослые"
+                            ID = 7,
+                            Title = "Взрослые"
                         },
                         new
                         {
-                            AgeCategoryId = 8,
-                            MaxAge = 100,
-                            MinAge = 35,
-                            Name = "Сеньоры"
-                        },
-                        new
-                        {
-                            AgeCategoryId = 9,
-                            MaxAge = 100,
-                            MinAge = 61,
-                            Name = "Гранд-сеньоры"
+                            ID = 8,
+                            Title = "Сеньоры"
                         });
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.AgeCategoryInGroup", b =>
-                {
-                    b.Property<int>("GroupId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("AgeCategoryId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("GroupId", "AgeCategoryId");
-
-                    b.HasIndex("AgeCategoryId");
-
-                    b.ToTable("AgeCategoriesInGroup");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.City", b =>
-                {
-                    b.Property<int>("CityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CountryId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("CityId");
-
-                    b.HasIndex("CountryId");
-
-                    b.ToTable("Cities");
-
-                    b.HasData(
-                        new
-                        {
-                            CityId = 1,
-                            CountryId = 1,
-                            Name = "Новосибирск"
-                        },
-                        new
-                        {
-                            CityId = 2,
-                            CountryId = 1,
-                            Name = "Москва"
-                        },
-                        new
-                        {
-                            CityId = 3,
-                            CountryId = 1,
-                            Name = "Екатеринбург"
-                        },
-                        new
-                        {
-                            CityId = 4,
-                            CountryId = 1,
-                            Name = "Казань"
-                        },
-                        new
-                        {
-                            CityId = 5,
-                            CountryId = 1,
-                            Name = "Нижний Новгород"
-                        },
-                        new
-                        {
-                            CityId = 6,
-                            CountryId = 1,
-                            Name = "Челябинск"
-                        },
-                        new
-                        {
-                            CityId = 7,
-                            CountryId = 1,
-                            Name = "Красноярск"
-                        },
-                        new
-                        {
-                            CityId = 8,
-                            CountryId = 1,
-                            Name = "Самара"
-                        },
-                        new
-                        {
-                            CityId = 9,
-                            CountryId = 1,
-                            Name = "Уфа"
-                        },
-                        new
-                        {
-                            CityId = 10,
-                            CountryId = 1,
-                            Name = "Ростов-на-Дону"
-                        },
-                        new
-                        {
-                            CityId = 11,
-                            CountryId = 1,
-                            Name = "Омск"
-                        },
-                        new
-                        {
-                            CityId = 12,
-                            CountryId = 1,
-                            Name = "Краснодар"
-                        },
-                        new
-                        {
-                            CityId = 13,
-                            CountryId = 1,
-                            Name = "Воронеж"
-                        },
-                        new
-                        {
-                            CityId = 14,
-                            CountryId = 1,
-                            Name = "Волгоград"
-                        },
-                        new
-                        {
-                            CityId = 15,
-                            CountryId = 1,
-                            Name = "Пермь"
-                        });
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.Club", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CityId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CountryId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CityId");
-
-                    b.HasIndex("CountryId");
-
-                    b.ToTable("Clubs");
                 });
 
             modelBuilder.Entity("DanceApp.Model.Data.Competition", b =>
                 {
-                    b.Property<int>("CompetitionId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Address")
-                        .IsRequired()
+                    b.Property<string>("City")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ClubId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("CountingCommission")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Fraction")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MainJudge")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Manager")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("Rank")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Selection")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("StartDate")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("StartTime")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("CompetitionId");
-
-                    b.HasIndex("ClubId");
-
-                    b.ToTable("Competitions");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.Country", b =>
-                {
-                    b.Property<int>("CountryId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<bool>("RegistrationStatus")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("SiteCapacity")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("CountryId");
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
 
-                    b.ToTable("Countries");
+                    b.Property<int?>("TourID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TourID");
+
+                    b.ToTable("Competitions");
 
                     b.HasData(
                         new
                         {
-                            CountryId = 1,
-                            Name = "Россия"
-                        },
-                        new
-                        {
-                            CountryId = 2,
-                            Name = "Беларусь"
-                        },
-                        new
-                        {
-                            CountryId = 3,
-                            Name = "Казахстан"
-                        },
-                        new
-                        {
-                            CountryId = 4,
-                            Name = "Украина"
-                        },
-                        new
-                        {
-                            CountryId = 5,
-                            Name = "Грузия"
-                        },
-                        new
-                        {
-                            CountryId = 6,
-                            Name = "Таджикистан"
-                        },
-                        new
-                        {
-                            CountryId = 7,
-                            Name = "Азербайджан"
-                        },
-                        new
-                        {
-                            CountryId = 8,
-                            Name = "Туркменистан"
-                        },
-                        new
-                        {
-                            CountryId = 9,
-                            Name = "Киргизия"
-                        },
-                        new
-                        {
-                            CountryId = 10,
-                            Name = "Узбекистан"
-                        },
-                        new
-                        {
-                            CountryId = 11,
-                            Name = "Армения"
-                        },
-                        new
-                        {
-                            CountryId = 12,
-                            Name = "Молдавия"
-                        },
-                        new
-                        {
-                            CountryId = 13,
-                            Name = "Литва"
-                        },
-                        new
-                        {
-                            CountryId = 14,
-                            Name = "Латвия"
-                        },
-                        new
-                        {
-                            CountryId = 15,
-                            Name = "Эстония"
+                            ID = 1,
+                            City = "Новосибирск",
+                            CountingCommission = "Петров Михаил Борисович",
+                            Date = "2023.06.14",
+                            Fraction = "7/10",
+                            MainJudge = "Журавлёв Денис Тимурович",
+                            Manager = "Печурин Р.К.",
+                            Rank = "Межрегиональный турнир",
+                            RegistrationStatus = true,
+                            SiteCapacity = "10"
                         });
                 });
 
             modelBuilder.Entity("DanceApp.Model.Data.Dance", b =>
                 {
-                    b.Property<int>("DanceId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("ShortName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("DanceId");
+                    b.Property<string>("SportsDiscipline")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
 
                     b.ToTable("Dances");
 
                     b.HasData(
                         new
                         {
-                            DanceId = 1,
-                            Name = "самба",
-                            ShortName = "S"
+                            ID = 1,
+                            ShortName = "W",
+                            SportsDiscipline = "Европейская программа",
+                            Title = "Медленный вальс"
                         },
                         new
                         {
-                            DanceId = 2,
-                            Name = "ча-ча-ча",
-                            ShortName = "Ch"
+                            ID = 2,
+                            ShortName = "T",
+                            SportsDiscipline = "Европейская программа",
+                            Title = "Танго"
                         },
                         new
                         {
-                            DanceId = 3,
-                            Name = "румба",
-                            ShortName = "R"
+                            ID = 3,
+                            ShortName = "Vv",
+                            SportsDiscipline = "Европейская программа",
+                            Title = "Венский вальс"
                         },
                         new
                         {
-                            DanceId = 4,
-                            Name = "пасодобль",
-                            ShortName = "Pd"
+                            ID = 4,
+                            ShortName = "SF",
+                            SportsDiscipline = "Европейская программа",
+                            Title = "Фокстрот"
                         },
                         new
                         {
-                            DanceId = 5,
-                            Name = "джайв",
-                            ShortName = "J"
+                            ID = 5,
+                            ShortName = "Q",
+                            SportsDiscipline = "Европейская программа",
+                            Title = "Квикстеп"
                         },
                         new
                         {
-                            DanceId = 6,
-                            Name = "медленный вальс",
-                            ShortName = "W"
+                            ID = 6,
+                            ShortName = "S",
+                            SportsDiscipline = "Латиноамериканская программа",
+                            Title = "Самба"
                         },
                         new
                         {
-                            DanceId = 7,
-                            Name = "танго",
-                            ShortName = "T"
+                            ID = 7,
+                            ShortName = "Ch",
+                            SportsDiscipline = "Латиноамериканская программа",
+                            Title = "Ча-ча-ча"
                         },
                         new
                         {
-                            DanceId = 8,
-                            Name = "венский вальс",
-                            ShortName = "Vv"
+                            ID = 8,
+                            ShortName = "R",
+                            SportsDiscipline = "Латиноамериканская программа",
+                            Title = "Румба"
                         },
                         new
                         {
-                            DanceId = 9,
-                            Name = "медленный фокстрот",
-                            ShortName = "SF"
+                            ID = 9,
+                            ShortName = "Pd",
+                            SportsDiscipline = "Латиноамериканская программа",
+                            Title = "Пасодобль"
                         },
                         new
                         {
-                            DanceId = 10,
-                            Name = "квикстеп",
-                            ShortName = "Q"
+                            ID = 10,
+                            ShortName = "J",
+                            SportsDiscipline = "Латиноамериканская программа",
+                            Title = "Джайв"
                         });
                 });
 
-            modelBuilder.Entity("DanceApp.Model.Data.Dancer", b =>
+            modelBuilder.Entity("DanceApp.Model.Data.DancesInGroup", b =>
                 {
-                    b.Property<int>("DancerId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Birthday")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ClubId")
+                    b.Property<int>("DanceID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CompetitionId")
+                    b.Property<int>("GroupID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("GenderId")
+                    b.Property<bool>("Select")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("GroupId")
-                        .HasColumnType("INTEGER");
+                    b.HasKey("ID");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.HasIndex("DanceID");
 
-                    b.Property<string>("Number")
-                        .HasColumnType("TEXT");
+                    b.HasIndex("GroupID");
 
-                    b.Property<int?>("PairId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Patronymic")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Trainer")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("DancerId");
-
-                    b.HasIndex("ClubId");
-
-                    b.HasIndex("CompetitionId");
-
-                    b.HasIndex("GenderId");
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("PairId");
-
-                    b.ToTable("Dancers");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.Gender", b =>
-                {
-                    b.Property<int>("GenderId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("GenderId");
-
-                    b.ToTable("Genders");
-
-                    b.HasData(
-                        new
-                        {
-                            GenderId = 1,
-                            Name = "Мужчина"
-                        },
-                        new
-                        {
-                            GenderId = 2,
-                            Name = "Женщина"
-                        });
+                    b.ToTable("DancesInGroup");
                 });
 
             modelBuilder.Entity("DanceApp.Model.Data.Group", b =>
                 {
-                    b.Property<int>("GroupId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CompetitionId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("AgeCategory1")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AgeCategory2")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Number")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("TourId")
+                    b.Property<int>("PairsCount")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("GroupId");
+                    b.Property<string>("PerformanceType")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("CompetitionId");
+                    b.Property<string>("Program")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("TourId");
+                    b.Property<string>("SportsDiscipline")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("TourID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TourID");
 
                     b.ToTable("Groups");
                 });
 
             modelBuilder.Entity("DanceApp.Model.Data.Judge", b =>
                 {
-                    b.Property<int>("JudgeId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ClubId")
-                        .HasColumnType("INTEGER");
+                    b.Property<char>("Character")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("CompetitionId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Club")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -596,628 +326,753 @@ namespace DanceApp.Migrations
                     b.Property<string>("Patronymic")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PositionId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("JudgeId");
-
-                    b.HasIndex("ClubId");
-
-                    b.HasIndex("CompetitionId");
-
-                    b.HasIndex("PositionId");
+                    b.HasKey("ID");
 
                     b.ToTable("Judges");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.JudgeInGroup", b =>
-                {
-                    b.Property<int>("GroupId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("JudgeId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("GroupId", "JudgeId");
-
-                    b.HasIndex("JudgeId");
-
-                    b.ToTable("JudgeInGroups");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.JudgeInPerformance", b =>
-                {
-                    b.Property<int>("PerformanceId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("JudgeId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("PerformanceId", "JudgeId");
-
-                    b.HasIndex("JudgeId");
-
-                    b.ToTable("JudgeInPerformances");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.Pair", b =>
-                {
-                    b.Property<int>("PairId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CompetitionId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("PairId");
-
-                    b.HasIndex("CompetitionId");
-
-                    b.ToTable("Pairs");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.PairInPerformance", b =>
-                {
-                    b.Property<int>("PairInPerformanceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Disqualification")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("PairId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("PerformanceId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("PairInPerformanceId");
-
-                    b.HasIndex("PairId");
-
-                    b.HasIndex("PerformanceId");
-
-                    b.ToTable("PairInPerformances");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.Performance", b =>
-                {
-                    b.Property<int>("PerformanceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CompetitionId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("DanceId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("GroupId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("TourId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("PerformanceId");
-
-                    b.HasIndex("CompetitionId");
-
-                    b.HasIndex("DanceId");
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("TourId");
-
-                    b.ToTable("Performances");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.Position", b =>
-                {
-                    b.Property<int>("PositionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("PositionId");
-
-                    b.ToTable("Positions");
 
                     b.HasData(
                         new
                         {
-                            PositionId = 1,
-                            Name = "Главный судья"
+                            ID = 1,
+                            Character = 'A',
+                            City = "Новосибирск",
+                            Club = "Орион",
+                            Country = "Россия",
+                            Name = "Михаил",
+                            Patronymic = "Борисович",
+                            Surname = "Петров"
                         },
                         new
                         {
-                            PositionId = 2,
-                            Name = "Заместитель главного судьи"
+                            ID = 2,
+                            Character = 'B',
+                            City = "Новосибирск",
+                            Club = "Орион",
+                            Country = "Россия",
+                            Name = "Варвара",
+                            Patronymic = "Сергеевна",
+                            Surname = "Зуева"
                         },
                         new
                         {
-                            PositionId = 3,
-                            Name = "Главный секретарь соревнований"
+                            ID = 3,
+                            Character = 'C',
+                            City = "Новосибирск",
+                            Club = "Орион",
+                            Country = "Россия",
+                            Name = "Михаил",
+                            Patronymic = "Сергеевич",
+                            Surname = "Семёнов"
                         },
                         new
                         {
-                            PositionId = 4,
-                            Name = "Линейный судья"
+                            ID = 4,
+                            Character = 'D',
+                            City = "Новосибирск",
+                            Club = "Орион",
+                            Country = "Россия",
+                            Name = "Денис",
+                            Patronymic = "Тимурович",
+                            Surname = "Журавлёв"
                         },
                         new
                         {
-                            PositionId = 5,
-                            Name = "Судья при участниках"
+                            ID = 5,
+                            Character = 'E',
+                            City = "Новосибирск",
+                            Club = "Орион",
+                            Country = "Россия",
+                            Name = "Анна",
+                            Patronymic = "Егоровна",
+                            Surname = "Фролова"
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Character = 'F',
+                            City = "Новосибирск",
+                            Club = "Ночные лебеди",
+                            Country = "Россия",
+                            Name = "Екатерина",
+                            Patronymic = "Семёновна",
+                            Surname = "Новикова"
+                        },
+                        new
+                        {
+                            ID = 7,
+                            Character = 'G',
+                            City = "Новосибирск",
+                            Club = "Ночные лебеди",
+                            Country = "Россия",
+                            Name = "Кирилл",
+                            Patronymic = "Фёдорович",
+                            Surname = "Николаев"
+                        },
+                        new
+                        {
+                            ID = 8,
+                            Character = 'H',
+                            City = "Новосибирск",
+                            Club = "",
+                            Country = "Россия",
+                            Name = "Марк",
+                            Patronymic = "Романович",
+                            Surname = "Симонов"
+                        },
+                        new
+                        {
+                            ID = 9,
+                            Character = 'I',
+                            City = "Новосибирск",
+                            Club = "Ночные лебеди",
+                            Country = "Россия",
+                            Name = "Василиса",
+                            Patronymic = "Николаевна",
+                            Surname = "Кузнецова"
                         });
                 });
 
-            modelBuilder.Entity("DanceApp.Model.Data.ScoreInDance", b =>
+            modelBuilder.Entity("DanceApp.Model.Data.JudgesInPerformance", b =>
                 {
-                    b.Property<int>("ScoreInDanceId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CompetitionId")
+                    b.Property<int>("DanceID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("DanceId")
+                    b.Property<int>("GroupID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("JudgeId")
+                    b.Property<int>("JudgeID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("PairId")
+                    b.Property<int>("PerformanceNumber")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("PerformanceId")
+                    b.HasKey("ID");
+
+                    b.HasIndex("DanceID");
+
+                    b.HasIndex("GroupID");
+
+                    b.HasIndex("JudgeID");
+
+                    b.ToTable("JudgesInPerformance");
+                });
+
+            modelBuilder.Entity("DanceApp.Model.Data.Pair", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Score")
+                    b.Property<int>("AgeCategoryID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ScoreInDanceId");
+                    b.Property<string>("Club")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("CompetitionId");
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("DanceId");
+                    b.Property<string>("FemaleBirthday")
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("JudgeId");
+                    b.Property<string>("FemaleName")
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("PairId");
+                    b.Property<string>("FemalePatronymic")
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("PerformanceId");
+                    b.Property<string>("FemaleSurname")
+                        .HasColumnType("TEXT");
 
-                    b.ToTable("ScoreInDances");
+                    b.Property<string>("MaleBirthday")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MaleName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MalePatronymic")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MaleSurname")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Number")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PerformanceType")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Trainer1")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Trainer2")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AgeCategoryID");
+
+                    b.ToTable("Pairs");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            AgeCategoryID = 7,
+                            City = "Новосибирск",
+                            Club = "Орион",
+                            Country = "Россия",
+                            FemaleBirthday = "2001.02.19",
+                            FemaleName = "Анастасия",
+                            FemalePatronymic = "Руслановна",
+                            FemaleSurname = "Морозова",
+                            MaleBirthday = "",
+                            MaleName = "",
+                            MalePatronymic = "",
+                            MaleSurname = "",
+                            Number = "31",
+                            PerformanceType = "Соло",
+                            Trainer1 = "Николаев К.Л.",
+                            Trainer2 = ""
+                        },
+                        new
+                        {
+                            ID = 2,
+                            AgeCategoryID = 7,
+                            City = "Новосибирск",
+                            Club = "Орион",
+                            Country = "Россия",
+                            FemaleBirthday = "2001.02.19",
+                            FemaleName = "Маргарита",
+                            FemalePatronymic = "Михайловна",
+                            FemaleSurname = "Макеева",
+                            MaleBirthday = "",
+                            MaleName = "",
+                            MalePatronymic = "",
+                            MaleSurname = "",
+                            Number = "39",
+                            PerformanceType = "Соло",
+                            Trainer1 = "Кузнецова Е.С.",
+                            Trainer2 = ""
+                        },
+                        new
+                        {
+                            ID = 3,
+                            AgeCategoryID = 7,
+                            City = "Новосибирск",
+                            Club = "Орион",
+                            Country = "Россия",
+                            FemaleBirthday = "2001.02.19",
+                            FemaleName = "Наталья",
+                            FemalePatronymic = "Вадимовна",
+                            FemaleSurname = "Афанасьева",
+                            MaleBirthday = "2001.02.19",
+                            MaleName = "Павел",
+                            MalePatronymic = "Михайлович",
+                            MaleSurname = "Юдин",
+                            Number = "47",
+                            PerformanceType = "Пара",
+                            Trainer1 = "Фролова А.В.",
+                            Trainer2 = ""
+                        },
+                        new
+                        {
+                            ID = 4,
+                            AgeCategoryID = 7,
+                            City = "Новосибирск",
+                            Club = "Орион",
+                            Country = "Россия",
+                            FemaleBirthday = "2001.02.19",
+                            FemaleName = "Алла",
+                            FemalePatronymic = "Ильична",
+                            FemaleSurname = "Соловьёва",
+                            MaleBirthday = "2001.02.19",
+                            MaleName = "Георгий",
+                            MalePatronymic = "Иванович",
+                            MaleSurname = "Алешин",
+                            Number = "21",
+                            PerformanceType = "Пара",
+                            Trainer1 = "Лобанова Д.С.",
+                            Trainer2 = ""
+                        },
+                        new
+                        {
+                            ID = 5,
+                            AgeCategoryID = 7,
+                            City = "Новосибирск",
+                            Club = "Алые розы",
+                            Country = "Россия",
+                            FemaleBirthday = "2001.02.19",
+                            FemaleName = "София",
+                            FemalePatronymic = "Степановна",
+                            FemaleSurname = "Волкова",
+                            MaleBirthday = "2001.02.19",
+                            MaleName = "Дмитрий",
+                            MalePatronymic = "Александрович",
+                            MaleSurname = "Любимов",
+                            Number = "4",
+                            PerformanceType = "Пара",
+                            Trainer1 = "Новикова И.Т",
+                            Trainer2 = ""
+                        },
+                        new
+                        {
+                            ID = 6,
+                            AgeCategoryID = 7,
+                            City = "Новосибирск",
+                            Club = "Алые розы",
+                            Country = "Россия",
+                            FemaleBirthday = "2001.02.19",
+                            FemaleName = "Диана",
+                            FemalePatronymic = "Богдановна",
+                            FemaleSurname = "Куликова",
+                            MaleBirthday = "2001.02.19",
+                            MaleName = "Виктор",
+                            MalePatronymic = "",
+                            MaleSurname = "Семенов",
+                            Number = "8",
+                            PerformanceType = "Пара",
+                            Trainer1 = "Кузнецова К.Р",
+                            Trainer2 = ""
+                        },
+                        new
+                        {
+                            ID = 7,
+                            AgeCategoryID = 7,
+                            City = "Новосибирск",
+                            Club = "Алые розы",
+                            Country = "Россия",
+                            FemaleBirthday = "2001.02.19",
+                            FemaleName = "Светлана",
+                            FemalePatronymic = "Ильинична",
+                            FemaleSurname = "Колосова",
+                            MaleBirthday = "2001.02.19",
+                            MaleName = "Станислав",
+                            MalePatronymic = "Львович",
+                            MaleSurname = "Смирнов",
+                            Number = "10",
+                            PerformanceType = "Пара",
+                            Trainer1 = "Симонов К.А.",
+                            Trainer2 = ""
+                        },
+                        new
+                        {
+                            ID = 8,
+                            AgeCategoryID = 7,
+                            City = "Новосибирск",
+                            Club = "Алые розы",
+                            Country = "Россия",
+                            FemaleBirthday = "2001.02.19",
+                            FemaleName = "Анастасия",
+                            FemalePatronymic = "Григорьевна",
+                            FemaleSurname = "Фадеева",
+                            MaleBirthday = "2001.02.19",
+                            MaleName = "Евгений",
+                            MalePatronymic = "Сергеевич",
+                            MaleSurname = "Кузнецов",
+                            Number = "13",
+                            PerformanceType = "Пара",
+                            Trainer1 = "Николаев К.Л.",
+                            Trainer2 = ""
+                        },
+                        new
+                        {
+                            ID = 9,
+                            AgeCategoryID = 7,
+                            City = "Новосибирск",
+                            Club = "Алые розы",
+                            Country = "Россия",
+                            FemaleBirthday = "2001.02.19",
+                            FemaleName = "Мария",
+                            FemalePatronymic = "Марковна",
+                            FemaleSurname = "Синицина",
+                            MaleBirthday = "2001.02.19",
+                            MaleName = "Борис",
+                            MalePatronymic = "Дмитриевич",
+                            MaleSurname = "Карасев",
+                            Number = "6",
+                            PerformanceType = "Пара",
+                            Trainer1 = "Лобанова Д.С.",
+                            Trainer2 = ""
+                        },
+                        new
+                        {
+                            ID = 10,
+                            AgeCategoryID = 7,
+                            City = "Новосибирск",
+                            Club = "Ночные лебеди",
+                            Country = "Россия",
+                            FemaleBirthday = "2001.02.19",
+                            FemaleName = "Анна",
+                            FemalePatronymic = "Дмитриевна",
+                            FemaleSurname = "Захарова",
+                            MaleBirthday = "2001.02.19",
+                            MaleName = "Максим",
+                            MalePatronymic = "Иванович",
+                            MaleSurname = "Кириллов",
+                            Number = "29",
+                            PerformanceType = "Пара",
+                            Trainer1 = "Симонов К.А.",
+                            Trainer2 = ""
+                        },
+                        new
+                        {
+                            ID = 11,
+                            AgeCategoryID = 7,
+                            City = "Новосибирск",
+                            Club = "Ночные лебеди",
+                            Country = "Россия",
+                            FemaleBirthday = "2001.02.19",
+                            FemaleName = "Дарья",
+                            FemalePatronymic = "Дамировна",
+                            FemaleSurname = "Гуляева",
+                            MaleBirthday = "2001.02.19",
+                            MaleName = "Фёдор",
+                            MalePatronymic = "Михайлович",
+                            MaleSurname = "Попов",
+                            Number = "34",
+                            PerformanceType = "Пара",
+                            Trainer1 = "Лобанова Д.С.",
+                            Trainer2 = ""
+                        });
+                });
+
+            modelBuilder.Entity("DanceApp.Model.Data.PairsInGroup", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("GroupID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PairID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("GroupID");
+
+                    b.HasIndex("PairID");
+
+                    b.ToTable("PairsInGroup");
+                });
+
+            modelBuilder.Entity("DanceApp.Model.Data.PairsInPerformance", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DanceID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("GroupID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PairID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PerformanceNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("DanceID");
+
+                    b.HasIndex("GroupID");
+
+                    b.HasIndex("PairID");
+
+                    b.ToTable("PairsInPerformance");
+                });
+
+            modelBuilder.Entity("DanceApp.Model.Data.PairsInTour", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PairID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Select")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TourID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PairID");
+
+                    b.HasIndex("TourID");
+
+                    b.ToTable("PairsInTour");
+                });
+
+            modelBuilder.Entity("DanceApp.Model.Data.PerformancesInDance", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DanceID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DanceInGroupID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PerformanceNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("DanceID");
+
+                    b.HasIndex("DanceInGroupID");
+
+                    b.ToTable("PerformancesInDance");
                 });
 
             modelBuilder.Entity("DanceApp.Model.Data.Tour", b =>
                 {
-                    b.Property<int>("TourId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("TourId");
+                    b.HasKey("ID");
 
                     b.ToTable("Tours");
-
-                    b.HasData(
-                        new
-                        {
-                            TourId = 1,
-                            Name = "Финал"
-                        },
-                        new
-                        {
-                            TourId = 2,
-                            Name = "Полуфинал"
-                        },
-                        new
-                        {
-                            TourId = 3,
-                            Name = "1/4"
-                        },
-                        new
-                        {
-                            TourId = 4,
-                            Name = "1/8"
-                        });
                 });
 
-            modelBuilder.Entity("DanceApp.Model.Data.AgeCategoryInGroup", b =>
+            modelBuilder.Entity("DanceApp.Model.Data.Competition", b =>
                 {
-                    b.HasOne("DanceApp.Model.Data.AgeCategory", "AgeCategory")
-                        .WithMany("AgeCategoryInGroup")
-                        .HasForeignKey("AgeCategoryId")
+                    b.HasOne("DanceApp.Model.Data.Tour", "Tour")
+                        .WithMany("Competition")
+                        .HasForeignKey("TourID");
+
+                    b.Navigation("Tour");
+                });
+
+            modelBuilder.Entity("DanceApp.Model.Data.DancesInGroup", b =>
+                {
+                    b.HasOne("DanceApp.Model.Data.Dance", "Dance")
+                        .WithMany("DancesInGroup")
+                        .HasForeignKey("DanceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DanceApp.Model.Data.Group", "Group")
-                        .WithMany("AgeCategoryInGroup")
-                        .HasForeignKey("GroupId")
+                        .WithMany("DancesInGroup")
+                        .HasForeignKey("GroupID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dance");
+
+                    b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("DanceApp.Model.Data.Group", b =>
+                {
+                    b.HasOne("DanceApp.Model.Data.Tour", "Tour")
+                        .WithMany("Group")
+                        .HasForeignKey("TourID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Tour");
+                });
+
+            modelBuilder.Entity("DanceApp.Model.Data.JudgesInPerformance", b =>
+                {
+                    b.HasOne("DanceApp.Model.Data.Dance", "Dance")
+                        .WithMany("JudgesInPerformance")
+                        .HasForeignKey("DanceID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DanceApp.Model.Data.Group", "Group")
+                        .WithMany("JudgesInPerformance")
+                        .HasForeignKey("GroupID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DanceApp.Model.Data.Judge", "Judge")
+                        .WithMany("JudgesInPerformance")
+                        .HasForeignKey("JudgeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dance");
+
+                    b.Navigation("Group");
+
+                    b.Navigation("Judge");
+                });
+
+            modelBuilder.Entity("DanceApp.Model.Data.Pair", b =>
+                {
+                    b.HasOne("DanceApp.Model.Data.AgeCategory", "AgeCategory")
+                        .WithMany("Pair")
+                        .HasForeignKey("AgeCategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AgeCategory");
-
-                    b.Navigation("Group");
                 });
 
-            modelBuilder.Entity("DanceApp.Model.Data.City", b =>
+            modelBuilder.Entity("DanceApp.Model.Data.PairsInGroup", b =>
                 {
-                    b.HasOne("DanceApp.Model.Data.Country", "Country")
-                        .WithMany("Cities")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Country");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.Club", b =>
-                {
-                    b.HasOne("DanceApp.Model.Data.City", "City")
-                        .WithMany("Club")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DanceApp.Model.Data.Country", "Country")
-                        .WithMany("Club")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("City");
-
-                    b.Navigation("Country");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.Competition", b =>
-                {
-                    b.HasOne("DanceApp.Model.Data.Club", "Club")
-                        .WithMany("Competition")
-                        .HasForeignKey("ClubId");
-
-                    b.Navigation("Club");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.Dancer", b =>
-                {
-                    b.HasOne("DanceApp.Model.Data.Club", "Club")
-                        .WithMany("Dancer")
-                        .HasForeignKey("ClubId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DanceApp.Model.Data.Competition", "Competition")
-                        .WithMany("Dancer")
-                        .HasForeignKey("CompetitionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DanceApp.Model.Data.Gender", "Gender")
-                        .WithMany("Dancer")
-                        .HasForeignKey("GenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("DanceApp.Model.Data.Group", "Group")
-                        .WithMany("Dancer")
-                        .HasForeignKey("GroupId");
+                        .WithMany("PairsInGroup")
+                        .HasForeignKey("GroupID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DanceApp.Model.Data.Pair", "Pair")
-                        .WithMany()
-                        .HasForeignKey("PairId");
-
-                    b.Navigation("Club");
-
-                    b.Navigation("Competition");
-
-                    b.Navigation("Gender");
+                        .WithMany("PairsInGroup")
+                        .HasForeignKey("PairID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Group");
 
                     b.Navigation("Pair");
                 });
 
-            modelBuilder.Entity("DanceApp.Model.Data.Group", b =>
+            modelBuilder.Entity("DanceApp.Model.Data.PairsInPerformance", b =>
                 {
-                    b.HasOne("DanceApp.Model.Data.Competition", "Competition")
-                        .WithMany("Group")
-                        .HasForeignKey("CompetitionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DanceApp.Model.Data.Tour", "Tour")
-                        .WithMany()
-                        .HasForeignKey("TourId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Competition");
-
-                    b.Navigation("Tour");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.Judge", b =>
-                {
-                    b.HasOne("DanceApp.Model.Data.Club", "Club")
-                        .WithMany()
-                        .HasForeignKey("ClubId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DanceApp.Model.Data.Competition", "Competition")
-                        .WithMany("Judge")
-                        .HasForeignKey("CompetitionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DanceApp.Model.Data.Position", "Position")
-                        .WithMany("Judge")
-                        .HasForeignKey("PositionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Club");
-
-                    b.Navigation("Competition");
-
-                    b.Navigation("Position");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.JudgeInGroup", b =>
-                {
-                    b.HasOne("DanceApp.Model.Data.Group", "Group")
-                        .WithMany("JudgeInGroup")
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DanceApp.Model.Data.Judge", "Judge")
-                        .WithMany("JudgeInGroup")
-                        .HasForeignKey("JudgeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Group");
-
-                    b.Navigation("Judge");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.JudgeInPerformance", b =>
-                {
-                    b.HasOne("DanceApp.Model.Data.Judge", "Judge")
-                        .WithMany("JudgeInPerformance")
-                        .HasForeignKey("JudgeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DanceApp.Model.Data.Performance", "Performance")
-                        .WithMany("JudgeInPerformance")
-                        .HasForeignKey("PerformanceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Judge");
-
-                    b.Navigation("Performance");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.Pair", b =>
-                {
-                    b.HasOne("DanceApp.Model.Data.Competition", "Competition")
-                        .WithMany("Pair")
-                        .HasForeignKey("CompetitionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Competition");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.PairInPerformance", b =>
-                {
-                    b.HasOne("DanceApp.Model.Data.Pair", "Pair")
-                        .WithMany("PairInPerformance")
-                        .HasForeignKey("PairId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DanceApp.Model.Data.Performance", "Performance")
-                        .WithMany()
-                        .HasForeignKey("PerformanceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pair");
-
-                    b.Navigation("Performance");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.Performance", b =>
-                {
-                    b.HasOne("DanceApp.Model.Data.Competition", "Competition")
-                        .WithMany("Performance")
-                        .HasForeignKey("CompetitionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("DanceApp.Model.Data.Dance", "Dance")
-                        .WithMany("Performance")
-                        .HasForeignKey("DanceId")
+                        .WithMany("PairsInPerformance")
+                        .HasForeignKey("DanceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DanceApp.Model.Data.Group", "Group")
-                        .WithMany("Performance")
-                        .HasForeignKey("GroupId")
+                        .WithMany("PairsInPerformance")
+                        .HasForeignKey("GroupID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DanceApp.Model.Data.Tour", "Tour")
-                        .WithMany()
-                        .HasForeignKey("TourId")
+                    b.HasOne("DanceApp.Model.Data.Pair", "Pair")
+                        .WithMany("PairsInPerformance")
+                        .HasForeignKey("PairID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Competition");
 
                     b.Navigation("Dance");
 
                     b.Navigation("Group");
 
-                    b.Navigation("Tour");
+                    b.Navigation("Pair");
                 });
 
-            modelBuilder.Entity("DanceApp.Model.Data.ScoreInDance", b =>
+            modelBuilder.Entity("DanceApp.Model.Data.PairsInTour", b =>
                 {
-                    b.HasOne("DanceApp.Model.Data.Competition", "Competition")
-                        .WithMany("ScoreInDances")
-                        .HasForeignKey("CompetitionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DanceApp.Model.Data.Dance", "Dance")
-                        .WithMany("ScoreInDances")
-                        .HasForeignKey("DanceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DanceApp.Model.Data.Judge", "Judge")
-                        .WithMany("ScoreInDances")
-                        .HasForeignKey("JudgeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("DanceApp.Model.Data.Pair", "Pair")
-                        .WithMany("ScoreInDances")
-                        .HasForeignKey("PairId")
+                        .WithMany("PairsInTour")
+                        .HasForeignKey("PairID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DanceApp.Model.Data.Performance", "Performance")
-                        .WithMany("ScoreInDances")
-                        .HasForeignKey("PerformanceId")
+                    b.HasOne("DanceApp.Model.Data.Tour", "Tour")
+                        .WithMany("PairsInTour")
+                        .HasForeignKey("TourID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Competition");
-
-                    b.Navigation("Dance");
-
-                    b.Navigation("Judge");
 
                     b.Navigation("Pair");
 
-                    b.Navigation("Performance");
+                    b.Navigation("Tour");
+                });
+
+            modelBuilder.Entity("DanceApp.Model.Data.PerformancesInDance", b =>
+                {
+                    b.HasOne("DanceApp.Model.Data.Dance", null)
+                        .WithMany("PerformancesInDance")
+                        .HasForeignKey("DanceID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DanceApp.Model.Data.DancesInGroup", "DanceInGroup")
+                        .WithMany()
+                        .HasForeignKey("DanceInGroupID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DanceInGroup");
                 });
 
             modelBuilder.Entity("DanceApp.Model.Data.AgeCategory", b =>
                 {
-                    b.Navigation("AgeCategoryInGroup");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.City", b =>
-                {
-                    b.Navigation("Club");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.Club", b =>
-                {
-                    b.Navigation("Competition");
-
-                    b.Navigation("Dancer");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.Competition", b =>
-                {
-                    b.Navigation("Dancer");
-
-                    b.Navigation("Group");
-
-                    b.Navigation("Judge");
-
                     b.Navigation("Pair");
-
-                    b.Navigation("Performance");
-
-                    b.Navigation("ScoreInDances");
-                });
-
-            modelBuilder.Entity("DanceApp.Model.Data.Country", b =>
-                {
-                    b.Navigation("Cities");
-
-                    b.Navigation("Club");
                 });
 
             modelBuilder.Entity("DanceApp.Model.Data.Dance", b =>
                 {
-                    b.Navigation("Performance");
+                    b.Navigation("DancesInGroup");
 
-                    b.Navigation("ScoreInDances");
-                });
+                    b.Navigation("JudgesInPerformance");
 
-            modelBuilder.Entity("DanceApp.Model.Data.Gender", b =>
-                {
-                    b.Navigation("Dancer");
+                    b.Navigation("PairsInPerformance");
+
+                    b.Navigation("PerformancesInDance");
                 });
 
             modelBuilder.Entity("DanceApp.Model.Data.Group", b =>
                 {
-                    b.Navigation("AgeCategoryInGroup");
+                    b.Navigation("DancesInGroup");
 
-                    b.Navigation("Dancer");
+                    b.Navigation("JudgesInPerformance");
 
-                    b.Navigation("JudgeInGroup");
+                    b.Navigation("PairsInGroup");
 
-                    b.Navigation("Performance");
+                    b.Navigation("PairsInPerformance");
                 });
 
             modelBuilder.Entity("DanceApp.Model.Data.Judge", b =>
                 {
-                    b.Navigation("JudgeInGroup");
-
-                    b.Navigation("JudgeInPerformance");
-
-                    b.Navigation("ScoreInDances");
+                    b.Navigation("JudgesInPerformance");
                 });
 
             modelBuilder.Entity("DanceApp.Model.Data.Pair", b =>
                 {
-                    b.Navigation("PairInPerformance");
+                    b.Navigation("PairsInGroup");
 
-                    b.Navigation("ScoreInDances");
+                    b.Navigation("PairsInPerformance");
+
+                    b.Navigation("PairsInTour");
                 });
 
-            modelBuilder.Entity("DanceApp.Model.Data.Performance", b =>
+            modelBuilder.Entity("DanceApp.Model.Data.Tour", b =>
                 {
-                    b.Navigation("JudgeInPerformance");
+                    b.Navigation("Competition");
 
-                    b.Navigation("ScoreInDances");
-                });
+                    b.Navigation("Group");
 
-            modelBuilder.Entity("DanceApp.Model.Data.Position", b =>
-                {
-                    b.Navigation("Judge");
+                    b.Navigation("PairsInTour");
                 });
 #pragma warning restore 612, 618
         }

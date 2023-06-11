@@ -13,6 +13,7 @@ namespace DanceApp.Model.Data
         [Key]
         public int ID { get; set; }
         public string? Title { get; set; }
+        public string? Date { get; set; }
         public string? Rank { get; set; }
         public string? Manager { get; set; }
         public string? City { get; set; }

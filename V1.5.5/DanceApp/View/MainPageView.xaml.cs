@@ -36,7 +36,7 @@ namespace DanceApp.View
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
+            var competition = db.Competitions.Find(1);
             switch (button.Name)
             {
                 case "CompetitionBtn":
@@ -49,12 +49,20 @@ namespace DanceApp.View
                     break;
                 case "PairsBtn":
                     if (!(Frame.Content is PairsView))
-                        Frame.Content = new PairsView();
+                    {
+                        if (competition.Date != null && competition.Date != "")
+                            Frame.Content = new PairsView();
+                        else
+                        {
+                            MessageBoxView messageBox = new MessageBoxView("Заполните данные соревнования!", "Уведомление", 1);
+                            messageBox.ShowDialog();
+                        } 
+                    }
                     break;
                 case "GroupsBtn":
                     if (!(Frame.Content is GroupsView))
                     {
-                        if (data.RegistrationStatus == true)
+                        if (competition.RegistrationStatus == true)
                         {
                             if (Next() == true)
                                 Frame.Content = new GroupsView();
@@ -90,7 +98,7 @@ namespace DanceApp.View
 
                 if (window.ShowDialog() == true)
                 {
-                    var competition = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
+                    var competition = db.Competitions.Find(1);
                     competition.RegistrationStatus = false;
                     try { db.SaveChanges(); }
                     catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }

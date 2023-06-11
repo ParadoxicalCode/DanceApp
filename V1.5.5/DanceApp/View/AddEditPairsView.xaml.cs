@@ -109,7 +109,8 @@ namespace DanceApp.View
                 return;
             }
 
-            if (TrimAndCheckNumber(ref number) == false && number != "")
+            var x = new GlobalClass();
+            if (x.TrimAndCheckNumber(ref number) == false && number != "")
             {
                 MessageBox.Show("В поле номер обязательно должно быть число!");
                 return;
@@ -288,8 +289,11 @@ namespace DanceApp.View
 
         public int Age(DateTime partner)
         {
-            var age = GlobalClass.competitionDate.Year - partner.Year;
-            if (GlobalClass.competitionDate.DayOfYear > partner.DayOfYear)
+            var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
+            DateTime dateTime = DateTime.ParseExact(data.Date, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+
+            var age = dateTime.Year - partner.Year;
+            if (dateTime.DayOfYear > partner.DayOfYear)
                 age--;
 
             return age;
@@ -367,16 +371,6 @@ namespace DanceApp.View
                 Trainer1TB.Text = null;
                 Trainer2TB.Text = null;
             }
-        }
-
-        public bool TrimAndCheckNumber(ref string str)
-        {
-            str = str.Trim();
-            int number;
-            if (int.TryParse(str, out number))
-                return true;
-            else
-                return false;
         }
     }
 }

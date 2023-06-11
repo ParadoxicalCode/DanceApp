@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -18,6 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static DanceApp.View.PairsView;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace DanceApp.View
@@ -46,10 +48,11 @@ namespace DanceApp.View
             SiteCapacityCB.ItemsSource = SiteCapacityCBItemsList;
             CBSwitch = true;
 
-            var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
+            var data = db.Competitions.Find(1);
 
             if (data.Rank != "")
             {
+                DateDP.SelectedDate = DateTime.ParseExact(data.Date, "yyyy.MM.dd", CultureInfo.InvariantCulture);
                 RankTB.Text = data.Rank;
                 ManagerTB.Text = data.Manager;
                 CityTB.Text = data.City;
@@ -73,14 +76,16 @@ namespace DanceApp.View
             if (x.Delete() == true)
             {
                 if (RankTB.Text == "" || ManagerTB.Text == "" || CityTB.Text == "" || MainJudgeTB.Text == "" || 
-                    CountingCommissionTB.Text == "" || SiteCapacityCB.SelectedItem == null || FractionCB.SelectedItem == null)
+                    CountingCommissionTB.Text == "" || SiteCapacityCB.SelectedItem == null || 
+                    FractionCB.SelectedItem == null || DateDP.SelectedDate == null)
                 {
                     MessageBox.Show("Не все поля заполнены!");
                     return;
                 }
 
-                var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
+                var data = db.Competitions.Find(1);
 
+                data.Date = DateDP.SelectedDate.Value.ToString("yyyy.MM.dd");
                 data.Rank = RankTB.Text;
                 data.Manager = ManagerTB.Text;
                 data.City = CityTB.Text;
@@ -92,7 +97,6 @@ namespace DanceApp.View
 
                 var fraction = FractionCB.SelectedItem as CBItems;
                 data.Fraction = fraction.Element;
-
                 try
                 {
                     db.SaveChanges();
