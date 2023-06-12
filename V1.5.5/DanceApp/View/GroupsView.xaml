@@ -113,7 +113,7 @@
                 <TextBlock Text="Пары в заходе" FontSize="16" VerticalAlignment="Center"/>
 
                 <DataGrid x:Name="PairsDG" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}" CellStyle="{StaticResource DGCell}"
-                      Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="40" CanUserReorderColumns="False" CanUserSortColumns="False">
+                      Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="40" CanUserReorderColumns="False" CanUserSortColumns="False" VirtualizingStackPanel.IsVirtualizing="False">
                     <DataGrid.Resources>
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>

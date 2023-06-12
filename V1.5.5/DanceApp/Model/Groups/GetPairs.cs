@@ -11,13 +11,13 @@ namespace DanceApp.Model.Groups
     public class GetPairs
     {
         public DataBaseContext db = GlobalClass.db;
-        public List<Pair> Free()
+        public List<Pair> Free(int tourID)
         {
             List<Pair> freePairs = new List<Pair>();
 
             // Получаем ID нераспределённых пар
             var query = db.PairsInTour
-                .Where(x => x.Select == false)
+                .Where(x => x.TourID == tourID && x.Select == false)
                 .Select(x => x.PairID)
                 .ToList();
 

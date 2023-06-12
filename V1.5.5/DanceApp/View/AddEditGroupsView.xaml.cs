@@ -24,6 +24,7 @@ using System.Windows.Controls.Primitives;
 using DanceApp.Model.Skating;
 using static DanceApp.View.AddEditGroupsView;
 using System.Diagnostics;
+using DanceApp.Model.Groups;
 
 #nullable disable
 namespace DanceApp.View
@@ -38,21 +39,23 @@ namespace DanceApp.View
         public List<CBItems> performanceTypeList = new List<CBItems>();
         public List<CBItems> sportsDisciplineList = new List<CBItems>();
 
-        public List<Model.Groups.ClassDances> selectedDances = new List<Model.Groups.ClassDances>();
-        public List<Model.Groups.ClassPairs> selectedPairs = new List<Model.Groups.ClassPairs>();
+        public List<ClassDances> selectedDances = new List<ClassDances>();
+        public List<ClassPairs> selectedPairs = new List<ClassPairs>();
         public List<Pair> freePairs = new List<Pair>();
 
         private bool CBSwitch = true;
-        public int ID;
-        public AddEditGroupsView(int id)
+        public int GroupID;
+        public int TourID;
+        public AddEditGroupsView(int tourID, int groupID)
         {
             InitializeComponent();
             AddItemsToComboBox();
 
-            freePairs = new Model.Groups.GetPairs().Free();
+            freePairs = new GetPairs().Free(TourID);
 
-            ID = id;
-            if (id == 0)
+            TourID = tourID;
+            GroupID = groupID;
+            if (GroupID == 0)
             {
                 DefaultValues();
             }  
@@ -69,20 +72,44 @@ namespace DanceApp.View
 
 
 
+        private void DefaultValues()
+        {
+            NumberTB.Text = "";
+            CBSwitch = false;
+            Category1CB.ItemsSource = null;
+            Category2CB.ItemsSource = null;
+            CBSwitch = true;
+
+            selectedDances.Clear();
+            selectedPairs.Clear();
+            freePairs = new GetPairs().Free(TourID);
+
+            SportsDisciplineCB.SelectedIndex = 0;
+            DancesDG.ItemsSource = new GetDances().Add(0);
+
+            PerformanceTypeCB.SelectedIndex = 0;
+            GetCategory1();
+
+            Category1CB.ItemsSource = new GetCategories().Get1(GroupID, "Пара", freePairs);
+
+            if (Category1CB.Items.Count >= 1)
+                Category1CB.SelectedIndex = 0;
+        }
+
         private void LoadData()
         {
             // Загрузка данных в выпадающие списки
-            var group = db.Groups.Find(ID);
+            var group = db.Groups.Find(GroupID);
 
             SportsDisciplineCB.SelectedValue = group.SportsDiscipline;
             PerformanceTypeCB.SelectedValue = group.PerformanceType;
 
-            Category1CB.ItemsSource = new Model.Groups.GetCategories().Get1(group.ID, group.PerformanceType, freePairs);
+            Category1CB.ItemsSource = new GetCategories().Get1(group.ID, group.PerformanceType, freePairs);
             Category1CB.SelectedValue = group.AgeCategory1;
 
             if (group.AgeCategory2 != null && group.AgeCategory2 != "")
             {
-                Category2CB.ItemsSource = new Model.Groups.GetCategories().Get2(group.PerformanceType, group.AgeCategory1);
+                Category2CB.ItemsSource = new GetCategories().Get2(group.PerformanceType, group.AgeCategory1);
                 Category2CB.SelectedValue = group.AgeCategory2;
             }
 
@@ -96,10 +123,10 @@ namespace DanceApp.View
             else
                 ageCategory2 = 0;
 
-            DancesDG.ItemsSource = new Model.Groups.GetDances().Load(group.ID);
+            DancesDG.ItemsSource = new GetDances().Load(group.ID);
             PairsDG.ItemsSource = null;
             PairsDG.Items.Clear();
-            PairsDG.ItemsSource = new Model.Groups.GetPairs().Load(group.ID, performanceType, ageCategory1, ageCategory2);
+            PairsDG.ItemsSource = new GetPairs().Load(group.ID, performanceType, ageCategory1, ageCategory2);
         }
 
         private void AddItemsToComboBox()
@@ -113,26 +140,21 @@ namespace DanceApp.View
             PerformanceTypeCB.ItemsSource = performanceTypeList;
         }
 
-        private void DefaultValues()
+        private void GetCategory1()
         {
-            NumberTB.Text = "";
             CBSwitch = false;
             Category1CB.ItemsSource = null;
             Category2CB.ItemsSource = null;
+            PairsDG.ItemsSource = null;
             CBSwitch = true;
 
-            SportsDisciplineCB.SelectedIndex = 0;
-            DancesDG.ItemsSource = new Model.Groups.GetDances().Add(0);
+            var performanceType = (PerformanceTypeCB.SelectedItem as CBItems).Element;
 
-            PerformanceTypeCB.SelectedIndex = 0;
-
-            Category1CB.ItemsSource = new Model.Groups.GetCategories().Get1(0, "Пара", freePairs);
+            Category1CB.ItemsSource = new GetCategories().Get1(GroupID, performanceType, freePairs);
 
             if (Category1CB.Items.Count >= 1)
                 Category1CB.SelectedIndex = 0;
         }
-
-        
 
 
 
@@ -166,9 +188,12 @@ namespace DanceApp.View
             else
                 ageCategory2 = "";
 
-            new Model.Groups.SaveData().Save(ID, number, sportsDiscipline, performanceType, ageCategory1, ageCategory2, selectedDances, selectedPairs);
+            new SaveData().Save(TourID, GroupID, number, sportsDiscipline, performanceType, ageCategory1, ageCategory2, selectedDances, selectedPairs);
 
-            if (ID == 0)
+            // Распределение пар по заходам
+            new PairsToPerformances().Distribution(selectedPairs);
+
+            if (GroupID == 0)
                 DefaultValues();
             else
                 this.Close();
@@ -186,24 +211,13 @@ namespace DanceApp.View
         // Поиск танцев с выбранной спортивной дисциплиной
         private void SportsDisciplineCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DancesDG.ItemsSource = new Model.Groups.GetDances().Add(SportsDisciplineCB.SelectedIndex);
+            DancesDG.ItemsSource = new GetDances().Add(SportsDisciplineCB.SelectedIndex);
         }
 
         // Поиск всех уникальных возрастных категорий с выбранным типом выступления
         private void PerformanceTypeCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CBSwitch = false;
-            Category1CB.ItemsSource = null;
-            Category2CB.ItemsSource = null;
-            PairsDG.ItemsSource = null;
-            CBSwitch = true;
-
-            var performanceType = (PerformanceTypeCB.SelectedItem as CBItems).Element;
-
-            Category1CB.ItemsSource = new Model.Groups.GetCategories().Get1(0, performanceType, freePairs);
-
-            if (Category1CB.Items.Count >= 1)
-                Category1CB.SelectedIndex = 0;
+            GetCategory1();
         }
 
         // Поиск всех возрастных категорий, которые можно объединить с выбранной. А также поиск пар, подходящих этой группе
@@ -216,9 +230,9 @@ namespace DanceApp.View
                 var performanceType = (PerformanceTypeCB.SelectedItem as CBItems).Element;
                 var ageCategory1 = Category1CB.SelectedItem as AgeCategory;
 
-                Category2CB.ItemsSource = new Model.Groups.GetCategories().Get2(performanceType, ageCategory1.Title);
+                Category2CB.ItemsSource = new GetCategories().Get2(performanceType, ageCategory1.Title);
 
-                PairsDG.ItemsSource = new Model.Groups.GetPairs().Get(performanceType, ageCategory1.ID, 0);
+                PairsDG.ItemsSource = new GetPairs().Get(performanceType, ageCategory1.ID, 0);
             }
         }
 
@@ -230,7 +244,7 @@ namespace DanceApp.View
                 var ageCategory1 = (Category2CB.SelectedItem as AgeCategory).ID;
                 var ageCategory2 = (Category2CB.SelectedItem as AgeCategory).ID;
 
-                PairsDG.ItemsSource = new Model.Groups.GetPairs().Get(performanceType, ageCategory1, ageCategory2);
+                PairsDG.ItemsSource = new GetPairs().Get(performanceType, ageCategory1, ageCategory2);
             }
         }
 
@@ -240,8 +254,8 @@ namespace DanceApp.View
 
         private void DancesChB_Checked(object sender, RoutedEventArgs e)
         {
-            Model.Groups.ClassDances row = (Model.Groups.ClassDances)((CheckBox)sender).DataContext;
-            selectedDances.Add(new Model.Groups.ClassDances
+            ClassDances row = (ClassDances)((CheckBox)sender).DataContext;
+            selectedDances.Add(new ClassDances
             {
                 ID = row.ID,
                 Title = row.Title,
@@ -252,15 +266,15 @@ namespace DanceApp.View
 
         private void DancesChB_Unchecked(object sender, RoutedEventArgs e)
         {
-            Model.Groups.ClassDances row = (Model.Groups.ClassDances)((CheckBox)sender).DataContext;
+            ClassDances row = (ClassDances)((CheckBox)sender).DataContext;
             var delete = selectedDances.Where(u => u.ID == row.ID).FirstOrDefault();
             selectedDances.Remove(delete);
         }
 
         private void PairsChB_Checked(object sender, RoutedEventArgs e)
         {
-            Model.Groups.ClassPairs row = (Model.Groups.ClassPairs)((CheckBox)sender).DataContext;
-            selectedPairs.Add(new Model.Groups.ClassPairs
+            ClassPairs row = (ClassPairs)((CheckBox)sender).DataContext;
+            selectedPairs.Add(new ClassPairs
             {
                 ID = row.ID,
                 Number = row.Number,
@@ -278,7 +292,7 @@ namespace DanceApp.View
 
         private void PairsChB_Unchecked(object sender, RoutedEventArgs e)
         {
-            Model.Groups.ClassPairs row = (Model.Groups.ClassPairs)((CheckBox)sender).DataContext;
+            ClassPairs row = (ClassPairs)((CheckBox)sender).DataContext;
             var delete = selectedPairs.Where(u => u.ID == row.ID).FirstOrDefault();
             selectedPairs.Remove(delete);
         }

@@ -15,50 +15,63 @@ namespace DanceApp.Model.Groups
     public class SaveData
     {
         public DataBaseContext db = GlobalClass.db;
-        public void Save(int groupID, string number, string sportsDiscipline, string performanceType, string ageCategory1, string ageCategory2, List<ClassDances> selectedDances, List<ClassPairs> selectedPairs)
+        private int TourID;
+        private string SportsDiscipline;
+        private string PerformanceType;
+        private string AgeCategory1;
+        private string AgeCategory2;
+        List<ClassDances> SelectedDances;
+        List<ClassPairs> SelectedPairs;
+        public void Save(int tourID, int groupID, string number, string sportsDiscipline, string performanceType, string ageCategory1, string ageCategory2, List<ClassDances> selectedDances, List<ClassPairs> selectedPairs)
         {
+            TourID = tourID;
+            SportsDiscipline = sportsDiscipline;
+            PerformanceType = performanceType;
+            AgeCategory1 = ageCategory1;
+            AgeCategory2 = ageCategory2;
+            SelectedDances = selectedDances;
+            SelectedPairs = selectedPairs;
+
             if (groupID == 0)
             {
-                int newGroupID = AddGroup(number, sportsDiscipline, performanceType, ageCategory1, ageCategory2, selectedDances, selectedPairs);
-                AddDances(newGroupID, sportsDiscipline, selectedDances);
-                AddPairs(newGroupID, selectedPairs);
+                int newGroupID = AddGroup(number);
+                AddDances(newGroupID);
+                AddPairs(newGroupID);
             }
             else
             {
-                EditGroup(groupID, number, sportsDiscipline, performanceType, ageCategory1, ageCategory2, selectedDances, selectedPairs);
-                AddDances(groupID, sportsDiscipline, selectedDances);
-                AddPairs(groupID, selectedPairs);
+                EditGroup(groupID, number);
+                AddDances(groupID);
+                AddPairs(groupID);
             } 
         }
 
-        public int AddGroup(string number, string sportsDiscipline, string performanceType, string ageCategory1, string ageCategory2, List<ClassDances> selectedDances, List<ClassPairs> selectedPairs)
+        public int AddGroup(string number)
         {
-            var data = db.Competitions.Find(1);
-
-            var title = ageCategory1 + ageCategory2;
-            if (performanceType == "Соло")
-                title += " (" + performanceType + ")";
+            var title = AgeCategory1 + AgeCategory2;
+            if (PerformanceType == "Соло")
+                title += " (" + PerformanceType + ")";
 
             if (Validation(number, title) == true)
             {
                 string program;
-                if (selectedDances.Count == 1)
+                if (SelectedDances.Count == 1)
                     program = "1 танец";
-                else if (selectedDances.Count < 5)
-                    program = selectedDances.Count.ToString() + " танца";
+                else if (SelectedDances.Count < 5)
+                    program = SelectedDances.Count.ToString() + " танца";
                 else
                     program = "5 танцев";
 
                 var group = new Data.Group();
-                group.TourID = (int)data.TourID;
+                group.TourID = TourID;
                 group.Number = number;
                 group.Title = title;
-                group.AgeCategory1 = ageCategory1;
-                group.AgeCategory2 = ageCategory2;
-                group.PerformanceType = performanceType;
+                group.AgeCategory1 = AgeCategory1;
+                group.AgeCategory2 = AgeCategory2;
+                group.PerformanceType = PerformanceType;
                 group.Program = program;
-                group.SportsDiscipline = sportsDiscipline;
-                group.PairsCount = selectedPairs.Count;
+                group.SportsDiscipline = SportsDiscipline;
+                group.PairsCount = SelectedPairs.Count;
 
                 db.Groups.Add(group);
                 try
@@ -68,11 +81,19 @@ namespace DanceApp.Model.Groups
                 }
                 catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
             }
-            var groupID = db.Groups.Where(x => x.TourID == data.TourID && x.Number == number).FirstOrDefault().ID;
+            int groupID;
+            if (AgeCategory2 == null || AgeCategory2 == "")
+            {
+                groupID = db.Groups.Where(x => x.TourID == TourID && x.PerformanceType == PerformanceType && x.AgeCategory1 == AgeCategory1).FirstOrDefault().ID;
+            }
+            else
+            {
+                groupID = db.Groups.Where(x => x.TourID == TourID && x.PerformanceType == PerformanceType && x.AgeCategory1 == AgeCategory1 && x.AgeCategory2 == AgeCategory2).FirstOrDefault().ID;
+            }
             return groupID;
         }
 
-        public void EditGroup(int groupID, string number, string sportsDiscipline, string performanceType, string ageCategory1, string ageCategory2, List<ClassDances> selectedDances, List<ClassPairs> selectedPairs)
+        public void EditGroup(int groupID, string number)
         {
             // Если изменяем данные группы, то надо проверить, не изменился ли номер или параметры группы (тип выступления, возрастные категории)
             // При изменении параметров группы или номера надо проверить 
@@ -80,9 +101,9 @@ namespace DanceApp.Model.Groups
             var competition = db.Competitions.Find(1);
             var group = db.Groups.Find(groupID);
 
-            var title = ageCategory1 + ageCategory2;
-            if (performanceType == "Соло")
-                title += " (" + performanceType + ")";
+            var title = AgeCategory1 + AgeCategory2;
+            if (PerformanceType == "Соло")
+                title += " (" + PerformanceType + ")";
 
             if (group.Title != title)
             {
@@ -90,28 +111,30 @@ namespace DanceApp.Model.Groups
                 return;
             }
 
-            if (group.Number != number)
+            var data = db.Competitions.Find(1);
+            bool checkIsExist = db.Groups.Any(x => x.TourID == (int)data.TourID && x.Number == number);
+            if (group.Number != number && checkIsExist == true)
             {
                 MessageBox.Show("Группа с таким номером уже есть!");
                 return;
             }
 
             string program;
-            if (selectedDances.Count == 1)
+            if (SelectedDances.Count == 1)
                 program = "1 танец";
-            else if (selectedDances.Count < 5)
-                program = selectedDances.Count.ToString() + " танца";
+            else if (SelectedDances.Count < 5)
+                program = SelectedDances.Count.ToString() + " танца";
             else
                 program = "5 танцев";
 
             group.Number = number;
             group.Title = title;
-            group.AgeCategory1 = ageCategory1;
-            group.AgeCategory2 = ageCategory2;
-            group.PerformanceType = performanceType;
+            group.AgeCategory1 = AgeCategory1;
+            group.AgeCategory2 = AgeCategory2;
+            group.PerformanceType = PerformanceType;
             group.Program = program;
-            group.SportsDiscipline = sportsDiscipline;
-            group.PairsCount = selectedPairs.Count;
+            group.SportsDiscipline = SportsDiscipline;
+            group.PairsCount = SelectedPairs.Count;
 
             try
             {
@@ -121,7 +144,7 @@ namespace DanceApp.Model.Groups
             catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
         }
 
-        public void AddDances(int groupID, string sportsDiscipline, List<ClassDances> selectedDances)
+        public void AddDances(int groupID)
         {
             var data = db.Groups.Find(groupID);
 
@@ -130,9 +153,9 @@ namespace DanceApp.Model.Groups
             db.DancesInGroup.RemoveRange(deleteDances);
 
             // Сохранение выбранных танцев в базу данных
-            var selectDance = selectedDances.Select(x => x.ID).ToList();
+            var selectDance = SelectedDances.Select(x => x.ID).ToList();
 
-            var allDances = db.Dances.Where(u => u.SportsDiscipline == sportsDiscipline).ToList();
+            var allDances = db.Dances.Where(u => u.SportsDiscipline == SportsDiscipline).ToList();
             foreach (var d in allDances)
             {
                 bool select = false;
@@ -152,25 +175,33 @@ namespace DanceApp.Model.Groups
             }
         }
 
-        public void AddPairs(int groupID, List<ClassPairs> selectedPairs)
+        public void AddPairs(int groupID)
         {
-            var data = db.Competitions.Find(1);
-
             // Обнуление всех пар из таблицы PairsInTour, которые присутствуют в таблице PairsInGroup
-            var pastSelectPairs = db.PairsInTour.Where(x => x.TourID == data.TourID).ToList();
-            foreach (var p in pastSelectPairs)
+            var pairsInTour = db.PairsInTour.Where(x => x.TourID == TourID).ToList();
+            var deletePairsInGroup = db.PairsInGroup.Where(x => x.GroupID == groupID).ToList();
+
+            foreach (var p in pairsInTour)
             {
-                p.Select = false;
-                UpdateDataBase();
+                for (int k = 0; deletePairsInGroup.Count > 0 && k < deletePairsInGroup.Count; k++)
+                {
+                    if (p.PairID == deletePairsInGroup[k].PairID)
+                    {
+                        p.Select = false;
+                        UpdateDataBase();
+                    }
+                }
             }
 
             // Удаление данных о выбранных парах в группе
-            var deletePairsInGroup = db.PairsInGroup.Where(x => x.GroupID == groupID).ToList();
-            db.PairsInGroup.RemoveRange(deletePairsInGroup);
-            UpdateDataBase();
+            if (deletePairsInGroup.Count > 0)
+            {
+                db.PairsInGroup.RemoveRange(deletePairsInGroup);
+                UpdateDataBase();
+            }
 
             // Сохранение выбранных пар в таблицу PairsInGroup
-            foreach (var p in selectedPairs)
+            foreach (var p in SelectedPairs)
             {
                 var pairsInGroup = new PairsInGroup();
 
@@ -183,9 +214,9 @@ namespace DanceApp.Model.Groups
 
             // Отмечаем выбранные пары в таблице PairsInTour
             int i = 0;
-            foreach (var p in selectedPairs)
+            foreach (var p in SelectedPairs)
             {
-                var pair = db.PairsInTour.Where(u => u.TourID == (int)data.TourID && u.PairID == selectedPairs[i].ID).FirstOrDefault();
+                var pair = db.PairsInTour.Where(u => u.TourID == TourID && u.PairID == SelectedPairs[i].ID).FirstOrDefault();
                 pair.Select = true;
                 UpdateDataBase();
                 i++;

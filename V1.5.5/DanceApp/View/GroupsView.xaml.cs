@@ -32,6 +32,7 @@ namespace DanceApp.View
         private List<Group> selectedGroups = new List<Group>();
         private List<Items> toolTipItems = new List<Items>();
         //private int selectedGroupsCount = 0;
+        private int TourID;
         private bool CBSwitch;
         public GroupsView()
         {
@@ -39,8 +40,9 @@ namespace DanceApp.View
             TourCB.ItemsSource = db.Tours.ToList();
             JudgesDG.ItemsSource = db.Judges.ToList();
 
-            var ID = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
+            var ID = db.Competitions.Find(1);
             var tour = db.Tours.Where(u => u.ID == ID.TourID).FirstOrDefault();
+            TourID = tour.ID;
             TourCB.SelectedValue = tour.Title;
             GetGroups();
         }
@@ -52,11 +54,9 @@ namespace DanceApp.View
 
         private void GetGroups()
         {
-            var tour = db.Tours.Where(u => u.Title == (TourCB.SelectedItem as Tour).Title).FirstOrDefault();
-
-            if (db.Groups.Where(u => u.TourID == tour.ID).ToList() != null)
+            if (db.Groups.Where(u => u.TourID == TourID).ToList() != null)
             {
-                GroupsDG.ItemsSource = db.Groups.Where(u => u.TourID == tour.ID).ToList();
+                GroupsDG.ItemsSource = db.Groups.Where(u => u.TourID == TourID).ToList();
             }
             else
                 GroupsDG.ItemsSource = null;
@@ -92,7 +92,7 @@ namespace DanceApp.View
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            AddEditGroupsView x = new AddEditGroupsView(0);
+            AddEditGroupsView x = new AddEditGroupsView(TourID, 0);
             x.ShowDialog(); 
 
             GetGroups();
@@ -101,7 +101,7 @@ namespace DanceApp.View
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             int groupID = (int)((Button)sender).CommandParameter;
-            AddEditGroupsView x = new AddEditGroupsView(groupID);
+            AddEditGroupsView x = new AddEditGroupsView(TourID, groupID);
             x.ShowDialog(); 
 
             GetGroups();
@@ -113,10 +113,9 @@ namespace DanceApp.View
             if (MessageBox.Show("Удалить запись?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 int groupID = (int)((Button)sender).CommandParameter;
-                var tourID = (TourCB.SelectedItem as Tour).ID;
 
                 // Делаем пары нараспределёнными
-                var pairsInTour = db.PairsInTour.Where(x => x.TourID == tourID).ToList();
+                var pairsInTour = db.PairsInTour.Where(x => x.TourID == TourID).ToList();
                 foreach (var p in pairsInTour)
                 {
                     p.Select = false;
@@ -157,6 +156,7 @@ namespace DanceApp.View
             PairsDG.ItemsSource = null;
             GetGroups();
             CBSwitch = true;
+            TourID = (TourCB.SelectedItem as Tour).ID;
         }
 
         private void GroupsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -165,9 +165,11 @@ namespace DanceApp.View
             {
                 int selectedGroup = (GroupsDG.SelectedItem as Group).ID;
                 GetPairs(selectedGroup);
-            }
 
-            // Нужно в ComboBox вывести танцы выбранной группы
+                // Нужно в ComboBox вывести танцы выбранной группы
+                // Для этого надо найти танцы и сделать привязку
+                // А для этого надо сделать распределение по заходам
+            }
         }
 
         private void DanceCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
