@@ -135,7 +135,7 @@
                 <Image Source="/Images/Back.png" VerticalAlignment="Center" Width="20" Height="20"/>
             </Button>
 
-            <Label x:Name="NumberOfRecords" FontSize="14" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Width="60" VerticalContentAlignment="Center" VerticalAlignment="Bottom"/>
+            <Label x:Name="NumberOfRecords" FontSize="14" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Width="66" VerticalContentAlignment="Center" VerticalAlignment="Bottom"/>
 
             <Button Name="NextBtn" Style="{StaticResource BaseButton}" Width="30" Click="PaginationButton_Click" Margin="8 0 0 0">
                 <Image Source="/Images/Next.png" VerticalAlignment="Center" Width="20" Height="20"/>

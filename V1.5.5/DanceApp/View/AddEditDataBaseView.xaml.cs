@@ -65,7 +65,7 @@ namespace DanceApp.View
 
                             Connect();
 
-                            var data = GlobalClass.db.Competitions.Find(1);
+                            var data = GlobalClass.db.Competition.Find(1);
                             data.Title = TitleTB.Text;
                             try
                             {

@@ -27,7 +27,7 @@ namespace DanceApp.View
 
             if (ID != 0)
             {
-                var data = db.Pairs.Find(ID);
+                var data = db.Pair.Find(ID);
 
                 // Когда редактируем надо чтобы radiobutton соответствовал данным в БД
                 if (data.MaleName != "" && data.FemaleName == "")
@@ -37,7 +37,7 @@ namespace DanceApp.View
                 else if (data.FemaleName != "" && data.MaleName == "")
                     RB3.IsChecked = true;
 
-                var ageCategory = db.AgeCategories.Where(u => u.ID == data.AgeCategoryID).FirstOrDefault();
+                var ageCategory = db.AgeCategory.Where(u => u.ID == data.AgeCategoryID).FirstOrDefault();
                 AgeCategoryText.Text = ageCategory.Title;
                 NumberTB.Text = data.Number;
 
@@ -98,9 +98,9 @@ namespace DanceApp.View
             }
 
             string number = NumberTB.Text;
-            bool checkIsExist = db.Pairs.Any(x => x.Number == number);
-            var data = db.Pairs.Where(u => u.ID == ID).FirstOrDefault();
-            int identical = db.Pairs.Count(x => x.Number == number);
+            bool checkIsExist = db.Pair.Any(x => x.Number == number);
+            var data = db.Pair.Where(u => u.ID == ID).FirstOrDefault();
+            int identical = db.Pair.Count(x => x.Number == number);
 
             // Валидация номера
             if (checkIsExist == true && number != "" && identical > 1)
@@ -124,7 +124,7 @@ namespace DanceApp.View
 
             if (ID == 0)
             {
-                if (db.Pairs.Count() == 60)
+                if (db.Pair.Count() == 60)
                 {
                     MessageBox.Show("Нельзя добавить более 60 пар!");
                     return;
@@ -176,7 +176,7 @@ namespace DanceApp.View
                 pair.Trainer2 = Trainer2TB.Text;
                 pair.AgeCategoryID = FindAgeCategory(pair.MaleBirthday, pair.FemaleBirthday);
 
-                db.Pairs.Add(pair);
+                db.Pair.Add(pair);
                 try
                 {
                     db.SaveChanges();
@@ -289,11 +289,11 @@ namespace DanceApp.View
 
         public int Age(DateTime partner)
         {
-            var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
-            DateTime dateTime = DateTime.ParseExact(data.Date, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+            var data = db.Competition.Where(u => u.ID == 1).FirstOrDefault();
+            DateTime date = DateTime.ParseExact(data.Date, "yyyy.MM.dd", CultureInfo.InvariantCulture);
 
-            var age = dateTime.Year - partner.Year;
-            if (dateTime.DayOfYear > partner.DayOfYear)
+            var age = date.Year - partner.Year;
+            if (date.DayOfYear > partner.DayOfYear)
                 age--;
 
             return age;

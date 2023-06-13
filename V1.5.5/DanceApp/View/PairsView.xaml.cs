@@ -70,8 +70,8 @@ namespace DanceApp.View
                 if (MessageBox.Show("Удалить запись?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     int ID = (int)((Button)sender).CommandParameter;
-                    var delete = db.Pairs.Where(u => u.ID.Equals(ID)).FirstOrDefault();
-                    db.Pairs.Remove(delete);
+                    var delete = db.Pair.Where(u => u.ID.Equals(ID)).FirstOrDefault();
+                    db.Pair.Remove(delete);
                     try
                     {
                         db.SaveChanges();
@@ -129,11 +129,11 @@ namespace DanceApp.View
 
         private void PagesCount(bool add)
         {
-            var pair2 = db.Pairs;
+            var pair2 = db.Pair;
             pairs.Clear();
             foreach (var p in pair2)
             {
-                var ageCategory = db.AgeCategories.Where(u => u.ID == p.AgeCategoryID).FirstOrDefault();
+                var ageCategory = db.AgeCategory.Where(u => u.ID == p.AgeCategoryID).FirstOrDefault();
                 pairs.Add(new Pair2 
                 {
                     ID = p.ID,

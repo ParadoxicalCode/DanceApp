@@ -27,7 +27,7 @@ namespace DanceApp.View
 
         void GetJudges()
         {
-            DG.ItemsSource = db.Judges.ToList();
+            DG.ItemsSource = db.Judge.ToList();
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -56,8 +56,8 @@ namespace DanceApp.View
                 if (MessageBox.Show("Удалить запись?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     int ID = (int)((Button)sender).CommandParameter;
-                    var delete = db.Judges.Where(u => u.ID.Equals(ID)).FirstOrDefault();
-                    db.Judges.Remove(delete);
+                    var delete = db.Judge.Where(u => u.ID.Equals(ID)).FirstOrDefault();
+                    db.Judge.Remove(delete);
                     try
                     {
                         db.SaveChanges();

@@ -25,18 +25,18 @@ namespace DanceApp.Model.Groups
             ageCategories.Sort();
 
             // Замена ID на название возрастной категории
-            var pairs = db.Pairs.ToList();
+            var pairs = db.Pair.ToList();
 
             foreach (var a in ageCategories)
             {
-                var data = db.AgeCategories.Where(u => u.ID == a).FirstOrDefault();
+                var data = db.AgeCategory.Where(u => u.ID == a).FirstOrDefault();
                 CategoryCBItems.Add(data);
             }
 
             if (CategoryCBItems.Count == 0 && groupID != 0)
             {
-                var group = db.Groups.Where(u => u.ID == groupID).FirstOrDefault();
-                var ageCategory1 = db.AgeCategories.Where(u => u.Title == group.AgeCategory1).FirstOrDefault();
+                var group = db.Group.Where(u => u.ID == groupID).FirstOrDefault();
+                var ageCategory1 = db.AgeCategory.Where(u => u.Title == group.AgeCategory1).FirstOrDefault();
                 CategoryCBItems.Add(ageCategory1);
             }
             return CategoryCBItems.ToList();
@@ -50,20 +50,20 @@ namespace DanceApp.Model.Groups
             switch (selectAgeCategory) // Проверить, есть ли такие пары на самом деле
             {
                 case "Дети 0":
-                    if (db.Pairs.Where(x => x.AgeCategoryID == 2 && x.PerformanceType == performanceType).FirstOrDefault() != null)
-                        CategoryCBItems.Add(db.AgeCategories.Where(x => x.Title == "Дети 1").FirstOrDefault());
+                    if (db.Pair.Where(x => x.AgeCategoryID == 2 && x.PerformanceType == performanceType).FirstOrDefault() != null)
+                        CategoryCBItems.Add(db.AgeCategory.Where(x => x.Title == "Дети 1").FirstOrDefault());
                     break;
                 case "Дети 1":
-                    if (db.Pairs.Where(x => x.AgeCategoryID == 3 && x.PerformanceType == performanceType).FirstOrDefault() != null)
-                        CategoryCBItems.Add(db.AgeCategories.Where(x => x.Title == "Дети 2").FirstOrDefault());
+                    if (db.Pair.Where(x => x.AgeCategoryID == 3 && x.PerformanceType == performanceType).FirstOrDefault() != null)
+                        CategoryCBItems.Add(db.AgeCategory.Where(x => x.Title == "Дети 2").FirstOrDefault());
                     break;
                 case "Юниоры 1":
-                    if (db.Pairs.Where(x => x.AgeCategoryID == 5 && x.PerformanceType == performanceType).FirstOrDefault() != null)
-                        CategoryCBItems.Add(db.AgeCategories.Where(x => x.Title == "Юниоры 2").FirstOrDefault());
+                    if (db.Pair.Where(x => x.AgeCategoryID == 5 && x.PerformanceType == performanceType).FirstOrDefault() != null)
+                        CategoryCBItems.Add(db.AgeCategory.Where(x => x.Title == "Юниоры 2").FirstOrDefault());
                     break;
                 case "Юниоры 2":
-                    if (db.Pairs.Where(x => x.AgeCategoryID == 7 && x.PerformanceType == performanceType).FirstOrDefault() != null)
-                        CategoryCBItems.Add(db.AgeCategories.Where(x => x.Title == "Взрослые").FirstOrDefault());
+                    if (db.Pair.Where(x => x.AgeCategoryID == 7 && x.PerformanceType == performanceType).FirstOrDefault() != null)
+                        CategoryCBItems.Add(db.AgeCategory.Where(x => x.Title == "Взрослые").FirstOrDefault());
                     break;
             }
             return CategoryCBItems.ToList();

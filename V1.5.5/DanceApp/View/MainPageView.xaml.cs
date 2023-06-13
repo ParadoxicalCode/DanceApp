@@ -36,7 +36,7 @@ namespace DanceApp.View
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            var competition = db.Competitions.Find(1);
+            var competition = db.Competition.Find(1);
             switch (button.Name)
             {
                 case "CompetitionBtn":
@@ -91,14 +91,14 @@ namespace DanceApp.View
 
         private bool Next()
         {
-            var pair = db.Pairs.Where(u => u.Number == "" || u.Number == null).FirstOrDefault();
+            var pair = db.Pair.Where(u => u.Number == "" || u.Number == null).FirstOrDefault();
             if (pair == null)
             {
                 CloseRegistrationView window = new CloseRegistrationView();
 
                 if (window.ShowDialog() == true)
                 {
-                    var competition = db.Competitions.Find(1);
+                    var competition = db.Competition.Find(1);
                     competition.RegistrationStatus = false;
                     try { db.SaveChanges(); }
                     catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }

@@ -15,7 +15,7 @@ namespace DanceApp.Model
         public DataBaseContext db = GlobalClass.db;
         public bool Delete()
         {
-            var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
+            var data = db.Competition.Where(u => u.ID == 1).FirstOrDefault();
             if (data.RegistrationStatus == false)
             {
                 if (MessageBox.Show("При открытии регистрации удалятся все данные о группах, результатах танцев и финальный отчёт. Вы уверены?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -32,11 +32,11 @@ namespace DanceApp.Model
                     var dancesInGroup = db.DancesInGroup.ToList();
                     db.DancesInGroup.RemoveRange(dancesInGroup);
 
-                    var groups = db.Groups.ToList();
-                    db.Groups.RemoveRange(groups);
+                    var groups = db.Group.ToList();
+                    db.Group.RemoveRange(groups);
 
-                    var tours = db.Tours.ToList();
-                    db.Tours.RemoveRange(tours);
+                    var tours = db.Tour.ToList();
+                    db.Tour.RemoveRange(tours);
 
                     try 
                     { 

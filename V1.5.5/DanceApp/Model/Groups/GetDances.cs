@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+#nullable disable
 namespace DanceApp.Model.Groups
 {
     public class GetDances
@@ -15,11 +16,11 @@ namespace DanceApp.Model.Groups
             List<Dance> dances = new List<Dance>();
             if (selectedIndex == 0)
             {
-                dances = db.Dances.Where(u => u.SportsDiscipline == "Европейская программа").ToList();
+                dances = db.Dance.Where(u => u.SportsDiscipline == "Европейская программа").ToList();
             }
             else
             {
-                dances = db.Dances.Where(u => u.SportsDiscipline == "Латиноамериканская программа").ToList();
+                dances = db.Dance.Where(u => u.SportsDiscipline == "Латиноамериканская программа").ToList();
             }
 
             // Привязка данных к DancesDG
@@ -46,7 +47,7 @@ namespace DanceApp.Model.Groups
 
             foreach (var d in dancesInGroup)
             {
-                var dance = db.Dances.Where(u => u.ID == d.DanceID).FirstOrDefault();
+                var dance = db.Dance.Where(u => u.ID == d.DanceID).FirstOrDefault();
                 var dances = new ClassDances();
 
                 dances.ID = dance.ID;

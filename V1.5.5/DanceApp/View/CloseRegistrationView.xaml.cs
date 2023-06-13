@@ -34,7 +34,7 @@ namespace DanceApp.View
 
         private void AddItemsToCB()
         {
-            int pairsCount = db.Pairs.Count();
+            int pairsCount = db.Pair.Count();
             if (pairsCount <= 8)
                 TourCBItemsList.Add(new Tour { ID = 1, Title = "Финал" });
 
@@ -69,7 +69,7 @@ namespace DanceApp.View
         {
             if (CBSwitch == true)
             {
-                var data = db.Competitions.Where(u => u.ID == 1).FirstOrDefault();
+                var data = db.Competition.Where(u => u.ID == 1).FirstOrDefault();
                 var firstTour = (TourCB.SelectedItem as Tour).Title;
 
                 // Начиная с первого тура заполнить таблицу до финального
@@ -82,15 +82,15 @@ namespace DanceApp.View
                 else if (firstTour == "1/8")
                     toursCount = 4;
 
-                var tours = db.Tours.ToList();
-                db.Tours.RemoveRange(tours);
+                var tours = db.Tour.ToList();
+                db.Tour.RemoveRange(tours);
 
                 for (int i = 4 - toursCount; i < 4; i++)
                 {
-                    db.Tours.Add(new Tour { Title = allTours[i] });
+                    db.Tour.Add(new Tour { Title = allTours[i] });
                     UpdateDataBase();
                 }
-                data.TourID = db.Tours.FirstOrDefault().ID;
+                data.TourID = db.Tour.FirstOrDefault().ID;
                 UpdateDataBase();
 
                 // Пары в первом туре
@@ -98,10 +98,10 @@ namespace DanceApp.View
                 var pairs = db.PairsInTour.ToList();
                 db.PairsInTour.RemoveRange(pairs);
 
-                foreach (var p in db.Pairs)
+                foreach (var p in db.Pair)
                 {
                     var pairsInTour = new PairsInTour();
-                    pairsInTour.TourID = db.Tours.FirstOrDefault().ID;
+                    pairsInTour.TourID = db.Tour.FirstOrDefault().ID;
                     pairsInTour.PairID = p.ID;
                     pairsInTour.Select = false;
                     db.PairsInTour.Add(pairsInTour);

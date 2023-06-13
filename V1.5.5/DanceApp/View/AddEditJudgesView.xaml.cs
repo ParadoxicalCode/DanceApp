@@ -24,7 +24,7 @@ namespace DanceApp.View
 
             if (ID != 0)
             {
-                var data = db.Judges.Find(ID);
+                var data = db.Judge.Find(ID);
                 IDText.Text = data.Character.ToString();
                 SurnameTB.Text = data.Surname.ToString();
                 NameTB.Text = data.Name.ToString();
@@ -45,7 +45,7 @@ namespace DanceApp.View
 
             if (ID == 0)
             {
-                if (db.Judges.Count() >= 10)
+                if (db.Judge.Count() >= 10)
                 {
                     MessageBox.Show("Нельзя добавить больше 10 судей!");
                 }
@@ -64,7 +64,7 @@ namespace DanceApp.View
                     for (int i = 0; i < 10; i++)
                     {
                         bool checkIsExist = false;
-                        foreach (var j in db.Judges.ToList())
+                        foreach (var j in db.Judge.ToList())
                         {
                             if (j.Character == character[i])
                             {
@@ -79,7 +79,7 @@ namespace DanceApp.View
                         }
                     }
 
-                    db.Judges.Add(c);
+                    db.Judge.Add(c);
                     try
                     {
                         db.SaveChanges();
@@ -96,7 +96,7 @@ namespace DanceApp.View
             }
             else
             {
-                var data = db.Judges.Where(u => u.ID == ID).FirstOrDefault();
+                var data = db.Judge.Where(u => u.ID == ID).FirstOrDefault();
                 data.Surname = SurnameTB.Text.ToString();
                 data.Name = NameTB.Text.ToString();
                 data.Patronymic = PatronymicTB.Text.ToString();

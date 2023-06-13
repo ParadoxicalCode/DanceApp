@@ -44,22 +44,25 @@ namespace DanceApp.Model.Data
             Database.Migrate();
         }
 
-        public DbSet<AgeCategory> AgeCategories { get; set; }
-        public DbSet<Competition> Competitions { get; set; }
-        public DbSet<Dance> Dances { get; set; }
+        public DbSet<AgeCategory> AgeCategory { get; set; }
+        public DbSet<Competition> Competition { get; set; }
+        public DbSet<Dance> Dance { get; set; }
         public DbSet<DancesInGroup> DancesInGroup { get; set; }
-        public DbSet<Group> Groups { get; set; }
-        public DbSet<Judge> Judges { get; set; }
-        public DbSet<Pair> Pairs { get; set; }
+        public DbSet<Group> Group { get; set; }
+        public DbSet<Judge> Judge { get; set; }
+        public DbSet<JudgesInPerformance> JudgesInPerformance { get; set; }
+        public DbSet<Pair> Pair { get; set; }
         public DbSet<PairsInGroup> PairsInGroup { get; set; }
+        public DbSet<PairsInPerformance> PairsInPerformance { get; set; }
         public DbSet<PairsInTour> PairsInTour { get; set; }
-        public DbSet<Tour> Tours { get; set; }
+        public DbSet<Performance> Performance { get; set; }
+        public DbSet<Tour> Tour { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Competition>().HasData(
                 new Competition { ID = 1, Date="2023.06.14", Rank = "Межрегиональный турнир", Manager = "Печурин Р.К.", City = "Новосибирск", MainJudge = "Журавлёв Денис Тимурович", 
-                    CountingCommission = "Петров Михаил Борисович", SiteCapacity = "10", Fraction = "7/10", RegistrationStatus = true }
+                    CountingCommission = "Петров Михаил Борисович", SiteCapacity = 10, Fraction = "7/10", RegistrationStatus = true }
             );
 
             modelBuilder.Entity<AgeCategory>().HasData(

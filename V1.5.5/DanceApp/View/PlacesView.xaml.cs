@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+#nullable disable
 namespace DanceApp.View
 {
     /// <summary>
@@ -34,9 +35,14 @@ namespace DanceApp.View
         public int[,] LeftMatrix2 = new int[GlobalClass.NumberOfPairs, GlobalClass.NumberOfJudges];
         public int[,] RightMatrix2 = new int[GlobalClass.NumberOfPairs, GlobalClass.NumberOfPairs];
 
-        public PlacesView()
+        public PlacesView(int tourID, int groupID, int danceID, int performanceID)
         {
             InitializeComponent();
+
+            TourText.Text = db.Tour.Find(tourID).Title;
+            GroupText.Text = db.Group.Find(groupID).Title;
+            DanceText.Text = db.Dance.Find(danceID).Title;
+            PerformanceText.Text = db.Performance.Find(performanceID).Number.ToString();
 
             LeftMatrix = new TextBox[7, 10]{
                 { TB01, TB02, TB03, TB04, TB05, TB06, TB07, TB08, TB09, TB10 },

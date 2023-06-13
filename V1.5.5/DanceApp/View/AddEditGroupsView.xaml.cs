@@ -99,7 +99,7 @@ namespace DanceApp.View
         private void LoadData()
         {
             // Загрузка данных в выпадающие списки
-            var group = db.Groups.Find(GroupID);
+            var group = db.Group.Find(GroupID);
 
             SportsDisciplineCB.SelectedValue = group.SportsDiscipline;
             PerformanceTypeCB.SelectedValue = group.PerformanceType;
@@ -188,15 +188,19 @@ namespace DanceApp.View
             else
                 ageCategory2 = "";
 
-            new SaveData().Save(TourID, GroupID, number, sportsDiscipline, performanceType, ageCategory1, ageCategory2, selectedDances, selectedPairs);
+            // Добавление/изменение данных группы
+            var newGroupID = new SaveData().Save(TourID, GroupID, number, sportsDiscipline, performanceType, ageCategory1, ageCategory2, selectedDances, selectedPairs);
 
-            // Распределение пар по заходам
-            new PairsToPerformances().Distribution(selectedPairs);
+            if (newGroupID != 0)
+            {
+                // Распределение пар по заходам
+                new Model.Performances.PairsToPerformances().Distribution(newGroupID, selectedDances, selectedPairs);
 
-            if (GroupID == 0)
-                DefaultValues();
-            else
-                this.Close();
+                if (GroupID == 0)
+                    DefaultValues();
+                else
+                    this.Close();
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -232,7 +236,7 @@ namespace DanceApp.View
 
                 Category2CB.ItemsSource = new GetCategories().Get2(performanceType, ageCategory1.Title);
 
-                PairsDG.ItemsSource = new GetPairs().Get(performanceType, ageCategory1.ID, 0);
+                PairsDG.ItemsSource = new GetPairs().Get(TourID, performanceType, ageCategory1.ID, 0);
             }
         }
 
@@ -244,7 +248,7 @@ namespace DanceApp.View
                 var ageCategory1 = (Category2CB.SelectedItem as AgeCategory).ID;
                 var ageCategory2 = (Category2CB.SelectedItem as AgeCategory).ID;
 
-                PairsDG.ItemsSource = new GetPairs().Get(performanceType, ageCategory1, ageCategory2);
+                PairsDG.ItemsSource = new GetPairs().Get(TourID, performanceType, ageCategory1, ageCategory2);
             }
         }
 

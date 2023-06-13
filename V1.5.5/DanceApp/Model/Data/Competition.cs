@@ -19,7 +19,7 @@ namespace DanceApp.Model.Data
         public string? City { get; set; }
         public string? MainJudge { get; set; }
         public string? CountingCommission { get; set; }
-        public string? SiteCapacity { get; set; }
+        public int? SiteCapacity { get; set; }
         public string? Fraction { get; set; }
 
         public bool RegistrationStatus { get; set; }

@@ -9,6 +9,7 @@ using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -48,7 +49,7 @@ namespace DanceApp.View
             SiteCapacityCB.ItemsSource = SiteCapacityCBItemsList;
             CBSwitch = true;
 
-            var data = db.Competitions.Find(1);
+            var data = db.Competition.Find(1);
 
             if (data.Rank != "")
             {
@@ -83,7 +84,7 @@ namespace DanceApp.View
                     return;
                 }
 
-                var data = db.Competitions.Find(1);
+                var data = db.Competition.Find(1);
 
                 data.Date = DateDP.SelectedDate.Value.ToString("yyyy.MM.dd");
                 data.Rank = RankTB.Text;
@@ -92,8 +93,8 @@ namespace DanceApp.View
                 data.MainJudge = MainJudgeTB.Text;
                 data.CountingCommission = CountingCommissionTB.Text;
 
-                var siteCapacity = SiteCapacityCB.SelectedItem as CBItems;
-                data.SiteCapacity = siteCapacity.Element;
+                var siteCapacity = Int32.Parse((SiteCapacityCB.SelectedItem as CBItems).Element);
+                data.SiteCapacity = siteCapacity;
 
                 var fraction = FractionCB.SelectedItem as CBItems;
                 data.Fraction = fraction.Element;

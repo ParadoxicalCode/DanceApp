@@ -1,11 +1,13 @@
 ﻿using DanceApp.Model;
 using DanceApp.Model.Data;
+using DanceApp.Model.Groups;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
+//using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,8 +30,7 @@ namespace DanceApp.View
     public partial class GroupsView : Page
     {
         private DataBaseContext db = GlobalClass.db;
-        private List<Items> tourCBItems = new List<Items>();
-        private List<Group> selectedGroups = new List<Group>();
+        public List<Dance> selectedDances = new List<Dance>();
         private List<Items> toolTipItems = new List<Items>();
         //private int selectedGroupsCount = 0;
         private int TourID;
@@ -37,11 +38,11 @@ namespace DanceApp.View
         public GroupsView()
         {
             InitializeComponent();
-            TourCB.ItemsSource = db.Tours.ToList();
-            JudgesDG.ItemsSource = db.Judges.ToList();
+            TourCB.ItemsSource = db.Tour.ToList();
+            JudgesDG.ItemsSource = db.Judge.ToList();
 
-            var ID = db.Competitions.Find(1);
-            var tour = db.Tours.Where(u => u.ID == ID.TourID).FirstOrDefault();
+            var ID = db.Competition.Find(1);
+            var tour = db.Tour.Where(u => u.ID == ID.TourID).FirstOrDefault();
             TourID = tour.ID;
             TourCB.SelectedValue = tour.Title;
             GetGroups();
@@ -52,34 +53,79 @@ namespace DanceApp.View
             public string Element { get; set; }
         }
 
+
+
+
+
         private void GetGroups()
         {
-            if (db.Groups.Where(u => u.TourID == TourID).ToList() != null)
+            if (db.Group.Where(u => u.TourID == TourID).ToList() != null)
             {
-                GroupsDG.ItemsSource = db.Groups.Where(u => u.TourID == TourID).ToList();
+                GroupsDG.ItemsSource = db.Group.Where(u => u.TourID == TourID).ToList();
             }
             else
                 GroupsDG.ItemsSource = null;
-
-
-            // Нужно посчитать количество пар, которым 
-            //toolTipItems.Add(new Items { Element = "Дети 0" });
-            //toolTipItems.Add(new Items { Element = "Взрослые" });
-            //ToolTipListBox.ItemsSource = toolTipItems.ToList();
         }
 
-        // Вывод всех пар, которые состоят в выбранной группе в нижнюю таблицу
-        private void GetPairs(int groupID)
+        private void GetDances()
         {
-            List<Pair> pairs = new List<Pair>();
-            var pairsInGroup = db.PairsInGroup.Where(u => u.GroupID == groupID).ToList();
+            CBSwitch = false;
+            selectedDances.Clear();
+            DanceCB.ItemsSource = null;
+            PerformanceCB.ItemsSource = null;
+            PairsDG.ItemsSource = null;
 
-            foreach (var p in pairsInGroup)
+            int groupID = (GroupsDG.SelectedItem as Group).ID;
+            var dancesInGroup = db.DancesInGroup.Where(x => x.GroupID == groupID && x.Select == true).ToList();
+
+            foreach (var d in dancesInGroup)
             {
-                var data = db.Pairs.Where(u => u.ID == p.PairID).FirstOrDefault();
+                var dance = db.Dance.Find(d.DanceID);
+                selectedDances.Add(dance);
+            }
+            
+            DanceCB.ItemsSource = selectedDances.ToList();
+            DanceCB.SelectedIndex = 0;
+
+            GetPerformances();
+        }
+
+        private void GetPerformances()
+        {
+            CBSwitch = false;
+            PerformanceCB.ItemsSource = null;
+            PairsDG.ItemsSource = null;
+            CBSwitch = true;
+
+            var groupID = (GroupsDG.SelectedItem as Group).ID;
+            var danceID = (DanceCB.SelectedItem as Dance).ID;
+
+            PerformanceCB.ItemsSource = db.Performance.Where(x => x.GroupID == groupID && x.DanceID == danceID).ToList();
+            PerformanceCB.SelectedIndex = 0;
+
+            GetPairs();
+        }
+
+        private void GetPairs()
+        {
+            PairsDG.ItemsSource = null;
+
+            // Поиск пар
+            var groupID = (GroupsDG.SelectedItem as Group).ID;
+            var danceID = (DanceCB.SelectedItem as Dance).ID;
+            var performance = (PerformanceCB.SelectedItem as Performance).ID;
+
+            List<Pair> pairs = new List<Pair>();
+            var pairsInPerformance = db.PairsInPerformance.Where(u => u.PerformanceID == performance).ToList();
+
+            foreach (var p in pairsInPerformance)
+            {
+                var data = db.Pair.Where(u => u.ID == p.PairID).FirstOrDefault();
                 pairs.Add(data);
             }
             PairsDG.ItemsSource = pairs.ToList();
+
+            CBSwitch = true;
         }
 
         private void UpdateDataBase()
@@ -88,24 +134,42 @@ namespace DanceApp.View
             catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
         }
 
+        private void DefaultValues()
+        {
+            GetGroups();
+            CBSwitch = false;
+            GroupsDG.SelectedItem = null;
+            DanceCB.ItemsSource = null;
+            PerformanceCB.ItemsSource = null;
+            PairsDG.ItemsSource = null;
+            CBSwitch = true;
+        }
+
+
+
 
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             AddEditGroupsView x = new AddEditGroupsView(TourID, 0);
-            x.ShowDialog(); 
+            x.ShowDialog();
 
+            CBSwitch = false;
             GetGroups();
+            DefaultValues();
+            CBSwitch = true;
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             int groupID = (int)((Button)sender).CommandParameter;
             AddEditGroupsView x = new AddEditGroupsView(TourID, groupID);
-            x.ShowDialog(); 
+            x.ShowDialog();
 
+            CBSwitch = false;
             GetGroups();
-            GetPairs(groupID);
+            DefaultValues();
+            CBSwitch = true;
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -131,19 +195,35 @@ namespace DanceApp.View
                 db.PairsInGroup.RemoveRange(pairsInGroup);
 
                 // Удаление группы
-                var group = db.Groups.Where(x => x.ID == groupID).ToList();
-                db.Groups.RemoveRange(group);
+                var group = db.Group.Where(x => x.ID == groupID).ToList();
+                db.Group.RemoveRange(group);
 
                 try
                 {
                     db.SaveChanges();
                     CBSwitch = false;
-                    GetGroups();
+                    DefaultValues();
                     CBSwitch = true;
-                    GetPairs(groupID);
                 }
                 catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
             }
+        }
+
+        private void SelectPerformance_Click(object sender, RoutedEventArgs e)
+        {
+            // Валидация
+            if (GroupsDG.SelectedItem == null || DanceCB.SelectedItem == null || PerformanceCB.SelectedItem == null)
+            {
+                MessageBox.Show("Не все поля заполнены!");
+                return;
+            }
+
+            var GroupID = (GroupsDG.SelectedItem as Group).ID;
+            var DanceID = (DanceCB.SelectedItem as Dance).ID;
+            var PerformanceID = (PerformanceCB.SelectedItem as Performance).ID;
+
+            PlacesView places = new PlacesView(TourID, GroupID, DanceID, PerformanceID);
+            NavigationService.Navigate(places);
         }
 
 
@@ -162,29 +242,19 @@ namespace DanceApp.View
         private void GroupsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CBSwitch == true)
-            {
-                int selectedGroup = (GroupsDG.SelectedItem as Group).ID;
-                GetPairs(selectedGroup);
-
-                // Нужно в ComboBox вывести танцы выбранной группы
-                // Для этого надо найти танцы и сделать привязку
-                // А для этого надо сделать распределение по заходам
-            }
+                GetDances();
         }
 
         private void DanceCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Нужно в ComboBox вывести заходы выбранного танца
-        }
-
-        private void GroupCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            if (CBSwitch == true)
+                GetPerformances();
         }
 
         private void PerformanceCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (CBSwitch == true)
+                GetPairs();
         }
 
 

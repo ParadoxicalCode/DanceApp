@@ -7,21 +7,23 @@
       d:DesignHeight="600" d:DesignWidth="800" Title="PlacesView">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="24"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="305"/>
         </Grid.RowDefinitions>
 
         <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
-            <TextBlock Text="Тур: " VerticalAlignment="Center"/>
+            <TextBlock FontSize="16" Text="Тур: "/>
+            <TextBlock x:Name="TourText" Text="" FontSize="16"/>
 
-            <TextBlock Margin="30 0 0 0" Text="Группа: " VerticalAlignment="Center"/>
+            <TextBlock FontSize="16" Margin="35 0 0 0" Text="Группа: "/>
+            <TextBlock x:Name="GroupText" Text="" FontSize="16"/>
 
-            <TextBlock Margin="30 0 0 0" Text="Танец" VerticalAlignment="Center"/>
-            <ComboBox Margin="15 0 0 0" Height="30" Width="140" x:Name="DanceCB" DisplayMemberPath="Title" Style="{StaticResource ComboBoxFlatStyle}"/>
+            <TextBlock FontSize="16" Margin="35 0 0 0" Text="Танец: "/>
+            <TextBlock x:Name="DanceText" Text="" FontSize="16"/>
 
-            <TextBlock Margin="30 0 0 0" Text="Заход" VerticalAlignment="Center"/>
-            <ComboBox Margin="15 0 0 0" Height="30" Width="50" x:Name="PerformanceCB" DisplayMemberPath="Title" Style="{StaticResource ComboBoxFlatStyle}"/>
+            <TextBlock FontSize="16" Margin="35 0 0 0" Text="Заход: "/>
+            <TextBlock x:Name="PerformanceText" Text="" FontSize="16"/>
         </StackPanel>
 
         <Grid Grid.Row="1">
@@ -29,8 +31,6 @@
                 <ColumnDefinition/>
                 <ColumnDefinition MaxWidth="300"/>
             </Grid.ColumnDefinitions>
-
-            
         </Grid>
 
         <Grid Grid.Row="2" Margin="0 6 0 0">

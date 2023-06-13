@@ -24,6 +24,7 @@ namespace DanceApp.Model.Data
 
         public List<PairsInGroup> PairsInGroup { get; } = new();
         public List<PairsInPerformance> PairsInPerformance { get; } = new();
+        public List<Performance> Performance { get; } = new();
         public List<DancesInGroup> DancesInGroup { get; } = new();
         public List<JudgesInPerformance> JudgesInPerformance { get; } = new();
     }
