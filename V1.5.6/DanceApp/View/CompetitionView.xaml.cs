@@ -35,9 +35,14 @@ namespace DanceApp.View
         public List<CBItems> SiteCapacityCBItemsList = new List<CBItems>();
         public List<CBItems> FractionCBItemsList = new List<CBItems>();
         private bool CBSwitch;
-        public CompetitionView()
+
+        public MainPageView parentForm;
+
+        public CompetitionView(MainPageView mainPage)
         {
             InitializeComponent();
+
+            parentForm = mainPage;
 
             SiteCapacityCBItemsList.Add(new CBItems { Element = "5" });
             SiteCapacityCBItemsList.Add(new CBItems { Element = "6" });
@@ -76,6 +81,13 @@ namespace DanceApp.View
             OpenRegistration x = new OpenRegistration();
             if (x.Delete() == true)
             {
+                // Открываем страницу Пары, если регистрация открылась, так как на странице Группы находиться нельзя
+                var form = (parentForm.FindName("Frame") as Frame);
+                if (form.Content is GroupsView || form.Content is DistributionPlacesView)
+                {
+                    form.Content = new PairsView();
+                }
+
                 if (RankTB.Text == "" || ManagerTB.Text == "" || CityTB.Text == "" || MainJudgeTB.Text == "" || 
                     CountingCommissionTB.Text == "" || SiteCapacityCB.SelectedItem == null || 
                     FractionCB.SelectedItem == null || DateDP.SelectedDate == null)

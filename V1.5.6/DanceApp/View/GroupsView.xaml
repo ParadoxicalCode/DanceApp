@@ -20,31 +20,42 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0" VerticalAlignment="Top" Orientation="Horizontal">
-                <Button Style="{StaticResource AddButton}" Click="Add_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/Images/Add.png" VerticalAlignment="Center" Margin="2 1 8 0" Width="12" Height="12"/>
-                        <TextBlock Text="Новая запись"/>
-                    </StackPanel>
-                </Button>
+            <Grid>
+                <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                    <Button Style="{StaticResource AddButton}" Click="Add_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/Add.png" VerticalAlignment="Center" Margin="2 1 8 0" Width="12" Height="12"/>
+                            <TextBlock Text="Новая запись"/>
+                        </StackPanel>
+                    </Button>
 
-                <TextBlock FontSize="16" Text="Тур*" VerticalAlignment="Center" Margin="15 0 0 0"/>
-                <ComboBox Height="30" Width="150" Grid.Row="2" x:Name="TourCB" DisplayMemberPath="Title" SelectedValuePath="Title" Margin="6 0 0 0"
+                    <TextBlock FontSize="16" Text="Тур*" VerticalAlignment="Center" Margin="15 0 0 0"/>
+                    <ComboBox Height="30" Width="150" Grid.Row="2" x:Name="TourCB" DisplayMemberPath="Title" SelectedValuePath="Title" Margin="6 0 0 0"
                     Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="TourCB_SelectionChanged" HorizontalAlignment="Left"/>
 
-                <TextBlock FontSize="16" Text="* Обязательно для заполнения" VerticalAlignment="Center" Margin="25 0 0 0"/>
-            </StackPanel>
+                    <Button Style="{StaticResource AddButton}" Content="Следующий тур" Width="110" Click="NextTour_Click" Margin="15 0 0 0"/>
+
+                    <TextBlock FontSize="16" Text="* Обязательно для заполнения" VerticalAlignment="Center" Margin="30 0 0 0"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30">
+                    <TextBlock Text="Статус тура: " FontSize="16" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="TourStatusText" Text="" FontSize="16" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
 
             <Border Grid.Row="1" BorderBrush="DarkGray" BorderThickness="2"/>
 
 
-            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 3">
+            <Grid  Grid.Row="2">
                 <TextBlock Text="Группа*" FontSize="16" VerticalAlignment="Center"/>
 
-                <TextBlock Text="Статус группы: " FontSize="16" VerticalAlignment="Center" Margin="30 0 0 0"/>
-                <TextBlock x:Name="GroupStatusText" Text="" FontSize="16"/>
-            </StackPanel>
-            
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <TextBlock Text="Статус группы: " FontSize="16" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="GroupStatusText" Text="" FontSize="16"/>
+                </StackPanel>
+            </Grid>
+
             <DataGrid x:Name="GroupsDG" Grid.Row="3" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}" CellStyle="{StaticResource DGCell}"
                     Background="white" HeadersVisibility="Column" RowHeight="36" SelectionChanged="GroupsDG_SelectionChanged" CanUserReorderColumns="False" CanUserSortColumns="False" Margin="0 0 0 10">
                 <DataGrid.Resources>
@@ -90,20 +101,24 @@
 
             <Border Grid.Row="4" BorderBrush="DarkGray" BorderThickness="2"/>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="5" Height="30" VerticalAlignment="Center">
-                <TextBlock Text="Танец*" FontSize="16" VerticalAlignment="Center"/>
-                <ComboBox x:Name="DanceCB" Height="30" Width="150" DisplayMemberPath="Title" SelectedValuePath="Title" Margin="6 0 0 0"
+            <Grid  Grid.Row="5">
+                <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center">
+                    <TextBlock Text="Танец*" FontSize="16" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="DanceCB" Height="30" Width="150" DisplayMemberPath="Title" SelectedValuePath="Title" Margin="6 0 0 0"
                     Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="DanceCB_SelectionChanged"/>
 
-                <TextBlock Text="Заход*" FontSize="16" Margin="15 0 0 0" VerticalAlignment="Center"/>
-                <ComboBox x:Name="PerformanceCB" Height="30" Width="44" DisplayMemberPath="Number" SelectedValuePath="Number" Margin="6 0 0 0"
+                    <TextBlock Text="Заход*" FontSize="16" Margin="15 0 0 0" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="PerformanceCB" Height="30" Width="44" DisplayMemberPath="Number" SelectedValuePath="Number" Margin="6 0 0 0"
                     Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="PerformanceCB_SelectionChanged"/>
 
-                <Button Style="{StaticResource AddButton}" Content="Далее" Width="80" Click="SelectPerformance_Click" Margin="15 0 0 0"/>
+                    <Button Style="{StaticResource AddButton}" Content="Далее" Width="80" Click="SelectPerformance_Click" Margin="15 0 0 0"/>
+                </StackPanel>
 
-                <TextBlock Text="Статус захода: " FontSize="16" Margin="15 0 0 0" VerticalAlignment="Center"/>
-                <TextBlock x:Name="PerformanceStatusText" Text="" FontSize="16" VerticalAlignment="Center"/>
-            </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <TextBlock Text="Статус захода: " FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <TextBlock x:Name="PerformanceStatusText" Text="" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </StackPanel>
+            </Grid>
 
             <Border Grid.Row="6" BorderBrush="DarkGray" BorderThickness="2"/>
 
@@ -114,8 +129,8 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition MinWidth="350" MaxWidth="350"/>
+                    <ColumnDefinition MinWidth="555" MaxWidth="555"/>
+                    <ColumnDefinition MinWidth="350"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Пары в заходе*" FontSize="16" VerticalAlignment="Center"/>
@@ -175,7 +190,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTemplateColumn MinWidth="144" MaxWidth="144" Header="Дата рождения">
+                        <DataGridTemplateColumn MinWidth="140" Width="*" Header="Дата рождения">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Vertical">
@@ -189,7 +204,7 @@
                 </DataGrid>
 
                 <TextBlock Text="Судьи в заходе*" Margin="10 0 0 0" Grid.Column="1" FontSize="16" VerticalAlignment="Center"/>
-                
+
                 <DataGrid x:Name="JudgesDG" Grid.Row="1" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}" CellStyle="{StaticResource DGCell}"
                     Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="20" Margin="10 0 0 0" CanUserReorderColumns="False" CanUserSortColumns="False">
                     <DataGrid.Resources>
@@ -211,9 +226,10 @@
                         </DataGridTemplateColumn>
 
                         <DataGridTextColumn Header="ID" Binding="{Binding Character}" MinWidth="25" MaxWidth="25"/>
-                        <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="90" MaxWidth="90"/>
-                        <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="80" MaxWidth="90"/>
-                        <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="*"/>
+                        <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="100" MaxWidth="100"/>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="100" MaxWidth="100"/>
+                        <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="110"/>
+                        <DataGridTextColumn Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

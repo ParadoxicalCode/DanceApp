@@ -38,9 +38,16 @@ namespace DanceApp.Model.Performances
                         var performance = db.Performance.Where(x => x.GroupID == GroupID && x.DanceID == selectedDances[i].ID && 
                             x.Number == h).FirstOrDefault();
 
+                        // Если не получается равномерно разделить пары по заходам
+                        if (j > selectedPairs.Count)
+                        {
+                            break;
+                        }
+
                         var pair = new PairsInPerformance();
                         pair.PerformanceID = performance.ID;
                         pair.PairID = selectedPairs[j - 1].ID;
+                        pair.Select = false;
 
                         db.PairsInPerformance.Add(pair);
                         UpdateDataBase();
@@ -53,8 +60,8 @@ namespace DanceApp.Model.Performances
         public int Add(int GroupID, List<ClassDances> selectedDances, List<ClassPairs> selectedPairs)
         {
             // Удаление заходов
-            var performancesInDance = db.Performance.Where(x => x.GroupID == GroupID).ToList();
-            db.Performance.RemoveRange(performancesInDance);
+            var performancesInGroup = db.Performance.Where(x => x.GroupID == GroupID).ToList();
+            db.Performance.RemoveRange(performancesInGroup);
 
             // Создание заходов
             var siteCapacity = (db.Competition.Find(1)).SiteCapacity;

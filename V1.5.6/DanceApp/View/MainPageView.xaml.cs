@@ -33,62 +33,6 @@ namespace DanceApp.View
             InitializeComponent();
         }
 
-        private void MenuButton_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-            var competition = db.Competition.Find(1);
-            switch (button.Name)
-            {
-                case "CompetitionBtn":
-                    CompetitionView x = new CompetitionView();
-                    x.ShowDialog();
-                    break;
-                case "JudgesBtn":
-                    if (!(Frame.Content is JudgesView))
-                        Frame.Content = new JudgesView();
-                    break;
-                case "PairsBtn":
-                    if (!(Frame.Content is PairsView))
-                    {
-                        if (competition.Date != null && competition.Date != "")
-                            Frame.Content = new PairsView();
-                        else
-                        {
-                            MessageBoxView messageBox = new MessageBoxView("Заполните данные соревнования!", "Уведомление", 1);
-                            messageBox.ShowDialog();
-                        } 
-                    }
-                    break;
-                case "GroupsBtn":
-                    if (!(Frame.Content is GroupsView))
-                    {
-                        if (competition.RegistrationStatus == true)
-                        {
-                            if (Next() == true)
-                                Frame.Content = new GroupsView();
-                        }
-                        else
-                            Frame.Content = new GroupsView();
-                    }
-                    break;
-                case "DocumentsBtn":
-
-                    break;
-            }
-        }
-
-        private void DataBases_Click(object sender, RoutedEventArgs e)
-        {
-            // Отключение от базы данных
-            //GlobalClass.db.Database.GetDbConnection().Close();
-            //GlobalClass.db.Dispose();
-
-            MainWindow window = new MainWindow();
-            window.Show();
-            var myWindow = Window.GetWindow(this);
-            myWindow.Close();
-        }
-
         private bool Next()
         {
             var pair = db.Pair.Where(u => u.Number == "" || u.Number == null).FirstOrDefault();
@@ -112,6 +56,69 @@ namespace DanceApp.View
                 messageBox.ShowDialog();
             }
             return false;
+        }
+
+
+
+
+
+        private void DataBases_Click(object sender, RoutedEventArgs e)
+        {
+            // Отключение от базы данных
+            //GlobalClass.db.Database.GetDbConnection().Close();
+            //GlobalClass.db.Dispose();
+
+            MainWindow window = new MainWindow();
+            window.Show();
+            var myWindow = Window.GetWindow(this);
+            myWindow.Close();
+        }
+
+        private void CompetitionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CompetitionView x = new CompetitionView(this);
+            x.ShowDialog();
+        }
+
+        private void JudgesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(Frame.Content is JudgesView))
+                Frame.Content = new JudgesView();
+        }
+
+        private void PairsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var competition = db.Competition.Find(1);
+            if (!(Frame.Content is PairsView))
+            {
+                if (competition.Date != null && competition.Date != "")
+                    Frame.Content = new PairsView();
+                else
+                {
+                    MessageBoxView messageBox = new MessageBoxView("Заполните данные соревнования!", "Уведомление", 1);
+                    messageBox.ShowDialog();
+                }
+            }
+        }
+
+        private void GroupsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var competition = db.Competition.Find(1);
+            if (!(Frame.Content is GroupsView))
+            {
+                if (competition.RegistrationStatus == true)
+                {
+                    if (Next() == true)
+                        Frame.Content = new GroupsView();
+                }
+                else
+                    Frame.Content = new GroupsView();
+            }
+        }
+
+        private void DocumentBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -35,6 +35,10 @@ namespace DanceApp.View
         //private int selectedGroupsCount = 0;
         private int TourID;
         private bool CBSwitch;
+
+        public List<Items> selectedPairs = new List<Items>();
+        public List<Items> selectedJudges = new List<Items>(); 
+
         public GroupsView()
         {
             InitializeComponent();
@@ -48,7 +52,7 @@ namespace DanceApp.View
             GetGroups();
         }
 
-        private class Items
+        public class Items
         {
             public string Element { get; set; }
         }
@@ -186,11 +190,28 @@ namespace DanceApp.View
                     UpdateDataBase();
                 }
 
-                // Удаление данных о выбранных танцах в группе
-                var dancesInGroup = db.DancesInGroup.Where(x => x.GroupID == groupID).ToList();
-                db.DancesInGroup.RemoveRange(dancesInGroup);
+                // Удаление всех связанных данных с удаляемой группой
 
-                // Удаление данных о выбранных парах в группе
+                // Поиск танцев в группе
+                var dancesInGroup = db.DancesInGroup.Where(x => x.GroupID == groupID).ToList();
+                foreach (var d in dancesInGroup)
+                {
+                    // Поиск заходов в танце
+                    var performancesInDance = db.Performance.Where(x => x.GroupID == d.GroupID && x.DanceID == d.DanceID).ToList();
+                    foreach (var p in performancesInDance)
+                    {
+                        // Поиск пар в заходе
+                        var pairsInPerformance = db.PairsInPerformance.Where(x => x.PerformanceID == p.ID).ToList();
+                        db.PairsInPerformance.RemoveRange(pairsInPerformance);
+
+                        db.Performance.Remove(p);
+                        UpdateDataBase();
+                    }
+                    db.DancesInGroup.Remove(d);
+                    UpdateDataBase();
+                }
+
+                // Удаление данных о парах в группе
                 var pairsInGroup = db.PairsInGroup.Where(x => x.GroupID == groupID).ToList();
                 db.PairsInGroup.RemoveRange(pairsInGroup);
 
@@ -237,6 +258,8 @@ namespace DanceApp.View
             GetGroups();
             CBSwitch = true;
             TourID = (TourCB.SelectedItem as Tour).ID;
+
+            TourStatusText.Text = db.Tour.Find(TourID).Status;
         }
 
         private void GroupsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -277,22 +300,40 @@ namespace DanceApp.View
 
         private void PairsChB_Checked(object sender, RoutedEventArgs e)
         {
-            
+            Pair row = (Pair)((CheckBox)sender).DataContext;
+            selectedPairs.Add(new Items
+            {
+                Element = row.ID.ToString()
+            });
         }
 
         private void PairsChB_Unchecked(object sender, RoutedEventArgs e)
         {
-            
+            Pair row = (Pair)((CheckBox)sender).DataContext;
+            var delete = selectedPairs.Where(u => u.Element == row.ID.ToString()).FirstOrDefault();
+            selectedPairs.Remove(delete);
         }
 
         private void JudgesChB_Checked(object sender, RoutedEventArgs e)
         {
-
+            Judge row = (Judge)((CheckBox)sender).DataContext;
+            selectedJudges.Add(new Items
+            {
+                Element = row.ID.ToString()
+            });
         }
 
         private void JudgesChB_Unchecked(object sender, RoutedEventArgs e)
         {
+            Judge row = (Judge)((CheckBox)sender).DataContext;
+            var delete = selectedJudges.Where(u => u.Element == row.ID.ToString()).FirstOrDefault();
+            selectedJudges.Remove(delete);
+        }
 
+        private void NextTour_Click(object sender, RoutedEventArgs e)
+        {
+            NextTourView nextTour = new NextTourView();
+            nextTour.ShowDialog();
         }
     }
 }

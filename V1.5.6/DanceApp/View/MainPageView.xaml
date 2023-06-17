@@ -20,7 +20,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Orientation="Vertical" x:Name="VerticalMenuSP">
-                <Button Style="{StaticResource MenuButton}" Click="MenuButton_Click" x:Name="CompetitionBtn">
+                <Button Style="{StaticResource MenuButton}" Click="CompetitionBtn_Click" x:Name="CompetitionBtn">
                     <Image Source="/Images/Competition.png" Width="22" Height="22"/>
                     <Button.ToolTip>
                         <ToolTip HasDropShadow="True" Placement="Mouse">
@@ -29,7 +29,7 @@
                     </Button.ToolTip>
                 </Button>
 
-                <Button Style="{StaticResource MenuButton}" Click="MenuButton_Click" Margin="0 20 0 0" x:Name="JudgesBtn">
+                <Button Style="{StaticResource MenuButton}" Click="JudgesBtn_Click" Margin="0 20 0 0" x:Name="JudgesBtn">
                     <Image Source="/Images/Judge.png" Width="22" Height="22"/>
                     <Button.ToolTip>
                         <ToolTip HasDropShadow="True" Placement="Mouse">
@@ -38,7 +38,7 @@
                     </Button.ToolTip>
                 </Button>
 
-                <Button Style="{StaticResource MenuButton}" Margin="0 20 0 0" Click="MenuButton_Click" x:Name="PairsBtn">
+                <Button Style="{StaticResource MenuButton}" Margin="0 20 0 0" Click="PairsBtn_Click" x:Name="PairsBtn">
                     <Image Source="/Images/Pair.png" Width="22" Height="22"/>
                     <Button.ToolTip>
                         <ToolTip HasDropShadow="True" Placement="Mouse">
@@ -47,7 +47,7 @@
                     </Button.ToolTip>
                 </Button>
 
-                <Button Style="{StaticResource MenuButton}" Margin="0 20 0 0" Click="MenuButton_Click" x:Name="GroupsBtn">
+                <Button Style="{StaticResource MenuButton}" Margin="0 20 0 0" Click="GroupsBtn_Click" x:Name="GroupsBtn">
                     <Image Source="/Images/Group.png" Width="22" Height="22"/>
                     <Button.ToolTip>
                         <ToolTip HasDropShadow="True" Placement="Mouse">
@@ -56,7 +56,7 @@
                     </Button.ToolTip>
                 </Button>
 
-                <Button Style="{StaticResource MenuButton}" Margin="0 20 0 0" Click="MenuButton_Click" x:Name="DocumentsBtn">
+                <Button Style="{StaticResource MenuButton}" Margin="0 20 0 0" Click="DocumentBtn_Click" x:Name="DocumentsBtn">
                     <Image Source="/Images/Document.png" Width="22" Height="22"/>
                     <Button.ToolTip>
                         <ToolTip HasDropShadow="True" Placement="Mouse">

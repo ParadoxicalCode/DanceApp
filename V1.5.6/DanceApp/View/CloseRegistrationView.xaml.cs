@@ -57,7 +57,14 @@ namespace DanceApp.View
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
+            if (TourCB.SelectedIndex >= 0)
+            {
+                this.DialogResult = true;
+            }
+            else
+            {
+                MessageBox.Show("Выберите начальный тур!");
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -87,7 +94,11 @@ namespace DanceApp.View
 
                 for (int i = 4 - toursCount; i < 4; i++)
                 {
-                    db.Tour.Add(new Tour { Title = allTours[i] });
+                    var tour = new Tour();
+                    tour.Title = allTours[i];
+                    tour.Status = "Не завершено";
+
+                    db.Tour.Add(tour);
                     UpdateDataBase();
                 }
                 data.TourID = db.Tour.FirstOrDefault().ID;

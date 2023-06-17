@@ -1391,3 +1391,5 @@ C:\Users\makol\Desktop\Diplom\V1.5.6\DanceApp\obj\Debug\net6.0-windows\refint\Da
 C:\Users\makol\Desktop\Diplom\V1.5.6\DanceApp\obj\Debug\net6.0-windows\DanceApp.pdb
 C:\Users\makol\Desktop\Diplom\V1.5.6\DanceApp\obj\Debug\net6.0-windows\DanceApp.genruntimeconfig.cache
 C:\Users\makol\Desktop\Diplom\V1.5.6\DanceApp\obj\Debug\net6.0-windows\ref\DanceApp.dll
+C:\Users\makol\Desktop\Diplom\V1.5.6\DanceApp\obj\Debug\net6.0-windows\View\NextTourView.g.cs
+C:\Users\makol\Desktop\Diplom\V1.5.6\DanceApp\obj\Debug\net6.0-windows\View\NextTourView.baml
