@@ -1,0 +1,149 @@
+﻿<Page x:Class="DanceApp.View.PairsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DanceApp.View" mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="44"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+            <Button Style="{StaticResource AddButton}" Click="Add_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/Add.png" VerticalAlignment="Center" Margin="2 1 8 0" Width="12" Height="12"/>
+                    <TextBlock Text="Новая запись"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <DataGrid x:Name="PairsDG" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}" CellStyle="{StaticResource DGCell}"
+                      Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="42" CanUserReorderColumns="False" CanUserSortColumns="False">
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn MinWidth="70" MaxWidth="70" CellStyle="{StaticResource DGCellAddEditDelete}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+
+                                    <Button Click="Edit_Click" Margin="5 0 0 0" CommandParameter="{Binding ID}" Style="{StaticResource DataBaseButton}">
+                                        <Image Source="/Images/Edit.png" Width="12" Height="12"/>
+                                        <Button.ToolTip>
+                                            <ToolTip HasDropShadow="True" Placement="Mouse">
+                                                <TextBlock>Редактировать запись</TextBlock>
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+
+                                    <Button Click="Delete_Click" Margin="5 0 0 0" CommandParameter="{Binding ID}" Style="{StaticResource DataBaseButton}">
+                                        <Image Source="/Images/Delete.png" Width="12" Height="12"/>
+                                        <Button.ToolTip>
+                                            <ToolTip HasDropShadow="True" Placement="Mouse">
+                                                <TextBlock>Удалить запись</TextBlock>
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="№" Binding="{Binding Number}" MinWidth="30" MaxWidth="30"/>
+
+                    <DataGridTemplateColumn MinWidth="120" MaxWidth="120" Header="Фамилия">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock FontSize="14" Text="{Binding MaleSurname}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                    <TextBlock FontSize="14" Text="{Binding FemaleSurname}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn MinWidth="100" MaxWidth="100" Header="Имя">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock FontSize="14" Text="{Binding MaleName}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                    <TextBlock FontSize="14" Text="{Binding FemaleName}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn MinWidth="120" MaxWidth="120" Header="Отчество">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock FontSize="14" Text="{Binding MalePatronymic}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                    <TextBlock FontSize="14" Text="{Binding FemalePatronymic}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn MinWidth="134" MaxWidth="134" Header="Дата рождения">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock FontSize="14" Text="{Binding MaleBirthday}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                    <TextBlock FontSize="14" Text="{Binding FemaleBirthday}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="Категория" Binding="{Binding AgeCategory}" MinWidth="50" Width="3*" MaxWidth="92"/>
+                    <DataGridTextColumn Header="Клуб" Binding="{Binding Club}" Width="100*" MaxWidth="150"/>
+                    <DataGridTextColumn Header="Город" Binding="{Binding City}" Width="100*" MaxWidth="160"/>
+                    <DataGridTextColumn Header="Страна" Binding="{Binding Country}" Width="100*" MaxWidth="160"/>
+
+                    <DataGridTemplateColumn Width="1000*" MaxWidth="140" Header="Тренер">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock FontSize="14" Text="{Binding Trainer1}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                    <TextBlock FontSize="14" Text="{Binding Trainer2}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 13 0 1" HorizontalAlignment="Center">
+            <Button Name="BeginningBtn" Style="{StaticResource BaseButton}" Width="30" Click="PaginationButton_Click">
+                <Image Source="/Images/Beginning.png" VerticalAlignment="Center" Width="20" Height="20"/>
+            </Button>
+
+            <Button Name="BackBtn" Style="{StaticResource BaseButton}" Width="30" Click="PaginationButton_Click" Margin="8 0 0 0">
+                <Image Source="/Images/Back.png" VerticalAlignment="Center" Width="20" Height="20"/>
+            </Button>
+
+            <Label x:Name="NumberOfRecords" FontSize="14" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Width="66" VerticalContentAlignment="Center" VerticalAlignment="Bottom"/>
+
+            <Button Name="NextBtn" Style="{StaticResource BaseButton}" Width="30" Click="PaginationButton_Click" Margin="8 0 0 0">
+                <Image Source="/Images/Next.png" VerticalAlignment="Center" Width="20" Height="20"/>
+            </Button>
+
+            <Button Name="EndBtn" Style="{StaticResource BaseButton}" Width="30" Click="PaginationButton_Click" Margin="8 0 0 0">
+                <Image Source="/Images/End.png" VerticalAlignment="Center" Width="20" Height="20"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>
