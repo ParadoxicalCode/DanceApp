@@ -22,11 +22,11 @@
                 <TextBlock FontSize="16" Margin="35 0 0 0" Text="Группа: "/>
                 <TextBlock x:Name="GroupText" Text="" FontSize="16"/>
 
-                <TextBlock FontSize="16" Margin="35 0 0 0" Text="Танец: "/>
-                <TextBlock x:Name="DanceText" Text="" FontSize="16"/>
-
                 <TextBlock FontSize="16" Margin="35 0 0 0" Text="Заход: "/>
                 <TextBlock x:Name="PerformanceText" Text="" FontSize="16"/>
+
+                <TextBlock FontSize="16" Margin="35 0 0 0" Text="Танец: "/>
+                <TextBlock x:Name="DanceText" Text="" FontSize="16"/>
             </StackPanel>
 
             <Border Grid.Row="1" BorderBrush="DarkGray" BorderThickness="2"/>

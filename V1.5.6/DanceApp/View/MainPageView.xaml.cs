@@ -35,27 +35,38 @@ namespace DanceApp.View
 
         private bool Next()
         {
-            var pair = db.Pair.Where(u => u.Number == "" || u.Number == null).FirstOrDefault();
-            if (pair == null)
+            var judges = db.Judge.ToList();
+            if (judges.Count < 3)
             {
-                CloseRegistrationView window = new CloseRegistrationView();
-
-                if (window.ShowDialog() == true)
-                {
-                    var competition = db.Competition.Find(1);
-                    competition.RegistrationStatus = false;
-                    try { db.SaveChanges(); }
-                    catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
-                    return true;
-                }
+                new MessageBoxView("Количество судей должно быть не менее трёх!", "Уведомление", 1).ShowDialog();
                 return false;
             }
-            else
+
+            var pairs = db.Pair.ToList();
+            if (pairs.Count < 2)
             {
-                MessageBoxView messageBox = new MessageBoxView("Не всем парам присвоены номера!", "Уведомление", 1);
-                messageBox.ShowDialog();
+                new MessageBoxView("Количество пар должно быть не менее двух!", "Уведомление", 1).ShowDialog();
+                return false;
             }
-            return false;
+
+            var pair = db.Pair.Where(u => u.Number == "" || u.Number == null).FirstOrDefault();
+            if (pair != null)
+            {
+                new MessageBoxView("Не всем парам присвоены номера!", "Уведомление", 1).ShowDialog();
+                return false;
+            }
+
+            CloseRegistrationView window = new CloseRegistrationView();
+            if (window.ShowDialog() == false)
+            {
+                return false;
+            }
+
+            var competition = db.Competition.Find(1);
+            competition.RegistrationStatus = false;
+            try { db.SaveChanges(); }
+            catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
+            return true;
         }
 
 

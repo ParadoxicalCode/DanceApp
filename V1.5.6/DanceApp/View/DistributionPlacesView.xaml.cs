@@ -43,7 +43,7 @@ namespace DanceApp.View
             DanceText.Text = db.Dance.Find(danceID).Title;
             PerformanceText.Text = performanceNumber.ToString();
 
-            if (db.Performance.Where(x => x.GroupID == groupID && x.DanceID == danceID && x.Number == performanceNumber).FirstOrDefault().Status == "Завершено")
+            if (db.Performance.Where(x => x.GroupID == groupID && x.Number == performanceNumber).FirstOrDefault().Status == "Завершено")
             {
                 CalculateBtn.IsEnabled = false;
                 SaveBtn.IsEnabled = false;

@@ -30,7 +30,6 @@ namespace DanceApp.View
     public partial class GroupsView : Page
     {
         private DataBaseContext db = GlobalClass.db;
-        public List<Dance> selectedDances = new List<Dance>();
         private List<Items> toolTipItems = new List<Items>();
         //private int selectedGroupsCount = 0;
         private int TourID;
@@ -50,6 +49,9 @@ namespace DanceApp.View
             TourID = tour.ID;
             TourCB.SelectedValue = tour.Title;
             GetGroups();
+
+            int freePairs = new GetPairs().Free(TourID).Count;
+            FreePairsCountText.Text = freePairs.ToString();
         }
 
         public class Items
@@ -73,25 +75,24 @@ namespace DanceApp.View
 
         private void GetDances()
         {
-            CBSwitch = false;
-            selectedDances.Clear();
-            DanceCB.ItemsSource = null;
-            PerformanceCB.ItemsSource = null;
-            PairsDG.ItemsSource = null;
-
-            int groupID = (GroupsDG.SelectedItem as Group).ID;
-            var dancesInGroup = db.DancesInGroup.Where(x => x.GroupID == groupID && x.Select == true).ToList();
+            // В танец надо привязывать какие танцы есть в группе
+            var groupID = (GroupsDG.SelectedItem as Group).ID;
+            var dancesInGroup = db.DancesInGroup.Where(x => x.GroupID == groupID).Select(x => x.DanceID).ToList();
+            List<Dance> dances = new List<Dance>();
 
             foreach (var d in dancesInGroup)
             {
-                var dance = db.Dance.Find(d.DanceID);
-                selectedDances.Add(dance);
+                var dance = db.Dance.Find(d);
+                dances.Add(new Dance
+                {
+                    ID = dance.ID,
+                    Title = dance.Title,
+                    ShortName = dance.ShortName
+                });
             }
-            
-            DanceCB.ItemsSource = selectedDances.ToList();
-            DanceCB.SelectedIndex = 0;
 
-            GetPerformances();
+            DanceCB.ItemsSource = dances;
+            DanceCB.SelectedIndex = 0;
         }
 
         private void GetPerformances()
@@ -102,9 +103,8 @@ namespace DanceApp.View
             CBSwitch = true;
 
             var groupID = (GroupsDG.SelectedItem as Group).ID;
-            var danceID = (DanceCB.SelectedItem as Dance).ID;
 
-            PerformanceCB.ItemsSource = db.Performance.Where(x => x.GroupID == groupID && x.DanceID == danceID).ToList();
+            PerformanceCB.ItemsSource = db.Performance.Where(x => x.GroupID == groupID).ToList();
             PerformanceCB.SelectedIndex = 0;
 
             GetPairs();
@@ -116,7 +116,6 @@ namespace DanceApp.View
 
             // Поиск пар
             var groupID = (GroupsDG.SelectedItem as Group).ID;
-            var danceID = (DanceCB.SelectedItem as Dance).ID;
             var performance = (PerformanceCB.SelectedItem as Performance).ID;
 
             List<Pair> pairs = new List<Pair>();
@@ -147,6 +146,9 @@ namespace DanceApp.View
             PerformanceCB.ItemsSource = null;
             PairsDG.ItemsSource = null;
             CBSwitch = true;
+
+            int freePairs = new GetPairs().Free(TourID).Count;
+            FreePairsCountText.Text = freePairs.ToString();
         }
 
 
@@ -155,13 +157,20 @@ namespace DanceApp.View
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            AddEditGroupsView x = new AddEditGroupsView(TourID, 0);
-            x.ShowDialog();
+            if (FreePairsCountText.Text == "0")
+            {
+                new MessageBoxView("Создать группу нельзя, так как нет свободных пар!", "Уведомление", 1).ShowDialog();
+            }
+            else
+            {
+                AddEditGroupsView x = new AddEditGroupsView(TourID, 0);
+                x.ShowDialog();
 
-            CBSwitch = false;
-            GetGroups();
-            DefaultValues();
-            CBSwitch = true;
+                CBSwitch = false;
+                GetGroups();
+                DefaultValues();
+                CBSwitch = true;
+            }
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
@@ -197,7 +206,7 @@ namespace DanceApp.View
                 foreach (var d in dancesInGroup)
                 {
                     // Поиск заходов в танце
-                    var performancesInDance = db.Performance.Where(x => x.GroupID == d.GroupID && x.DanceID == d.DanceID).ToList();
+                    var performancesInDance = db.Performance.Where(x => x.GroupID == d.GroupID).ToList();
                     foreach (var p in performancesInDance)
                     {
                         // Поиск пар в заходе
@@ -235,7 +244,39 @@ namespace DanceApp.View
             // Валидация
             if (GroupsDG.SelectedItem == null || DanceCB.SelectedItem == null || PerformanceCB.SelectedItem == null)
             {
-                MessageBox.Show("Не все поля заполнены!");
+                new MessageBoxView("Не все поля заполнены!", "Уведомление", 1).ShowDialog();
+                return;
+            }
+
+            if (FreePairsCountText.Text != "0")
+            {
+                new MessageBoxView("Не все пары распределены по группам!", "Уведомление", 1).ShowDialog();
+                return;
+            }
+
+            var groups = db.Group.Where(u => u.TourID == TourID).ToList();
+            var checkNumber = groups.Where(u => u.Number == "" || u.Number == null).FirstOrDefault();
+            if (checkNumber != null)
+            {
+                new MessageBoxView("Не всем группам присвоены номера!", "Уведомление", 1).ShowDialog();
+                return;
+            }
+
+            if (selectedPairs.Count < 2)
+            {
+                new MessageBoxView("Необходимо выбрать хотя бы две пары!", "Уведомление", 1).ShowDialog();
+                return;
+            }
+
+            if (selectedJudges.Count < 3 || selectedJudges.Count > 7)
+            {
+                new MessageBoxView("Количество судей должно быть не менее трёх и не более семи!", "Уведомление", 1).ShowDialog();
+                return;
+            }
+
+            if (selectedJudges.Count % 2 == 0)
+            {
+                new MessageBoxView("Количество судей должно быть нечётным!", "Уведомление", 1).ShowDialog();
                 return;
             }
 
@@ -266,18 +307,13 @@ namespace DanceApp.View
         {
             if (CBSwitch == true)
             {
+                GetPerformances();
                 GetDances();
 
                 int groupID = (GroupsDG.SelectedItem as Group).ID;
                 GroupStatusText.Text = db.Group.Find(groupID).Status;
             }
                 
-        }
-
-        private void DanceCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (CBSwitch == true)
-                GetPerformances();
         }
 
         private void PerformanceCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -287,10 +323,9 @@ namespace DanceApp.View
                 GetPairs();
 
                 int groupID = (GroupsDG.SelectedItem as Group).ID;
-                int danceID = (DanceCB.SelectedItem as Dance).ID;
                 int performanceNumber = (PerformanceCB.SelectedItem as Performance).Number;
                 
-                PerformanceStatusText.Text = db.Performance.Where(x => x.GroupID == groupID && x.DanceID == danceID && x.Number == performanceNumber).FirstOrDefault().Status;
+                PerformanceStatusText.Text = db.Performance.Where(x => x.GroupID == groupID && x.Number == performanceNumber).FirstOrDefault().Status;
             }
         }
 
@@ -332,8 +367,16 @@ namespace DanceApp.View
 
         private void NextTour_Click(object sender, RoutedEventArgs e)
         {
-            NextTourView nextTour = new NextTourView();
-            nextTour.ShowDialog();
+            if (TourStatusText.Text == "Не завершено")
+            {
+                MessageBoxView messageBox = new MessageBoxView("Статус тура \"Не завершено\"!", "Уведомление", 1);
+                messageBox.ShowDialog();
+            }
+            else
+            {
+                NextTourView nextTour = new NextTourView();
+                nextTour.ShowDialog();
+            }
         }
     }
 }

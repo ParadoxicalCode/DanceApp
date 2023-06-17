@@ -194,7 +194,7 @@ namespace DanceApp.View
             if (newGroupID != 0)
             {
                 // Распределение пар по заходам
-                new Model.Performances.PairsToPerformances().Distribution(newGroupID, selectedDances, selectedPairs);
+                new Model.Performances.PairsToPerformances().Distribution(newGroupID, selectedPairs);
 
                 if (GroupID == 0)
                     DefaultValues();

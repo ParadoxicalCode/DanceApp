@@ -15,9 +15,9 @@ namespace DanceApp.Model.Performances
     public class PairsToPerformances
     {
         public DataBaseContext db = GlobalClass.db;
-        public void Distribution(int GroupID, List<ClassDances> selectedDances, List<ClassPairs> selectedPairs)
+        public void Distribution(int GroupID, List<ClassPairs> selectedPairs)
         {
-            int performanceCount = Add(GroupID, selectedDances, selectedPairs);
+            int performanceCount = Add(GroupID, selectedPairs);
 
             // Перемешивание пар
             var random = new Random();
@@ -29,35 +29,32 @@ namespace DanceApp.Model.Performances
                 selectedPairs[i] = temp;
             }
 
-            for (int i = 0; i < selectedDances.Count; i++)
+            // Распределение пар по заходам
+            for (int j = 1; j <= selectedPairs.Count;)
             {
-                for (int j = 1; j <= selectedPairs.Count;)
+                for (int h = 1; h <= performanceCount; h++)
                 {
-                    for (int h = 1; h <= performanceCount; h++)
+                    var performance = db.Performance.Where(x => x.GroupID == GroupID && x.Number == h).FirstOrDefault();
+
+                    // Если не получается равномерно разделить пары по заходам
+                    if (j > selectedPairs.Count)
                     {
-                        var performance = db.Performance.Where(x => x.GroupID == GroupID && x.DanceID == selectedDances[i].ID && 
-                            x.Number == h).FirstOrDefault();
-
-                        // Если не получается равномерно разделить пары по заходам
-                        if (j > selectedPairs.Count)
-                        {
-                            break;
-                        }
-
-                        var pair = new PairsInPerformance();
-                        pair.PerformanceID = performance.ID;
-                        pair.PairID = selectedPairs[j - 1].ID;
-                        pair.Select = false;
-
-                        db.PairsInPerformance.Add(pair);
-                        UpdateDataBase();
-                        j++;
+                        break;
                     }
+
+                    var pair = new PairsInPerformance();
+                    pair.PerformanceID = performance.ID;
+                    pair.PairID = selectedPairs[j - 1].ID;
+                    pair.Select = false;
+
+                    db.PairsInPerformance.Add(pair);
+                    UpdateDataBase();
+                    j++;
                 }
             }
         }
 
-        public int Add(int GroupID, List<ClassDances> selectedDances, List<ClassPairs> selectedPairs)
+        public int Add(int GroupID, List<ClassPairs> selectedPairs)
         {
             // Удаление заходов
             var performancesInGroup = db.Performance.Where(x => x.GroupID == GroupID).ToList();
@@ -67,20 +64,16 @@ namespace DanceApp.Model.Performances
             var siteCapacity = (db.Competition.Find(1)).SiteCapacity;
             int performanceCount = (int)Math.Ceiling((float)selectedPairs.Count / (float)siteCapacity);
 
-            for (int i = 0; i < selectedDances.Count; i++)
+            for (int j = 1; j <= performanceCount; j++)
             {
-                for (int j = 1; j <= performanceCount; j++)
-                {
-                    var performance = new Performance();
+                var performance = new Performance();
 
-                    performance.GroupID = GroupID;
-                    performance.DanceID = selectedDances[i].ID;
-                    performance.Number = j;
-                    performance.Status = "Не завершено";
+                performance.GroupID = GroupID;
+                performance.Number = j;
+                performance.Status = "Не завершено";
 
-                    db.Performance.Add(performance);
-                    UpdateDataBase();
-                }
+                db.Performance.Add(performance);
+                UpdateDataBase();
             }
             return performanceCount;
         }

@@ -120,7 +120,7 @@ namespace DanceApp.Model.Groups
             }
 
             // Поиск нераспределённых пар
-            int TourID = db.Group.Find(groupID).ID;
+            int TourID = db.Group.Find(groupID).TourID;
             var freePairs = Get(TourID, performanceType, ageCategory1, ageCategory2);
             foreach (var p in freePairs)
             {

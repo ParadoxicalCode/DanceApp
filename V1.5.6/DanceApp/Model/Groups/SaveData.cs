@@ -173,22 +173,12 @@ namespace DanceApp.Model.Groups
             db.DancesInGroup.RemoveRange(deleteDances);
 
             // Сохранение выбранных танцев в базу данных
-            var selectDance = SelectedDances.Select(x => x.ID).ToList();
-
-            var allDances = db.Dance.Where(u => u.SportsDiscipline == SportsDiscipline).ToList();
-            foreach (var d in allDances)
+            var selectDances = SelectedDances.Select(x => x.ID).ToList();
+            foreach(var danceID in selectDances)
             {
-                bool select = false;
-                for (int i = 0; i < selectDance.Count; i++)
-                {
-                    if (d.ID == selectDance[i])
-                        select = true;
-                }
-
                 var dancesInGroup = new DancesInGroup();
                 dancesInGroup.GroupID = groupID;
-                dancesInGroup.DanceID = d.ID;
-                dancesInGroup.Select = select;
+                dancesInGroup.DanceID = danceID;
 
                 db.DancesInGroup.Add(dancesInGroup);
                 UpdateDataBase();

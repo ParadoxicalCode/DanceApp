@@ -41,19 +41,31 @@ namespace DanceApp.Model.Groups
 
         public List<ClassDances> Load(int groupID)
         {
+            // Здесь надо извлечь выбранные танцы из базы данных и объединить их с танцами из выбранной спортивной дисциплины
+            // Надо узнать спортивную дисциплину и 
+
+
             List<ClassDances> dancesDGItems = new List<ClassDances>();
 
-            var dancesInGroup = db.DancesInGroup.Where(u => u.GroupID == groupID).ToList();
+            var dancesInGroup = db.DancesInGroup.Where(u => u.GroupID == groupID).Select(x => x.DanceID).ToList();
+            var sportsDiscipline = (db.Dance.Find(dancesInGroup[0])).SportsDiscipline;
+            var allDances = db.Dance.Where(x => x.SportsDiscipline == sportsDiscipline).Select(x => x.ID).ToList();
 
-            foreach (var d in dancesInGroup)
+            foreach (var danceID in allDances)
             {
-                var dance = db.Dance.Where(u => u.ID == d.DanceID).FirstOrDefault();
                 var dances = new ClassDances();
 
+                var dance = db.Dance.Find(danceID);
+                dances.Select = false;
+
+                for (int i = 0; i < dancesInGroup.Count; i++)
+                {
+                    if (danceID == dancesInGroup[i])
+                        dances.Select = true;
+                }
                 dances.ID = dance.ID;
                 dances.Title = dance.Title;
                 dances.ShortName = dance.ShortName;
-                dances.Select = d.Select;
 
                 dancesDGItems.Add(dances);
             }

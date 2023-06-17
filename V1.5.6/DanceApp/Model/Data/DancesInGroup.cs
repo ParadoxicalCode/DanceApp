@@ -20,7 +20,5 @@ namespace DanceApp.Model.Data
         [ForeignKey("Dance")]
         public int DanceID { get; set; }
         public virtual Dance Dance { get; set; }
-
-        public bool Select { get; set; }
     }
 }

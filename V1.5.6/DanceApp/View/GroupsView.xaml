@@ -35,7 +35,8 @@
 
                     <Button Style="{StaticResource AddButton}" Content="Следующий тур" Width="110" Click="NextTour_Click" Margin="15 0 0 0"/>
 
-                    <TextBlock FontSize="16" Text="* Обязательно для заполнения" VerticalAlignment="Center" Margin="30 0 0 0"/>
+                    <TextBlock Text="Количество нераспределённых пар: " FontSize="16" VerticalAlignment="Center" Margin=" 15 0 0 0"/>
+                    <TextBlock x:Name="FreePairsCountText" Text="" FontSize="16" VerticalAlignment="Center"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30">
@@ -105,9 +106,9 @@
                 <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center">
                     <TextBlock Text="Танец*" FontSize="16" VerticalAlignment="Center"/>
                     <ComboBox x:Name="DanceCB" Height="30" Width="150" DisplayMemberPath="Title" SelectedValuePath="Title" Margin="6 0 0 0"
-                    Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="DanceCB_SelectionChanged"/>
+                    Style="{StaticResource ComboBoxFlatStyle}"/>
 
-                    <TextBlock Text="Заход*" FontSize="16" Margin="15 0 0 0" VerticalAlignment="Center"/>
+                    <TextBlock Text="Заход*" FontSize="16" VerticalAlignment="Center" Margin="15 0 0 0"/>
                     <ComboBox x:Name="PerformanceCB" Height="30" Width="44" DisplayMemberPath="Number" SelectedValuePath="Number" Margin="6 0 0 0"
                     Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="PerformanceCB_SelectionChanged"/>
 
