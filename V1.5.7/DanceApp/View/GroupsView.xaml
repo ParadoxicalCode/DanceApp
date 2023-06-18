@@ -30,10 +30,10 @@
                     </Button>
 
                     <TextBlock FontSize="16" Text="Тур*" VerticalAlignment="Center" Margin="15 0 0 0"/>
-                    <ComboBox Height="30" Width="150" Grid.Row="2" x:Name="TourCB" DisplayMemberPath="Title" SelectedValuePath="Title" Margin="6 0 0 0"
-                    Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="TourCB_SelectionChanged" HorizontalAlignment="Left"/>
+                    <ComboBox Height="30" Width="150" Grid.Row="2" x:Name="RoundCB" DisplayMemberPath="Title" SelectedValuePath="Title" Margin="6 0 0 0"
+                    Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="RoundCB_SelectionChanged" HorizontalAlignment="Left"/>
 
-                    <Button Style="{StaticResource AddButton}" Content="Следующий тур" Width="110" Click="NextTour_Click" Margin="15 0 0 0"/>
+                    <Button Style="{StaticResource AddButton}" Content="Следующий тур" Width="110" Click="NextRound_Click" Margin="15 0 0 0"/>
 
                     <TextBlock Text="Количество нераспределённых пар: " FontSize="16" VerticalAlignment="Center" Margin=" 15 0 0 0"/>
                     <TextBlock x:Name="FreePairsCountText" Text="" FontSize="16" VerticalAlignment="Center"/>
@@ -41,7 +41,7 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30">
                     <TextBlock Text="Статус тура: " FontSize="16" VerticalAlignment="Center"/>
-                    <TextBlock x:Name="TourStatusText" Text="" FontSize="16" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="RoundStatusText" Text="" FontSize="16" VerticalAlignment="Center"/>
                 </StackPanel>
             </Grid>
 

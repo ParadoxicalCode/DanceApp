@@ -15,9 +15,9 @@ namespace DanceApp.Model.Performances
     public class PairsToPerformances
     {
         public DataBaseContext db = GlobalClass.db;
-        public void Distribution(int GroupID, List<ClassPairs> selectedPairs)
+        public void Distribution(int GroupID, List<ClassPairs> selectedPairs, List<ClassDances> selectedDances)
         {
-            int performanceCount = Add(GroupID, selectedPairs);
+            int performanceCount = Add(GroupID, selectedPairs, selectedDances);
 
             // Перемешивание пар
             var random = new Random();
@@ -54,7 +54,7 @@ namespace DanceApp.Model.Performances
             }
         }
 
-        public int Add(int GroupID, List<ClassPairs> selectedPairs)
+        public int Add(int GroupID, List<ClassPairs> selectedPairs, List<ClassDances> selectedDances)
         {
             // Удаление заходов
             var performancesInGroup = db.Performance.Where(x => x.GroupID == GroupID).ToList();

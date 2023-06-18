@@ -18,6 +18,7 @@ namespace DanceApp.Model.Data
         public string ShortName { get; set; }
 
         public List<DancesInGroup> DancesInGroup { get; } = new();
-        public List<JudgesInPerformance> JudgesInPerformance { get; } = new();
+        public List<IntermediateResult> IntermediateResult { get; } = new();
+        public List<JudgesAssesment> JudgesAssesment { get; } = new();
     }
 }

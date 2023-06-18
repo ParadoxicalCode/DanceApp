@@ -48,15 +48,18 @@ namespace DanceApp.Model.Data
         public DbSet<Competition> Competition { get; set; }
         public DbSet<Dance> Dance { get; set; }
         public DbSet<DancesInGroup> DancesInGroup { get; set; }
+        public DbSet<FinalResult> FinalResult { get; set; }
         public DbSet<Group> Group { get; set; }
+        public DbSet<IntermediateResult> IntermediateResult { get; set; }
         public DbSet<Judge> Judge { get; set; }
+        public DbSet<JudgesAssesment> JudgesAssesment { get; set; }
         public DbSet<JudgesInPerformance> JudgesInPerformance { get; set; }
         public DbSet<Pair> Pair { get; set; }
         public DbSet<PairsInGroup> PairsInGroup { get; set; }
         public DbSet<PairsInPerformance> PairsInPerformance { get; set; }
-        public DbSet<PairsInTour> PairsInTour { get; set; }
+        public DbSet<PairsInRound> PairsInRound { get; set; }
         public DbSet<Performance> Performance { get; set; }
-        public DbSet<Tour> Tour { get; set; }
+        public DbSet<Round> Round { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -45,15 +45,15 @@ namespace DanceApp.View
 
         private bool CBSwitch = true;
         public int GroupID;
-        public int TourID;
-        public AddEditGroupsView(int tourID, int groupID)
+        public int RoundID;
+        public AddEditGroupsView(int roundID, int groupID)
         {
             InitializeComponent();
             AddItemsToComboBox();
 
-            freePairs = new GetPairs().Free(TourID);
+            freePairs = new GetPairs().Free(roundID);
 
-            TourID = tourID;
+            RoundID = roundID;
             GroupID = groupID;
             if (GroupID == 0)
             {
@@ -82,7 +82,7 @@ namespace DanceApp.View
 
             selectedDances.Clear();
             selectedPairs.Clear();
-            freePairs = new GetPairs().Free(TourID);
+            freePairs = new GetPairs().Free(RoundID);
 
             SportsDisciplineCB.SelectedIndex = 0;
             DancesDG.ItemsSource = new GetDances().Add(0);
@@ -189,12 +189,12 @@ namespace DanceApp.View
                 ageCategory2 = "";
 
             // Добавление/изменение данных группы
-            var newGroupID = new SaveData().Save(TourID, GroupID, number, sportsDiscipline, performanceType, ageCategory1, ageCategory2, selectedDances, selectedPairs);
+            var newGroupID = new SaveData().Save(RoundID, GroupID, number, sportsDiscipline, performanceType, ageCategory1, ageCategory2, selectedDances, selectedPairs);
 
             if (newGroupID != 0)
             {
                 // Распределение пар по заходам
-                new Model.Performances.PairsToPerformances().Distribution(newGroupID, selectedPairs);
+                new Model.Performances.PairsToPerformances().Distribution(newGroupID, selectedPairs, selectedDances);
 
                 if (GroupID == 0)
                     DefaultValues();
@@ -236,7 +236,7 @@ namespace DanceApp.View
 
                 Category2CB.ItemsSource = new GetCategories().Get2(performanceType, ageCategory1.Title);
 
-                PairsDG.ItemsSource = new GetPairs().Get(TourID, performanceType, ageCategory1.ID, 0);
+                PairsDG.ItemsSource = new GetPairs().Get(RoundID, performanceType, ageCategory1.ID, 0);
             }
         }
 
@@ -248,7 +248,7 @@ namespace DanceApp.View
                 var ageCategory1 = (Category2CB.SelectedItem as AgeCategory).ID;
                 var ageCategory2 = (Category2CB.SelectedItem as AgeCategory).ID;
 
-                PairsDG.ItemsSource = new GetPairs().Get(TourID, performanceType, ageCategory1, ageCategory2);
+                PairsDG.ItemsSource = new GetPairs().Get(RoundID, performanceType, ageCategory1, ageCategory2);
             }
         }
 

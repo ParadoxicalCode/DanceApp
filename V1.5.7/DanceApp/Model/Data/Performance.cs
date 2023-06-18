@@ -21,5 +21,9 @@ namespace DanceApp.Model.Data
         public string Status { get; set; }
 
         public List<PairsInPerformance> PairsInPerformance { get; } = new();
+        public List<FinalResult> FinalResult { get; } = new();
+        public List<IntermediateResult> IntermediateResult { get; } = new();
+        public List<JudgesInPerformance> JudgesInPerformance { get; } = new();
+        public List<JudgesAssesment> JudgesAssesment { get; } = new();
     }
 }

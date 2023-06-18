@@ -24,8 +24,8 @@ namespace DanceApp.Model.Data
 
         public bool RegistrationStatus { get; set; }
 
-        [ForeignKey("Tour")]
-        public int? TourID { get; set; }
-        public virtual Tour? Tour { get; set; }
+        [ForeignKey("Round")]
+        public int? RoundID { get; set; }
+        public virtual Round? Round { get; set; }
     }
 }

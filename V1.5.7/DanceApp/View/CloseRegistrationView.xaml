@@ -14,8 +14,8 @@
             </Grid.RowDefinitions>
 
             <TextBlock FontSize="16" Text="*Начальный тур" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 5"/>
-            <ComboBox Grid.Row="1" Height="30" Width="120" x:Name="TourCB" DisplayMemberPath="Title" SelectedValuePath="Title" HorizontalAlignment="Center"
-                      Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="TourCB_SelectionChanged"/>
+            <ComboBox Grid.Row="1" Height="30" Width="120" x:Name="RoundCB" DisplayMemberPath="Title" SelectedValuePath="Title" HorizontalAlignment="Center"
+                      Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="RoundCB_SelectionChanged"/>
 
             <StackPanel Orientation="Horizontal" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button Style="{StaticResource SaveButton}" Click="Next_Click" Content="Далее"  Width="70" Height="28"/>

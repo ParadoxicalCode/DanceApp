@@ -17,7 +17,7 @@
 
             <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
                 <TextBlock FontSize="16" Text="Тур: "/>
-                <TextBlock x:Name="TourText" Text="" FontSize="16"/>
+                <TextBlock x:Name="RoundText" Text="" FontSize="16"/>
 
                 <TextBlock FontSize="16" Margin="35 0 0 0" Text="Группа: "/>
                 <TextBlock x:Name="GroupText" Text="" FontSize="16"/>

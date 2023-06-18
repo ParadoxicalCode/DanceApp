@@ -17,5 +17,7 @@ namespace DanceApp.Model.Data
         public string Country { get; set; }
 
         public List<JudgesInPerformance> JudgesInPerformance { get; } = new();
+        public List<IntermediateResult> IntermediateResult { get; } = new();
+        public List<JudgesAssesment> JudgesAssesment { get; } = new();
     }
 }

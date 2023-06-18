@@ -24,7 +24,7 @@ namespace DanceApp.View
     public partial class CloseRegistrationView : Window
     {
         private DataBaseContext db = GlobalClass.db;
-        private List<Tour> TourCBItemsList = new List<Tour>();
+        private List<Round> RoundCBItemsList = new List<Round>();
         bool CBSwitch;
         public CloseRegistrationView()
         {
@@ -36,28 +36,28 @@ namespace DanceApp.View
         {
             int pairsCount = db.Pair.Count();
             if (pairsCount <= 8)
-                TourCBItemsList.Add(new Tour { ID = 1, Title = "Финал" });
+                RoundCBItemsList.Add(new Round { ID = 1, Title = "Финал" });
 
             if (pairsCount >= 7 && pairsCount <= 15)
-                TourCBItemsList.Add(new Tour { ID = 2, Title = "Полуфинал" });
+                RoundCBItemsList.Add(new Round { ID = 2, Title = "Полуфинал" });
 
             if (pairsCount >= 13 && pairsCount <= 30)
-                TourCBItemsList.Add(new Tour { ID = 3, Title = "1/4" });
+                RoundCBItemsList.Add(new Round { ID = 3, Title = "1/4" });
 
             if (pairsCount >= 25 && pairsCount <= 60)
-                TourCBItemsList.Add(new Tour { ID = 4, Title = "1/8" });
+                RoundCBItemsList.Add(new Round { ID = 4, Title = "1/8" });
 
             CBSwitch = false;
-            TourCB.ItemsSource = TourCBItemsList.ToList();
+            RoundCB.ItemsSource = RoundCBItemsList.ToList();
             CBSwitch = true;
 
-            if (TourCBItemsList.Count() == 1)
-                TourCB.SelectedIndex = 0;
+            if (RoundCBItemsList.Count() == 1)
+                RoundCB.SelectedIndex = 0;
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            if (TourCB.SelectedIndex >= 0)
+            if (RoundCB.SelectedIndex >= 0)
             {
                 this.DialogResult = true;
             }
@@ -72,50 +72,50 @@ namespace DanceApp.View
             this.Close();
         }
 
-        private void TourCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void RoundCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CBSwitch == true)
             {
                 var data = db.Competition.Where(u => u.ID == 1).FirstOrDefault();
-                var firstTour = (TourCB.SelectedItem as Tour).Title;
+                var firstRound = (RoundCB.SelectedItem as Round).Title;
 
                 // Начиная с первого тура заполнить таблицу до финального
-                string[] allTours = new string[4] { "1/8", "1/4", "Полуфинал", "Финал" };
-                int toursCount = 1;
-                if (firstTour == "Полуфинал")
-                    toursCount = 2;
-                else if (firstTour == "1/4")
-                    toursCount = 3;
-                else if (firstTour == "1/8")
-                    toursCount = 4;
+                string[] allRounds = new string[4] { "1/8", "1/4", "Полуфинал", "Финал" };
+                int roundsCount = 1;
+                if (firstRound == "Полуфинал")
+                    roundsCount = 2;
+                else if (firstRound == "1/4")
+                    roundsCount = 3;
+                else if (firstRound == "1/8")
+                    roundsCount = 4;
 
-                var tours = db.Tour.ToList();
-                db.Tour.RemoveRange(tours);
+                var rounds = db.Round.ToList();
+                db.Round.RemoveRange(rounds);
 
-                for (int i = 4 - toursCount; i < 4; i++)
+                for (int i = 4 - roundsCount; i < 4; i++)
                 {
-                    var tour = new Tour();
-                    tour.Title = allTours[i];
-                    tour.Status = "Не завершено";
+                    var round = new Round();
+                    round.Title = allRounds[i];
+                    round.Status = "Не завершено";
 
-                    db.Tour.Add(tour);
+                    db.Round.Add(round);
                     UpdateDataBase();
                 }
-                data.TourID = db.Tour.FirstOrDefault().ID;
+                data.RoundID = db.Round.FirstOrDefault().ID;
                 UpdateDataBase();
 
                 // Пары в первом туре
 
-                var pairs = db.PairsInTour.ToList();
-                db.PairsInTour.RemoveRange(pairs);
+                var pairs = db.PairsInRound.ToList();
+                db.PairsInRound.RemoveRange(pairs);
 
                 foreach (var p in db.Pair)
                 {
-                    var pairsInTour = new PairsInTour();
-                    pairsInTour.TourID = db.Tour.FirstOrDefault().ID;
-                    pairsInTour.PairID = p.ID;
-                    pairsInTour.Select = false;
-                    db.PairsInTour.Add(pairsInTour);
+                    var pairsInRound = new PairsInRound();
+                    pairsInRound.RoundID = db.Round.FirstOrDefault().ID;
+                    pairsInRound.PairID = p.ID;
+                    pairsInRound.Select = false;
+                    db.PairsInRound.Add(pairsInRound);
 
                     try { db.SaveChanges(); }
                     catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }

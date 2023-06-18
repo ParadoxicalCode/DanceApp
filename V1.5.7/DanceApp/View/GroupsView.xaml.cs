@@ -32,7 +32,7 @@ namespace DanceApp.View
         private DataBaseContext db = GlobalClass.db;
         private List<Items> toolTipItems = new List<Items>();
         //private int selectedGroupsCount = 0;
-        private int TourID;
+        private int RoundID;
         private bool CBSwitch;
 
         public List<Pair> selectedPairs = new List<Pair>();
@@ -41,16 +41,16 @@ namespace DanceApp.View
         public GroupsView()
         {
             InitializeComponent();
-            TourCB.ItemsSource = db.Tour.ToList();
+            RoundCB.ItemsSource = db.Round.ToList();
             JudgesDG.ItemsSource = db.Judge.ToList();
 
             var ID = db.Competition.Find(1);
-            var tour = db.Tour.Where(u => u.ID == ID.TourID).FirstOrDefault();
-            TourID = tour.ID;
-            TourCB.SelectedValue = tour.Title;
+            var round = db.Round.Where(u => u.ID == ID.RoundID).FirstOrDefault();
+            RoundID = round.ID;
+            RoundCB.SelectedValue = round.Title;
             GetGroups();
 
-            int freePairs = new GetPairs().Free(TourID).Count;
+            int freePairs = new GetPairs().Free(RoundID).Count;
             FreePairsCountText.Text = freePairs.ToString();
         }
 
@@ -65,9 +65,9 @@ namespace DanceApp.View
 
         private void GetGroups()
         {
-            if (db.Group.Where(u => u.TourID == TourID).ToList() != null)
+            if (db.Group.Where(u => u.RoundID == RoundID).ToList() != null)
             {
-                GroupsDG.ItemsSource = db.Group.Where(u => u.TourID == TourID).ToList();
+                GroupsDG.ItemsSource = db.Group.Where(u => u.RoundID == RoundID).ToList();
             }
             else
                 GroupsDG.ItemsSource = null;
@@ -147,7 +147,7 @@ namespace DanceApp.View
             PairsDG.ItemsSource = null;
             CBSwitch = true;
 
-            int freePairs = new GetPairs().Free(TourID).Count;
+            int freePairs = new GetPairs().Free(RoundID).Count;
             FreePairsCountText.Text = freePairs.ToString();
         }
 
@@ -163,7 +163,7 @@ namespace DanceApp.View
             }
             else
             {
-                AddEditGroupsView x = new AddEditGroupsView(TourID, 0);
+                AddEditGroupsView x = new AddEditGroupsView(RoundID, 0);
                 x.ShowDialog();
 
                 CBSwitch = false;
@@ -176,7 +176,7 @@ namespace DanceApp.View
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             int groupID = (int)((Button)sender).CommandParameter;
-            AddEditGroupsView x = new AddEditGroupsView(TourID, groupID);
+            AddEditGroupsView x = new AddEditGroupsView(RoundID, groupID);
             x.ShowDialog();
 
             CBSwitch = false;
@@ -192,8 +192,8 @@ namespace DanceApp.View
                 int groupID = (int)((Button)sender).CommandParameter;
 
                 // Делаем пары нараспределёнными
-                var pairsInTour = db.PairsInTour.Where(x => x.TourID == TourID).ToList();
-                foreach (var p in pairsInTour)
+                var pairsInRound = db.PairsInRound.Where(x => x.RoundID == RoundID).ToList();
+                foreach (var p in pairsInRound)
                 {
                     p.Select = false;
                     UpdateDataBase();
@@ -254,7 +254,7 @@ namespace DanceApp.View
                 return;
             }
 
-            var groups = db.Group.Where(u => u.TourID == TourID).ToList();
+            var groups = db.Group.Where(u => u.RoundID == RoundID).ToList();
             var checkNumber = groups.Where(u => u.Number == "" || u.Number == null).FirstOrDefault();
             if (checkNumber != null)
             {
@@ -284,7 +284,7 @@ namespace DanceApp.View
             var DanceID = (DanceCB.SelectedItem as Dance).ID;
             var PerformanceID = (PerformanceCB.SelectedItem as Performance).Number;
 
-            DistributionPlacesView places = new DistributionPlacesView(PerformanceStatusText.Text, TourID, GroupID, DanceID, PerformanceID, selectedJudges, selectedPairs);
+            DistributionPlacesView places = new DistributionPlacesView(PerformanceStatusText.Text, RoundID, GroupID, DanceID, PerformanceID, selectedJudges, selectedPairs);
             places.ShowDialog();
         }
 
@@ -292,15 +292,15 @@ namespace DanceApp.View
 
 
 
-        private void TourCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void RoundCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CBSwitch = false;
             PairsDG.ItemsSource = null;
             GetGroups();
             CBSwitch = true;
-            TourID = (TourCB.SelectedItem as Tour).ID;
+            RoundID = (RoundCB.SelectedItem as Round).ID;
 
-            TourStatusText.Text = db.Tour.Find(TourID).Status;
+            RoundStatusText.Text = db.Round.Find(RoundID).Status;
         }
 
         private void GroupsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -361,17 +361,17 @@ namespace DanceApp.View
             selectedJudges.Remove(delete);
         }
 
-        private void NextTour_Click(object sender, RoutedEventArgs e)
+        private void NextRound_Click(object sender, RoutedEventArgs e)
         {
-            if (TourStatusText.Text == "Не завершено")
+            if (RoundStatusText.Text == "Не завершено")
             {
                 MessageBoxView messageBox = new MessageBoxView("Статус тура \"Не завершено\"!", "Уведомление", 1);
                 messageBox.ShowDialog();
             }
             else
             {
-                NextTourView nextTour = new NextTourView();
-                nextTour.ShowDialog();
+                NextRoundView nextRound = new NextRoundView();
+                nextRound.ShowDialog();
             }
         }
     }

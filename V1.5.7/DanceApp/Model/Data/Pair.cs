@@ -31,8 +31,11 @@ namespace DanceApp.Model.Data
         public int AgeCategoryID { get; set; }
         public virtual AgeCategory AgeCategory { get; set; }
 
-        public List<PairsInTour> PairsInTour { get; } = new();
+        public List<PairsInRound> PairsInRound { get; } = new();
         public List<PairsInGroup> PairsInGroup { get; } = new();
         public List<PairsInPerformance> PairsInPerformance { get; } = new();
+        public List<JudgesAssesment> JudgesAssesment { get; } = new();
+        public List<FinalResult> FinalResult { get; } = new();
+        public List<IntermediateResult> IntermediateResult { get; } = new();
     }
 }

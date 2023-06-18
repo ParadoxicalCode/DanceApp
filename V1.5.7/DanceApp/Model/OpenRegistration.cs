@@ -21,10 +21,10 @@ namespace DanceApp.Model
                 if (MessageBox.Show("При открытии регистрации удалятся все данные о группах, результатах танцев и финальный отчёт. Вы уверены?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     data.RegistrationStatus = true;
-                    data.TourID = null;
+                    data.RoundID = null;
 
-                    var pairsInTour = db.PairsInTour.ToList();
-                    db.PairsInTour.RemoveRange(pairsInTour);
+                    var pairsInRound = db.PairsInRound.ToList();
+                    db.PairsInRound.RemoveRange(pairsInRound);
 
                     var pairsInGroup = db.PairsInGroup.ToList();
                     db.PairsInGroup.RemoveRange(pairsInGroup);
@@ -35,8 +35,8 @@ namespace DanceApp.Model
                     var groups = db.Group.ToList();
                     db.Group.RemoveRange(groups);
 
-                    var tours = db.Tour.ToList();
-                    db.Tour.RemoveRange(tours);
+                    var rounds = db.Round.ToList();
+                    db.Round.RemoveRange(rounds);
 
                     try 
                     { 

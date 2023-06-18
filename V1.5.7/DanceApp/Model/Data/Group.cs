@@ -9,9 +9,9 @@ namespace DanceApp.Model.Data
         [Key]
         public int ID { get; set; }
 
-        [ForeignKey("Tour")]
-        public int TourID { get; set; }
-        public virtual Tour Tour { get; set; }
+        [ForeignKey("Round")]
+        public int RoundID { get; set; }
+        public virtual Round Round { get; set; }
 
         public string? Number { get; set; }
         public string Title { get; set; }

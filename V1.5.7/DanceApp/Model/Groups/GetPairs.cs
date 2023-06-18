@@ -11,13 +11,13 @@ namespace DanceApp.Model.Groups
     public class GetPairs
     {
         public DataBaseContext db = GlobalClass.db;
-        public List<Pair> Free(int TourID)
+        public List<Pair> Free(int RoundID)
         {
             List<Pair> freePairs = new List<Pair>();
 
             // Получаем ID нераспределённых пар
-            var query = db.PairsInTour
-                .Where(x => x.TourID == TourID && x.Select == false)
+            var query = db.PairsInRound
+                .Where(x => x.RoundID == RoundID && x.Select == false)
                 .Select(x => x.PairID)
                 .ToList();
 
@@ -37,13 +37,13 @@ namespace DanceApp.Model.Groups
         }
 
         // Поиск пар, которые подходят выбранному типу выступления и возрастным категориям
-        public List<ClassPairs> Get(int TourID, string performanceType, int ageCategory1, int ageCategory2)
+        public List<ClassPairs> Get(int RoundID, string performanceType, int ageCategory1, int ageCategory2)
         {
             // Поиск всех пар в туре по ID
             List<Pair> pairsList1 = new List<Pair>();
-            var pairsInTour = db.PairsInTour.Where(x => x.TourID == TourID).ToList();
+            var pairsInRound = db.PairsInRound.Where(x => x.RoundID == RoundID).ToList();
 
-            foreach (var p in pairsInTour)
+            foreach (var p in pairsInRound)
             {
                 var pair = db.Pair.Find(p.PairID);
                 pairsList1.Add(pair);
@@ -68,7 +68,7 @@ namespace DanceApp.Model.Groups
             List<ClassPairs> pairsList3 = new List<ClassPairs>();
             foreach (var p in pairsList1)
             {
-                var selectPair = db.PairsInTour.Where(x => x.TourID == TourID && x.PairID == p.ID).FirstOrDefault();
+                var selectPair = db.PairsInRound.Where(x => x.RoundID == RoundID && x.PairID == p.ID).FirstOrDefault();
                 if (selectPair.Select == false)
                 {
                     var pair = new ClassPairs();
@@ -120,8 +120,8 @@ namespace DanceApp.Model.Groups
             }
 
             // Поиск нераспределённых пар
-            int TourID = db.Group.Find(groupID).TourID;
-            var freePairs = Get(TourID, performanceType, ageCategory1, ageCategory2);
+            int RoundID = db.Group.Find(groupID).RoundID;
+            var freePairs = Get(RoundID, performanceType, ageCategory1, ageCategory2);
             foreach (var p in freePairs)
             {
                 var pair = db.Pair.Find(p.ID);

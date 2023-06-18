@@ -17,6 +17,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DanceApp.Model.Groups;
 using System.Collections.Immutable;
+using iText.IO.Image;
+using iText.Kernel.Colors;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Action;
+using iText.Kernel.Pdf.Canvas.Draw;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using Microsoft.Win32;
+using iText.Kernel.Font;
 
 #nullable disable
 namespace DanceApp.View
@@ -33,12 +43,15 @@ namespace DanceApp.View
         TextBox[,] LeftMatrix;
         TextBlock[,] RightMatrix;
 
+        List<Judge> SelectedJudges;
+        List<Pair> SelectedPairs;
+
         public int pairsCount;
         public int judgesCount;
         public int[,] LeftMatrix2;
         public int[,] RightMatrix2;
 
-        public DistributionPlacesView(string performanceStatus, int tourID, int groupID, int danceID, int performanceNumber, List<Judge> selectedJudges, List<Pair> selectedPairs)
+        public DistributionPlacesView(string performanceStatus, int roundID, int groupID, int danceID, int performanceNumber, List<Judge> selectedJudges, List<Pair> selectedPairs)
         {
             InitializeComponent();
 
@@ -47,7 +60,10 @@ namespace DanceApp.View
             LeftMatrix2 = new int[pairsCount, judgesCount];
             RightMatrix2 = new int[pairsCount, pairsCount];
 
-            TourText.Text = db.Tour.Find(tourID).Title;
+            SelectedJudges = selectedJudges;
+            SelectedPairs = selectedPairs;
+
+            RoundText.Text = db.Round.Find(roundID).Title;
             GroupText.Text = db.Group.Find(groupID).Title;
             DanceText.Text = db.Dance.Find(danceID).Title;
             PerformanceText.Text = performanceNumber.ToString();
@@ -231,7 +247,20 @@ namespace DanceApp.View
 
         private void Document1_Click(object sender, RoutedEventArgs e)
         {
+            var dialog = new OpenFileDialog
+            {
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                Title = "Укажите путь для сохранения PDF файла",
+                Filter = "Все папки (*.*)|*.*",
+                CheckFileExists = false,
+                CheckPathExists = true,
+                FileName = "Протокол №1" + " (" + RoundText.Text + ", " + GroupText.Text + ", " + PerformanceText.Text + ", " + DanceText.Text + ")" + ".PDF"
+            };
 
+            if (dialog.ShowDialog() == true)
+            {
+                new CreatePDF().Protocol1(dialog.FileName, SelectedPairs, SelectedJudges, RoundText.Text, GroupText.Text, DanceText.Text, PerformanceText.Text);
+            }
         }
     }
 }

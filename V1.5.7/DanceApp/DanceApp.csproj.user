@@ -46,7 +46,7 @@
     <Compile Update="View\MessageBoxView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\NextTourView.xaml.cs">
+    <Compile Update="View\NextRoundView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\PairsView.xaml.cs">
@@ -120,7 +120,7 @@
     <Page Update="View\MessageBoxView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\NextTourView.xaml">
+    <Page Update="View\NextRoundView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\PairsView.xaml">
