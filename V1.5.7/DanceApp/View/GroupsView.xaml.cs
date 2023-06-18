@@ -167,11 +167,6 @@ namespace DanceApp.View
             DanceStatusText.Text = "";
         }
 
-        private void UpdateStatus(string Type)
-        {
-            
-        }
-
 
 
 
@@ -331,6 +326,7 @@ namespace DanceApp.View
             var GroupID = (GroupsDG.SelectedItem as Group).ID;
             var DanceID = (DanceCB.SelectedItem as Dance).ID;
             var PerformanceNumber = (PerformanceCB.SelectedItem as Performance).Number;
+            var performanceID = db.Performance.Where(x => x.GroupID == GroupID && x.Number == PerformanceNumber).FirstOrDefault().ID;
 
             DistributionPlacesView places = new DistributionPlacesView(DanceStatusText.Text, RoundID, GroupID, DanceID, PerformanceNumber, selectedJudges, selectedPairs);
             places.ShowDialog();
@@ -339,6 +335,13 @@ namespace DanceApp.View
             PerformanceStatusText.Text = new Model.Groups.UpdateStatus().Performance(GroupID, PerformanceNumber, DanceID);
             GroupStatusText.Text = new Model.Groups.UpdateStatus().Group(GroupID);
             RoundStatusText.Text = new Model.Groups.UpdateStatus().Round(RoundID);
+
+            // Если нет финальных результатов для этого захода, то найти их
+            if ((db.FinalResult.Where(x => x.PerformanceID == performanceID) == null || 
+                db.FinalResult.FirstOrDefault() == null) && db.Performance.Find(performanceID).Status == "Завершено")
+            {
+                new Model.Skating.Rule9().Calculate(performanceID);
+            }
         }
 
 
