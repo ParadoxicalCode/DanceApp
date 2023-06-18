@@ -44,8 +44,8 @@ namespace DanceApp.View
         TextBox[,] LeftMatrix;
         TextBlock[,] RightMatrix;
 
-        List<Judge> SelectedJudges;
-        List<Pair> SelectedPairs;
+        List<Judge> SelectedJudges = new List<Judge>();
+        List<Pair> SelectedPairs = new List<Pair>();
 
         public int pairsCount;
         public int judgesCount;
@@ -61,23 +61,10 @@ namespace DanceApp.View
         {
             InitializeComponent();
 
-            pairsCount = selectedPairs.Count;
-            judgesCount = selectedJudges.Count;
-
             GroupID = groupID;
             PerformanceNumber = performanceNumber;
             DanceID = danceID;
-
-            LeftMatrix2 = new int[pairsCount, judgesCount];
-            RightMatrix2 = new int[pairsCount, pairsCount];
-
-            SelectedJudges = selectedJudges;
-            SelectedPairs = selectedPairs;
-
-            RoundText.Text = db.Round.Find(roundID).Title;
-            GroupText.Text = db.Group.Find(groupID).Title;
-            DanceText.Text = db.Dance.Find(danceID).Title;
-            PerformanceText.Text = performanceNumber.ToString();
+            int PerformanceID = db.Performance.Where(x => x.GroupID == GroupID && x.Number == PerformanceNumber).FirstOrDefault().ID;
 
             if (performanceStatus == "Завершено")
             {
@@ -85,19 +72,49 @@ namespace DanceApp.View
                 RandomBtn.IsEnabled = false;
                 Document1Text.IsEnabled = false;
 
-                Load();
+                var judges = db.JudgesInDance.Where(x => x.PerformanceID == PerformanceID && x.DanceID == DanceID).Select(x => x.JudgeID).ToList();
+                foreach (var j in judges)
+                {
+                    var judge = db.Judge.Find(j);
+                    SelectedJudges.Add(judge);
+                }
+                judgesCount = judges.Count;
+
+                
+                var pairs = db.PairsInDance.Where(x => x.PerformanceID == PerformanceID && x.DanceID == DanceID).Select(x => x.PairID).ToList();
+                foreach (var p in pairs)
+                {
+                    SelectedPairs.Add(db.Pair.Find(p));
+                }
+                pairsCount = pairs.Count;
             }
+            else
+            {
+                pairsCount = selectedPairs.Count;
+                judgesCount = selectedJudges.Count;
+
+                SelectedJudges = selectedJudges;
+                SelectedPairs = selectedPairs;
+            }
+
+            LeftMatrix2 = new int[pairsCount, judgesCount];
+            RightMatrix2 = new int[pairsCount, pairsCount];
+
+            RoundText.Text = db.Round.Find(roundID).Title;
+            GroupText.Text = db.Group.Find(groupID).Title;
+            DanceText.Text = db.Dance.Find(danceID).Title;
+            PerformanceText.Text = performanceNumber.ToString();
 
             PairsMatrix = new TextBlock[10]{ Pair1Text, Pair2Text, Pair3Text, Pair4Text, Pair5Text, Pair6Text, Pair7Text, Pair8Text, Pair9Text, Pair10Text };
             for (int i = 0; i < pairsCount; i++)
             {
-                PairsMatrix[i].Text = db.Pair.Find(selectedPairs[i].ID).Number;
+                PairsMatrix[i].Text = db.Pair.Find(SelectedPairs[i].ID).Number;
             }
 
             JudgesMatrix = new TextBlock[7] { Judge1Text, Judge2Text, Judge3Text, Judge4Text, Judge5Text, Judge6Text, Judge7Text };
             for (int i = 0; i < judgesCount; i++)
             {
-                JudgesMatrix[i].Text = db.Judge.Find(selectedJudges[i].ID).Character.ToString();
+                JudgesMatrix[i].Text = db.Judge.Find(SelectedJudges[i].ID).Character.ToString();
             }
 
             LeftMatrix = new TextBox[7, 10]{
@@ -133,22 +150,25 @@ namespace DanceApp.View
                     LeftMatrix[j, i].Background = Brushes.LightGray;
                 }
             }
+
+            if (performanceStatus == "Завершено")
+            {
+                var PairsInDance = db.PairsInDance.Where(x => x.PerformanceID == PerformanceID).ToList();
+                Load(PerformanceID);
+            }
         }
 
-        private void Load()
+        private void Load(int performanceID)
         {
             // Загрузить оценки судей из базы данных и произвести расчёты
-            int PerformanceID = db.Performance.Where(x => x.GroupID == GroupID && x.Number == PerformanceNumber).FirstOrDefault().ID;
-            var JudgesInPerformance = db.JudgesInDance.Where(x => x.PerformanceID == PerformanceID).ToList();
-
             for (int i = 0; i < pairsCount; i++)
             {
                 for (int j = 0; j < judgesCount; j++)
                 {
-                    
                     // В запросе должен быть список судей с индексом j
-                    var value = db.JudgesAssesment.Where(x => x.PerformanceID == PerformanceID && DanceID == DanceID && x.JudgeID == JudgesInPerformance[j].ID).FirstOrDefault().Value;
-                    //LeftMatrix[j, i].Text) =
+                    var value = db.JudgesAssesment.Where(x => x.PerformanceID == performanceID && x.DanceID == DanceID && 
+                        x.JudgeID == SelectedJudges[j].ID && x.PairID == SelectedPairs[i].ID).FirstOrDefault().Value;
+                    LeftMatrix[j, i].Text = value;
                 }
             }
             Calculate();
@@ -186,11 +206,26 @@ namespace DanceApp.View
             // Сохранение судей
             foreach (var j in SelectedJudges)
             {
-                var judge = new JudgesInPerformance();
+                var judge = new JudgesInDance();
                 judge.PerformanceID = performanceID;
+                judge.DanceID = DanceID;
                 judge.JudgeID = j.ID;
 
-                db.JudgesInPerformance.Add(judge);
+                db.JudgesInDance.Add(judge);
+
+                try { db.SaveChanges(); }
+                catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
+            }
+
+            // Сохранение пар
+            foreach (var p in SelectedPairs)
+            {
+                var pair = new PairsInDance();
+                pair.PerformanceID = performanceID;
+                pair.DanceID = DanceID;
+                pair.PairID = p.ID;
+
+                db.PairsInDance.Add(pair);
 
                 try { db.SaveChanges(); }
                 catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
@@ -203,8 +238,7 @@ namespace DanceApp.View
             if (block == true)
             {
                 Save();
-                CalculateBtn.IsEnabled = false;
-                Document1Text.IsEnabled = false;
+                this.Close();
             }
         }
 

@@ -56,24 +56,24 @@
             <Border Grid.Row="3" BorderThickness="1" BorderBrush="Black">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="42"/>
+                        <ColumnDefinition Width="44"/>
                         <ColumnDefinition MinWidth="220" MaxWidth="220"/>
                         <ColumnDefinition Width="280*"/>
-                        <ColumnDefinition Width="46"/>
+                        <ColumnDefinition Width="50"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="26"/>
                         <RowDefinition Height="20"/>
                         <RowDefinition Height="260*"/>
                     </Grid.RowDefinitions>
 
                     <Border Grid.RowSpan="2" Style="{StaticResource Border}">
-                        <TextBlock Text="Пары" Style="{StaticResource Text}" FontSize="12" Margin="0 0 0 20"/>
+                        <TextBlock Text="Пары" Style="{StaticResource Text}" FontSize="14" Margin="0 0 0 20"/>
                     </Border>
 
                     <Border Grid.Column="1" Style="{StaticResource Border}">
-                        <TextBlock Text="Судьи" Style="{StaticResource Text}" FontSize="12"/>
+                        <TextBlock Text="Судьи" Style="{StaticResource Text}" FontSize="14"/>
                     </Border>
 
                     <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource Border}">
@@ -88,22 +88,22 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock x:Name="Judge1Text" Grid.Column="0" Style="{StaticResource Text}" FontSize="12"/>
-                            <TextBlock x:Name="Judge2Text" Grid.Column="1" Style="{StaticResource Text}" FontSize="12"/>
-                            <TextBlock x:Name="Judge3Text" Grid.Column="2" Style="{StaticResource Text}" FontSize="12"/>
-                            <TextBlock x:Name="Judge4Text" Grid.Column="3" Style="{StaticResource Text}" FontSize="12"/>
-                            <TextBlock x:Name="Judge5Text" Grid.Column="4" Style="{StaticResource Text}" FontSize="12"/>
-                            <TextBlock x:Name="Judge6Text" Grid.Column="5" Style="{StaticResource Text}" FontSize="12"/>
-                            <TextBlock x:Name="Judge7Text" Grid.Column="6" Style="{StaticResource Text}" FontSize="12"/>
+                            <TextBlock x:Name="Judge1Text" Grid.Column="0" Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock x:Name="Judge2Text" Grid.Column="1" Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock x:Name="Judge3Text" Grid.Column="2" Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock x:Name="Judge4Text" Grid.Column="3" Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock x:Name="Judge5Text" Grid.Column="4" Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock x:Name="Judge6Text" Grid.Column="5" Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock x:Name="Judge7Text" Grid.Column="6" Style="{StaticResource Text}" FontSize="14"/>
                         </Grid>
                     </Border>
 
                     <Border Grid.Column="2" Style="{StaticResource Border}">
-                        <TextBlock Text="Количество мест" Style="{StaticResource Text}" FontSize="12"/>
+                        <TextBlock Text="Количество мест" Style="{StaticResource Text}" FontSize="14"/>
                     </Border>
 
                     <Border Grid.RowSpan="2" Grid.Column="3" Style="{StaticResource Border}">
-                        <TextBlock Text="Место" Style="{StaticResource Text}" FontSize="12" Margin="0 0 0 20"/>
+                        <TextBlock Text="Место" Style="{StaticResource Text}" FontSize="14" Margin="0 0 0 20"/>
                     </Border>
 
                     <Border Grid.Row="1" Grid.Column="2" Style="{StaticResource Border}">
@@ -121,16 +121,16 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="1" Style="{StaticResource Text}" FontSize="12"/>
-                            <TextBlock Text="1-2" Grid.Column="1" Style="{StaticResource Text}" FontSize="12"/>
-                            <TextBlock Text="1-3" Grid.Column="2" Style="{StaticResource Text}" FontSize="12"/>
-                            <TextBlock Text="1-4" Grid.Column="3" Style="{StaticResource Text}" FontSize="12"/>
-                            <TextBlock Text="1-5" Grid.Column="4" Style="{StaticResource Text}" FontSize="12"/>
-                            <TextBlock Text="1-6" Grid.Column="5" Style="{StaticResource Text}" FontSize="12"/>
-                            <TextBlock Text="1-7" Grid.Column="6" Style="{StaticResource Text}" FontSize="12"/>
-                            <TextBlock Text="1-8" Grid.Column="7" Style="{StaticResource Text}" FontSize="12"/>
-                            <TextBlock Text="1-9" Grid.Column="8" Style="{StaticResource Text}" FontSize="12"/>
-                            <TextBlock Text="1-10" Grid.Column="9" Style="{StaticResource Text}" FontSize="12"/>
+                            <TextBlock Text="1"                    Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock Text="1-2" Grid.Column="1"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock Text="1-3" Grid.Column="2"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock Text="1-4" Grid.Column="3"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock Text="1-5" Grid.Column="4"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock Text="1-6" Grid.Column="5"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock Text="1-7" Grid.Column="6"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock Text="1-8" Grid.Column="7"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock Text="1-9" Grid.Column="8"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock Text="1-10" Grid.Column="9" Style="{StaticResource Text}" FontSize="14"/>
                         </Grid>
                     </Border>
 
@@ -149,16 +149,16 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock x:Name="Pair1Text" Grid.Row="0" Style="{StaticResource Text}"/>
-                            <TextBlock x:Name="Pair2Text" Grid.Row="1" Style="{StaticResource Text}"/>
-                            <TextBlock x:Name="Pair3Text" Grid.Row="2" Style="{StaticResource Text}"/>
-                            <TextBlock x:Name="Pair4Text" Grid.Row="3" Style="{StaticResource Text}"/>
-                            <TextBlock x:Name="Pair5Text" Grid.Row="4" Style="{StaticResource Text}"/>
-                            <TextBlock x:Name="Pair6Text" Grid.Row="5" Style="{StaticResource Text}"/>
-                            <TextBlock x:Name="Pair7Text" Grid.Row="6" Style="{StaticResource Text}"/>
-                            <TextBlock x:Name="Pair8Text" Grid.Row="7" Style="{StaticResource Text}"/>
-                            <TextBlock x:Name="Pair9Text" Grid.Row="8" Style="{StaticResource Text}"/>
-                            <TextBlock x:Name="Pair10Text" Grid.Row="9" Style="{StaticResource Text}"/>
+                            <TextBlock x:Name="Pair1Text" Grid.Row="0"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock x:Name="Pair2Text" Grid.Row="1"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock x:Name="Pair3Text" Grid.Row="2"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock x:Name="Pair4Text" Grid.Row="3"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock x:Name="Pair5Text" Grid.Row="4"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock x:Name="Pair6Text" Grid.Row="5"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock x:Name="Pair7Text" Grid.Row="6"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock x:Name="Pair8Text" Grid.Row="7"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock x:Name="Pair9Text" Grid.Row="8"  Style="{StaticResource Text}" FontSize="14"/>
+                            <TextBlock x:Name="Pair10Text" Grid.Row="9" Style="{StaticResource Text}" FontSize="14"/>
                         </Grid>
                     </Border>
 

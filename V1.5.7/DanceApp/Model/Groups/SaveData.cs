@@ -84,11 +84,7 @@ namespace DanceApp.Model.Groups
                 group.Status = "Не завершено";
 
                 db.Group.Add(group);
-                try
-                {
-                    db.SaveChanges();
-                    MessageBox.Show("Запись добавлена!");
-                }
+                try {  db.SaveChanges(); }
                 catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
             }
             else
@@ -155,6 +151,8 @@ namespace DanceApp.Model.Groups
             {
                 db.SaveChanges();
                 MessageBox.Show("Запись изменена!");
+
+
                 return true;
             }
             catch (Exception ex) 

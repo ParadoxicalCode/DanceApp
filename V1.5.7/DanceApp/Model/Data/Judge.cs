@@ -16,7 +16,7 @@ namespace DanceApp.Model.Data
         public string City { get; set; }
         public string Country { get; set; }
 
-        public List<JudgesInPerformance> JudgesInPerformance { get; } = new();
+        public List<JudgesInDance> JudgesInDance { get; } = new();
         public List<JudgesAssesment> JudgesAssesment { get; } = new();
         public List<NextRound> NextRound { get; } = new();
     }

@@ -45,7 +45,6 @@ namespace DanceApp.Model.Performances
                     var pair = new PairsInPerformance();
                     pair.PerformanceID = performance.ID;
                     pair.PairID = selectedPairs[j - 1].ID;
-                    pair.Select = false;
 
                     db.PairsInPerformance.Add(pair);
                     UpdateDataBase();

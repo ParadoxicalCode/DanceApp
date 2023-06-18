@@ -180,7 +180,6 @@ namespace DanceApp.View
                 try
                 {
                     db.SaveChanges();
-                    MessageBox.Show("Запись добавлена!");
                     this.DialogResult = true;
                 }
                 catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }

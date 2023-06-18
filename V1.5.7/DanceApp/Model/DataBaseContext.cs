@@ -56,8 +56,9 @@ namespace DanceApp.Model.Data
         public DbSet<JudgesInDance> JudgesInDance { get; set; }
         public DbSet<NextRound> NextRound { get; set; }
         public DbSet<Pair> Pair { get; set; }
-        public DbSet<PairsInGroup> PairsInGroup { get; set; }
         public DbSet<PairsInDance> PairsInDance { get; set; }
+        public DbSet<PairsInGroup> PairsInGroup { get; set; }
+        public DbSet<PairsInPerformance> PairsInPerformance { get; set; }
         public DbSet<PairsInRound> PairsInRound { get; set; }
         public DbSet<Performance> Performance { get; set; }
         public DbSet<Round> Round { get; set; }

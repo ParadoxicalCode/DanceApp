@@ -4,6 +4,7 @@ using DanceApp.Model.Groups;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -51,6 +52,7 @@ namespace DanceApp.View
 
             int freePairs = new GetPairs().Free(RoundID).Count;
             FreePairsCountText.Text = freePairs.ToString();
+            CBSwitch = true;
         }
 
         public class Items
@@ -90,7 +92,9 @@ namespace DanceApp.View
                 });
             }
 
+            CBSwitch = false;
             DanceCB.ItemsSource = dances;
+            CBSwitch = true;
             DanceCB.SelectedIndex = 0;
         }
 
@@ -144,26 +148,125 @@ namespace DanceApp.View
             DanceCB.ItemsSource = null;
             PerformanceCB.ItemsSource = null;
             PairsDG.ItemsSource = null;
+            JudgesDG.ItemsSource = null;
+            JudgesDG.ItemsSource = db.Judge.ToList();
             CBSwitch = true;
 
             selectedPairs.Clear();
+            selectedJudges.Clear();
             int freePairs = new GetPairs().Free(RoundID).Count;
             FreePairsCountText.Text = freePairs.ToString();
         }
 
-        private void UpdateStatus()
+        private void UpdateStatus(string Type)
         {
-            // Статус нужно обновлять при выборе танцев
-            // Обращаемся к базе данных и ищем результаты для выбранного захода и танца. Если результата нет, то не завершено иначе завершено
-            //db.Performance.Find(performanceID).Status = "Завершено";
-            var PerformanceID = (PerformanceCB.SelectedItem as Performance).ID;
-            var DanceID = (DanceCB.SelectedItem as Dance).ID;
-            var checkIsExist = db.IntermediateResult.Where(x => x.PerformanceID == PerformanceID && x.DanceID == DanceID).FirstOrDefault();
+            if (Type == "Танец")
+            {
+                var PerformanceID = (PerformanceCB.SelectedItem as Performance).ID;
+                var DanceID = (DanceCB.SelectedItem as Dance).ID;
+                var GroupID = (GroupsDG.SelectedItem as Group).ID;
 
-            if (checkIsExist == null)
-                DanceStatusText.Text = "Не завершено";
-            else
-                DanceStatusText.Text = "Завершено";
+                foreach (var d in db.DancesInGroup.Where(x => x.GroupID == GroupID))
+                {
+                    var checkIsExistDance = db.IntermediateResult.Where(x => (x.PerformanceID == PerformanceID && x.DanceID == d.DanceID) && (x.Value != null || x.Value != "")).FirstOrDefault();
+
+                    // Нам надо удостовериться, что все танцы станцевали. Значит надо подставить такой DanceID, результата для которого ещё нет
+                    if (checkIsExistDance == null)
+                    {
+                        DanceStatusText.Text = "Не завершено";
+                        return;
+                    }
+                    else
+                    {
+                        db.Performance.Find(PerformanceID).Status = "Завершено";
+                        UpdateDataBase();
+                        DanceStatusText.Text = "Завершено";
+                    }
+                }
+            }
+
+            if (Type == "Группа")
+            {
+                var PerformanceID = (PerformanceCB.SelectedItem as Performance).ID;
+                var DanceID = (DanceCB.SelectedItem as Dance).ID;
+
+                var GroupID = (GroupsDG.SelectedItem as Group).ID;
+                var checkIsExistGroup = db.Performance.Where(x => x.GroupID == GroupID && x.Status == "Не завершено").FirstOrDefault();
+
+                if (checkIsExistGroup != null)
+                {
+                    GroupStatusText.Text = "Не завершено";
+                }
+                else
+                {
+                    db.Group.Find(GroupID).Status = "Завершено";
+                    UpdateDataBase();
+                    GroupStatusText.Text = "Завершено";
+                }
+            }
+
+            if (Type == "Тур")
+            {
+                RoundID = (RoundCB.SelectedItem as Round).ID;
+                var checkIsExistRound = db.Group.Where(x => x.RoundID == RoundID && x.Status == "Не завершено").FirstOrDefault();
+
+                if (checkIsExistRound != null)
+                    RoundStatusText.Text = "Не завершено";
+                else
+                {
+                    db.Round.Find(RoundID).Status = "Завершено";
+                    UpdateDataBase();
+                    RoundStatusText.Text = "Завершено";
+                }
+            }
+
+            if (Type == "Всё")
+            {
+                var PerformanceID = (PerformanceCB.SelectedItem as Performance).ID;
+                var DanceID = (DanceCB.SelectedItem as Dance).ID;
+                var GroupID = (GroupsDG.SelectedItem as Group).ID;
+
+                foreach (var d in db.DancesInGroup.Where(x => x.GroupID == GroupID))
+                {
+                    var checkIsExistDance = db.IntermediateResult.Where(x => (x.PerformanceID == PerformanceID && x.DanceID == d.DanceID) && (x.Value != null || x.Value != "")).FirstOrDefault();
+
+                    // Нам надо удостовериться, что все танцы станцевали. Значит надо подставить такой DanceID, результата для которого ещё нет
+                    if (checkIsExistDance == null)
+                    {
+                        DanceStatusText.Text = "Не завершено";
+                        return;
+                    }
+                    else
+                    {
+                        db.Performance.Find(PerformanceID).Status = "Завершено";
+                        UpdateDataBase();
+                        DanceStatusText.Text = "Завершено";
+                    }
+                }
+
+                var checkIsExistGroup = db.Performance.Where(x => x.GroupID == GroupID && x.Status == "Не завершено").FirstOrDefault();
+
+                if (checkIsExistGroup != null)
+                    GroupStatusText.Text = "Не завершено";
+                else
+                {
+                    db.Group.Find(GroupID).Status = "Завершено";
+                    UpdateDataBase();
+                    GroupStatusText.Text = "Завершено";
+                }
+
+                RoundID = (RoundCB.SelectedItem as Round).ID;
+                var checkIsExistRound = db.Group.Where(x => x.RoundID == RoundID && x.Status == "Не завершено").FirstOrDefault();
+
+                if (checkIsExistRound != null)
+                    RoundStatusText.Text = "Не завершено";
+                else
+                {
+                    db.Round.Find(RoundID).Status = "Завершено";
+                    UpdateDataBase();
+                    RoundStatusText.Text = "Завершено";
+                }
+            }
         }
 
 
@@ -237,6 +340,8 @@ namespace DanceApp.View
 
                 // Удаление всех связанных данных с удаляемой группой
 
+
+
                 // Поиск танцев в группе
                 var dancesInGroup = db.DancesInGroup.Where(x => x.GroupID == groupID).ToList();
                 foreach (var d in dancesInGroup)
@@ -269,6 +374,7 @@ namespace DanceApp.View
                     db.SaveChanges();
                     CBSwitch = false;
                     DefaultValues();
+                    UpdateStatus("Тур");
                     CBSwitch = true;
                 }
                 catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
@@ -298,22 +404,25 @@ namespace DanceApp.View
                 return;
             }
 
-            if (selectedPairs.Count < 2)
+            if (DanceStatusText.Text == "Не завершено")
             {
-                new MessageBoxView("Необходимо выбрать хотя бы две пары!", "Уведомление", 1).ShowDialog();
-                return;
-            }
+                if (selectedPairs.Count < 2)
+                {
+                    new MessageBoxView("Необходимо выбрать хотя бы две пары!", "Уведомление", 1).ShowDialog();
+                    return;
+                }
 
-            if (selectedJudges.Count < 3 || selectedJudges.Count > 7)
-            {
-                new MessageBoxView("Количество судей должно быть не менее трёх и не более семи!", "Уведомление", 1).ShowDialog();
-                return;
-            }
+                if (selectedJudges.Count < 3 || selectedJudges.Count > 7)
+                {
+                    new MessageBoxView("Количество судей должно быть не менее трёх и не более семи!", "Уведомление", 1).ShowDialog();
+                    return;
+                }
 
-            if (selectedJudges.Count % 2 == 0)
-            {
-                new MessageBoxView("Количество судей должно быть нечётным!", "Уведомление", 1).ShowDialog();
-                return;
+                if (selectedJudges.Count % 2 == 0)
+                {
+                    new MessageBoxView("Количество судей должно быть нечётным!", "Уведомление", 1).ShowDialog();
+                    return;
+                }
             }
 
             var GroupID = (GroupsDG.SelectedItem as Group).ID;
@@ -322,7 +431,7 @@ namespace DanceApp.View
 
             DistributionPlacesView places = new DistributionPlacesView(DanceStatusText.Text, RoundID, GroupID, DanceID, PerformanceNumber, selectedJudges, selectedPairs);
             places.ShowDialog();
-            UpdateStatus();
+            UpdateStatus("Всё");
         }
 
 
@@ -331,13 +440,14 @@ namespace DanceApp.View
 
         private void RoundCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CBSwitch = false;
-            PairsDG.ItemsSource = null;
-            GetGroups();
-            CBSwitch = true;
-            RoundID = (RoundCB.SelectedItem as Round).ID;
-
-            RoundStatusText.Text = db.Round.Find(RoundID).Status;
+            if (CBSwitch == true)
+            {
+                PairsDG.ItemsSource = null;
+                GetGroups();
+                UpdateStatus("Тур");
+                RoundID = (RoundCB.SelectedItem as Round).ID;
+                selectedPairs.Clear();
+            }
         }
 
         private void GroupsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -348,9 +458,10 @@ namespace DanceApp.View
                 GetDances();
 
                 int groupID = (GroupsDG.SelectedItem as Group).ID;
-                GroupStatusText.Text = db.Group.Find(groupID).Status;
-            }
-                
+                UpdateStatus("Группа");
+                UpdateStatus("Тур");
+                selectedPairs.Clear();
+            } 
         }
 
         private void PerformanceCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -361,12 +472,16 @@ namespace DanceApp.View
 
                 int groupID = (GroupsDG.SelectedItem as Group).ID;
                 int performanceNumber = (PerformanceCB.SelectedItem as Performance).Number;
+                selectedPairs.Clear();
             }
         }
 
         private void DanceCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateStatus();
+            if (CBSwitch == true)
+            {
+                UpdateStatus("Танец");
+            }
         }
 
 

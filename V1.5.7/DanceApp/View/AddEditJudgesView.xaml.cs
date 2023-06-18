@@ -83,7 +83,6 @@ namespace DanceApp.View
                     try
                     {
                         db.SaveChanges();
-                        MessageBox.Show("Запись добавлена!");
                         SurnameTB.Text = "";
                         NameTB.Text = "";
                         PatronymicTB.Text = "";
