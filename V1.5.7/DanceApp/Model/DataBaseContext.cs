@@ -102,9 +102,7 @@ namespace DanceApp.Model.Data
                 new Judge { ID = 4,  Character = 'D', Surname = "Журавлёв",  Name = "Денис",     Patronymic = "Тимурович",  Club = "Орион",         City = "Новосибирск", Country = "Россия" },
                 new Judge { ID = 5,  Character = 'E', Surname = "Фролова",   Name = "Анна",      Patronymic = "Егоровна",   Club = "Орион",         City = "Новосибирск", Country = "Россия" },
                 new Judge { ID = 6,  Character = 'F', Surname = "Новикова",  Name = "Екатерина", Patronymic = "Семёновна",  Club = "Ночные лебеди", City = "Новосибирск", Country = "Россия" },
-                new Judge { ID = 7,  Character = 'G', Surname = "Николаев",  Name = "Кирилл",    Patronymic = "Фёдорович",  Club = "Ночные лебеди", City = "Новосибирск", Country = "Россия" },
-                new Judge { ID = 8,  Character = 'H', Surname = "Симонов",   Name = "Марк",      Patronymic = "Романович",  Club = "",              City = "Новосибирск", Country = "Россия" },
-                new Judge { ID = 9,  Character = 'I', Surname = "Кузнецова", Name = "Василиса",  Patronymic = "Николаевна", Club = "Ночные лебеди", City = "Новосибирск", Country = "Россия" }
+                new Judge { ID = 7,  Character = 'G', Surname = "Николаев",  Name = "Кирилл",    Patronymic = "Фёдорович",  Club = "Ночные лебеди", City = "Новосибирск", Country = "Россия" }
             );
 
             modelBuilder.Entity<Pair>().HasData(

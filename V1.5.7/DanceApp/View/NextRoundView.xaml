@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DanceApp.View"
         mc:Ignorable="d"
-        Title="Отбор пар в следующий тур" Height="500" Width="430" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Отбор пар в следующий тур" Height="590" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Border BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5" Margin="5,0,5,5">
         <Grid Margin="12 4 12 12">
             <Grid.RowDefinitions>
@@ -24,8 +24,8 @@
 
             <Grid>
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                    <TextBlock FontSize="16" Text="Тур: "/>
-                    <TextBlock x:Name="RoundText" FontSize="16"/>
+                    <TextBlock FontSize="16" Text="Тур: " VerticalAlignment="Center"/>
+                    <TextBlock x:Name="RoundText" FontSize="16" VerticalAlignment="Center"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">

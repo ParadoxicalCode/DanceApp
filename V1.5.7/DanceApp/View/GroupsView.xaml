@@ -116,7 +116,10 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center" HorizontalAlignment="Right">
-                    <TextBlock Text="Статус танца в заходе: " FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <TextBlock Text="Статус захода: " FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <TextBlock x:Name="PerformanceStatusText" Text="" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+                    <TextBlock Text="Статус танца: " FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20 0 0 0"/>
                     <TextBlock x:Name="DanceStatusText" Text="" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 </StackPanel>
             </Grid>
