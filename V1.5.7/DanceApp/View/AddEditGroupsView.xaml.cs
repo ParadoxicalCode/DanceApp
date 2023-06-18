@@ -101,6 +101,11 @@ namespace DanceApp.View
             // Загрузка данных в выпадающие списки
             var group = db.Group.Find(GroupID);
 
+            if (group.Number != null && group.Number != "")
+            {
+                NumberTB.Text = group.Number;
+            }
+
             SportsDisciplineCB.SelectedValue = group.SportsDiscipline;
             PerformanceTypeCB.SelectedValue = group.PerformanceType;
 

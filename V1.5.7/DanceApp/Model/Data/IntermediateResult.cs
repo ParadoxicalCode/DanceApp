@@ -21,10 +21,6 @@ namespace DanceApp.Model.Data
         public int DanceID { get; set; }
         public virtual Dance Dance { get; set; }
 
-        [ForeignKey("Judge")]
-        public int JudgeID { get; set; }
-        public virtual Judge Judge { get; set; }
-
         [ForeignKey("Pair")]
         public int PairID { get; set; }
         public virtual Pair Pair { get; set; }

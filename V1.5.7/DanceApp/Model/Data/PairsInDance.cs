@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DanceApp.Model.Data
 {
-    public class JudgesInPerformance
+    public class PairsInDance
     {
         [Key]
         public int ID { get; set; }
@@ -17,8 +17,12 @@ namespace DanceApp.Model.Data
         public int PerformanceID { get; set; }
         public virtual Performance Performance { get; set; }
 
-        [ForeignKey("Judge")]
-        public int JudgeID { get; set; }
-        public virtual Judge Judge { get; set; }
+        [ForeignKey("Dance")]
+        public int DanceID { get; set; }
+        public virtual Dance Dance { get; set; }
+
+        [ForeignKey("Pair")]
+        public int PairID { get; set; }
+        public virtual Pair Pair { get; set; }
     }
 }

@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
-//using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -147,8 +146,24 @@ namespace DanceApp.View
             PairsDG.ItemsSource = null;
             CBSwitch = true;
 
+            selectedPairs.Clear();
             int freePairs = new GetPairs().Free(RoundID).Count;
             FreePairsCountText.Text = freePairs.ToString();
+        }
+
+        private void UpdateStatus()
+        {
+            // Статус нужно обновлять при выборе танцев
+            // Обращаемся к базе данных и ищем результаты для выбранного захода и танца. Если результата нет, то не завершено иначе завершено
+            //db.Performance.Find(performanceID).Status = "Завершено";
+            var PerformanceID = (PerformanceCB.SelectedItem as Performance).ID;
+            var DanceID = (DanceCB.SelectedItem as Dance).ID;
+            var checkIsExist = db.IntermediateResult.Where(x => x.PerformanceID == PerformanceID && x.DanceID == DanceID).FirstOrDefault();
+
+            if (checkIsExist == null)
+                DanceStatusText.Text = "Не завершено";
+            else
+                DanceStatusText.Text = "Завершено";
         }
 
 
@@ -303,10 +318,11 @@ namespace DanceApp.View
 
             var GroupID = (GroupsDG.SelectedItem as Group).ID;
             var DanceID = (DanceCB.SelectedItem as Dance).ID;
-            var PerformanceID = (PerformanceCB.SelectedItem as Performance).Number;
+            var PerformanceNumber = (PerformanceCB.SelectedItem as Performance).Number;
 
-            DistributionPlacesView places = new DistributionPlacesView(PerformanceStatusText.Text, RoundID, GroupID, DanceID, PerformanceID, selectedJudges, selectedPairs);
+            DistributionPlacesView places = new DistributionPlacesView(DanceStatusText.Text, RoundID, GroupID, DanceID, PerformanceNumber, selectedJudges, selectedPairs);
             places.ShowDialog();
+            UpdateStatus();
         }
 
 
@@ -345,9 +361,12 @@ namespace DanceApp.View
 
                 int groupID = (GroupsDG.SelectedItem as Group).ID;
                 int performanceNumber = (PerformanceCB.SelectedItem as Performance).Number;
-                
-                PerformanceStatusText.Text = db.Performance.Where(x => x.GroupID == groupID && x.Number == performanceNumber).FirstOrDefault().Status;
             }
+        }
+
+        private void DanceCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateStatus();
         }
 
 

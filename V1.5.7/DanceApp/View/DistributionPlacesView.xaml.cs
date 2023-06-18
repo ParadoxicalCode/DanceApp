@@ -27,6 +27,7 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using Microsoft.Win32;
 using iText.Kernel.Font;
+using static Org.BouncyCastle.Utilities.Test.FixedSecureRandom;
 
 #nullable disable
 namespace DanceApp.View
@@ -48,6 +49,11 @@ namespace DanceApp.View
 
         public int pairsCount;
         public int judgesCount;
+        int GroupID;
+        int PerformanceNumber;
+        int DanceID;
+
+        string[] Places = new string[10];
         public int[,] LeftMatrix2;
         public int[,] RightMatrix2;
 
@@ -57,6 +63,11 @@ namespace DanceApp.View
 
             pairsCount = selectedPairs.Count;
             judgesCount = selectedJudges.Count;
+
+            GroupID = groupID;
+            PerformanceNumber = performanceNumber;
+            DanceID = danceID;
+
             LeftMatrix2 = new int[pairsCount, judgesCount];
             RightMatrix2 = new int[pairsCount, pairsCount];
 
@@ -73,6 +84,8 @@ namespace DanceApp.View
                 CalculateBtn.IsEnabled = false;
                 RandomBtn.IsEnabled = false;
                 Document1Text.IsEnabled = false;
+
+                Load();
             }
 
             PairsMatrix = new TextBlock[10]{ Pair1Text, Pair2Text, Pair3Text, Pair4Text, Pair5Text, Pair6Text, Pair7Text, Pair8Text, Pair9Text, Pair10Text };
@@ -110,7 +123,7 @@ namespace DanceApp.View
 
             PlacesMatrix = new TextBlock[10] { p01, p02, p03, p04, p05, p06, p07, p08, p09, p10 };
 
-            // Сокрытие TextBox'ов в левой части матрицы.
+            // Сокрытие выпадающих списков в левой части матрицы.
             for (int i = 0; i < 10; i++)
             {
                 int j = (i < pairsCount ? judgesCount : 0);
@@ -122,12 +135,80 @@ namespace DanceApp.View
             }
         }
 
-        private void Calculate_Click(object sender, RoutedEventArgs e)
+        private void Load()
         {
+            // Загрузить оценки судей из базы данных и произвести расчёты
+            int PerformanceID = db.Performance.Where(x => x.GroupID == GroupID && x.Number == PerformanceNumber).FirstOrDefault().ID;
+            var JudgesInPerformance = db.JudgesInDance.Where(x => x.PerformanceID == PerformanceID).ToList();
+
+            for (int i = 0; i < pairsCount; i++)
+            {
+                for (int j = 0; j < judgesCount; j++)
+                {
+                    
+                    // В запросе должен быть список судей с индексом j
+                    var value = db.JudgesAssesment.Where(x => x.PerformanceID == PerformanceID && DanceID == DanceID && x.JudgeID == JudgesInPerformance[j].ID).FirstOrDefault().Value;
+                    //LeftMatrix[j, i].Text) =
+                }
+            }
             Calculate();
         }
 
-        private void Calculate()
+        private void Save()
+        {
+            int performanceID = db.Performance.Where(x => x.GroupID == GroupID && x.Number == PerformanceNumber).FirstOrDefault().ID;
+            
+            for (int i = 0; i < pairsCount; i++)
+            {
+                // Сохранение оценок судей
+                for (int j = 0; j < judgesCount; j++)
+                {
+                    JudgesAssesment a = new JudgesAssesment();
+                    a.PerformanceID = performanceID;
+                    a.DanceID = DanceID;
+                    a.JudgeID = SelectedJudges[j].ID;
+                    a.PairID = SelectedPairs[i].ID;
+                    a.Value = LeftMatrix[j, i].Text;
+
+                    db.JudgesAssesment.Add(a);
+                }
+
+                // Сохранение результатов танца
+                IntermediateResult ir = new IntermediateResult();
+                ir.PerformanceID = performanceID;
+                ir.DanceID = DanceID;
+                ir.PairID = SelectedPairs[i].ID;
+                ir.Value = Places[i];
+
+                db.IntermediateResult.Add(ir);
+            }
+
+            // Сохранение судей
+            foreach (var j in SelectedJudges)
+            {
+                var judge = new JudgesInPerformance();
+                judge.PerformanceID = performanceID;
+                judge.JudgeID = j.ID;
+
+                db.JudgesInPerformance.Add(judge);
+
+                try { db.SaveChanges(); }
+                catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
+            }
+        }
+
+        private void Calculate_Click(object sender, RoutedEventArgs e)
+        {
+            bool block = Calculate();
+            if (block == true)
+            {
+                Save();
+                CalculateBtn.IsEnabled = false;
+                Document1Text.IsEnabled = false;
+            }
+        }
+
+        private bool Calculate()
         {
             if (Validation() == true)
             {
@@ -135,7 +216,9 @@ namespace DanceApp.View
 
                 // Расчёты и вывод результатов в GUI.
                 Output();
+                return true;
             }
+            return false;
         }
 
         private void CopyLeftMatrix()
@@ -161,8 +244,8 @@ namespace DanceApp.View
                     RightMatrix[i, j].Text = result[i, j];
                 }
                 PlacesMatrix[i].Text = result[i, pairsCount];
+                Places[i] = result[i, pairsCount];
             }
-            Save(result);
         }
 
         private void Random_Click(object sender, RoutedEventArgs e)
@@ -238,11 +321,6 @@ namespace DanceApp.View
 
                 PlacesMatrix[i].Text = "";
             }
-        }
-
-        private void Save(string[,] result)
-        {
-
         }
 
         private void Document1_Click(object sender, RoutedEventArgs e)

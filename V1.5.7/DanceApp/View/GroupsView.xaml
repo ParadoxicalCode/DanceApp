@@ -106,7 +106,7 @@
                 <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center">
                     <TextBlock Text="Танец*" FontSize="16" VerticalAlignment="Center"/>
                     <ComboBox x:Name="DanceCB" Height="30" Width="150" DisplayMemberPath="Title" SelectedValuePath="Title" Margin="6 0 0 0"
-                    Style="{StaticResource ComboBoxFlatStyle}"/>
+                    Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="DanceCB_SelectionChanged"/>
 
                     <TextBlock Text="Заход*" FontSize="16" VerticalAlignment="Center" Margin="15 0 0 0"/>
                     <ComboBox x:Name="PerformanceCB" Height="30" Width="44" DisplayMemberPath="Number" SelectedValuePath="Number" Margin="6 0 0 0"
@@ -116,8 +116,8 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center" HorizontalAlignment="Right">
-                    <TextBlock Text="Статус захода: " FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                    <TextBlock x:Name="PerformanceStatusText" Text="" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <TextBlock Text="Статус танца в заходе: " FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <TextBlock x:Name="DanceStatusText" Text="" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 </StackPanel>
             </Grid>
 
