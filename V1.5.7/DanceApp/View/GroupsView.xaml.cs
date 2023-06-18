@@ -155,6 +155,27 @@ namespace DanceApp.View
 
 
 
+        private void NextRound_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            if (RoundStatusText.Text == "Не завершено")
+            {
+                MessageBoxView messageBox = new MessageBoxView("Статус тура \"Не завершено\"!", "Уведомление", 1);
+                messageBox.ShowDialog();
+            }
+            else
+            {
+                NextRoundView nextRound = new NextRoundView();
+                nextRound.ShowDialog();
+            }
+
+            // Ещё надо хотя бы 3 судьи чтобы было
+            */
+
+            NextRoundView nextRound = new NextRoundView(RoundID, selectedJudges);
+            nextRound.ShowDialog();
+        }
+
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             if (FreePairsCountText.Text == "0")
@@ -359,20 +380,6 @@ namespace DanceApp.View
             Judge row = (Judge)((CheckBox)sender).DataContext;
             var delete = selectedJudges.Where(u => u.ID == row.ID).FirstOrDefault();
             selectedJudges.Remove(delete);
-        }
-
-        private void NextRound_Click(object sender, RoutedEventArgs e)
-        {
-            if (RoundStatusText.Text == "Не завершено")
-            {
-                MessageBoxView messageBox = new MessageBoxView("Статус тура \"Не завершено\"!", "Уведомление", 1);
-                messageBox.ShowDialog();
-            }
-            else
-            {
-                NextRoundView nextRound = new NextRoundView();
-                nextRound.ShowDialog();
-            }
         }
     }
 }

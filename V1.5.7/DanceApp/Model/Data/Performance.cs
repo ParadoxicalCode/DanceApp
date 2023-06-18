@@ -25,5 +25,6 @@ namespace DanceApp.Model.Data
         public List<IntermediateResult> IntermediateResult { get; } = new();
         public List<JudgesInPerformance> JudgesInPerformance { get; } = new();
         public List<JudgesAssesment> JudgesAssesment { get; } = new();
+        public List<NextRound> NextRound { get; } = new();
     }
 }

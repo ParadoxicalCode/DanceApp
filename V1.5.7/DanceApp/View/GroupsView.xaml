@@ -112,7 +112,7 @@
                     <ComboBox x:Name="PerformanceCB" Height="30" Width="44" DisplayMemberPath="Number" SelectedValuePath="Number" Margin="6 0 0 0"
                     Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="PerformanceCB_SelectionChanged"/>
 
-                    <Button Style="{StaticResource AddButton}" Content="Далее" Width="80" Click="SelectPerformance_Click" Margin="15 0 0 0"/>
+                    <Button Style="{StaticResource AddButton}" Content="Далее" Width="70" Click="SelectPerformance_Click" Margin="15 0 0 0"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center" HorizontalAlignment="Right">
@@ -204,7 +204,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <TextBlock Text="Судьи в заходе*" Margin="10 0 0 0" Grid.Column="1" FontSize="16" VerticalAlignment="Center"/>
+                <TextBlock Text="Судьи*" Margin="10 0 0 0" Grid.Column="1" FontSize="16" VerticalAlignment="Center"/>
 
                 <DataGrid x:Name="JudgesDG" Grid.Row="1" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}" CellStyle="{StaticResource DGCell}"
                     Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="20" Margin="10 0 0 0" CanUserReorderColumns="False" CanUserSortColumns="False">

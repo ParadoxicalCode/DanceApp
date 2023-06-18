@@ -114,5 +114,10 @@ namespace DanceApp.Model
             // Завершение работы с документом
             document.Close();
         }
+
+        public void Protocol2(string path, List<Judge> selectedJudges, string round, string group, string performance)
+        {
+            
+        }
     }
 }

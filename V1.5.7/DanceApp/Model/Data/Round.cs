@@ -17,5 +17,6 @@ namespace DanceApp.Model.Data
         public List<Competition> Competition { get; } = new();
         public List<PairsInRound> PairsInRound { get; } = new();
         public List<Group> Group { get; } = new();
+        public List<NextRound> NextRound { get; } = new();
     }
 }
