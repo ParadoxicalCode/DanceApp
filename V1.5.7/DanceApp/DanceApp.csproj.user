@@ -7,57 +7,57 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="MainWindow.xaml.cs">
+    <Compile Update="View\FirstWindow\MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\AddEditPairsView.xaml.cs">
+    <Compile Update="View\SecondWindow\Registration\AddEditPairsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\AddEditDataBaseView.xaml.cs">
+    <Compile Update="View\FirstWindow\AddEditDataBaseView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\AddEditGroupsView.xaml.cs">
+    <Compile Update="View\SecondWindow\DistributionPlaces\AddEditGroupsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\AddEditJudgesView.xaml.cs">
+    <Compile Update="View\SecondWindow\Registration\AddEditJudgesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\CloseRegistrationView.xaml.cs">
+    <Compile Update="View\SecondWindow\CloseRegistrationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\DistributionPlacesView.xaml.cs">
+    <Compile Update="View\SecondWindow\DistributionPlaces\DistributionPlacesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\MainWindow2.xaml.cs">
+    <Compile Update="View\SecondWindow\MainWindow2.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\InfoView.xaml.cs">
+    <Compile Update="View\FirstWindow\InfoView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\JudgesView.xaml.cs">
+    <Compile Update="View\SecondWindow\Registration\JudgesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\GroupsView.xaml.cs">
+    <Compile Update="View\SecondWindow\DistributionPlaces\GroupsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\MainPageView.xaml.cs">
+    <Compile Update="View\SecondWindow\MainPageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\MessageBoxView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\NextRoundView.xaml.cs">
+    <Compile Update="View\SecondWindow\NextRoundView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\PairsView.xaml.cs">
+    <Compile Update="View\SecondWindow\Registration\PairsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\CompetitionView.xaml.cs">
+    <Compile Update="View\SecondWindow\Registration\CompetitionView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="MainWindow.xaml">
+    <Page Update="View\FirstWindow\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Border.xaml">
@@ -84,49 +84,49 @@
     <Page Update="Styles\TextBox.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\AddEditPairsView.xaml">
+    <Page Update="View\SecondWindow\Registration\AddEditPairsView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\AddEditDataBaseView.xaml">
+    <Page Update="View\FirstWindow\AddEditDataBaseView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\AddEditGroupsView.xaml">
+    <Page Update="View\SecondWindow\DistributionPlaces\AddEditGroupsView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\AddEditJudgesView.xaml">
+    <Page Update="View\SecondWindow\Registration\AddEditJudgesView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\CloseRegistrationView.xaml">
+    <Page Update="View\SecondWindow\CloseRegistrationView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\DistributionPlacesView.xaml">
+    <Page Update="View\SecondWindow\DistributionPlaces\DistributionPlacesView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\MainWindow2.xaml">
+    <Page Update="View\SecondWindow\MainWindow2.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\InfoView.xaml">
+    <Page Update="View\FirstWindow\InfoView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\JudgesView.xaml">
+    <Page Update="View\SecondWindow\Registration\JudgesView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\GroupsView.xaml">
+    <Page Update="View\SecondWindow\DistributionPlaces\GroupsView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\MainPageView.xaml">
+    <Page Update="View\SecondWindow\MainPageView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\MessageBoxView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\NextRoundView.xaml">
+    <Page Update="View\SecondWindow\NextRoundView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\PairsView.xaml">
+    <Page Update="View\SecondWindow\Registration\PairsView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\CompetitionView.xaml">
+    <Page Update="View\SecondWindow\Registration\CompetitionView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

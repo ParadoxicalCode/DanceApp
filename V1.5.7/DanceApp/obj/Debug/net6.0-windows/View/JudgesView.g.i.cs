@@ -61,7 +61,7 @@ namespace DanceApp.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/DanceApp;component/view/judgesview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/DanceApp;V1.0.0.0;component/view/judgesview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\View\JudgesView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

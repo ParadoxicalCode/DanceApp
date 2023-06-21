@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:DanceApp"
              xmlns:sys="clr-namespace:System;assembly=netstandard"
-             StartupUri="MainWindow.xaml">
+             StartupUri="View/FirstWindow/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

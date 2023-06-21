@@ -110,7 +110,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModel\" />
+    <Folder Include="ViewModel\FirstWindow\" />
+    <Folder Include="ViewModel\SecondWindow\Registration\" />
   </ItemGroup>
 
   <ItemGroup>
