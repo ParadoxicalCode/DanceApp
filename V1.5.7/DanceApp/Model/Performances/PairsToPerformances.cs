@@ -69,7 +69,7 @@ namespace DanceApp.Model.Performances
 
                 performance.GroupID = GroupID;
                 performance.Number = j;
-                performance.Status = "Не завершено";
+                performance.Status = false;
 
                 db.Performance.Add(performance);
                 UpdateDataBase();

@@ -96,7 +96,7 @@ namespace DanceApp.View
                 {
                     var round = new Round();
                     round.Title = allRounds[i];
-                    round.Status = "Не завершено";
+                    round.Status = false;
 
                     db.Round.Add(round);
                     UpdateDataBase();

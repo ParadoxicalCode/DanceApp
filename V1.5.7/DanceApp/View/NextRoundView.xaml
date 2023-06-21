@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DanceApp.View"
         mc:Ignorable="d"
-        Title="Отбор пар в следующий тур" Height="590" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Отбор пар в следующий тур" Height="600" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Border BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5" Margin="5,0,5,5">
         <Grid Margin="12 4 12 12">
             <Grid.RowDefinitions>
@@ -37,11 +37,11 @@
             <Border Grid.Row="1" BorderBrush="DarkGray" BorderThickness="2"/>
 
             <Grid Grid.Row="2">
-                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                    <TextBlock FontSize="16" Text="Группа "/>
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" >
+                    <TextBlock FontSize="16" Text="Группа*" VerticalAlignment="Center"/>
 
-                    <ComboBox x:Name="GroupCB" Height="30" Width="200" DisplayMemberPath="Title" SelectedValuePath="Title" Margin="6 0 0 0"
-                        Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="GroupCB_SelectionChanged"/>
+                    <ComboBox x:Name="GroupCB" Height="30" Width="200" DisplayMemberPath="Title" SelectedValuePath="Title" Margin="6 0 0 0" VerticalAlignment="Center"
+                        Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="PerformanceCB_SelectionChanged"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
                     <TextBlock FontSize="16" Text="Статус: " Margin="15 0 0 0"/>
@@ -53,7 +53,7 @@
 
             <Grid Grid.Row="4">
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                    <TextBlock FontSize="16" Text="Заход "/>
+                    <TextBlock FontSize="16" Text="Заход* " VerticalAlignment="Center"/>
 
                     <ComboBox x:Name="PerformanceCB" Height="30" Width="50" DisplayMemberPath="Title" SelectedValuePath="Title" Margin="6 0 0 0"
                         Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="PerformanceCB_SelectionChanged"/>
@@ -79,9 +79,14 @@
             <Border Grid.Row="7" BorderBrush="DarkGray" BorderThickness="2"/>
 
             <Grid Grid.Row="8">
-                <StackPanel VerticalAlignment="Center">
-                    <Button Style="{StaticResource AddButton}" Content="Далее" Width="70" Click="NextBtn_Click"/>
-                </StackPanel>
+                <Button Name="CalculateBtn" Grid.Column="0" Style="{StaticResource MenuButton}" Click="Save_Click" Height="30" HorizontalAlignment="Left">
+                    <Image Source="/Images/Save.png" Width="20" Height="20"/>
+                    <Button.ToolTip>
+                        <ToolTip HasDropShadow="True" Placement="Mouse">
+                            <TextBlock>Сохранить</TextBlock>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
 
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                     <Button Name="FinalDocumentText" Style="{StaticResource AddButton}" Content="Финальный отчёт" Width="120" Click="FinalDocument_Click"/>
@@ -190,85 +195,87 @@
                                 <ColumnDefinition Width="2"/>
                             </Grid.ColumnDefinitions>
 
-                            <CheckBox x:Name="TB001" Grid.Row="1"  Grid.Column="1" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB002" Grid.Row="3"  Grid.Column="1" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB003" Grid.Row="5"  Grid.Column="1" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB004" Grid.Row="7"  Grid.Column="1" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB005" Grid.Row="9"  Grid.Column="1" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB006" Grid.Row="11" Grid.Column="1" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB007" Grid.Row="13" Grid.Column="1" Background="#FF8F8F8F"/>
+                            <Button x:Name="TB001" Grid.Row="1"  Grid.Column="1" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB002" Grid.Row="3"  Grid.Column="1" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB003" Grid.Row="5"  Grid.Column="1" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB004" Grid.Row="7"  Grid.Column="1" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB005" Grid.Row="9"  Grid.Column="1" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB006" Grid.Row="11" Grid.Column="1" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB007" Grid.Row="13" Grid.Column="1" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
 
-                            <CheckBox x:Name="TB101" Grid.Row="1"  Grid.Column="3" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB102" Grid.Row="3"  Grid.Column="3" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB103" Grid.Row="5"  Grid.Column="3" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB104" Grid.Row="7"  Grid.Column="3" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB105" Grid.Row="9"  Grid.Column="3" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB106" Grid.Row="11" Grid.Column="3" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB107" Grid.Row="13" Grid.Column="3" Background="#FF8F8F8F"/>
+                            <Button x:Name="TB101" Grid.Row="1"  Grid.Column="3" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB102" Grid.Row="3"  Grid.Column="3" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB103" Grid.Row="5"  Grid.Column="3" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB104" Grid.Row="7"  Grid.Column="3" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB105" Grid.Row="9"  Grid.Column="3" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB106" Grid.Row="11" Grid.Column="3" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB107" Grid.Row="13" Grid.Column="3" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
 
-                            <CheckBox x:Name="TB201" Grid.Row="1"  Grid.Column="5" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB202" Grid.Row="3"  Grid.Column="5" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB203" Grid.Row="5"  Grid.Column="5" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB204" Grid.Row="7"  Grid.Column="5" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB205" Grid.Row="9"  Grid.Column="5" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB206" Grid.Row="11" Grid.Column="5" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB207" Grid.Row="13" Grid.Column="5" Background="#FF8F8F8F"/>
+                            <Button x:Name="TB201" Grid.Row="1"  Grid.Column="5" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB202" Grid.Row="3"  Grid.Column="5" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB203" Grid.Row="5"  Grid.Column="5" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB204" Grid.Row="7"  Grid.Column="5" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB205" Grid.Row="9"  Grid.Column="5" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB206" Grid.Row="11" Grid.Column="5" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB207" Grid.Row="13" Grid.Column="5" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
 
-                            <CheckBox x:Name="TB301" Grid.Row="1"  Grid.Column="7" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB302" Grid.Row="3"  Grid.Column="7" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB303" Grid.Row="5"  Grid.Column="7" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB304" Grid.Row="7"  Grid.Column="7" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB305" Grid.Row="9"  Grid.Column="7" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB306" Grid.Row="11" Grid.Column="7" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB307" Grid.Row="13" Grid.Column="7" Background="#FF8F8F8F"/>
+                            <Button x:Name="TB301" Grid.Row="1"  Grid.Column="7" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB302" Grid.Row="3"  Grid.Column="7" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB303" Grid.Row="5"  Grid.Column="7" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB304" Grid.Row="7"  Grid.Column="7" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB305" Grid.Row="9"  Grid.Column="7" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB306" Grid.Row="11" Grid.Column="7" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB307" Grid.Row="13" Grid.Column="7" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
 
-                            <CheckBox x:Name="TB401" Grid.Row="1"  Grid.Column="9" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB402" Grid.Row="3"  Grid.Column="9" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB403" Grid.Row="5"  Grid.Column="9" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB404" Grid.Row="7"  Grid.Column="9" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB405" Grid.Row="9"  Grid.Column="9" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB406" Grid.Row="11" Grid.Column="9" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB407" Grid.Row="13" Grid.Column="9" Background="#FF8F8F8F"/>
+                            <Button x:Name="TB401" Grid.Row="1"  Grid.Column="9" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB402" Grid.Row="3"  Grid.Column="9" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB403" Grid.Row="5"  Grid.Column="9" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB404" Grid.Row="7"  Grid.Column="9" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB405" Grid.Row="9"  Grid.Column="9" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB406" Grid.Row="11" Grid.Column="9" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB407" Grid.Row="13" Grid.Column="9" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
 
-                            <CheckBox x:Name="TB51" Grid.Row="1"   Grid.Column="11" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB502" Grid.Row="3"  Grid.Column="11" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB503" Grid.Row="5"  Grid.Column="11" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB504" Grid.Row="7"  Grid.Column="11" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB505" Grid.Row="9"  Grid.Column="11" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB506" Grid.Row="11" Grid.Column="11" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB507" Grid.Row="13" Grid.Column="11" Background="#FF8F8F8F"/>
+                            <Button x:Name="TB51" Grid.Row="1"   Grid.Column="11" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB502" Grid.Row="3"  Grid.Column="11" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB503" Grid.Row="5"  Grid.Column="11" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB504" Grid.Row="7"  Grid.Column="11" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB505" Grid.Row="9"  Grid.Column="11" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB506" Grid.Row="11" Grid.Column="11" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB507" Grid.Row="13" Grid.Column="11" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
 
-                            <CheckBox x:Name="TB61" Grid.Row="1"   Grid.Column="13" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB602" Grid.Row="3"  Grid.Column="13" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB603" Grid.Row="5"  Grid.Column="13" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB604" Grid.Row="7"  Grid.Column="13" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB605" Grid.Row="9"  Grid.Column="13" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB606" Grid.Row="11" Grid.Column="13" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB607" Grid.Row="13" Grid.Column="13" Background="#FF8F8F8F"/>
+                            <Button x:Name="TB61" Grid.Row="1"   Grid.Column="13" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB602" Grid.Row="3"  Grid.Column="13" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB603" Grid.Row="5"  Grid.Column="13" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB604" Grid.Row="7"  Grid.Column="13" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB605" Grid.Row="9"  Grid.Column="13" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB606" Grid.Row="11" Grid.Column="13" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB607" Grid.Row="13" Grid.Column="13" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
 
-                            <CheckBox x:Name="TB71" Grid.Row="1"   Grid.Column="15" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB702" Grid.Row="3"  Grid.Column="15" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB703" Grid.Row="5"  Grid.Column="15" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB704" Grid.Row="7"  Grid.Column="15" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB705" Grid.Row="9"  Grid.Column="15" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB706" Grid.Row="11" Grid.Column="15" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB707" Grid.Row="13" Grid.Column="15" Background="#FF8F8F8F"/>
+                            <Button x:Name="TB71" Grid.Row="1"   Grid.Column="15" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB702" Grid.Row="3"  Grid.Column="15" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB703" Grid.Row="5"  Grid.Column="15" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB704" Grid.Row="7"  Grid.Column="15" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB705" Grid.Row="9"  Grid.Column="15" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB706" Grid.Row="11" Grid.Column="15" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB707" Grid.Row="13" Grid.Column="15" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
 
-                            <CheckBox x:Name="TB81" Grid.Row="1"   Grid.Column="17" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB802" Grid.Row="3"  Grid.Column="17" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB803" Grid.Row="5"  Grid.Column="17" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB804" Grid.Row="7"  Grid.Column="17" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB805" Grid.Row="9"  Grid.Column="17" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB806" Grid.Row="11" Grid.Column="17" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB807" Grid.Row="13" Grid.Column="17" Background="#FF8F8F8F"/>
+                            <Button x:Name="TB81" Grid.Row="1"   Grid.Column="17" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB802" Grid.Row="3"  Grid.Column="17" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB803" Grid.Row="5"  Grid.Column="17" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB804" Grid.Row="7"  Grid.Column="17" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB805" Grid.Row="9"  Grid.Column="17" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB806" Grid.Row="11" Grid.Column="17" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB807" Grid.Row="13" Grid.Column="17" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
 
-                            <CheckBox x:Name="TB901" Grid.Row="1"  Grid.Column="19" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB902" Grid.Row="3"  Grid.Column="19" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB903" Grid.Row="5"  Grid.Column="19" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB904" Grid.Row="7"  Grid.Column="19" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB905" Grid.Row="9"  Grid.Column="19" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB906" Grid.Row="11" Grid.Column="19" Background="#FF8F8F8F"/>
-                            <CheckBox x:Name="TB907" Grid.Row="13" Grid.Column="19" Background="#FF8F8F8F"/>
+                            <Button x:Name="TB901" Grid.Row="1"  Grid.Column="19" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB902" Grid.Row="3"  Grid.Column="19" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB903" Grid.Row="5"  Grid.Column="19" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB904" Grid.Row="7"  Grid.Column="19" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB905" Grid.Row="9"  Grid.Column="19" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB906" Grid.Row="11" Grid.Column="19" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            <Button x:Name="TB907" Grid.Row="13" Grid.Column="19" Background="#FF8F8F8F" Click="Table_Click" Style="{StaticResource TableButton}"/>
+                            
+                            
                         </Grid>
                     </Border>
                 </Grid>

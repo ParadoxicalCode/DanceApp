@@ -36,7 +36,7 @@
                     <Image Source="/Images/Calculate.png" Width="20" Height="20"/>
                     <Button.ToolTip>
                         <ToolTip HasDropShadow="True" Placement="Mouse">
-                            <TextBlock>Распределить места</TextBlock>
+                            <TextBlock>Распределить места и сохранить результаты</TextBlock>
                         </ToolTip>
                     </Button.ToolTip>
                 </Button>

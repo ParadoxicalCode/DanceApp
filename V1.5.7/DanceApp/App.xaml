@@ -12,18 +12,13 @@
                 <ResourceDictionary Source="Styles/DataGrid.xaml"/>
                 <ResourceDictionary Source="Styles/TextBlock.xaml"/>
                 <ResourceDictionary Source="Styles/TextBox.xaml"/>
-                <ResourceDictionary Source="Styles/Window.xaml"/>
                 <ResourceDictionary Source="Styles/ComboBox.xaml"/>
                 <ResourceDictionary Source="Styles/DatePicker.xaml"/>
+                <ResourceDictionary Source="Styles/CheckBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <RoutedUICommand x:Key="Navigate"/>
-            <sys:Uri x:Key="JudgesViewUri">/View/JudgesView.xaml</sys:Uri>
-            <sys:Uri x:Key="InfoViewUri">/View/InfoView.xaml</sys:Uri>
-            <sys:Uri x:Key="CompetitionUri">/View/Competition.xaml</sys:Uri>
-            <sys:Uri x:Key="GroupsViewUri">/View/GroupsView.xaml</sys:Uri>
-            <sys:Uri x:Key="PairsViewUri">/View/PairsView.xaml</sys:Uri>
-            <sys:Uri x:Key="PlacesViewUri">/View/PlacesView.xaml</sys:Uri>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

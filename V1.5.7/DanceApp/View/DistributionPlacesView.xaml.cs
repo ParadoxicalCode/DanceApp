@@ -57,7 +57,7 @@ namespace DanceApp.View
         public int[,] LeftMatrix2;
         public int[,] RightMatrix2;
 
-        public DistributionPlacesView(string performanceStatus, int roundID, int groupID, int danceID, int performanceNumber, List<Judge> selectedJudges, List<Pair> selectedPairs)
+        public DistributionPlacesView(bool performanceStatus, int roundID, int groupID, int danceID, int performanceNumber, List<Judge> selectedJudges, List<Pair> selectedPairs)
         {
             InitializeComponent();
 
@@ -66,7 +66,7 @@ namespace DanceApp.View
             DanceID = danceID;
             int PerformanceID = db.Performance.Where(x => x.GroupID == GroupID && x.Number == PerformanceNumber).FirstOrDefault().ID;
 
-            if (performanceStatus == "Завершено")
+            if (performanceStatus == true)
             {
                 CalculateBtn.IsEnabled = false;
                 RandomBtn.IsEnabled = false;
@@ -151,7 +151,7 @@ namespace DanceApp.View
                 }
             }
 
-            if (performanceStatus == "Завершено")
+            if (performanceStatus == true)
             {
                 var PairsInDance = db.PairsInDance.Where(x => x.PerformanceID == PerformanceID).ToList();
                 Load(PerformanceID);
@@ -238,7 +238,7 @@ namespace DanceApp.View
             if (block == true)
             {
                 Save();
-                this.Close();
+                //this.Close();
             }
         }
 

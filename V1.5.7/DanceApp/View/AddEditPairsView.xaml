@@ -25,7 +25,7 @@
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
                     <TextBlock Text="Номер" VerticalAlignment="Center"/>
-                    <TextBox Width="30" Height="24" x:Name="NumberTB" Style="{StaticResource AddEditTextBox}" Margin="8 0 0 0" MaxLength="2" TextAlignment="Center"/>
+                    <TextBox Width="30" Height="24" x:Name="NumberTB" Style="{StaticResource AddEditTextBox}" Margin="8 0 0 0" MaxLength="2" TextAlignment="Center" FontSize="14"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
@@ -44,18 +44,18 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="18"/>
-                    <ColumnDefinition Width="82"/>
+                    <ColumnDefinition Width="74"/>
+                    <ColumnDefinition Width="26"/>
                     <ColumnDefinition Width="115"/>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="115"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="2">
-                    <RadioButton x:Name="RB1" GroupName="PerformanceType" Margin="0 13 0 0" Checked="RB1_Checked"/>
-                    <RadioButton x:Name="RB2" GroupName="PerformanceType" Grid.Row="1" Margin="0 6 0 0" Checked="RB2_Checked"/>
-                    <RadioButton x:Name="RB3" GroupName="PerformanceType" Grid.Row="2" Margin="0 6 0 0" Checked="RB3_Checked"/>
+                <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
+                    <RadioButton x:Name="RB1" HorizontalAlignment="Left" GroupName="PerformanceType" Margin="0 13 0 0" Checked="RB1_Checked"/>
+                    <RadioButton x:Name="RB2" HorizontalAlignment="Left" GroupName="PerformanceType" Grid.Row="1" Margin="0 6 0 0" Checked="RB2_Checked"/>
+                    <RadioButton x:Name="RB3" HorizontalAlignment="Left" GroupName="PerformanceType" Grid.Row="2" Margin="0 6 0 0" Checked="RB3_Checked"/>
                 </StackPanel>
 
 
@@ -65,14 +65,14 @@
                 <TextBlock Grid.Column="5" VerticalAlignment="Bottom" Text="*Дата рождения" HorizontalAlignment="Left"/>
 
 
-                <TextBlock Grid.Row="1" Grid.Column="1" Text="Партнёр" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 12 0"/>
+                <TextBlock Grid.Row="1" Text="Партнёр" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 12 0"/>
                 <TextBox x:Name="MSurnameTB" Grid.Row="1" Grid.Column="2" Height="24" Style="{StaticResource AddEditTextBox}" Margin="0 0 14 0"/>
                 <TextBox x:Name="MNameTB" Grid.Row="1" Grid.Column="3" Height="24" Style="{StaticResource AddEditTextBox}" Margin="0 0 14 0"/>
                 <TextBox x:Name="MPatronymicTB" Grid.Row="1" Grid.Column="4" Height="24" Style="{StaticResource AddEditTextBox}" Margin="0 0 14 0"/>
                 <DatePicker x:Name="MBirthdayDP" Grid.Row="1" Grid.Column="5" FontSize="12" Height="24" Style="{StaticResource DatePicker}"/>
 
 
-                <TextBlock Grid.Row="2" Grid.Column="1" Text="Партнёрша" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 12 0"/>
+                <TextBlock Grid.Row="2" Text="Партнёрша" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 12 0"/>
                 <TextBox x:Name="FSurnameTB" Grid.Row="2" Grid.Column="2" Height="24" Style="{StaticResource AddEditTextBox}" Margin="0 0 14 0"/>
                 <TextBox x:Name="FNameTB" Grid.Row="2" Grid.Column="3" Height="24" Style="{StaticResource AddEditTextBox}" Margin="0 0 14 0"/>
                 <TextBox x:Name="FPatronymicTB" Grid.Row="2" Grid.Column="4" Height="24" Style="{StaticResource AddEditTextBox}" Margin="0 0 14 0"/>

@@ -55,8 +55,6 @@ namespace DanceApp.View
             int freePairs = new GetPairs().Free(RoundID).Count;
             FreePairsCountText.Text = freePairs.ToString();
 
-            RoundStatusText.Text = db.Round.Find(RoundID).Status;
-
             CBSwitch = true;
         }
 
@@ -71,12 +69,16 @@ namespace DanceApp.View
 
         private void GetGroups()
         {
-            if (db.Group.Where(u => u.RoundID == RoundID).ToList() != null)
+            CBSwitch = false;
+            if (db.Group.Where(u => u.RoundID == RoundID).FirstOrDefault() != null)
             {
                 GroupsDG.ItemsSource = db.Group.Where(u => u.RoundID == RoundID).ToList();
             }
             else
+            {
                 GroupsDG.ItemsSource = null;
+            }
+            CBSwitch = true;
         }
 
         private void GetDances()
@@ -160,11 +162,26 @@ namespace DanceApp.View
             selectedPairs.Clear();
             selectedJudges.Clear();
             int freePairs = new GetPairs().Free(RoundID).Count;
-            FreePairsCountText.Text = freePairs.ToString();
 
-            GroupStatusText.Text = "";
-            PerformanceStatusText.Text = "";
-            DanceStatusText.Text = "";
+            GroupStatus.Fill = Brushes.Red;
+            PerformanceStatus.Fill = Brushes.Red;
+            PerformanceStatus.Fill = Brushes.Red;
+        }
+
+        private bool ColourToBool(Brush color)
+        {
+            if (color == Brushes.Red)
+                return false;
+            else
+                return true;
+        }
+
+        private Brush BoolToColour(bool x)
+        {
+            if (x == false)
+                return Brushes.Red;
+            else
+                return (Brush)(new BrushConverter().ConvertFrom("#FF2AD034"));
         }
 
 
@@ -207,6 +224,10 @@ namespace DanceApp.View
                 GetGroups();
                 DefaultValues();
                 CBSwitch = true;
+
+                // Обновляем количество нераспределённых пар
+                int freePairs = new GetPairs().Free(RoundID).Count;
+                FreePairsCountText.Text = freePairs.ToString();
             }
         }
 
@@ -230,10 +251,19 @@ namespace DanceApp.View
 
                 // Делаем пары нараспределёнными
                 var pairsInRound = db.PairsInRound.Where(x => x.RoundID == RoundID).ToList();
+                var pairsInGroup = db.PairsInGroup.Where(x => x.GroupID == groupID).ToList();
+
                 foreach (var p in pairsInRound)
                 {
-                    p.Select = false;
-                    UpdateDataBase();
+                    for (int i = 0; i < pairsInGroup.Count; i++)
+                    {
+                        if (p.ID == pairsInGroup[i].ID)
+                        {
+                            p.Select = false;
+                            UpdateDataBase();
+                            i++;
+                        }
+                    }
                 }
 
                 // Удаление всех связанных данных с удаляемой группой
@@ -260,7 +290,6 @@ namespace DanceApp.View
                 }
 
                 // Удаление данных о парах в группе
-                var pairsInGroup = db.PairsInGroup.Where(x => x.GroupID == groupID).ToList();
                 db.PairsInGroup.RemoveRange(pairsInGroup);
 
                 // Удаление группы
@@ -272,8 +301,20 @@ namespace DanceApp.View
                     db.SaveChanges();
                     CBSwitch = false;
                     DefaultValues();
-                    RoundStatusText.Text = new Model.Groups.UpdateStatus().Round(RoundID);
+
+                    if (new Model.Groups.UpdateStatus().Round(RoundID) == true)
+                    {
+                        RoundStatus.Fill = Brushes.Red;
+                    }
+                    else
+                    {
+                        RoundStatus.Fill = Brushes.Red;
+                    }
+
                     CBSwitch = true;
+
+                    int freePairs = new GetPairs().Free(RoundID).Count;
+                    FreePairsCountText.Text = freePairs.ToString();
                 }
                 catch (Exception ex) { MessageBox.Show(ex.InnerException.Message); }
             }
@@ -302,7 +343,7 @@ namespace DanceApp.View
                 return;
             }
 
-            if (DanceStatusText.Text == "Не завершено")
+            if (DanceStatus.Fill == Brushes.Red)
             {
                 if (selectedPairs.Count < 2)
                 {
@@ -328,17 +369,18 @@ namespace DanceApp.View
             var PerformanceNumber = (PerformanceCB.SelectedItem as Performance).Number;
             var performanceID = db.Performance.Where(x => x.GroupID == GroupID && x.Number == PerformanceNumber).FirstOrDefault().ID;
 
-            DistributionPlacesView places = new DistributionPlacesView(DanceStatusText.Text, RoundID, GroupID, DanceID, PerformanceNumber, selectedJudges, selectedPairs);
+            bool danceStatus = ColourToBool(DanceStatus.Fill);
+            DistributionPlacesView places = new DistributionPlacesView(danceStatus, RoundID, GroupID, DanceID, PerformanceNumber, selectedJudges, selectedPairs);
             places.ShowDialog();
 
-            DanceStatusText.Text = new Model.Groups.UpdateStatus().Dance(GroupID, PerformanceNumber, DanceID);
-            PerformanceStatusText.Text = new Model.Groups.UpdateStatus().Performance(GroupID, PerformanceNumber, DanceID);
-            GroupStatusText.Text = new Model.Groups.UpdateStatus().Group(GroupID);
-            RoundStatusText.Text = new Model.Groups.UpdateStatus().Round(RoundID);
+            DanceStatus.Fill = BoolToColour(new Model.Groups.UpdateStatus().Dance(GroupID, PerformanceNumber, DanceID));
+            PerformanceStatus.Fill = BoolToColour(new Model.Groups.UpdateStatus().Performance(GroupID, PerformanceNumber, DanceID));
+            GroupStatus.Fill = BoolToColour(new Model.Groups.UpdateStatus().Group(GroupID));
+            RoundStatus.Fill = BoolToColour(new Model.Groups.UpdateStatus().Round(RoundID));
 
             // Если нет финальных результатов для этого захода, то найти их
             if ((db.FinalResult.Where(x => x.PerformanceID == performanceID) == null || 
-                db.FinalResult.FirstOrDefault() == null) && db.Performance.Find(performanceID).Status == "Завершено")
+                db.FinalResult.FirstOrDefault() == null) && db.Performance.Find(performanceID).Status == true)
             {
                 new Model.Skating.Rule9().Calculate(performanceID);
             }
@@ -353,10 +395,18 @@ namespace DanceApp.View
             if (CBSwitch == true)
             {
                 PairsDG.ItemsSource = null;
-                GetGroups();
-                
                 RoundID = (RoundCB.SelectedItem as Round).ID;
-                RoundStatusText.Text = new Model.Groups.UpdateStatus().Round(RoundID);
+                GetGroups();
+
+                if (db.Round.Find(RoundID).Status == true)
+                {
+                    RoundStatus.Fill = (Brush)(new BrushConverter().ConvertFrom("#FF2AD034"));
+                }
+                else
+                {
+                    RoundStatus.Fill = Brushes.Red;
+                }
+                
                 selectedPairs.Clear();
             }
         }
@@ -368,7 +418,7 @@ namespace DanceApp.View
                 GetPerformances();
 
                 int groupID = (GroupsDG.SelectedItem as Group).ID;
-                GroupStatusText.Text = new Model.Groups.UpdateStatus().Group(groupID);
+                GroupStatus.Fill = BoolToColour(new Model.Groups.UpdateStatus().Group(groupID));
                 selectedPairs.Clear();
             } 
         }
@@ -386,7 +436,7 @@ namespace DanceApp.View
                 GetDances();
                 var DanceID = (DanceCB.SelectedItem as Dance).ID;
 
-                PerformanceStatusText.Text = new Model.Groups.UpdateStatus().Performance(groupID, performanceNumber, DanceID);
+                PerformanceStatus.Fill = BoolToColour(new Model.Groups.UpdateStatus().Performance(groupID, performanceNumber, DanceID));
             }
         }
 
@@ -397,7 +447,7 @@ namespace DanceApp.View
                 int groupID = (GroupsDG.SelectedItem as Group).ID;
                 int performanceNumber = (PerformanceCB.SelectedItem as Performance).Number;
                 int danceID = (DanceCB.SelectedItem as Dance).ID;
-                DanceStatusText.Text = new Model.Groups.UpdateStatus().Dance(groupID, performanceNumber, danceID);
+                DanceStatus.Fill = BoolToColour(new Model.Groups.UpdateStatus().Dance(groupID, performanceNumber, danceID));
             }
         }
 

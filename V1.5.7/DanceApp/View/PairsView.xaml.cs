@@ -39,7 +39,118 @@ namespace DanceApp.View
         {
             InitializeComponent();
             PagesCount(false);
-            PairsDG.ItemsSource = pairs.Take(10);
+            PairsDG.ItemsSource = pairs.Take(15);
+        }
+
+        public class Pair2
+        {
+            public int ID { get; set; }
+            public string Number { get; set; }
+            public string MaleSurname { get; set; }
+            public string MaleName { get; set; }
+            public string MalePatronymic { get; set; }
+            public string MaleBirthday { get; set; }
+            public string FemaleSurname { get; set; }
+            public string FemaleName { get; set; }
+            public string FemalePatronymic { get; set; }
+            public string FemaleBirthday { get; set; }
+            public string Club { get; set; }
+            public string City { get; set; }
+            public string Country { get; set; }
+            public string Trainer1 { get; set; }
+            public string Trainer2 { get; set; }
+            public string PerformanceType { get; set; }
+            public string AgeCategory { get; set; }
+        }
+
+        private void PagesCount(bool add)
+        {
+            var pair2 = db.Pair;
+            pairs.Clear();
+            foreach (var p in pair2)
+            {
+                var ageCategory = db.AgeCategory.Where(u => u.ID == p.AgeCategoryID).FirstOrDefault();
+                pairs.Add(new Pair2
+                {
+                    ID = p.ID,
+                    Number = p.Number,
+                    MaleSurname = p.MaleSurname,
+                    MaleName = p.MaleName,
+                    MalePatronymic = p.MalePatronymic,
+                    MaleBirthday = p.MaleBirthday,
+                    FemaleSurname = p.FemaleSurname,
+                    FemaleName = p.FemaleName,
+                    FemalePatronymic = p.FemalePatronymic,
+                    FemaleBirthday = p.FemaleBirthday,
+                    Club = p.Club,
+                    City = p.City,
+                    Country = p.Country,
+                    Trainer1 = p.Trainer1,
+                    Trainer2 = p.Trainer2,
+                    PerformanceType = p.PerformanceType,
+                    AgeCategory = ageCategory.Title
+                });
+            }
+
+            // Узнаём количество страниц
+            if (pairs.Count > 15)
+            {
+                if (pairs.Count % 15 == 0)
+                    pageCount = pairs.Count / 15;
+                else
+                    pageCount = (pairs.Count / 15) + 1;
+            }
+            else
+                pageCount = 1;
+
+            if (add == true || PageIndex > pageCount)
+                PageIndex = pageCount;
+
+            Update();
+        }
+
+        private void Update()
+        {
+            PairsDG.ItemsSource = null;
+            PairsDG.Items.Clear();
+
+            if (PageIndex == 1)
+            {
+                BackBtn.Visibility = Visibility.Hidden;
+                BeginningBtn.Visibility = Visibility.Hidden;
+                PairsDG.ItemsSource = pairs.Take(15);
+
+                if (pageCount == 1)
+                {
+                    NextBtn.Visibility = Visibility.Hidden;
+                    EndBtn.Visibility = Visibility.Hidden;
+                    NumberOfRecords.Content = pairs.Count + " из " + pairs.Count;
+                }
+                else
+                {
+                    NextBtn.Visibility = Visibility.Visible;
+                    EndBtn.Visibility = Visibility.Visible;
+                    NumberOfRecords.Content = 15 + " из " + pairs.Count;
+                }
+            }
+            else
+            {
+                BackBtn.Visibility = Visibility.Visible;
+                BeginningBtn.Visibility = Visibility.Visible;
+                NextBtn.Visibility = Visibility.Hidden;
+                EndBtn.Visibility = Visibility.Hidden;
+
+                PairsDG.ItemsSource = pairs.Skip((PageIndex - 1) * 15).Take(15);
+
+                // Если открыта последняя страница
+                if (PageIndex >= pageCount && pageCount >= 2)
+                {
+                    PageIndex = pageCount;
+                    NumberOfRecords.Content = pairs.Count + " из " + pairs.Count;
+                }
+                else // Если открыта страница между первой и последней
+                    NumberOfRecords.Content = PageIndex * 15 + " из " + pairs.Count;
+            }
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -104,117 +215,6 @@ namespace DanceApp.View
                     break;
             }
             Update();
-        }
-
-        public class Pair2
-        {
-            public int ID { get; set; }
-            public string Number { get; set; }
-            public string MaleSurname { get; set; }
-            public string MaleName { get; set; }
-            public string MalePatronymic { get; set; }
-            public string MaleBirthday { get; set; }
-            public string FemaleSurname { get; set; }
-            public string FemaleName { get; set; }
-            public string FemalePatronymic { get; set; }
-            public string FemaleBirthday { get; set; }
-            public string Club { get; set; }
-            public string City { get; set; }
-            public string Country { get; set; }
-            public string Trainer1 { get; set; }
-            public string Trainer2 { get; set; }
-            public string PerformanceType { get; set; }
-            public string AgeCategory { get; set; }
-        }
-
-        private void PagesCount(bool add)
-        {
-            var pair2 = db.Pair;
-            pairs.Clear();
-            foreach (var p in pair2)
-            {
-                var ageCategory = db.AgeCategory.Where(u => u.ID == p.AgeCategoryID).FirstOrDefault();
-                pairs.Add(new Pair2 
-                {
-                    ID = p.ID,
-                    Number = p.Number,
-                    MaleSurname = p.MaleSurname,
-                    MaleName = p.MaleName,
-                    MalePatronymic = p.MalePatronymic,
-                    MaleBirthday = p.MaleBirthday,
-                    FemaleSurname = p.FemaleSurname,
-                    FemaleName = p.FemaleName,
-                    FemalePatronymic = p.FemalePatronymic,
-                    FemaleBirthday = p.FemaleBirthday,
-                    Club = p.Club,
-                    City = p.City,
-                    Country = p.Country,
-                    Trainer1 = p.Trainer1,
-                    Trainer2 = p.Trainer2,
-                    PerformanceType = p.PerformanceType,
-                    AgeCategory = ageCategory.Title
-                });
-            }
-
-            // Узнаём количество страниц
-            if (pairs.Count > 10)
-            {
-                if (pairs.Count % 10 == 0)
-                    pageCount = pairs.Count / 10;
-                else
-                    pageCount = (pairs.Count / 10) + 1;
-            }
-            else
-                pageCount = 1;
-
-            if (add == true || PageIndex > pageCount)
-                PageIndex = pageCount;
-
-            Update();
-        }
-
-        private void Update()
-        {
-            PairsDG.ItemsSource = null;
-            PairsDG.Items.Clear();
-
-            if (PageIndex == 1)
-            {
-                BackBtn.Visibility = Visibility.Hidden;
-                BeginningBtn.Visibility = Visibility.Hidden;
-                PairsDG.ItemsSource = pairs.Take(10);
-
-                if (pageCount == 1)
-                {
-                    NextBtn.Visibility = Visibility.Hidden;
-                    EndBtn.Visibility = Visibility.Hidden;
-                    NumberOfRecords.Content = pairs.Count + " из " + pairs.Count;
-                }
-                else
-                {
-                    NextBtn.Visibility = Visibility.Visible;
-                    EndBtn.Visibility = Visibility.Visible;
-                    NumberOfRecords.Content = 10 + " из " + pairs.Count;
-                }
-            }
-            else
-            {
-                BackBtn.Visibility = Visibility.Visible;
-                BeginningBtn.Visibility = Visibility.Visible;
-                NextBtn.Visibility = Visibility.Hidden;
-                EndBtn.Visibility = Visibility.Hidden;
-
-                PairsDG.ItemsSource = pairs.Skip((PageIndex - 1) * 10).Take(10);
-
-                // Если открыта последняя страница
-                if (PageIndex >= pageCount && pageCount >= 2)
-                {
-                    PageIndex = pageCount;
-                    NumberOfRecords.Content = pairs.Count + " из " + pairs.Count;
-                }
-                else // Если открыта страница между первой и последней
-                    NumberOfRecords.Content = PageIndex * 10 + " из " + pairs.Count;
-            }
         }
     }
 }

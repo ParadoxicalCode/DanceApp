@@ -12,7 +12,7 @@ namespace DanceApp.Model.Data
         [Key]
         public int ID { get; set; }
         public string Title { get; set; }
-        public string Status { get; set; }
+        public bool Status { get; set; }
 
         public List<Competition> Competition { get; } = new();
         public List<PairsInRound> PairsInRound { get; } = new();

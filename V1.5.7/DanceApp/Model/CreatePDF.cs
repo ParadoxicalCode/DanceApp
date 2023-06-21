@@ -11,10 +11,12 @@ using System.Threading.Tasks;
 using iText.Layout;
 using DanceApp.Model.Data;
 
+#nullable disable
 namespace DanceApp.Model
 {
     public class CreatePDF
     {
+        public DataBaseContext db = GlobalClass.db;
         public void Protocol1(string path, List<Pair> selectedPairs, List<Judge> selectedJudges, string round, string group, string dance, string performance)
         {
             // Создание PDF
@@ -118,6 +120,99 @@ namespace DanceApp.Model
         public void Protocol2(string path, List<Judge> selectedJudges, string round, string group, string performance)
         {
             
+        }
+
+        public void FinalProtocol(string path, int RoundID, int GroupID)
+        {
+            // Создание PDF
+            PdfWriter writer = new PdfWriter(path);
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf);
+
+            // Отделяющая линия
+            LineSeparator ls = new LineSeparator(new SolidLine());
+            ls.SetMarginBottom(2);
+
+            var competition = db.Competition.Find(1);
+            var roundTitle = db.Round.Find(RoundID).Title;
+            var CompetitionTitle = competition.Title; 
+            var groupsInRound = db.Group.Where(x => x.RoundID == RoundID).ToList(); // Ещё надо программу группы и количество пар, пара в группе, номер пары, фио, клуб, город, тренер, место
+            var manager = competition.Manager;
+            var city = competition.City;
+
+            // Установка русского шрифта
+            var font = PdfFontFactory.CreateFont("C:\\Windows\\Fonts\\times.ttf", "Identity-H");
+            document.SetFont(font);
+
+            
+
+            // Название соревнования
+            Paragraph Title = new Paragraph(CompetitionTitle)
+                .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                .SetFontSize(16);
+            document.Add(Title);
+
+            for (int i = 0; i < groupsInRound.Count; i++)
+            {
+                // Группа
+                Paragraph Group = new Paragraph("Категория: " + groupsInRound[i].Title)
+                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT)
+                    .SetFontSize(14);
+                document.Add(Group);
+
+                // Организатор
+                Paragraph Manager = new Paragraph("Организатор: " + manager)
+                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT)
+                    .SetFontSize(14);
+                document.Add(Manager);
+
+                // Количество пар
+                var pairsCount = (groupsInRound[i].PairsCount).ToString();
+                Paragraph PairsCount = new Paragraph("Всего пар: " + pairsCount)
+                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT)
+                    .SetFontSize(12);
+                document.Add(PairsCount);
+
+                // Информация
+                Paragraph Info = new Paragraph()
+                    .SetFontSize(12);
+                Info.Add(new Text("Номер     Фамилия           Клуб                    Руководитель/тренер                     Место"));
+
+                document.Add(Info);
+
+                document.Add(ls);
+
+                var pairs = db.PairsInGroup.Where(x => x.GroupID == groupsInRound[i].ID).Select(x => x.PairID);
+                List<Pair> pairsInGroup = new List<Pair>();
+                foreach (var p in pairs)
+                {
+                    var pair = db.Pair.Find(p);
+                    pairsInGroup.Add(pair);
+                }
+
+                for (int j = 0; j < pairsInGroup.Count(); j++)
+                {
+                    // Пара
+                    Paragraph Pair = new Paragraph()
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT)
+                        .SetFontSize(12);
+
+                    Pair.Add(new Text(pairsInGroup[j].Number).SetFontSize(14));
+
+                    Pair.Add(new Tab());
+                    Pair.Add(new Text(pairsInGroup[j].MaleSurname));
+                    Pair.Add(new Text("\n"));
+                    Pair.Add(new Text("     " + pairsInGroup[j].FemaleSurname));
+
+                    document.Add(Pair);
+                }
+            }
+
+
+
+
+            // Завершение работы с документом
+            document.Close();
         }
     }
 }

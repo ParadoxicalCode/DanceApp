@@ -98,20 +98,20 @@ namespace DanceApp
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            string title = (string)((Button)sender).CommandParameter;
-            var connectionString = "Data Source=" + title + ".db";
-
-            Json connect = new Json()
-            {
-                ConnectionString = connectionString
-            };
-            string serialized = JsonConvert.SerializeObject(connect);
-
-            File.WriteAllText("AppSettings.json", serialized);
-            GlobalClass.db = new DataBaseContext();
-
             if (MessageBox.Show("Вы действительно хотите удалить базу данных?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
+                string title = (string)((Button)sender).CommandParameter;
+                var connectionString = "Data Source=" + title + ".db";
+
+                Json connect = new Json()
+                {
+                    ConnectionString = connectionString
+                };
+                string serialized = JsonConvert.SerializeObject(connect);
+
+                File.WriteAllText("AppSettings.json", serialized);
+                GlobalClass.db = new DataBaseContext();
+
                 try
                 {
                     GlobalClass.db.Database.CloseConnection();
@@ -120,7 +120,7 @@ namespace DanceApp
                 }
                 catch
                 {
-                    MessageBox.Show("База данных используется приложением!");
+                    MessageBox.Show("База данных используется другими процессами!");
                 }
             }
         }

@@ -18,7 +18,7 @@ namespace DanceApp.Model.Data
         public virtual Group Group { get; set; }
 
         public int Number { get; set; }
-        public string Status { get; set; }
+        public bool Status { get; set; }
 
         public List<PairsInPerformance> PairsInPerformance { get; } = new();
         public List<FinalResult> FinalResult { get; } = new();

@@ -21,7 +21,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Номер" VerticalAlignment="Center"/>
                 <TextBox Width="30" Height="24" x:Name="NumberTB" Style="{StaticResource AddEditTextBox}" MaxLength="2" TextAlignment="Center" 
-                             HorizontalAlignment="Left" Margin="8 0 0 0"/>
+                    HorizontalAlignment="Left" Margin="8 0 0 0" FontSize="14"/>
             </StackPanel>
 
             <Border Grid.Row="1" BorderBrush="DarkGray" BorderThickness="2"/>
@@ -85,7 +85,7 @@
 
             <TextBlock Grid.Row="5" Text="*Состав группы" VerticalAlignment="Center"/>
             <DataGrid x:Name="PairsDG" Grid.Row="6" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}" CellStyle="{StaticResource DGCell}"
-                      Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="40" CanUserReorderColumns="False" CanUserSortColumns="False" VirtualizingStackPanel.IsVirtualizing="False">
+                      Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="32" CanUserReorderColumns="False" CanUserSortColumns="False" VirtualizingStackPanel.IsVirtualizing="False">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
@@ -104,47 +104,55 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Header="№" Binding="{Binding Number}" MinWidth="30" MaxWidth="30"/>
-
-                    <DataGridTemplateColumn Width="120" MaxWidth="120" Header="Фамилия">
+                    <DataGridTemplateColumn MinWidth="30" MaxWidth="30" Header="№">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock FontSize="14" Text="{Binding MaleSurname}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
-                                    <TextBlock FontSize="14" Text="{Binding FemaleSurname}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                    <TextBlock FontSize="16" Text="{Binding Number}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-2 0 0 0"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Width="100" MaxWidth="100" Header="Имя">
+                    <DataGridTemplateColumn MinWidth="120" MaxWidth="120" Header="Фамилия">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock FontSize="14" Text="{Binding MaleName}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
-                                    <TextBlock FontSize="14" Text="{Binding FemaleName}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                    <TextBlock FontSize="14" Text="{Binding MaleSurname}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 -3 0 0"/>
+                                    <TextBlock FontSize="14" Text="{Binding FemaleSurname}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 -5 0 0"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Width="120" MaxWidth="120" Header="Отчество">
+                    <DataGridTemplateColumn MinWidth="100" MaxWidth="100" Header="Имя">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock FontSize="14" Text="{Binding MalePatronymic}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
-                                    <TextBlock FontSize="14" Text="{Binding FemalePatronymic}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                    <TextBlock FontSize="14" Text="{Binding MaleName}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 -3 0 0"/>
+                                    <TextBlock FontSize="14" Text="{Binding FemaleName}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 -5 0 0"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Width="*" Header="Дата рождения">
+                    <DataGridTemplateColumn MinWidth="120" MaxWidth="120" Header="Отчество">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock FontSize="14" Text="{Binding MaleBirthday}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
-                                    <TextBlock FontSize="14" Text="{Binding FemaleBirthday}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                                    <TextBlock FontSize="14" Text="{Binding MalePatronymic}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 -3 0 0"/>
+                                    <TextBlock FontSize="14" Text="{Binding FemalePatronymic}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 -5 0 0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn MinWidth="140" Width="*" Header="Дата рождения">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock FontSize="14" Text="{Binding MaleBirthday}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 -3 0 0"/>
+                                    <TextBlock FontSize="14" Text="{Binding FemaleBirthday}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 -5 0 0"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

@@ -1402,7 +1402,6 @@ C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\obj\Debug\net6.0-windows\Styles\Da
 C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\obj\Debug\net6.0-windows\Styles\DatePicker.baml
 C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\obj\Debug\net6.0-windows\Styles\TextBlock.baml
 C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\obj\Debug\net6.0-windows\Styles\TextBox.baml
-C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\obj\Debug\net6.0-windows\Styles\Window.baml
 C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\obj\Debug\net6.0-windows\MainWindow.g.cs
 C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\obj\Debug\net6.0-windows\View\AddEditDataBaseView.g.cs
 C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\obj\Debug\net6.0-windows\View\AddEditGroupsView.g.cs
@@ -1528,3 +1527,4 @@ C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\bin\Debug\net6.0-windows\bc-fips-1
 C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\bin\Debug\net6.0-windows\bcpkix-fips-1.0.2.dll
 C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\bin\Debug\net6.0-windows\itext.bouncy-castle-fips-adapter.dll
 C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\obj\Debug\net6.0-windows\Styles\CheckBox.baml

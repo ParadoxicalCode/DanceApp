@@ -66,6 +66,9 @@
     <Page Update="Styles\Button.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\CheckBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\ComboBox.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -79,9 +82,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\TextBox.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Styles\Window.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\AddEditPairsView.xaml">

@@ -32,6 +32,9 @@ namespace DanceApp.View
             RoundID = roundID;
             RoundText.Text = db.Round.Find(roundID).Title;
             SelectedJudges = selectedJudges;
+
+            GroupCB.ItemsSource = db.Group.Where(x => x.RoundID == roundID).ToList();
+            GroupCB.SelectedIndex = 0;
         }
 
         private void GetGroupsAndPerformances()
@@ -40,7 +43,7 @@ namespace DanceApp.View
 
         }
 
-        private void NextBtn_Click(object sender, RoutedEventArgs e)
+        private void Save_Click(object sender, RoutedEventArgs e)
         {
             GetGroupsAndPerformances();
 
@@ -71,7 +74,26 @@ namespace DanceApp.View
 
         private void FinalDocument_Click(object sender, RoutedEventArgs e)
         {
+            var GroupID = (GroupCB.SelectedItem as Group).ID;
+            var GroupName = db.Group.Find(GroupID).Title;
+            var RoundName = db.Round.Find(RoundID).Title;
 
+            var dialog = new OpenFileDialog
+            {
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                Title = "Укажите путь для сохранения PDF файла",
+                Filter = "Все папки (*.*)|*.*",
+                CheckFileExists = false,
+                CheckPathExists = true,
+                FileName = "Финальный отчёт" + " (" + RoundName + ", " + GroupName + ")" + ".PDF"
+            };
+
+            // Теперь надо пролистать все группы в туре и все заходы в группе и передать в метод протокол2
+
+            if (dialog.ShowDialog() == true)
+            {
+                new CreatePDF().FinalProtocol(dialog.FileName, RoundID, GroupID);
+            }
         }
 
         private void JudgeCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -87,6 +109,36 @@ namespace DanceApp.View
         private void PerformanceCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void GroupsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void DancesChB_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DancesChB_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Table_Click(object sender, RoutedEventArgs e)
+        {
+            Button clickedButton = (Button)sender;
+            string buttonName = clickedButton.Name;
+
+            if (clickedButton.Background.ToString() == "#FF8F8F8F")
+            {
+                clickedButton.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0x00, 0xBF, 0x1D));
+            }
+            else
+            {
+                clickedButton.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0x8F, 0x8F, 0x8F));
+            }
         }
     }
 }

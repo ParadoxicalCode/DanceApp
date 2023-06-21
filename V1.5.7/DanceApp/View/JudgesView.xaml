@@ -58,8 +58,17 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn MinWidth="25" MaxWidth="25" Header="ID">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock FontSize="16" Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-2 0 0 0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 
-                <DataGridTextColumn Header="ID" Binding="{Binding Character}" MinWidth="25" MaxWidth="25"/>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" MinWidth="100" MaxWidth="100"/>
                 <DataGridTextColumn Header="Имя" Binding="{Binding Name}" MinWidth="90" MaxWidth="90"/>
                 <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" MinWidth="100" MaxWidth="100"/>

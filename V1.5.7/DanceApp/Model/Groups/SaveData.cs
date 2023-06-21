@@ -81,7 +81,7 @@ namespace DanceApp.Model.Groups
                 group.Program = program;
                 group.SportsDiscipline = SportsDiscipline;
                 group.PairsCount = SelectedPairs.Count;
-                group.Status = "Не завершено";
+                group.Status = false;
 
                 db.Group.Add(group);
                 try {  db.SaveChanges(); }
@@ -211,12 +211,12 @@ namespace DanceApp.Model.Groups
             // Сохранение выбранных пар в таблицу PairsInGroup
             foreach (var p in SelectedPairs)
             {
-                var pairsInGroup = new PairsInGroup();
+                var pair = new PairsInGroup();
 
-                pairsInGroup.GroupID = groupID;
-                pairsInGroup.PairID = p.ID;
+                pair.GroupID = groupID;
+                pair.PairID = p.ID;
 
-                db.PairsInGroup.Add(pairsInGroup);
+                db.PairsInGroup.Add(pair);
                 UpdateDataBase();
             }
 

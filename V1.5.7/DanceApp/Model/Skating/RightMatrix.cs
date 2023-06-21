@@ -13,36 +13,36 @@ namespace DanceApp.Model.Skating
             result = new string[pairsCount, pairsCount + 1];
             int[,] rightMatrix = new int[pairsCount, pairsCount];
 
-            for (int j = 0; j < pairsCount; j++)
+            for (int i = 0; i < pairsCount; i++)
             {
                 int placeCount = 1;
-                for (int i = 0; i < pairsCount; i++)
+                for (int beginCell = 0; beginCell < pairsCount; beginCell++)
                 {
                     int sum = 0;
-                    for (int counter = 0; counter < judgesCount; counter++)
+                    for (int j = 0; j < judgesCount; j++)
                     {
-                        if (leftMatrix[j, counter] <= placeCount)
+                        if (leftMatrix[i, j] <= placeCount)
                         {
                             sum++;
                         }
                     }
-                    rightMatrix[j, i] = sum;
+                    rightMatrix[i, beginCell] = sum;
                     placeCount++;
                 }
             }
 
-            // Заполняем правую часть таблицы для GUI.
-            for (int a = 0; a < pairsCount; a++)
+            // Заполняем правую часть таблицы чёрточками для GUI.
+            for (int i = 0; i < pairsCount; i++)
             {
-                for (int b = 0; b < pairsCount; b++)
+                for (int j = 0; j < pairsCount; j++)
                 {
-                    if (rightMatrix[a, b] == 0)
+                    if (rightMatrix[i, j] == 0)
                     {
-                        result[a, b] = "-";
+                        result[i, j] = "-";
                     }
                     else
                     {
-                        result[a, b] = rightMatrix[a, b].ToString();
+                        result[i, j] = rightMatrix[i, j].ToString();
                     }
                 }
             }
