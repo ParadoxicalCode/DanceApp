@@ -137,8 +137,7 @@ namespace DanceApp
 
         private void Info_Click(object sender, RoutedEventArgs e)
         {
-            InfoView form = new InfoView();
-            form.ShowDialog();
+            new InfoView().ShowDialog();
         }
     }
 }

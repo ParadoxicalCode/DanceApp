@@ -35,11 +35,27 @@ namespace DanceApp.View
         private DataBaseContext db = GlobalClass.db;
         OpenRegistration x = new OpenRegistration();
         public List<Pair2> pairs = new List<Pair2>();
+        int rowsCount = 16;
+        bool CBSwitch = false;
         public PairsView()
         {
             InitializeComponent();
+
+            List<RowsCount> rows = new List<RowsCount>();
+            List<string> values = new List<string> { "16", "27", "все" };
+            foreach (var v in values)
+            {
+                rows.Add(new RowsCount
+                {
+                    Element = v
+                });
+            }
+            RowsCountInPageCB.ItemsSource = rows.ToList();
+            RowsCountInPageCB.SelectedIndex = 0;
+
             PagesCount(false);
-            PairsDG.ItemsSource = pairs.Take(15);
+            PairsDG.ItemsSource = pairs.Take(rowsCount);
+            CBSwitch = true;
         }
 
         public class Pair2
@@ -61,6 +77,11 @@ namespace DanceApp.View
             public string Trainer2 { get; set; }
             public string PerformanceType { get; set; }
             public string AgeCategory { get; set; }
+        }
+
+        public class RowsCount
+        {
+            public string Element { get; set; }
         }
 
         private void PagesCount(bool add)
@@ -93,12 +114,12 @@ namespace DanceApp.View
             }
 
             // Узнаём количество страниц
-            if (pairs.Count > 15)
+            if (pairs.Count > rowsCount)
             {
-                if (pairs.Count % 15 == 0)
-                    pageCount = pairs.Count / 15;
+                if (pairs.Count % rowsCount == 0)
+                    pageCount = pairs.Count / rowsCount;
                 else
-                    pageCount = (pairs.Count / 15) + 1;
+                    pageCount = (pairs.Count / rowsCount) + 1;
             }
             else
                 pageCount = 1;
@@ -116,9 +137,9 @@ namespace DanceApp.View
 
             if (PageIndex == 1)
             {
-                BackBtn.Visibility = Visibility.Hidden;
                 BeginningBtn.Visibility = Visibility.Hidden;
-                PairsDG.ItemsSource = pairs.Take(15);
+                BackBtn.Visibility = Visibility.Hidden;
+                PairsDG.ItemsSource = pairs.Take(rowsCount);
 
                 if (pageCount == 1)
                 {
@@ -130,26 +151,27 @@ namespace DanceApp.View
                 {
                     NextBtn.Visibility = Visibility.Visible;
                     EndBtn.Visibility = Visibility.Visible;
-                    NumberOfRecords.Content = 15 + " из " + pairs.Count;
+                    NumberOfRecords.Content = rowsCount + " из " + pairs.Count;
                 }
             }
             else
             {
                 BackBtn.Visibility = Visibility.Visible;
                 BeginningBtn.Visibility = Visibility.Visible;
-                NextBtn.Visibility = Visibility.Hidden;
-                EndBtn.Visibility = Visibility.Hidden;
 
-                PairsDG.ItemsSource = pairs.Skip((PageIndex - 1) * 15).Take(15);
+                PairsDG.ItemsSource = pairs.Skip((PageIndex - 1) * rowsCount).Take(rowsCount);
 
                 // Если открыта последняя страница
                 if (PageIndex >= pageCount && pageCount >= 2)
                 {
+                    NextBtn.Visibility = Visibility.Hidden;
+                    EndBtn.Visibility = Visibility.Hidden;
+
                     PageIndex = pageCount;
                     NumberOfRecords.Content = pairs.Count + " из " + pairs.Count;
                 }
                 else // Если открыта страница между первой и последней
-                    NumberOfRecords.Content = PageIndex * 15 + " из " + pairs.Count;
+                    NumberOfRecords.Content = PageIndex * rowsCount + " из " + pairs.Count;
             }
         }
 
@@ -170,7 +192,7 @@ namespace DanceApp.View
                 int ID = (int)((Button)sender).CommandParameter;
                 AddEditPairsView c = new AddEditPairsView(ID);
                 if (c.ShowDialog() == true)
-                    Update();
+                    PagesCount(false);
             }
         }
 
@@ -215,6 +237,28 @@ namespace DanceApp.View
                     break;
             }
             Update();
+        }
+
+        private void RowsCountInPageCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CBSwitch == true)
+            {
+                string count = (RowsCountInPageCB.SelectedItem as RowsCount).Element;
+                if (count != "все")
+                {
+                    rowsCount = Int32.Parse(count);
+                    PagesCount(false);
+                }
+                else
+                {
+                    BeginningBtn.Visibility = Visibility.Hidden;
+                    BackBtn.Visibility = Visibility.Hidden;
+                    pageCount = 1;
+                    rowsCount = pairs.Count;
+                }
+                PageIndex = 1;
+                Update();
+            }
         }
     }
 }

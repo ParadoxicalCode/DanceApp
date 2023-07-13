@@ -27,7 +27,7 @@
                     <ComboBox Height="30" Width="100" Grid.Row="2" x:Name="RoundCB" DisplayMemberPath="Title" SelectedValuePath="Title" Margin="6 0 0 0"
                     Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="RoundCB_SelectionChanged" HorizontalAlignment="Left"/>
 
-                    <Button Style="{StaticResource AddButton}" Content="Далее" Width="70" Click="NextRound_Click_Click" Margin="15 0 0 0">
+                    <Button Style="{StaticResource AddButton}" Content="Далее" Width="70" Click="NextRound_Click" Margin="15 0 0 0">
                         <Button.ToolTip>
                             <ToolTip HasDropShadow="True" Placement="Mouse">
                                 <TextBlock>Перейти к отбору пар в следующий тур</TextBlock>

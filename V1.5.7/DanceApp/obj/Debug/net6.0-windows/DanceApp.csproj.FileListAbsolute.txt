@@ -1528,3 +1528,5 @@ C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\obj\Debug\net6.0-windows\View\Seco
 C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\obj\Debug\net6.0-windows\View\SecondWindow\Registration\CompetitionView.baml
 C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\obj\Debug\net6.0-windows\View\SecondWindow\Registration\JudgesView.baml
 C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\obj\Debug\net6.0-windows\View\SecondWindow\Registration\PairsView.baml
+C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\obj\Debug\net6.0-windows\DanceApp.Properties.Resources.resources
+C:\Users\makol\Desktop\Diplom\V1.5.7\DanceApp\obj\Debug\net6.0-windows\DanceApp.csproj.GenerateResource.cache

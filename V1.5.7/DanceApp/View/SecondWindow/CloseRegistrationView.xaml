@@ -4,22 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DanceApp.View" mc:Ignorable="d"
-        Title="Закрытие регистрации" Height="180" Width="270" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Закрытие регистрации" Height="170" Width="250" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Border BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5" Margin="5,0,5,5">
         <Grid Margin="12 4 12 0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="36"/>
+                <RowDefinition Height="28"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBlock FontSize="16" Text="*Начальный тур" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 5"/>
-            <ComboBox Grid.Row="1" Height="30" Width="120" x:Name="RoundCB" DisplayMemberPath="Title" SelectedValuePath="Title" HorizontalAlignment="Center"
+            <TextBlock FontSize="16" Text="Начальный тур" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 0 0 5"/>
+            <ComboBox Grid.Row="1" Height="30" Width="112" x:Name="RoundCB" DisplayMemberPath="Title" SelectedValuePath="Title" HorizontalAlignment="Left"
                       Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="RoundCB_SelectionChanged"/>
 
             <StackPanel Orientation="Horizontal" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Style="{StaticResource SaveButton}" Click="Next_Click" Content="Далее"  Width="70" Height="28"/>
-                <Button Style="{StaticResource CancelButton}" Click="Cancel_Click"  Width="70" Height="28"/>
+                <Button Style="{StaticResource SaveButton}" Click="Next_Click" Content="Далее"  Width="80" Height="30"/>
+                <Button Style="{StaticResource CancelButton}" Click="Cancel_Click"  Width="80" Height="30"/>
             </StackPanel>
         </Grid>
     </Border>

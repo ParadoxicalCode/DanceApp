@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DanceApp.View" mc:Ignorable="d"
         
-        Height="340" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Title="Пара          * Обязательно для заполнения">
+        Height="340" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Title="Пара">
     <Border BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5" Margin="5,0,5,5">
         <Grid Margin="12 4 12 0">
             <Grid.RowDefinitions>
@@ -32,6 +32,8 @@
                     <TextBlock Text="Возрастная категория:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                     <TextBlock x:Name="AgeCategoryText" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5 0 0 0"/>
                 </StackPanel>
+
+                <TextBlock Grid.Column="1" Text="*Обязательно для заполнения" VerticalAlignment="Center" HorizontalAlignment="Right"/>
             </Grid>
 
             <Border Grid.Row="1" BorderBrush="DarkGray" BorderThickness="2"/>

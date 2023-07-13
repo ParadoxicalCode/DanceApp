@@ -126,10 +126,5 @@ namespace DanceApp.View
                     Frame.Content = new GroupsView();
             }
         }
-
-        private void DocumentBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

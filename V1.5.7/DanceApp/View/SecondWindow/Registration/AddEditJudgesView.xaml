@@ -30,7 +30,7 @@
                 <TextBlock x:Name="IDText" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="4 0 0 0"/>
             </StackPanel>
 
-            <TextBlock Text="* Обязательно для заполнения" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="22 0 0 0"/>
+            <TextBlock Text="*Обязательно для заполнения" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="22 0 0 0"/>
 
             <Border Grid.Row="1" BorderBrush="DarkGray" BorderThickness="2"/>
 

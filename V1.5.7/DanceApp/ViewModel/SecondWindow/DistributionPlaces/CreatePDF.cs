@@ -107,7 +107,7 @@ namespace DanceApp.Model
                 document.Add(table);
                 document.Add(ls);
 
-                if (((float)i + 1) % 3 == 0)
+                if (((float)i + 1) % 3 == 0 && i != selectedJudges.Count - 1)
                 {
                     // Переход на следующую страницу
                     document.Add(new AreaBreak());

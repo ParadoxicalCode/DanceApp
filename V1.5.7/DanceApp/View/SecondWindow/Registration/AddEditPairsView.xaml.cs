@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Globalization;
 using static System.Net.Mime.MediaTypeNames;
 using System.Windows.Markup;
+using static Org.BouncyCastle.Utilities.Test.FixedSecureRandom;
 
 #nullable disable
 namespace DanceApp.View
@@ -100,14 +101,6 @@ namespace DanceApp.View
             string number = NumberTB.Text;
             bool checkIsExist = db.Pair.Any(x => x.Number == number);
             var data = db.Pair.Where(u => u.ID == ID).FirstOrDefault();
-            int identical = db.Pair.Count(x => x.Number == number);
-
-            // Валидация номера
-            if (checkIsExist == true && number != "" && identical > 1)
-            {
-                MessageBox.Show("Пара с таким номером уже есть!");
-                return;
-            }
 
             var x = new GlobalClass();
             if (x.TrimAndCheckNumber(ref number) == false && number != "")
@@ -124,6 +117,13 @@ namespace DanceApp.View
 
             if (ID == 0)
             {
+                // Валидация номера
+                if (checkIsExist == true && number != "")
+                {
+                    MessageBox.Show("Пара с таким номером уже есть!");
+                    return;
+                }
+
                 if (db.Pair.Count() == 60)
                 {
                     MessageBox.Show("Нельзя добавить более 60 пар!");
@@ -174,7 +174,19 @@ namespace DanceApp.View
                 pair.Country = CountryTB.Text;
                 pair.Trainer1 = Trainer1TB.Text;
                 pair.Trainer2 = Trainer2TB.Text;
-                pair.AgeCategoryID = FindAgeCategory(pair.MaleBirthday, pair.FemaleBirthday);
+                pair.AgeCategoryID = FindAgeCategory(pair.MaleBirthday, pair.FemaleBirthday, out int age);
+
+                if (age < 6 || age > 90)
+                {
+                    MessageBox.Show("Возраст должен быть в интервале от 6 до 80 лет!");
+                    return;
+                }
+
+                if (checkIsExist == true && number != "" && data.Number != NumberTB.Text)
+                {
+                    MessageBox.Show("Пара с таким номером уже есть!");
+                    return;
+                }
 
                 db.Pair.Add(pair);
                 try
@@ -226,7 +238,7 @@ namespace DanceApp.View
                     data.PerformanceType = "Пара";
                 }
 
-                if (checkIsExist == true && number != "" && data.Number != NumberTB.Text) // Как нам узнать номер повторяется у этой же пары или у другой пары в списке?
+                if (checkIsExist == true && number != "" && data.Number != NumberTB.Text)
                 {
                     MessageBox.Show("Пара с таким номером уже есть!");
                     return;
@@ -238,7 +250,13 @@ namespace DanceApp.View
                 data.Country = CountryTB.Text;
                 data.Trainer1 = Trainer1TB.Text;
                 data.Trainer2 = Trainer2TB.Text;
-                data.AgeCategoryID = FindAgeCategory(data.MaleBirthday, data.FemaleBirthday);
+                data.AgeCategoryID = FindAgeCategory(data.MaleBirthday, data.FemaleBirthday, out int age);
+
+                if (age < 6 || age > 80)
+                {
+                    MessageBox.Show("Возраст должен быть в интервале от 6 до 80 лет!");
+                    return;
+                }
 
                 try
                 {
@@ -256,7 +274,7 @@ namespace DanceApp.View
             this.Close();
         }
 
-        public int FindAgeCategory(string partner1, string partner2)
+        public int FindAgeCategory(string partner1, string partner2, out int age)
         {
             int older;
             int group;
@@ -282,6 +300,8 @@ namespace DanceApp.View
             else if (older >= 16 && older <= 18) { group = 6; }
             else if (older >= 19 && older <= 34) { group = 7; }
             else { group = 8; }
+
+            age = older;
 
             return group;
         }

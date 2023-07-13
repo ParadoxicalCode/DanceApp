@@ -55,15 +55,6 @@
                         </ToolTip>
                     </Button.ToolTip>
                 </Button>
-
-                <Button Style="{StaticResource MenuButton}" Margin="0 20 0 0" Click="DocumentBtn_Click" x:Name="DocumentsBtn">
-                    <Image Source="/Images/Document.png" Width="22" Height="22"/>
-                    <Button.ToolTip>
-                        <ToolTip HasDropShadow="True" Placement="Mouse">
-                            <TextBlock>Документы</TextBlock>
-                        </ToolTip>
-                    </Button.ToolTip>
-                </Button>
             </StackPanel>
 
             <Button Grid.Row="1" Style="{StaticResource MenuButton}" Click="DataBases_Click">
