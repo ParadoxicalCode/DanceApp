@@ -1,0 +1,273 @@
+﻿<Page x:Class="DanceApp.View.GroupsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:DanceApp.View" mc:Ignorable="d" 
+    d:DesignHeight="600" d:DesignWidth="900"
+      Title="CompetitionsView" Background="White">
+
+    <Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                    <Ellipse x:Name="RoundStatus" Width="15" Height="15" Fill="Red" Margin="0 4 0 0"/>
+                    <TextBlock FontSize="16" Text="Тур*" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                    <ComboBox Height="30" Width="100" Grid.Row="2" x:Name="RoundCB" DisplayMemberPath="Title" SelectedValuePath="Title" Margin="6 0 0 0"
+                    Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="RoundCB_SelectionChanged" HorizontalAlignment="Left"/>
+
+                    <Button Style="{StaticResource AddButton}" Content="Далее" Width="70" Click="NextRound_Click" Margin="15 0 0 0">
+                        <Button.ToolTip>
+                            <ToolTip HasDropShadow="True" Placement="Mouse">
+                                <TextBlock>Перейти к отбору пар в следующий тур</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30">
+                    <TextBlock Text="Количество нераспределённых пар: " FontSize="16" VerticalAlignment="Center" Margin=" 15 0 0 0"/>
+                    <TextBlock x:Name="FreePairsCountText" Text="" FontSize="16" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+
+            <Border Grid.Row="1" BorderBrush="DarkGray" BorderThickness="2"/>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+                <Ellipse x:Name="GroupStatus"  Width="15" Height="15" Fill="Red" Margin="0 4 0 0"/>
+                <TextBlock Text="Группа*" FontSize="16" VerticalAlignment="Center" Margin="5 0 0 0"/>
+
+                <Button Style="{StaticResource AddButton}" Click="Add_Click" Margin="15 0 0 0">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/Add.png" VerticalAlignment="Center" Margin="2 1 8 0" Width="12" Height="12"/>
+                        <TextBlock Text="Новая запись"/>
+                    </StackPanel>
+
+                    <Button.ToolTip>
+                        <ToolTip HasDropShadow="True" Placement="Mouse">
+                            <TextBlock>Создать группу</TextBlock>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+            </StackPanel>
+
+            <DataGrid x:Name="GroupsDG" Grid.Row="3" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}" CellStyle="{StaticResource DGCell}"
+                    Background="white" HeadersVisibility="Column" RowHeight="36" SelectionChanged="GroupsDG_SelectionChanged" CanUserReorderColumns="False" CanUserSortColumns="False" Margin="0 0 0 10">
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="DarkGray"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn MinWidth="70" MaxWidth="70" CellStyle="{StaticResource DGCellAddEditDelete}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Grid.Column="1" Margin="5 0 0 0" CommandParameter="{Binding ID}" Style="{StaticResource DataBaseButton}" Click="Edit_Click">
+                                        <Image Source="/Images/Edit.png" Width="12" Height="12"/>
+                                        <Button.ToolTip>
+                                            <ToolTip HasDropShadow="True" Placement="Mouse">
+                                                <TextBlock>Изменить запись</TextBlock>
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+
+                                    <Button Grid.Column="1" Margin="5 0 0 0" CommandParameter="{Binding ID}" Style="{StaticResource DataBaseButton}" Click="Delete_Click">
+                                        <Image Source="/Images/Delete.png" Width="12" Height="12"/>
+                                        <Button.ToolTip>
+                                            <ToolTip HasDropShadow="True" Placement="Mouse">
+                                                <TextBlock>Удалить запись</TextBlock>
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn MinWidth="30" MaxWidth="30" Header="№">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock FontSize="16" Text="{Binding Number}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-2 0 0 0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
+                    <DataGridTextColumn Header="Название" Binding="{Binding Title}" MinWidth="250" MaxWidth="260" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Пар" Binding="{Binding PairsCount}" MinWidth="40" MaxWidth="40" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Спортивная дисциплина" Binding="{Binding SportsDiscipline}" MinWidth="220" MaxWidth="220" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Программа" Binding="{Binding Program}" Width="104" IsReadOnly="True"/>
+                    <DataGridTextColumn Width="*" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Border Grid.Row="4" BorderBrush="DarkGray" BorderThickness="2"/>
+
+            <Grid  Grid.Row="5">
+                <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center">
+                    <Ellipse x:Name="DanceStatus" Width="15" Height="15" Fill="Red" Margin="0 2 0 0"/>
+                    <TextBlock Text="Танец*" FontSize="16" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                    <ComboBox x:Name="DanceCB" Height="30" Width="150" DisplayMemberPath="Title" SelectedValuePath="Title" Margin="6 0 0 0"
+                    Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="DanceCB_SelectionChanged"/>
+
+                    <Ellipse x:Name="PerformanceStatus" Width="15" Height="15" Fill="Red" Margin="30 4 0 0"/>
+                    <TextBlock Text="Заход*" FontSize="16" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                    <ComboBox x:Name="PerformanceCB" Height="30" Width="44" DisplayMemberPath="Number" SelectedValuePath="Number" Margin="6 0 0 0"
+                    Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="PerformanceCB_SelectionChanged"/>
+
+                    <Button Style="{StaticResource AddButton}" Content="Далее" Width="70" Click="SelectPerformance_Click" Margin="15 0 0 0">
+                        <Button.ToolTip>
+                            <ToolTip HasDropShadow="True" Placement="Mouse">
+                                <TextBlock>Перейти к распределению мест</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <Border Grid.Row="6" BorderBrush="DarkGray" BorderThickness="2"/>
+
+            <Grid Grid.Row="7">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="555" MaxWidth="555"/>
+                    <ColumnDefinition MinWidth="350"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Пары в танце*" FontSize="16" VerticalAlignment="Center"/>
+
+                <DataGrid x:Name="PairsDG" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}" CellStyle="{StaticResource DGCell}"
+                      Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="32" CanUserReorderColumns="False" CanUserSortColumns="False" VirtualizingStackPanel.IsVirtualizing="False">
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn MinWidth="24" MaxWidth="24" CellStyle="{StaticResource DGCellAddEditDelete}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Path=IsSelected, UpdateSourceTrigger=PropertyChanged}" Checked="PairsChB_Checked" Unchecked="PairsChB_Unchecked" HorizontalAlignment="Center">
+                                        <CheckBox.LayoutTransform>
+                                            <ScaleTransform ScaleX="1.2" ScaleY="1.3" />
+                                        </CheckBox.LayoutTransform>
+                                    </CheckBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn MinWidth="30" MaxWidth="30" Header="№">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock FontSize="16" Text="{Binding Number}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-2 0 0 0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn MinWidth="120" MaxWidth="120" Header="Фамилия">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock FontSize="14" Text="{Binding MaleSurname}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 -3 0 0"/>
+                                        <TextBlock FontSize="14" Text="{Binding FemaleSurname}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 -5 0 0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn MinWidth="100" MaxWidth="100" Header="Имя">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock FontSize="14" Text="{Binding MaleName}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 -3 0 0"/>
+                                        <TextBlock FontSize="14" Text="{Binding FemaleName}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 -5 0 0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn MinWidth="120" MaxWidth="120" Header="Отчество">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock FontSize="14" Text="{Binding MalePatronymic}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 -3 0 0"/>
+                                        <TextBlock FontSize="14" Text="{Binding FemalePatronymic}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 -5 0 0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn MinWidth="140" Width="*" Header="Дата рождения">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock FontSize="14" Text="{Binding MaleBirthday}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 -3 0 0"/>
+                                        <TextBlock FontSize="14" Text="{Binding FemaleBirthday}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 -5 0 0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <TextBlock Text="Судьи*" Margin="10 0 0 0" Grid.Column="1" FontSize="16" VerticalAlignment="Center"/>
+
+                <DataGrid x:Name="JudgesDG" Grid.Row="1" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="false" ColumnHeaderStyle="{StaticResource DGridCentAl}" CellStyle="{StaticResource DGCell}"
+                    Background="white" HeadersVisibility="Column" IsReadOnly="True" RowHeight="32" Margin="10 0 0 0" CanUserReorderColumns="False" CanUserSortColumns="False">
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn MinWidth="24" MaxWidth="24" CellStyle="{StaticResource DGCellAddEditDelete}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Path=IsSelected, UpdateSourceTrigger=PropertyChanged}" Checked="JudgesChB_Checked" Unchecked="JudgesChB_Unchecked" HorizontalAlignment="Center">
+                                        <CheckBox.LayoutTransform>
+                                            <ScaleTransform ScaleX="1.2" ScaleY="1.3" />
+                                        </CheckBox.LayoutTransform>
+                                    </CheckBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn MinWidth="25" MaxWidth="25" Header="ID">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock FontSize="16" Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-2 0 0 0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="100" MaxWidth="100"/>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="100" MaxWidth="100"/>
+                        <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="110"/>
+                        <DataGridTextColumn Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
